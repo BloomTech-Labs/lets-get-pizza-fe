@@ -1,10 +1,12 @@
 {
   "name": "plza-fe",
+  "repository": "https://github.com/Lambda-School-Labs/lets-get-pizza-fe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0"
   },
   "scripts": {
