@@ -26,7 +26,7 @@ const registrationSchema = Yup.object().shape({
 });
 
 export default function Register() {
-  let history = useHistory();
+  const history = useHistory();
 
   return (
     <div className="register">

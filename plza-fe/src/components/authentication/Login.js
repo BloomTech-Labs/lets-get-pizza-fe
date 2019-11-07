@@ -15,7 +15,7 @@ const loginSchema = Yup.object().shape({
 });
 
 export default function Login() {
-  let history = useHistory();
+  const history = useHistory();
 
   return (
     <div className="login">
