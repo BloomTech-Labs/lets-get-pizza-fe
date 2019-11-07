@@ -2,25 +2,30 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const registrationSchema = values =>
-  Yup.object().shape({
-    username: Yup.string().required("Required"),
-    password: Yup.string()
-      .min(4, "Password is too short")
-      .required("Password is required"),
-    password_verify: Yup.string()
-      .oneOf([values.password], "Passwords are not the same")
-      .min(4, "Too short")
-      .required("Password confirmation is required"),
-    email: Yup.string()
-      .email("Invalid email")
-      .required("Required")
-  });
+const registrationSchema = Yup.object().shape({
+  username: Yup.string()
+    .max(128, "Username is too long")
+    .required("Username is required"),
+  password: Yup.string()
+    .min(4, "Password is too short")
+    .required("Password is required"),
+  password_verify: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords are not the same")
+    .min(4, "Password is too short")
+    .required("Password confirmation is required"),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("E-mail address is required"),
+  favorite_pizza_toppings: Yup.string(),
+  city: Yup.string(),
+  state: Yup.string()
+});
 
 export default function Register() {
   return (
     <div className="register">
       <h1>Register Account</h1>
+
       <Formik
         initialValues={{
           username: "",
@@ -28,24 +33,29 @@ export default function Register() {
           password_verify: "",
           email: "",
           profile_image: "",
+          display_name: "",
           dietary_preference: [],
           favorite_pizza_toppings: "",
           city: "",
           state: ""
         }}
-        // validationSchema={registrationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert("Form submitted!");
-            console.log(values);
-            setSubmitting(false);
-          });
+        validationSchema={registrationSchema}
+        onSubmit={values => {
+          // Delete password verification before sending request
+          const valuesPayload = Object.assign({}, values);
+          delete valuesPayload.password_verify;
+
+          alert("Form submitted!");
+          console.log(valuesPayload);
         }}
       >
-        {({ errors, touched, isSubmitting }) => (
+        {() => (
           <Form>
-            <Field type="username" name="username" placeholder="Username" />
+            <Field type="text" name="username" placeholder="Username" />
             <ErrorMessage name="username" />
+
+            <Field type="text" name="display_name" placeholder="Display name" />
+            <ErrorMessage name="display_name" />
 
             <Field type="email" name="email" placeholder="Email address" />
             <ErrorMessage name="email" />
@@ -66,12 +76,16 @@ export default function Register() {
               <option value="vegan">Vegan</option>
             </Field>
 
+            <Field
+              type="text"
+              name="favorite_pizza_toppings"
+              placeholder="Favorite pizza toppings"
+            />
+
             <Field type="text" name="city" placeholder="City" />
             <Field type="text" name="state" placeholder="State" />
 
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
+            <button type="submit">Submit</button>
           </Form>
         )}
       </Formik>
