@@ -1,7 +1,11 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+
 import API from "../../utils/API";
+import setToken from "../../utils/token";
 
 const loginSchema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
@@ -11,6 +15,8 @@ const loginSchema = Yup.object().shape({
 });
 
 export default function Login() {
+  let history = useHistory();
+
   return (
     <div className="login">
       <h1>Login</h1>
@@ -24,8 +30,10 @@ export default function Login() {
 
           API.post("/api/auth/user/login", { username, password })
             .then(response => {
-              localStorage.setItem("token", response.data.token);
+              setToken(response.data.token);
               setSubmitting(false);
+
+              history.push("/");
             })
             .catch(error => {
               setFieldError("message", error.response.data.message);
@@ -44,7 +52,7 @@ export default function Login() {
             <ErrorMessage name="password" />
 
             <button type="submit" disabled={isSubmitting || !isValid}>
-              Submit
+              Log in
             </button>
           </Form>
         )}

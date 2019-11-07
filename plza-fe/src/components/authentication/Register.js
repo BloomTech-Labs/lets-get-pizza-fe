@@ -1,6 +1,11 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+
+import API from "../../utils/API";
+import setToken from "../../utils/token";
 
 const registrationSchema = Yup.object().shape({
   username: Yup.string()
@@ -17,11 +22,12 @@ const registrationSchema = Yup.object().shape({
     .email("Invalid email")
     .required("E-mail address is required"),
   favorite_pizza_toppings: Yup.string(),
-  city: Yup.string(),
-  state: Yup.string()
+  display_location: Yup.string()
 });
 
 export default function Register() {
+  let history = useHistory();
+
   return (
     <div className="register">
       <h1>Register Account</h1>
@@ -36,21 +42,33 @@ export default function Register() {
           display_name: "",
           dietary_preference: [],
           favorite_pizza_toppings: "",
-          city: "",
-          state: ""
+          display_location: ""
         }}
         validationSchema={registrationSchema}
-        onSubmit={values => {
-          // Delete password verification before sending request
-          const valuesPayload = Object.assign({}, values);
-          delete valuesPayload.password_verify;
+        onSubmit={(values, { setSubmitting, setFieldError }) => {
+          setSubmitting(true);
+          // Copy values object and delete password verification
+          // before sending request
+          const payload = Object.assign({}, values);
+          delete payload.password_verify;
 
-          alert("Form submitted!");
-          console.log(valuesPayload);
+          API.post("/api/auth/user/register", payload)
+            .then(response => {
+              setToken(response.data.token);
+              setSubmitting(false);
+
+              history.push("/");
+            })
+            .catch(error => {
+              setFieldError("message", error.response.data.message);
+              setSubmitting(false);
+            });
         }}
       >
-        {() => (
+        {({ errors, isSubmitting, isValid }) => (
           <Form>
+            <div className="message">{errors.message}</div>
+
             <Field type="text" name="username" placeholder="Username" />
             <ErrorMessage name="username" />
 
@@ -82,10 +100,11 @@ export default function Register() {
               placeholder="Favorite pizza toppings"
             />
 
-            <Field type="text" name="city" placeholder="City" />
-            <Field type="text" name="state" placeholder="State" />
+            <Field type="text" name="display_location" placeholder="Location" />
 
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={isSubmitting || !isValid}>
+              Register
+            </button>
           </Form>
         )}
       </Formik>
