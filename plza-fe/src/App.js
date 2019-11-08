@@ -3,13 +3,20 @@ import { Switch, Route } from "react-router-dom";
 
 import Masthead from "./components/Masthead";
 
+import Login from "./components/authentication/Login";
+import Register from "./components/authentication/Register";
+
 export default function App() {
   return (
     <div className="app">
       <Masthead />
       <Switch>
-        <Route path="/register" render={() => <div>Register Account</div>} />
-        <Route path="/login" render={() => <div>Login to Account</div>} />
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
 
         <Route exact path="/places" render={() => <div>Places</div>} />
         <Route
