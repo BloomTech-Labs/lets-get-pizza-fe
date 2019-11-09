@@ -57,7 +57,7 @@ export default function Register() {
               setToken(response.data.token);
               setSubmitting(false);
 
-              history.push("/");
+              history.push("/places");
             })
             .catch(error => {
               setFieldError("message", error.response.data.message);
