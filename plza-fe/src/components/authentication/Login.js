@@ -33,7 +33,7 @@ export default function Login() {
               setToken(response.data.token);
               setSubmitting(false);
 
-              history.push("/");
+              history.push("/places");
             })
             .catch(error => {
               setFieldError("message", error.response.data.message);
