@@ -3,9 +3,10 @@ import ReactMapGL, { GeolocateControl, NavigationControl } from "react-map-gl";
 
 export default function Map(props) {
   const [viewport, setViewport] = useState({
-    width: "100%",
+    width: "50%",
     height: 1024,
-    zoom: 4
+    zoom: 4,
+    style: 'mapbox://styles/mapbox/streets-v11'
   });
 
   const geolocateStyle = { position: "absolute", top: 0, left: 0, margin: 10 };
