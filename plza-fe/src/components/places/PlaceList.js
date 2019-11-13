@@ -19,7 +19,6 @@ export default function PlaceList() {
 
   return (
     <div className="places">
-      <h1>Places</h1>
       <Map>
         {locations.map(location => (
           <Marker
