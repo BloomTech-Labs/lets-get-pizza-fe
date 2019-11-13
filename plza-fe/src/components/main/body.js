@@ -3,22 +3,21 @@ import { Switch, Route } from "react-router-dom";
 
 import Home from './home/home'
 
-import Login from "../authentication/Login";
-import Register from "../authentication/Register";
+//Handles the switch/routes for all users & auth
+import Users from '../users/UserController'
 
-//Handles the switch/route for all locations routes
-import Locations from '../locations/location-controller'
+//Handles the switch/routes for all locations routes
+import Locations from '../locations/LocationController'
 
 const Body = () => {
     return <div className="body-container">
       
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route path="/users" component={Users} />
         <Route path="/locations" component={Locations} />
 
         <Route exact path="/" component={Home} />
-        
+
         <Route render={() => <div>404-Not Found</div>} />
       </Switch>
 

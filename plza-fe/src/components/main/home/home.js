@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 import axios from "axios";
 import './home.css'
+import Map from '../../map/mapScreen'
 
 class App extends Component {
     state = {
@@ -13,13 +14,6 @@ class App extends Component {
         this.getVenues();
     }
 
-    renderMap = () => {
-        loadScript(
-            "https://maps.googleapis.com/maps/api/js?key=AIzaSyDxCO5FAyDXobzi3Enz8KCCgaDGHKCs7U4&callback=initMap"
-        );
-        window.initMap = this.initMap;
-    };
-
     getVenues = () => {
         axios
             .get("https://plza.herokuapp.com/api/locations/map")
@@ -30,7 +24,6 @@ class App extends Component {
                         venues: response.data.results,
                         userLocation: response.data.userLocation
                     },
-                    this.renderMap()
                 );
             })
             .catch(error => {
@@ -38,50 +31,17 @@ class App extends Component {
             });
     };
 
-    initMap = () => {
-        // Create A Map
-        var map = new window.google.maps.Map(document.getElementById("map"), {
-            center: { lat: this.state.userLocation.userLatitude, lng: this.state.userLocation.userLongitude },
-            zoom: 10
-        });
-
-        // Create An InfoWindow
-        var infowindow = new window.google.maps.InfoWindow();
-
-        // Display Dynamic Markers
-        this.state.venues.map(myVenue => {
-            var contentString = `${myVenue.name}`;
-
-            // Create A Marker
-            var marker = new window.google.maps.Marker({
-                position: {
-                    lat: myVenue.latitude,
-                    lng: myVenue.longitude
-                },
-                map: map,
-                title: myVenue.name
-            });
-
-            // Click on A Marker!
-            marker.addListener("click", function () {
-                // Change the content
-                infowindow.setContent(contentString);
-
-                // Open An InfoWindow
-                infowindow.open(map, marker);
-            });
-        });
-    };
+    
 
     render() {
         return <div>
-            <main>
-                <div id="map" />
-            </main>
+            <div className="small-map">
+                <Map venues={this.state.venues} userLocation={this.state.userLocation} />
+            </div>
 
             <div> 
                 We have: <i>{ this.state.userLocation.friendlyTitle } </i><br />    
-                <Link to="">Update Your Location</Link>
+                <Link to="/locations/map">Update Your Location</Link>
             </div>
 
             <hr />
@@ -112,15 +72,6 @@ class App extends Component {
 
         </div>;
     }
-}
-
-function loadScript(url) {
-    var index = window.document.getElementsByTagName("script")[0];
-    var script = window.document.createElement("script");
-    script.src = url;
-    script.async = true;
-    script.defer = true;
-    index.parentNode.insertBefore(script, index);
 }
 
 export default App;

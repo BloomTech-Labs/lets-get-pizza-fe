@@ -8,8 +8,10 @@ export default function Masthead() {
       <h1>Plza</h1>
       <nav>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/register">Register</NavLink>
-        <NavLink to="/login">Log in</NavLink>
+        <NavLink to="/users/register">Register</NavLink>
+        <NavLink to="/users/login">Log in</NavLink>
+        <NavLink to="/locations/map">Map</NavLink>
+        <NavLink to="/locations/search">Search</NavLink>
       </nav>
     </header>
   );
