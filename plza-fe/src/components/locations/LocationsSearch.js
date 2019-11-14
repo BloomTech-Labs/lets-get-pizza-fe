@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 import axios from "axios";
-import Map from '../map/mapScreen'
+import Map from '../map/mapScreen';
+import VenueList from './search/list'
 
 class App extends Component {
     state = {
@@ -71,13 +72,7 @@ class App extends Component {
                 </form> 
             </div>
 
-            {this.state.venues.map(venue => 
-                <div>
-                    <h3>{venue.name}</h3>
-                    <p>{venue.address}</p>
-                    <hr />
-                </div>
-            )}
+           <VenueList venues={this.state.venues} />
 
             <Link to="">See the Map</Link>
 

@@ -8,8 +8,8 @@ const Body = () => {
     return <div className="body-container">
       
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route path="users/login" component={Login} />
+        <Route path="users/register" component={Register} />
 
         <Route render={() => <div>404-Not Found</div>} />
       </Switch>
