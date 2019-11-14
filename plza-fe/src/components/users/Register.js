@@ -52,12 +52,13 @@ export default function Register() {
           const payload = Object.assign({}, values);
           delete payload.password_verify;
 
-          API.post("/api/auth/user/register", payload)
+          API.post("/auth/user/register", payload)
             .then(response => {
               setToken(response.data.token);
               setSubmitting(false);
 
-              history.push("/places");
+              // Redirect to map frontpage
+              history.push("/locations/map");
             })
             .catch(error => {
               setFieldError("message", error.response.data.message);

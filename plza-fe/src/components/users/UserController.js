@@ -1,20 +1,18 @@
-import React from 'react'
-import { Switch, Route } from "react-router-dom";
+import React from "react";
+import { Route } from "react-router-dom";
 
-import Login from './Login'
-import Register from './Register'
+import Login from "./Login";
+import Register from "./Register";
 
-const Body = () => {
-    return <div className="body-container">
-      
-      <Switch>
-        <Route path="users/login" component={Login} />
-        <Route path="users/register" component={Register} />
-
-        <Route render={() => <div>404-Not Found</div>} />
-      </Switch>
-
-    </div>
+export default function UserController() {
+  return (
+    <>
+      <Route path="/users/login">
+        <Login />
+      </Route>
+      <Route path="/users/register">
+        <Register />
+      </Route>
+    </>
+  );
 }
-
-export default Body

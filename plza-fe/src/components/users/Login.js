@@ -28,12 +28,12 @@ export default function Login() {
           setSubmitting(true);
           const { username, password } = values;
 
-          API.post("/api/auth/user/login", { username, password })
+          API.post("/auth/user/login", { username, password })
             .then(response => {
               setToken(response.data.token);
               setSubmitting(false);
 
-              history.push("/places");
+              history.push("/locations/mapp");
             })
             .catch(error => {
               setFieldError("message", error.response.data.message);

@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import API from "../../utils/API";
-import Map from "../map/Map";
 
-export default class LocationsMap extends Component {
+import VenueList from "./search/CardList";
+
+export default class LocationSearch extends Component {
   constructor() {
     super();
 
     this.state = {
       venues: [],
       userLocation: {},
-      search: ""
+      searchTerm: "",
+      locationSearch: ""
     };
   }
 
@@ -21,7 +22,12 @@ export default class LocationsMap extends Component {
 
   getVenues = () => {
     // If there is anything in the state under "search", append a the search query with the input.
-    API.get("/locations/map", { params: { search: this.state.search } })
+    API.get("/locations/map", {
+      params: {
+        search: this.state.locationSearch,
+        nameSearch: this.state.searchTerm
+      }
+    })
       .then(response => {
         console.log(response);
         this.setState({
@@ -35,7 +41,7 @@ export default class LocationsMap extends Component {
   };
 
   handleChange = event => {
-    this.setState({ search: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmit = event => {
@@ -45,30 +51,33 @@ export default class LocationsMap extends Component {
 
   render() {
     return (
-      <div>
-        <div className="large-map">
-          <Map
-            userLocation={this.state.userLocation}
-            venues={this.state.venues}
-          />
-        </div>
-
+      <div className="venues">
         <div>
           We have: <i>{this.state.userLocation.friendlyTitle} </i>
           <br />
-          <h3>Update Your Location</h3>
           <form onSubmit={this.handleSubmit}>
+            <h3>Update Your Location</h3>
             <input
               onChange={this.handleChange}
               type="text"
-              value={this.state.search}
+              name="locationSearch"
+              value={this.state.locationSearch}
+            />
+            <i>Try: "City", "City,State", or "Zip"</i>
+            <h3>Search by Name</h3>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="searchTerm"
+              value={this.state.searchTerm}
             />
             <button type="submit">Go!</button>
           </form>
-          <i>Try: "City", "City,State", or "Zip"</i>
         </div>
 
-        <Link to="/locations/search">Search by Location Name</Link>
+        <VenueList venues={this.state.venues} />
+
+        <Link to="/locations/map">See the Map</Link>
       </div>
     );
   }
