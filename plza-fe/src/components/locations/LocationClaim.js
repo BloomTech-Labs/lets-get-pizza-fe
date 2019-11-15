@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class LocationsMap extends React.Component {
+export default class LocationsMap extends Component {
   constructor() {
     super();
 
