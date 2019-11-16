@@ -2,13 +2,15 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 // Base app components
-import Header from "./components/main/header/Header";
+import Header from "./components/main/Header";
 import NoMatch from "./components/main/NoMatch";
 
 // Nested routes
-import Home from "./components/main/home/home";
 import Users from "./components/users/UserController";
 import Locations from "./components/locations/LocationController";
+
+// Home page
+import Home from "./components/main/Home";
 
 import "normalize.css";
 
