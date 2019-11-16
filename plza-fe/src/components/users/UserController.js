@@ -10,6 +10,7 @@ export default function UserController() {
       <Route path="/users/login">
         <Login />
       </Route>
+
       <Route path="/users/register">
         <Register />
       </Route>

@@ -33,7 +33,8 @@ export default function Login() {
               setToken(response.data.token);
               setSubmitting(false);
 
-              history.push("/locations/mapp");
+              // Redirect to map frontpage
+              history.push("/locations/map");
             })
             .catch(error => {
               setFieldError("message", error.response.data.message);
