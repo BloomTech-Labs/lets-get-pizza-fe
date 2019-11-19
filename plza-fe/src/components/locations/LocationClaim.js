@@ -1,13 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
+import { useParams } from "react-router-dom";
 
-export default class LocationsMap extends Component {
-  constructor() {
-    super();
+import RegisterForm from "../authentication/RegisterForm";
 
-    this.state = {};
-  }
+export default function LocationClaim() {
+  const { id } = useParams();
 
-  render() {
-    return <div></div>;
-  }
+  return (
+    <div className="claim">
+      <h1>Claim Business</h1>
+      <RegisterForm
+        endpoint={`/auth/location/claim/${id}`}
+        redirect_url={"/"}
+      />
+    </div>
+  );
 }

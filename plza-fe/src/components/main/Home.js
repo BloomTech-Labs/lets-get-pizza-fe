@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import API from "../../../utils/API";
 
-import Map from "../../map/Map";
+import API from "../../utils/API";
+import Map from "../map/Map";
 
 export default class Home extends Component {
   constructor() {

@@ -5,6 +5,7 @@ import LocationsMap from "./LocationsMap";
 import LocationSearch from "./LocationSearch";
 import LocationClaim from "./LocationClaim";
 import LocationsLogin from "./LocationsLogin";
+import LocationsRegister from "./LocationsRegister";
 import LocationPage from "./LocationPage";
 
 export default function LocationController() {
@@ -28,6 +29,10 @@ export default function LocationController() {
 
       <Route path="/locations/login">
         <LocationsLogin />
+      </Route>
+
+      <Route path="/locations/register">
+        <LocationsRegister />
       </Route>
 
       {/* Individual view page */}
