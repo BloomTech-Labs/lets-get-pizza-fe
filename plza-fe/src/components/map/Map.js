@@ -18,7 +18,20 @@ export default function Map({ userLocation, width, height, venues }) {
             lat: userLocation.userLatitude,
             lng: userLocation.userLongitude
           },
-          zoom: 14
+          zoom: 14,
+          clickableIcons: false,
+          styles: [
+            {
+              featureType: "poi",
+              elementType: "labels",
+              stylers: [{ visibility: "off" }]
+            },
+            {
+              featureType: "transit",
+              elementType: "labels",
+              stylers: [{ visibility: "off" }]
+            }
+          ]
         }}
         style={{ width, height }}
       />
