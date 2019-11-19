@@ -10,6 +10,7 @@ export default class LocationSearch extends Component {
 
     this.state = {
       venues: [],
+      filteredVenues: [],
       userLocation: {},
       searchTerm: "",
       locationSearch: ""
@@ -29,7 +30,6 @@ export default class LocationSearch extends Component {
       }
     })
       .then(response => {
-        console.log(response);
         this.setState({
           venues: response.data.results,
           userLocation: response.data.userLocation
@@ -42,37 +42,56 @@ export default class LocationSearch extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  };
+  }
 
   handleSubmit = event => {
     event.preventDefault();
     this.getVenues();
+    //Clear search term box on a new location search
+    this.setState({searchTerm: ""})
   };
+
+  filterVenues = event => {
+    event.preventDefault();
+    //Setting state so that what the user types is still visible
+    this.setState({ [event.target.name]: event.target.value });
+    //Checking what is typed vs what is listed in venues and only displaying those that match. Both upper and lowercase
+    let filteredVenues = this.state.venues.filter((venue) => {
+    return venue.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
+    })
+    //Setting result of filter to venues and displaying it
+    this.setState({
+      venues: filteredVenues
+    })
+  }
 
   render() {
     return (
       <div className="venues">
         <div>
-          We have: <i>{this.state.userLocation.friendlyTitle} </i>
+          We have your current location as: <i>{this.state.userLocation.friendlyTitle} </i>
           <br />
           <form onSubmit={this.handleSubmit}>
             <h3>Update Your Location</h3>
             <input
               onChange={this.handleChange}
+              placeholder="City, City,State, or Zip"
               type="text"
               name="locationSearch"
               value={this.state.locationSearch}
             />
-            <i>Try: "City", "City,State", or "Zip"</i>
+            <button type="submit">Go!</button>
+          <div>
             <h3>Search by Name</h3>
             <input
-              onChange={this.handleChange}
+              onChange={this.filterVenues}
+              placeholder="Search"
               type="text"
               name="searchTerm"
               value={this.state.searchTerm}
             />
-            <button type="submit">Go!</button>
-          </form>
+          </div>
+        </form>
         </div>
 
         <VenueList venues={this.state.venues} />
