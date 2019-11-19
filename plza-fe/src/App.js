@@ -13,6 +13,7 @@ import Locations from "./components/locations/LocationController";
 import Home from "./components/main/Home";
 
 import "normalize.css";
+import "./index.css";
 
 export default function App() {
   return (

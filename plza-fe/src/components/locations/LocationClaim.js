@@ -9,7 +9,10 @@ export default function LocationClaim() {
   return (
     <div className="claim">
       <h1>Claim Business</h1>
-      <RegisterForm endpoint={`/locations/claim/${id}`} redirect_url={"/"} />
+      <RegisterForm
+        endpoint={`/auth/location/claim/${id}`}
+        redirect_url={"/"}
+      />
     </div>
   );
 }

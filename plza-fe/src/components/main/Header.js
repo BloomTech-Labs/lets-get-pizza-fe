@@ -1,32 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 
-const Header = styled.header`
-  background-color: grey;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-`;
-
-const Title = styled.h1``;
-
-const Link = styled(NavLink)`
-  padding: 5px;
-`;
+import "./Header.css";
 
 export default function Masthead() {
   return (
-    <Header>
-      <Title>Plza</Title>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/users/register">Register</Link>
-        <Link to="/users/login">Log in</Link>
-        <Link to="/locations/map">Map</Link>
-        <Link to="/locations/search">Search</Link>
+    <header className="header">
+      <h1 className="title">Plza</h1>
+      <nav className="navigation">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/users/register">Register</NavLink>
+        <NavLink to="/users/login">Log in</NavLink>
+        <NavLink to="/locations/map">Map</NavLink>
+        <NavLink to="/locations/search">Search</NavLink>
       </nav>
-    </Header>
+    </header>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { string } from "yup";
 
 import RegisterForm from "../authentication/RegisterForm";
 
@@ -18,8 +18,9 @@ export default function Register() {
           display_location: ""
         }}
         extraSchema={{
-          favorite_pizza_toppings: Yup.string(),
-          display_location: Yup.string()
+          display_name: string(),
+          favorite_pizza_toppings: string(),
+          display_location: string()
         }}
       >
         <Field type="text" name="display_name" placeholder="Display name" />
