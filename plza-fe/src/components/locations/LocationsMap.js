@@ -50,6 +50,7 @@ export default class LocationsMap extends Component {
           <Map
             userLocation={this.state.userLocation}
             venues={this.state.venues}
+            height={"640px"}
           />
         </div>
 
