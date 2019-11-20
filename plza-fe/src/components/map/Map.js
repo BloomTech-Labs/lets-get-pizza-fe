@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import API from "../../utils/API";
-import {withRouter} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import {
   GoogleMapProvider,
   MapBox,
@@ -8,24 +7,13 @@ import {
   InfoWindow
 } from "@googlemap-react/core";
 
-export default withRouter(function Map(props) {
-  const { userLocation, width, height, venues } = props
+import processVenue from "../../utils/processVenue";
+
+export default function Map({ userLocation, width, height, venues }) {
+  const history = useHistory();
   const [selectedMarker, setSelectedMarker] = useState({});
+  const [infoWindowVisible, setInfoWindowVisible] = useState(false);
 
-  const processVenue = async (e) => {
-    let foursquare_id = e.target.getAttribute('fsid')
-    let location_id = e.target.getAttribute('lid')
-    console.log(foursquare_id, location_id)
-
-    if(foursquare_id && !location_id){
-      const createdLocation = await API.get(`/locations/live/${foursquare_id}`)
-      location_id = createdLocation.data.id
-    } 
-
-    //redirect to location_id
-    props.history.push(`/locations/${location_id}`);
-  }
-  
   return (
     <GoogleMapProvider>
       <MapBox
@@ -52,7 +40,6 @@ export default withRouter(function Map(props) {
         }}
         style={{ width, height }}
       />
-      {console.log(venues)}
       {venues.map(venue => (
         <Marker
           id={`marker-${venue.foursquare_id || venue.location_id}`}
@@ -61,6 +48,9 @@ export default withRouter(function Map(props) {
             position: { lat: venue.latitude, lng: venue.longitude }
           }}
           onClick={() => {
+            // Start displaying the InfoWindow and set this as
+            // the selected marker
+            setInfoWindowVisible(true);
             setSelectedMarker({
               id: `marker-${venue.foursquare_id || venue.location_id}`,
               ...venue
@@ -69,19 +59,27 @@ export default withRouter(function Map(props) {
         />
       ))}
 
-      <InfoWindow anchorId={selectedMarker.id} visible>
+      <InfoWindow anchorId={selectedMarker.id} visible={infoWindowVisible}>
         <h2>{selectedMarker.name}</h2>
         <p>{selectedMarker.address}</p>
         {/* Creates a "button" which processes */}
-        <p onClick={processVenue} 
-          fsid={selectedMarker.foursquare_id ? `${selectedMarker.foursquare_id}` : null} 
-          lid={selectedMarker.location_id ? `${selectedMarker.location_id}` : null}>
-            See The Deets ->
+        <p
+          onClick={event => processVenue(event, history)}
+          fsid={
+            selectedMarker.foursquare_id
+              ? `${selectedMarker.foursquare_id}`
+              : null
+          }
+          lid={
+            selectedMarker.location_id ? `${selectedMarker.location_id}` : null
+          }
+        >
+          See The Deets ->
         </p>
       </InfoWindow>
     </GoogleMapProvider>
   );
-})
+}
 
 Map.defaultProps = {
   width: "100%",
@@ -91,4 +89,3 @@ Map.defaultProps = {
     userLongitude: 0
   }
 };
-
