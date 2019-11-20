@@ -9,7 +9,6 @@ function Card (props) {
   const processVenue = async (e) => {
     let foursquare_id = e.target.getAttribute('fsid')
     let location_id = e.target.getAttribute('lid')
-    console.log(foursquare_id, location_id)
 
     if(foursquare_id && !location_id){
       const createdLocation = await API.get(`/locations/live/${foursquare_id}`)

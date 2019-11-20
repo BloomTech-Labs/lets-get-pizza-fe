@@ -23,7 +23,6 @@ export default class LocationsMap extends Component {
     // If there is anything in the state under "search", append a the search query with the input.
     API.get("/locations/map", { params: { search: this.state.search } })
       .then(response => {
-        console.log(response);
         this.setState({
           venues: response.data.results,
           userLocation: response.data.userLocation

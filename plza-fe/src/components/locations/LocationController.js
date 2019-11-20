@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import LocationsMap from "./LocationsMap";
 import LocationSearch from "./LocationSearch";
@@ -10,7 +10,7 @@ import LocationPage from "./LocationPage";
 
 export default function LocationController() {
   return (
-    <>
+    <Switch> {/*You DO need the nested switches to only show one.*/}
       {/* This route shows a larger map with the option to change the search. */}
       <Route path="/locations/map">
         <LocationsMap />
@@ -39,6 +39,6 @@ export default function LocationController() {
       <Route path="/locations/:id">
         <LocationPage />
       </Route>
-    </>
+    </Switch>
   );
 }
