@@ -4,7 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { string, ref } from "yup";
 
 import API from "../../utils/API";
-import setToken from "../../utils/token";
+//Renamed to setAuth & include the user object(s)
+import setAuth from "../../utils/auth";
 import composeSchema from "../../utils/composeSchema";
 
 const registrationSchema = {
@@ -49,6 +50,7 @@ export default function RegisterForm(props) {
         API.post(endpoint, payload)
           .then(response => {
             setToken(response.data.token);
+            setAuth(response.data);
             //Add a set user function here
             setSubmitting(false);
 

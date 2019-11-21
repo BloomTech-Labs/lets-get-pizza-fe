@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, Container } from "semantic-ui-react";
-import { hasToken } from "../../utils/token";
+import {logout} from '../../utils/auth'
 
 const UserProfile = () => (
   <>
@@ -22,6 +21,11 @@ const AuthenticateOptions = () => (
 );
 
 export default function Masthead() {
+  const logoutUser = (e) => {
+    e.preventDefault();
+    logout();
+  }
+
   return (
     <Menu stackable inverted style={{ borderRadius: 0 }}>
       <Container>
