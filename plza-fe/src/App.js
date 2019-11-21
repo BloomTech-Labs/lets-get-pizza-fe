@@ -12,9 +12,6 @@ import Locations from "./components/locations/LocationController";
 // Home page
 import Home from "./components/main/Home";
 
-import "normalize.css";
-import "./index.css";
-
 export default function App() {
   return (
     <div className="app">
