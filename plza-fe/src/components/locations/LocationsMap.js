@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Form } from "semantic-ui-react";
 
 import API from "../../utils/API";
 import Map from "../map/Map";
+
 
 export default class LocationsMap extends Component {
   constructor() {
@@ -54,18 +56,21 @@ export default class LocationsMap extends Component {
         </div>
 
         <div>
-          We have: <i>{this.state.userLocation.friendlyTitle} </i>
+          We have your current location as:{" "}
+          <i>{this.state.userLocation.friendlyTitle} </i>
           <br />
           <h3>Update Your Location</h3>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              onChange={this.handleChange}
-              type="text"
-              value={this.state.search}
-            />
-            <button type="submit">Go!</button>
-          </form>
-          <i>Try: "City", "City,State", or "Zip"</i>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group>
+              <Form.Input
+                onChange={this.handleChange}
+                placeholder="City or City,State or Zip"
+                type="text"
+                value={this.state.search}
+              />
+              <Form.Button type="submit">Go!</Form.Button>
+            </Form.Group>
+          </Form>
         </div>
 
         <Link to="/locations/search">Search by Location Name</Link>

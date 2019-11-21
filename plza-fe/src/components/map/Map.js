@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 import {
   GoogleMapProvider,
   MapBox,
@@ -71,7 +72,7 @@ export default function Map({ userLocation, width, height, venues }) {
         <h2>{selectedMarker.name}</h2>
         <p>{selectedMarker.address}</p>
         {/* Creates a "button" which processes whether or not there is a foursquare/*/}
-        <p
+        <Button
           onClick={event => processVenue(event, history)}
           fsid={
             selectedMarker.foursquare_id
@@ -83,7 +84,7 @@ export default function Map({ userLocation, width, height, venues }) {
           }
         >
           See The Deets ->
-        </p>
+        </Button>
       </InfoWindow>
     </GoogleMapProvider>
   );
