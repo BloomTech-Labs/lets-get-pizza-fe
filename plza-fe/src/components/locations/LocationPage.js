@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
 
 import API from "../../utils/API";
 
@@ -10,7 +11,6 @@ import API from "../../utils/API";
 export default function LocationPage() {
   const { id } = useParams();
   const [location, setLocation] = useState({});
-  console.log("LOCATION PAGE")
 
   useEffect(() => {
     API.get(`/locations/${id}`)
@@ -20,8 +20,18 @@ export default function LocationPage() {
 
   return (
     <div className="location">
-      {JSON.stringify(location)}
+      <h1>{location.business_name}</h1>
+      <p>{location.address}</p>
+      <p> <a href={location.website_url} target="_blank">Website</a> </p>
+      <h4>About {location.business_name}</h4>
+      <p>{location.official_description || "-"}</p>
+      <h4>Our Store</h4>
+      <p>{location.store_bio || "-"}</p>
+      <h4>Special Diet Options</h4>
+      <p>{location.dietary_offerenings || "-"}</p>
 
+      <Link to="/locations/map">Back to Map</Link> | <Link to="/locations/search">Back to Search</Link> <br />
+      { !location.email && location.foursquare_id ? <Link to={`/locations/claim/${location.id}`} >Claim this Location</Link> : "" }
     </div>
   );
 }
