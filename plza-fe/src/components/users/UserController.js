@@ -1,12 +1,13 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Login from "./Login";
 import Register from "./Register";
+import Profile from "./Profile";
 
 export default function UserController() {
   return (
-    <>
+    <Switch>
       <Route path="/users/login">
         <Login />
       </Route>
@@ -14,6 +15,10 @@ export default function UserController() {
       <Route path="/users/register">
         <Register />
       </Route>
-    </>
+      
+      <Route path="/users/profile">
+        <Profile />
+      </Route>
+    </Switch>
   );
 }

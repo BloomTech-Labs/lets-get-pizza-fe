@@ -4,7 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { string } from "yup";
 
 import API from "../../utils/API";
-import setToken from "../../utils/token";
+//Renamed to setAuth & include the user object(s)
+import setAuth from "../../utils/auth";
 import composeSchema from "../../utils/composeSchema";
 
 const loginSchema = {
@@ -27,7 +28,7 @@ export default function LoginForm(props) {
 
         API.post(endpoint, values)
           .then(response => {
-            setToken(response.data.token);
+            setAuth(response.data);
             setSubmitting(false);
 
             // Redirect to specified URL
