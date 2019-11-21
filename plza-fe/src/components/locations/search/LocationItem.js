@@ -9,10 +9,8 @@ export default function LocationItem({ venue }) {
 
   return (
     <Card>
-      <Card.Content>
-        <Card.Header>{venue.name}</Card.Header>
-        <Card.Description>{venue.address}</Card.Description>
-      </Card.Content>
+      <Card.Header>{venue.name}</Card.Header>
+      <Card.Description>{venue.address}</Card.Description>
       {/* Creates a "button" which processes */}
       <Button
         onClick={event => processVenue(event, history)}
