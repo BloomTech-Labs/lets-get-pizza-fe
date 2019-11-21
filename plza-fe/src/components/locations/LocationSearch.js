@@ -1,15 +1,25 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Form, Search } from "semantic-ui-react";
+import {
+  Header,
+  Grid,
+  Container,
+  Segment,
+  Card,
+  Form,
+  Search
+} from "semantic-ui-react";
 
 import API from "../../utils/API";
-import VenueList from "./search/CardList";
+import LocationCard from "./search/LocationCard";
 
 class LocationSearch extends Component {
   constructor() {
     super();
 
     this.state = {
+      loading: true,
+      error: {},
       venues: [],
       filteredVenues: [],
       userLocation: {},
@@ -26,17 +36,18 @@ class LocationSearch extends Component {
     // If there is anything in the state under "search", append a the search query with the input.
     API.get("/locations/map", {
       params: {
-        search: this.state.locationSearch,
-        nameSearch: this.state.searchTerm
+        search: this.state.locationSearch
       }
     })
       .then(response => {
         this.setState({
+          loading: false,
           venues: response.data.results,
           userLocation: response.data.userLocation
         });
       })
       .catch(error => {
+        this.setState({ loading: false, error: error });
         console.log("ERROR!! " + error);
       });
   };
@@ -71,39 +82,46 @@ class LocationSearch extends Component {
 
   render() {
     return (
-      <div className="venues">
-        <div>
-          We have your current location as:{" "}
-          <i>{this.state.userLocation.friendlyTitle} </i>
-          <br />
-          <h3>Update Your Location</h3>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group>
-              <Form.Input
-                onChange={this.handleChange}
-                placeholder="City or City,State or Zip"
+      <Container>
+        <Header as={"h1"}>Search</Header>
+        We have your current location as:
+        <i>{this.state.userLocation.friendlyTitle} </i>
+        <Grid columns={2} stackable>
+          <Grid.Row>
+            <Grid.Column>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Group>
+                  <Form.Input
+                    onChange={this.handleChange}
+                    placeholder="City or City,State or Zip"
+                    type="text"
+                    name="locationSearch"
+                    value={this.state.locationSearch}
+                  />
+                  <Form.Button type="submit">Go!</Form.Button>
+                </Form.Group>
+              </Form>
+            </Grid.Column>
+            <Grid.Column>
+              <h3>Search by Name</h3>
+              <Search
+                onChange={this.filterVenues}
                 type="text"
-                name="locationSearch"
-                value={this.state.locationSearch}
+                name="searchTerm"
+                value={this.state.searchTerm}
               />
-              <Form.Button type="submit">Go!</Form.Button>
-            </Form.Group>
-          </Form>
-          <div>
-            <h3>Search by Name</h3>
-            <Search
-              onChange={this.filterVenues}
-              type="text"
-              name="searchTerm"
-              value={this.state.searchTerm}
-            />
-          </div>
-        </div>
-
-        <VenueList venues={this.state.venues} />
-
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Segment>
+          <Card.Group itemsPerRow={3} doubling stackable>
+            {this.state.venues.map((venue, index) => (
+              <LocationCard {...this.state.loading} venue={venue} />
+            ))}
+          </Card.Group>
+        </Segment>
         <Link to="/locations/map">See the Map</Link>
-      </div>
+      </Container>
     );
   }
 }
