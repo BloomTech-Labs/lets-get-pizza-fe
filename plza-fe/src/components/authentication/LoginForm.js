@@ -1,10 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { string } from "yup";
 
 import API from "../../utils/API";
-import setToken from "../../utils/token";
+//Renamed to setAuth & include the user object(s)
+import setAuth from "../../utils/auth";
 import composeSchema from "../../utils/composeSchema";
 
 const loginSchema = {
@@ -15,8 +15,7 @@ const loginSchema = {
 };
 
 export default function LoginForm(props) {
-  const history = useHistory();
-  const { extraValues, extraSchema, endpoint, redirect_url, children } = props;
+  const { extraValues, extraSchema, endpoint, children } = props;
 
   return (
     <Formik
@@ -27,11 +26,9 @@ export default function LoginForm(props) {
 
         API.post(endpoint, values)
           .then(response => {
-            setToken(response.data.token);
+            setAuth(response.data);
             setSubmitting(false);
-
-            // Redirect to specified URL
-            history.push(redirect_url);
+            //Redirect handled in setAuth
           })
           .catch(error => {
             setFieldError("message", error.response.data.message);

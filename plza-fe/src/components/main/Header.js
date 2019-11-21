@@ -1,9 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import {logout} from '../../utils/auth'
 
 import "./Header.css";
 
 export default function Masthead() {
+  const logoutUser = (e) => {
+    e.preventDefault();
+    logout();
+  }
+
   return (
     <header className="header">
       <h1 className="title">Plza</h1>
@@ -14,7 +20,7 @@ export default function Masthead() {
         { localStorage.token ?        
         <span>
           <NavLink to="/users/profile">Your Profile</NavLink>
-          <NavLink to="/users/logout">Logout</NavLink>
+          <NavLink to="/" onClick={logoutUser} >Logout</NavLink>
         </span>
         :
         <span>

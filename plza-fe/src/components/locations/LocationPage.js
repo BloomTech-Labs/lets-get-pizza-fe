@@ -47,7 +47,6 @@ export default function LocationPage() {
         ""
       )}
     </Container>
-
     </div>
   );
 }
