@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { string } from "yup";
 
@@ -16,8 +15,7 @@ const loginSchema = {
 };
 
 export default function LoginForm(props) {
-  const history = useHistory();
-  const { extraValues, extraSchema, endpoint, redirect_url, children } = props;
+  const { extraValues, extraSchema, endpoint, children } = props;
 
   return (
     <Formik
@@ -30,9 +28,7 @@ export default function LoginForm(props) {
           .then(response => {
             setAuth(response.data);
             setSubmitting(false);
-
-            // Redirect to specified URL
-            history.push(redirect_url);
+            //Redirect handled in setAuth
           })
           .catch(error => {
             setFieldError("message", error.response.data.message);

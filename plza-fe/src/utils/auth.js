@@ -20,7 +20,7 @@ export default function Auth(response) {
   }
   else if(response.location) {
     //You must stringify to store in localStorage
-    localStorage.setItem('curr_user', JSON.stringify(response.location))
+    localStorage.setItem('curr_location', JSON.stringify(response.location))
   }
   window.location.replace('/users/profile')
 }
