@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   GoogleMapProvider,
   MapBox,
@@ -6,8 +7,12 @@ import {
   InfoWindow
 } from "@googlemap-react/core";
 
+import processVenue from "../../utils/processVenue";
+
 export default function Map({ userLocation, width, height, venues }) {
+  const history = useHistory();
   const [selectedMarker, setSelectedMarker] = useState({});
+  const [infoWindowVisible, setInfoWindowVisible] = useState(false);
 
   return (
     <GoogleMapProvider>
@@ -35,26 +40,42 @@ export default function Map({ userLocation, width, height, venues }) {
         }}
         style={{ width, height }}
       />
-
       {venues.map(venue => (
         <Marker
-          id={`marker-${venue.foursquare_id}`}
+          id={`marker-${venue.foursquare_id || venue.location_id}`}
           key={venue.foursquare_id}
           opts={{
             position: { lat: venue.latitude, lng: venue.longitude }
           }}
           onClick={() => {
+            // Start displaying the InfoWindow and set this as
+            // the selected marker
+            setInfoWindowVisible(true);
             setSelectedMarker({
-              id: `marker-${venue.foursquare_id}`,
+              id: `marker-${venue.foursquare_id || venue.location_id}`,
               ...venue
             });
           }}
         />
       ))}
 
-      <InfoWindow anchorId={selectedMarker.id} visible>
+      <InfoWindow anchorId={selectedMarker.id} visible={infoWindowVisible}>
         <h2>{selectedMarker.name}</h2>
         <p>{selectedMarker.address}</p>
+        {/* Creates a "button" which processes */}
+        <p
+          onClick={event => processVenue(event, history)}
+          fsid={
+            selectedMarker.foursquare_id
+              ? `${selectedMarker.foursquare_id}`
+              : null
+          }
+          lid={
+            selectedMarker.location_id ? `${selectedMarker.location_id}` : null
+          }
+        >
+          See The Deets ->
+        </p>
       </InfoWindow>
     </GoogleMapProvider>
   );

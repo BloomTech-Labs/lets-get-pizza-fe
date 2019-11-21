@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import API from "../../utils/API";
 
 import VenueList from "./search/CardList";
 
-export default class LocationSearch extends Component {
+class LocationSearch extends Component {
   constructor() {
     super();
 
@@ -65,6 +65,8 @@ export default class LocationSearch extends Component {
     })
   }
 
+  
+
   render() {
     return (
       <div className="venues">
@@ -101,3 +103,5 @@ export default class LocationSearch extends Component {
     );
   }
 }
+
+export default withRouter(LocationSearch)

@@ -10,6 +10,7 @@ import API from "../../utils/API";
 export default function LocationPage() {
   const { id } = useParams();
   const [location, setLocation] = useState({});
+  console.log("LOCATION PAGE")
 
   useEffect(() => {
     API.get(`/locations/${id}`)
@@ -19,7 +20,8 @@ export default function LocationPage() {
 
   return (
     <div className="location">
-      <h1>{location.name}</h1>
+      {JSON.stringify(location)}
+
     </div>
   );
 }
