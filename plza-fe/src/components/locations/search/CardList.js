@@ -1,6 +1,12 @@
 import React from "react";
-import Card from "./CardItem";
+import LocationItem from "./LocationItem";
+import { Card } from "semantic-ui-react";
 
-export default function CardList(props) {
-  return props.venues.map((venue, index) => <Card key={index} venue={venue} />);
+export default function LocationList(props) {
+  
+  return (
+    <Card.Group>
+      {props.venues.map((venue, index) => <LocationItem key={index} venue={venue} /> )};    
+    </Card.Group>
+  )
 }
