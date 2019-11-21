@@ -8,6 +8,7 @@ import NoMatch from "./components/main/NoMatch";
 // Nested routes
 import Users from "./components/users/UserController";
 import Locations from "./components/locations/LocationController";
+import Pages from "./components/staticPages/PageController";
 
 // Home page
 import Home from "./components/main/Home";
@@ -31,6 +32,10 @@ export default function App() {
 
         <Route exact path="/">
           <Home />
+        </Route>
+
+        <Route path="/pages">
+          <Pages />
         </Route>
 
         <Route>
