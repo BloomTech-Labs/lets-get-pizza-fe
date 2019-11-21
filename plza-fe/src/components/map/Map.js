@@ -10,7 +10,9 @@ import {
 import processVenue from "../../utils/processVenue";
 
 export default function Map({ userLocation, width, height, venues }) {
+  //Use to navigate to the venues
   const history = useHistory();
+  //Which marker is showing
   const [selectedMarker, setSelectedMarker] = useState({});
   const [infoWindowVisible, setInfoWindowVisible] = useState(false);
 
@@ -19,11 +21,14 @@ export default function Map({ userLocation, width, height, venues }) {
       <MapBox
         apiKey={process.env.REACT_APP_GOOGLE_MAPS_TOKEN}
         opts={{
+          //Center the map based on the incoming position
           center: {
             lat: userLocation.userLatitude,
             lng: userLocation.userLongitude
           },
+          //Set the zoom. The higher, the closer to Earth.
           zoom: 14,
+          //Next two settings garuntee that no extra fields/settings are show, just our markers
           clickableIcons: false,
           styles: [
             {
@@ -38,12 +43,15 @@ export default function Map({ userLocation, width, height, venues }) {
             }
           ]
         }}
+        //Able to pass in the WxH
         style={{ width, height }}
       />
+      
+      {/* .map() over the markers, creating them on the screen. */}
       {venues.map(venue => (
-        <Marker
-          id={`marker-${venue.foursquare_id || venue.location_id}`}
-          key={venue.foursquare_id}
+        <Marker 
+          id={`marker-${venue.location_id || venue.foursquare_id}`}
+          key={venue.location_id || venue.foursquare_id}
           opts={{
             position: { lat: venue.latitude, lng: venue.longitude }
           }}
@@ -52,7 +60,7 @@ export default function Map({ userLocation, width, height, venues }) {
             // the selected marker
             setInfoWindowVisible(true);
             setSelectedMarker({
-              id: `marker-${venue.foursquare_id || venue.location_id}`,
+              id: `marker-${venue.location_id || venue.foursquare_id}`,
               ...venue
             });
           }}
@@ -62,7 +70,7 @@ export default function Map({ userLocation, width, height, venues }) {
       <InfoWindow anchorId={selectedMarker.id} visible={infoWindowVisible}>
         <h2>{selectedMarker.name}</h2>
         <p>{selectedMarker.address}</p>
-        {/* Creates a "button" which processes */}
+        {/* Creates a "button" which processes whether or not there is a foursquare/*/}
         <p
           onClick={event => processVenue(event, history)}
           fsid={

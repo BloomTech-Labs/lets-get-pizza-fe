@@ -30,8 +30,8 @@ export default function LocationPage() {
       <h4>Special Diet Options</h4>
       <p>{location.dietary_offerenings || "-"}</p>
 
-      <Link to="/locations/map">Back to Map</Link> | <Link to="/locations/search">Back to Search</Link> 
-
+      <Link to="/locations/map">Back to Map</Link> | <Link to="/locations/search">Back to Search</Link> <br />
+      { !location.email && location.foursquare_id ? <Link to={`/locations/claim/${location.id}`} >Claim this Location</Link> : "" }
     </div>
   );
 }

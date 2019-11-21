@@ -49,6 +49,7 @@ export default function RegisterForm(props) {
         API.post(endpoint, payload)
           .then(response => {
             setToken(response.data.token);
+            //Add a set user function here
             setSubmitting(false);
 
             // Redirect to specified route
