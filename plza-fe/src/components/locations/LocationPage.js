@@ -22,7 +22,7 @@ export default function LocationPage() {
     <div className="location">
       <h1>{location.business_name}</h1>
       <p>{location.address}</p>
-      <p> <a href={location.website_url} target="_blank">Website</a> </p>
+      <p><a href={location.website_url} target="_blank">Website</a> </p>
       <h4>About {location.business_name}</h4>
       <p>{location.official_description || "-"}</p>
       <h4>Our Store</h4>
