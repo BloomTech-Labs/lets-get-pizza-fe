@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import API from "../../utils/API";
+import { Form, Search } from "semantic-ui-react";
 
+import API from "../../utils/API";
 import VenueList from "./search/CardList";
 
 class LocationSearch extends Component {
@@ -42,13 +43,13 @@ class LocationSearch extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
     this.getVenues();
     //Clear search term box on a new location search
-    this.setState({searchTerm: ""})
+    this.setState({ searchTerm: "" });
   };
 
   filterVenues = event => {
@@ -56,44 +57,47 @@ class LocationSearch extends Component {
     //Setting state so that what the user types is still visible
     this.setState({ [event.target.name]: event.target.value });
     //Checking what is typed vs what is listed in venues and only displaying those that match. Both upper and lowercase
-    let filteredVenues = this.state.venues.filter((venue) => {
-    return venue.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1
-    })
+    let filteredVenues = this.state.venues.filter(venue => {
+      return (
+        venue.name.toLowerCase().indexOf(event.target.value.toLowerCase()) !==
+        -1
+      );
+    });
     //Setting result of filter to venues and displaying it
     this.setState({
       venues: filteredVenues
-    })
-  }
-
-  
+    });
+  };
 
   render() {
     return (
       <div className="venues">
         <div>
-          We have your current location as: <i>{this.state.userLocation.friendlyTitle} </i>
+          We have your current location as:{" "}
+          <i>{this.state.userLocation.friendlyTitle} </i>
           <br />
-          <form onSubmit={this.handleSubmit}>
-            <h3>Update Your Location</h3>
-            <input
-              onChange={this.handleChange}
-              placeholder="City, City,State, or Zip"
-              type="text"
-              name="locationSearch"
-              value={this.state.locationSearch}
-            />
-            <button type="submit">Go!</button>
+          <h3>Update Your Location</h3>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group>
+              <Form.Input
+                onChange={this.handleChange}
+                placeholder="City or City,State or Zip"
+                type="text"
+                name="locationSearch"
+                value={this.state.locationSearch}
+              />
+              <Form.Button type="submit">Go!</Form.Button>
+            </Form.Group>
+          </Form>
           <div>
             <h3>Search by Name</h3>
-            <input
+            <Search
               onChange={this.filterVenues}
-              placeholder="Search"
               type="text"
               name="searchTerm"
               value={this.state.searchTerm}
             />
           </div>
-        </form>
         </div>
 
         <VenueList venues={this.state.venues} />
@@ -104,4 +108,4 @@ class LocationSearch extends Component {
   }
 }
 
-export default withRouter(LocationSearch)
+export default withRouter(LocationSearch);
