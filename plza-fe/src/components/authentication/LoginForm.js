@@ -1,9 +1,9 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { ErrorMessage, Field } from "formik";
+import { Form, Button, Input } from "formik-semantic-ui";
 import { string } from "yup";
 
 import API from "../../utils/API";
-//Renamed to setAuth & include the user object(s)
 import setAuth from "../../utils/auth";
 import composeSchema from "../../utils/composeSchema";
 
@@ -18,7 +18,7 @@ export default function LoginForm(props) {
   const { extraValues, extraSchema, endpoint, children } = props;
 
   return (
-    <Formik
+    <Form
       initialValues={{ username: "", password: "", ...extraValues }}
       validationSchema={composeSchema(loginSchema, extraSchema)}
       onSubmit={(values, { setSubmitting, setFieldError }) => {
@@ -28,7 +28,6 @@ export default function LoginForm(props) {
           .then(response => {
             setAuth(response.data);
             setSubmitting(false);
-            //Redirect handled in setAuth
           })
           .catch(error => {
             setFieldError("message", error.response.data.message);
@@ -37,23 +36,34 @@ export default function LoginForm(props) {
       }}
     >
       {props => (
-        <Form {...props.children}>
+        <Form.Children {...props.children}>
           <div style={{ color: "red" }}>{props.errors.message}</div>
 
-          <Field type="text" name="username" placeholder="Username" />
-          <ErrorMessage name="username" />
+          <Form.Group widths={2}>
+            <Input
+              type="text"
+              name="username"
+              inputProps={{ placeholder: "Username" }}
+            />
 
-          <Field type="password" name="password" placeholder="Password" />
-          <ErrorMessage name="password" />
+            <Input
+              type="password"
+              name="password"
+              inputProps={{ type: "password", placeholder: "Password" }}
+            />
+          </Form.Group>
 
           {children}
 
-          <button type="submit" disabled={props.isSubmitting || !props.isValid}>
+          <Button.Submit
+            primary
+            disabled={props.isSubmitting || !props.isValid}
+          >
             Log in
-          </button>
-        </Form>
+          </Button.Submit>
+        </Form.Children>
       )}
-    </Formik>
+    </Form>
   );
 }
 
