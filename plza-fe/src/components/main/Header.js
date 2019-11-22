@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Container, Menu } from "semantic-ui-react";
+import { Container, Menu, Dropdown } from "semantic-ui-react";
 import { hasToken, logout } from "../../utils/auth";
 
 const UserProfile = () => (
@@ -25,10 +25,12 @@ const AuthenticateOptions = () => (
 
 export default function Masthead() {
   return (
-    <Menu stackable inverted style={{ borderRadius: 0 }}>
+    <Menu stackable style={{ borderRadius: 0 }}>
       <Container>
         <Menu.Item>
-          <h3>Plza</h3>
+          <div style={{width:'102px',padding:'0 12px'}}>
+            <img width="100%" src="https://i.imgur.com/os2t6S3.png" />
+          </div>
         </Menu.Item>
         <Menu.Item as={NavLink} exact to="/">
           Home
@@ -39,6 +41,14 @@ export default function Masthead() {
         <Menu.Item as={NavLink} to="/locations/search">
           Search
         </Menu.Item>
+        <Dropdown text='About' pointing className='link item'>
+          <Dropdown.Menu>
+            <Dropdown.Item as={NavLink} to="/pages/eaters">User Features</Dropdown.Item>
+            <Dropdown.Item as={NavLink} to="/pages/businesses">Business Features</Dropdown.Item>
+            <Dropdown.Item as={NavLink} to="/pages/about">About Our Team</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+
         <Menu.Menu position="right">
           {hasToken ? <UserProfile /> : <AuthenticateOptions />}
         </Menu.Menu>

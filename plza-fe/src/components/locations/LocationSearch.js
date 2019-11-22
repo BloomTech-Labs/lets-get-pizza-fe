@@ -116,12 +116,15 @@ class LocationSearch extends Component {
             </Grid.Column>
             <Grid.Column>
               <h3>Search by Name</h3>
-              <Search
-                onChange={this.filterVenues}
-                type="text"
-                name="searchTerm"
-                value={this.state.searchTerm}
-              />
+              <div class="ui icon input">
+                <Form.Input
+                  onChange={this.filterVenues}
+                  type="text"
+                  name="searchTerm"
+                  value={this.state.searchTerm}
+                />
+                <i class="search icon"></i>
+              </div>
             </Grid.Column>
           </Grid.Row>
         </Grid>
