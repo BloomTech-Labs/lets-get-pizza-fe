@@ -1,11 +1,12 @@
 import React from "react";
+import { Container, Header } from "semantic-ui-react";
 import LoginForm from "../authentication/LoginForm";
 
 export default function Login() {
   return (
-    <div className="login">
-      <h1>Login</h1>
+    <Container>
+      <Header as={"h1"}>Log in</Header>
       <LoginForm />
-    </div>
+    </Container>
   );
 }
