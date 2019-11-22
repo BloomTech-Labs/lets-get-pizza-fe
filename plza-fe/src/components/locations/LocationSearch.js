@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import {
+  Loader,
+  Dimmer,
   Header,
   Grid,
   Container,
@@ -33,6 +35,7 @@ class LocationSearch extends Component {
   }
 
   getVenues = () => {
+    this.setState({ loading: true });
     // If there is anything in the state under "search", append a the search query with the input.
     API.get("/locations/map", {
       params: {
@@ -81,12 +84,20 @@ class LocationSearch extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <Dimmer active>
+          <Loader content="Loading..." />
+        </Dimmer>
+      );
+    }
+
     return (
       <Container>
         <Header as={"h1"}>Search</Header>
         We have your current location as:
         <i>{this.state.userLocation.friendlyTitle} </i>
-        <Grid columns={2} stackable>
+        <Grid columns={2} divided stackable>
           <Grid.Row>
             <Grid.Column>
               <Form onSubmit={this.handleSubmit}>
@@ -116,7 +127,7 @@ class LocationSearch extends Component {
         <Segment>
           <Card.Group itemsPerRow={3} doubling stackable>
             {this.state.venues.map((venue, index) => (
-              <LocationCard {...this.state.loading} venue={venue} />
+              <LocationCard loading={this.state.loading} venue={venue} />
             ))}
           </Card.Group>
         </Segment>

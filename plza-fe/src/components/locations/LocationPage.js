@@ -21,32 +21,35 @@ export default function LocationPage() {
   return (
     <div className="location">
       <Container>
-          <Header as="h1">{location.business_name}</Header>
-          <Card.Description>{location.address}</Card.Description>
-          <p>
-            {" "}
-            <a
-              href={location.website_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Website
-            </a>{" "}
-          </p>
-          <Card.Description as="h4">About {location.business_name}</Card.Description>
-          <p>{location.official_description || "-"}</p>
-          <Card.Description as="h4">Our Store</Card.Description>
-          <p>{location.store_bio || "-"}</p>
-          <Card.Description as="h4">Special Diet Options</Card.Description>
-          <p>{location.dietary_offerings || "-"}</p>
-      <Link to="/locations/map">Back to Map</Link> |{" "}
-      <Link to="/locations/search">Back to Search</Link> <br />
-      {!location.email && location.foursquare_id ? (
-        <Link to={`/locations/claim/${location.id}`}>Claim this Location</Link>
-      ) : (
-        ""
-      )}
-    </Container>
+        <Header as="h1">{location.business_name}</Header>
+        <Card.Description>{location.address}</Card.Description>
+        <p>
+          <a
+            href={location.website_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Website
+          </a>
+        </p>
+        <Card.Description as="h4">
+          About {location.business_name}
+        </Card.Description>
+        <p>{location.official_description || "-"}</p>
+        <Card.Description as="h4">Our Store</Card.Description>
+        <p>{location.store_bio || "-"}</p>
+        <Card.Description as="h4">Special Diet Options</Card.Description>
+        <p>{location.dietary_offerings || "-"}</p>
+        <Link to="/locations/map">Back to Map</Link> |{" "}
+        <Link to="/locations/search">Back to Search</Link> <br />
+        {!location.email && location.foursquare_id ? (
+          <Link to={`/locations/claim/${location.id}`}>
+            Claim this Location
+          </Link>
+        ) : (
+          ""
+        )}
+      </Container>
     </div>
   );
 }
