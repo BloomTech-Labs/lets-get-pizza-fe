@@ -46,6 +46,7 @@ class LocationSearch extends Component {
         this.setState({
           loading: false,
           venues: response.data.results,
+          filteredVenues: response.data.results,
           userLocation: response.data.userLocation
         });
       })
@@ -79,7 +80,7 @@ class LocationSearch extends Component {
     });
     //Setting result of filter to venues and displaying it
     this.setState({
-      venues: filteredVenues
+      filteredVenues: event.target.value !== "" ? filteredVenues : this.state.venues
     });
   };
 
@@ -115,18 +116,21 @@ class LocationSearch extends Component {
             </Grid.Column>
             <Grid.Column>
               <h3>Search by Name</h3>
-              <Search
-                onChange={this.filterVenues}
-                type="text"
-                name="searchTerm"
-                value={this.state.searchTerm}
-              />
+              <div class="ui icon input">
+                <Form.Input
+                  onChange={this.filterVenues}
+                  type="text"
+                  name="searchTerm"
+                  value={this.state.searchTerm}
+                />
+                <i class="search icon"></i>
+              </div>
             </Grid.Column>
           </Grid.Row>
         </Grid>
         <Segment>
           <Card.Group itemsPerRow={3} doubling stackable>
-            {this.state.venues.map((venue, index) => (
+            {this.state.filteredVenues.map((venue, index) => (
               <LocationCard loading={this.state.loading} venue={venue} />
             ))}
           </Card.Group>
