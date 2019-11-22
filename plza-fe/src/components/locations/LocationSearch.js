@@ -33,6 +33,7 @@ class LocationSearch extends Component {
       .then(response => {
         this.setState({
           venues: response.data.results,
+          filteredVenues: response.data.results,
           userLocation: response.data.userLocation
         });
       })
@@ -65,7 +66,7 @@ class LocationSearch extends Component {
     });
     //Setting result of filter to venues and displaying it
     this.setState({
-      venues: filteredVenues
+      filteredVenues: event.target.value !== "" ? filteredVenues : this.state.venues
     });
   };
 
@@ -91,7 +92,7 @@ class LocationSearch extends Component {
           </Form>
           <div>
             <h3>Search by Name</h3>
-            <Search
+            <Form.Input
               onChange={this.filterVenues}
               type="text"
               name="searchTerm"
@@ -100,7 +101,7 @@ class LocationSearch extends Component {
           </div>
         </div>
 
-        <VenueList venues={this.state.venues} />
+        <VenueList venues={this.state.filteredVenues} />
 
         <Link to="/locations/map">See the Map</Link>
       </div>
