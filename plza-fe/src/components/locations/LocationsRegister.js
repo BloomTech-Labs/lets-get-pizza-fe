@@ -1,14 +1,15 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
 
-import RegisterForm from "../authentication/RegisterForm";
+import AuthenticateForm from "../authentication/AuthenticateForm";
 
 export default function LocationsRegister() {
   return (
     <div className="register">
       <h1>Register Business</h1>
 
-      <RegisterForm
+      <AuthenticateForm
+        isRegistrationForm
         extraValues={{
           business_name: "",
           first_name: "",
@@ -22,17 +23,12 @@ export default function LocationsRegister() {
           store_bio: "",
           dietary_offerings: []
         }}
-        extraSchema={{}}
         endpoint={"/auth/location/register"}
       >
         <Field type="text" name="business_name" placeholder="Business name" />
-        <ErrorMessage name="business_name" />
-
         <Field type="text" name="first_name" placeholder="First name" />
         <Field type="text" name="last_name" placeholder="Last name" />
-
         <Field type="text" name="address" placeholder="Street address" />
-
         <Field type="url" name="website_url" placeholder="Website URL" />
 
         <Field
@@ -52,7 +48,7 @@ export default function LocationsRegister() {
           <option value="vegetarian">Vegetarian</option>
           <option value="vegan">Vegan</option>
         </Field>
-      </RegisterForm>
+      </AuthenticateForm>
     </div>
   );
 }

@@ -1,11 +1,9 @@
 import React from "react";
-import { Formik, Field } from "formik";
-import { Form, Message } from "semantic-ui-react";
-
+import { Formik, Form, Field } from "formik";
 import { string, ref } from "yup";
 
 import API from "../../utils/API";
-import setAuth from "../../utils/auth";
+import authenticateUser from "../../utils/auth";
 import composeSchema from "../../utils/composeSchema";
 
 const baseSchema = {
@@ -25,102 +23,79 @@ const registrationSchema = {
     .required("E-mail address is required")
 };
 
-export default function AuthenticateForm(props) {
-  const {
-    endpoint,
-    isRegistrationForm,
-    extraValues,
-    extraSchema,
-    extraFields
-  } = props;
-
-  // If this is a registration form, spread registration schema into
-  // the base schema, otherwise just return the base schema.
+export default function AuthenticateForm({
+  endpoint,
+  isRegistrationForm,
+  extraValues,
+  extraSchema,
+  children
+}) {
+  // If this is a registration form, combine registration schema and
+  // base schema together, otherwise just return the base schema.
   const initialSchema = isRegistrationForm
     ? { ...baseSchema, ...registrationSchema }
     : baseSchema;
 
+  // If there is extra schema then compose the initial and extra schema
+  // together, otherwise just return the initial schema.
+  const finalizedSchema = extraSchema
+    ? composeSchema(initialSchema, extraSchema)
+    : initialSchema;
+
+  const onSubmit = (values, actions) => {
+    // Copy values object so that we can modify it later on
+    const payload = Object.assign({}, values);
+
+    // Notify that we are submitting the form right now.
+    actions.setSubmitting(true);
+
+    // If this is a registration form there is no need
+    // to send the password verification field back to the server
+    if (isRegistrationForm) {
+      delete payload.password_verify;
+    }
+
+    API.post(endpoint, payload)
+      .then(response => {
+        authenticateUser(response.data);
+        actions.setSubmitting(false);
+      })
+      .catch(error => {
+        // Display server error
+        actions.setFieldError("message", error.response.data.message);
+        actions.setSubmitting(false);
+      });
+  };
+
   return (
     <Formik
       initialValues={{ username: "", password: "", ...extraValues }}
-      validationSchema={composeSchema(initialSchema, extraSchema)}
-      validateOnBlur={false}
-      validateOnChange={false}
-      onSubmit={(values, actions) => {
-        // Copy values object so that it can be
-        const payload = Object.assign({}, values);
-
-        actions.setSubmitting(true);
-
-        // If this is a registration form there is no need
-        // to send the password verification field.
-        if (isRegistrationForm) {
-          delete payload.password_verify;
-        }
-
-        API.post(endpoint, payload)
-          .then(response => {
-            setAuth(response.data);
-
-            // TODO: Add a set user function here
-            actions.setSubmitting(false);
-          })
-          .catch(error => {
-            // Display server error
-            actions.setFieldError("message", error.response.data.message);
-            actions.setSubmitting(false);
-          });
-      }}
+      validationSchema={finalizedSchema}
+      onSubmit={(values, actions) => onSubmit(values, actions)}
     >
       {formik => (
-        <Form error={!formik.isValid} onSubmit={formik.handleSubmit}>
-          <Message error content={formik.errors.message} />
+        <Form onSubmit={formik.handleSubmit}>
+          <Field type="text" placeholder="Username" name="username" />
+          <Field type="password" placeholder="Password" name="password" />
 
-          <Form.Group widths="equal">
-            <Field
-              as={Form.Input}
-              type="text"
-              label="Username"
-              name="username"
-              error={formik.errors.username}
-            />
+          {/* Sprinkle registration fields */}
+          {isRegistrationForm && (
+            <>
+              <Field
+                type="password"
+                placeholder="Verify password"
+                name="password_verify"
+              />
 
-            <Field
-              as={Form.Input}
-              type="password"
-              label="Password"
-              name="password"
-              error={formik.errors.password}
-            />
+              <Field type="email" placeholder="Email address" name="email" />
+            </>
+          )}
 
-            {isRegistrationForm && (
-              <>
-                <Field
-                  as={Form.Input}
-                  type="password"
-                  label="Verify password"
-                  name="password_verify"
-                  error={formik.errors.password_verify}
-                />
+          {children}
 
-                <Field
-                  as={Form.Input}
-                  type="email"
-                  label="Email address"
-                  name="email"
-                  error={formik.errors.email}
-                />
-              </>
-            )}
-          </Form.Group>
-
-          {props.children}
-
-          <Form.Button
-            type="submit"
-            content="Log in"
-            disabled={!formik.isValid}
-          />
+          <button type="submit" disabled={!formik.isValid}>
+            Log in
+          </button>
         </Form>
       )}
     </Formik>

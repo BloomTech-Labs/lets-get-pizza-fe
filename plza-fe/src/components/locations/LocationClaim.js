@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import RegisterForm from "../authentication/RegisterForm";
+import AuthenticateForm from "../authentication/AuthenticateForm";
 
 export default function LocationClaim() {
   const { id } = useParams();
@@ -9,9 +9,9 @@ export default function LocationClaim() {
   return (
     <div className="claim">
       <h1>Claim Business</h1>
-      <RegisterForm
+      <AuthenticateForm
+        isRegistrationForm
         endpoint={`/auth/location/claim/${id}`}
-        redirect_url={"/"}
       />
     </div>
   );

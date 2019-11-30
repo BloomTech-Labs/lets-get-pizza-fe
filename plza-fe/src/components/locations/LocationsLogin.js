@@ -1,6 +1,6 @@
 import React from "react";
-import LoginForm from "../authentication/LoginForm";
+import AuthenticateForm from "../authentication/AuthenticateForm";
 
 export default function LocationsLogin() {
-  return <LoginForm endpoint={"/auth/location/login"} />;
+  return <AuthenticateForm endpoint={"/auth/location/login"} />;
 }

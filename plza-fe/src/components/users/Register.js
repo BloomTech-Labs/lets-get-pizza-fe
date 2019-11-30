@@ -2,14 +2,15 @@ import React from "react";
 import { Field, ErrorMessage } from "formik";
 import { string } from "yup";
 
-import RegisterForm from "../authentication/RegisterForm";
+import AuthenticateForm from "../authentication/AuthenticateForm";
 
 export default function Register() {
   return (
     <div className="register">
       <h1>Register Account</h1>
 
-      <RegisterForm
+      <AuthenticateForm
+        isRegistrationForm
         extraValues={{
           profile_image: "",
           display_name: "",
@@ -39,7 +40,7 @@ export default function Register() {
         />
 
         <Field type="text" name="display_location" placeholder="Location" />
-      </RegisterForm>
+      </AuthenticateForm>
     </div>
   );
 }
