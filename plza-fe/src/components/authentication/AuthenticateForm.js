@@ -79,10 +79,12 @@ export default function AuthenticateForm({
       {formik => (
         <Form.Children>
           {formik.errors.message && (
-            <Message negative>
-              <Message.Header>We encountered an error.</Message.Header>
-              <p>{formik.errors.message}</p>
-            </Message>
+            <Message
+              negative
+              icon="exclamation triangle"
+              header="We encountered an error"
+              content={formik.errors.message}
+            />
           )}
 
           <Form.Group widths="equal">
@@ -111,7 +113,7 @@ export default function AuthenticateForm({
                 />
 
                 <Input
-                  inputProps={{ type: "email" }}
+                  inputProps={{ icon: "at", type: "email" }}
                   label="Email address"
                   name="email"
                   errorComponent={InputError}
@@ -126,7 +128,7 @@ export default function AuthenticateForm({
             primary
             disabled={!formik.isValid || formik.isSubmitting}
           >
-            Log in
+            {isRegistrationForm ? <>Register</> : <>Log in</>}
           </Button.Submit>
         </Form.Children>
       )}

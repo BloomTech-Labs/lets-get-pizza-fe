@@ -40,6 +40,7 @@ export default function Register() {
           name="dropdown"
           label="Dietary preferences"
           inputProps={{
+            icon: "food",
             multiple: true,
             placeholder: "Select dietary preferences"
           }}
@@ -54,6 +55,7 @@ export default function Register() {
           name="favorite_pizza_toppings"
           label="Favorite pizza toppings"
           inputProps={{
+            icon: "heart",
             placeholder: "Pepperoni, olives, pineapple, anchovies"
           }}
         />
@@ -62,6 +64,7 @@ export default function Register() {
           name="display_location"
           label="Location"
           inputProps={{
+            icon: "globe",
             placeholder: "A rough approximation of where you live"
           }}
         />
