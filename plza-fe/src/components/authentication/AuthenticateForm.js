@@ -1,10 +1,18 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Form, Input, Button } from "formik-semantic-ui";
+import { Label, Message } from "semantic-ui-react";
+
 import { string, ref } from "yup";
 
 import API from "../../utils/API";
 import authenticateUser from "../../utils/auth";
 import composeSchema from "../../utils/composeSchema";
+
+export const InputError = ({ message }) => (
+  <Label color="red" pointing="above" prompt>
+    {message}
+  </Label>
+);
 
 const baseSchema = {
   username: string().required("Username is required"),
@@ -36,12 +44,6 @@ export default function AuthenticateForm({
     ? { ...baseSchema, ...registrationSchema }
     : baseSchema;
 
-  // If there is extra schema then compose the initial and extra schema
-  // together, otherwise just return the initial schema.
-  const finalizedSchema = extraSchema
-    ? composeSchema(initialSchema, extraSchema)
-    : initialSchema;
-
   const onSubmit = (values, actions) => {
     // Copy values object so that we can modify it later on
     const payload = Object.assign({}, values);
@@ -61,44 +63,74 @@ export default function AuthenticateForm({
         actions.setSubmitting(false);
       })
       .catch(error => {
-        // Display server error
+        // Display server error at top of form
         actions.setFieldError("message", error.response.data.message);
         actions.setSubmitting(false);
       });
   };
 
   return (
-    <Formik
+    <Form
       initialValues={{ username: "", password: "", ...extraValues }}
-      validationSchema={finalizedSchema}
+      validateOnBlur={false}
+      validationSchema={composeSchema(initialSchema, extraSchema)}
       onSubmit={(values, actions) => onSubmit(values, actions)}
     >
       {formik => (
-        <Form onSubmit={formik.handleSubmit}>
-          <Field type="text" placeholder="Username" name="username" />
-          <Field type="password" placeholder="Password" name="password" />
-
-          {/* Sprinkle registration fields */}
-          {isRegistrationForm && (
-            <>
-              <Field
-                type="password"
-                placeholder="Verify password"
-                name="password_verify"
-              />
-
-              <Field type="email" placeholder="Email address" name="email" />
-            </>
+        <Form.Children>
+          {formik.errors.message && (
+            <Message negative>
+              <Message.Header>We encountered an error.</Message.Header>
+              <p>{formik.errors.message}</p>
+            </Message>
           )}
+
+          <Form.Group widths="equal">
+            <Input
+              inputProps={{ icon: "user" }}
+              label="Username"
+              name="username"
+              errorComponent={InputError}
+            />
+
+            <Input
+              inputProps={{ icon: "lock", type: "password" }}
+              label="Password"
+              name="password"
+              errorComponent={InputError}
+            />
+
+            {/* Sprinkle registration fields */}
+            {isRegistrationForm && (
+              <>
+                <Input
+                  inputProps={{ icon: "lock", type: "password" }}
+                  label="Verify password"
+                  name="password_verify"
+                  errorComponent={InputError}
+                />
+
+                <Input
+                  inputProps={{ type: "email" }}
+                  label="Email address"
+                  name="email"
+                  errorComponent={InputError}
+                />
+              </>
+            )}
+          </Form.Group>
 
           {children}
 
-          <button type="submit" disabled={!formik.isValid}>
+          <Button.Submit
+            primary
+            disabled={!formik.isValid || formik.isSubmitting}
+          >
             Log in
-          </button>
-        </Form>
+          </Button.Submit>
+        </Form.Children>
       )}
-    </Formik>
+    </Form>
   );
 }
 

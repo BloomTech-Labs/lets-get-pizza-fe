@@ -1,13 +1,12 @@
 import React from "react";
-import { Field, ErrorMessage } from "formik";
+import { Field } from "formik";
 
+import SimpleContainer from "../main/SimpleContainer";
 import AuthenticateForm from "../authentication/AuthenticateForm";
 
 export default function LocationsRegister() {
   return (
-    <div className="register">
-      <h1>Register Business</h1>
-
+    <SimpleContainer title="Register a location">
       <AuthenticateForm
         isRegistrationForm
         extraValues={{
@@ -49,6 +48,6 @@ export default function LocationsRegister() {
           <option value="vegan">Vegan</option>
         </Field>
       </AuthenticateForm>
-    </div>
+    </SimpleContainer>
   );
 }
