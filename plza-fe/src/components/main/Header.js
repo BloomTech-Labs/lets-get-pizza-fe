@@ -25,7 +25,7 @@ const AuthenticateOptions = () => (
 
 export default function Masthead() {
   return (
-    <Menu stackable style={{ borderRadius: 0 }}>
+    <Menu stackable style={{ borderRadius: 0, marginBottom: 0 }}>
       <Menu.Item>
         <div style={{ width: "102px", padding: "0 12px" }}>
           <img width="100%" src="https://i.imgur.com/os2t6S3.png" />
