@@ -1,17 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import {
-  Loader,
-  Dimmer,
-  Header,
-  Grid,
-  Container,
-  Segment,
-  Card,
-  Form,
-  Search,
-  Divider
-} from "semantic-ui-react";
+import { Loader, Header, Grid, Card, Form } from "semantic-ui-react";
 
 import API from "../../utils/API";
 import SimpleContainer from "../main/SimpleContainer";

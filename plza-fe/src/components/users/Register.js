@@ -14,6 +14,7 @@ export default function Register() {
     >
       <AuthenticateForm
         isRegistrationForm
+        endpoint={"/auth/user/register"}
         extraValues={{
           profile_image: "",
           display_name: "",
@@ -37,10 +38,9 @@ export default function Register() {
         />
 
         <Dropdown
-          name="dropdown"
+          name="dietary_preference"
           label="Dietary preferences"
           inputProps={{
-            icon: "food",
             multiple: true,
             placeholder: "Select dietary preferences"
           }}

@@ -73,6 +73,7 @@ export default function AuthenticateForm({
     <Form
       initialValues={{ username: "", password: "", ...extraValues }}
       validationSchema={composeSchema(initialSchema, extraSchema)}
+      validateOnBlur={false}
       onSubmit={(values, actions) => onSubmit(values, actions)}
     >
       {formik => (
@@ -88,14 +89,21 @@ export default function AuthenticateForm({
 
           <Form.Group widths="equal">
             <Input
-              inputProps={{ icon: "user" }}
+              inputProps={{
+                icon: "user",
+                placeholder: "Choose something memorable"
+              }}
               label="Username"
               name="username"
               errorComponent={InputError}
             />
 
             <Input
-              inputProps={{ icon: "lock", type: "password" }}
+              inputProps={{
+                icon: "lock",
+                type: "password",
+                placeholder: "Minimum 4 characters"
+              }}
               label="Password"
               name="password"
               errorComponent={InputError}
@@ -103,21 +111,29 @@ export default function AuthenticateForm({
 
             {/* Sprinkle registration fields */}
             {isRegistrationForm && (
-              <>
+              <Form.Children>
                 <Input
-                  inputProps={{ icon: "lock", type: "password" }}
+                  inputProps={{
+                    icon: "lock",
+                    type: "password",
+                    placeholder: "Re-enter your password"
+                  }}
                   label="Verify password"
                   name="password_verify"
                   errorComponent={InputError}
                 />
 
                 <Input
-                  inputProps={{ icon: "at", type: "email" }}
+                  inputProps={{
+                    icon: "at",
+                    type: "email",
+                    placeholder: "test@example.com"
+                  }}
                   label="Email address"
                   name="email"
                   errorComponent={InputError}
                 />
-              </>
+              </Form.Children>
             )}
           </Form.Group>
 
