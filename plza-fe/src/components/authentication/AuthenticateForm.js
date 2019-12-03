@@ -72,7 +72,6 @@ export default function AuthenticateForm({
   return (
     <Form
       initialValues={{ username: "", password: "", ...extraValues }}
-      validateOnBlur={false}
       validationSchema={composeSchema(initialSchema, extraSchema)}
       onSubmit={(values, actions) => onSubmit(values, actions)}
     >
@@ -82,7 +81,7 @@ export default function AuthenticateForm({
             <Message
               negative
               icon="exclamation triangle"
-              header="We encountered an error"
+              header="Sorry, we encountered an error!"
               content={formik.errors.message}
             />
           )}
