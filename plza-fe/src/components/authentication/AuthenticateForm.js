@@ -91,7 +91,7 @@ export default function AuthenticateForm({
             <Input
               inputProps={{
                 icon: "user",
-                placeholder: "Choose something memorable"
+                placeholder: "Something memorable"
               }}
               label="Username"
               name="username"

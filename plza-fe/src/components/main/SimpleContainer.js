@@ -1,12 +1,17 @@
 import React from "react";
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Loader, Container, Header, Icon } from "semantic-ui-react";
 
 export default function SimpleContainer({
+  loading,
   icon,
   title,
   description,
   children
 }) {
+  if (loading) {
+    return <Loader active>Loading</Loader>;
+  }
+
   return (
     <Container>
       <Header size="huge" style={{ margin: "20px 0" }}>
