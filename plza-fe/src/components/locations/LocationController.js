@@ -4,14 +4,14 @@ import { Route, Switch } from "react-router-dom";
 import LocationsMap from "./LocationsMap";
 import LocationSearch from "./LocationSearch";
 import LocationClaim from "./LocationClaim";
+import LocationEdit from "./LocationEdit";
 import LocationsLogin from "./LocationsLogin";
 import LocationsRegister from "./LocationsRegister";
 import LocationPage from "./LocationPage";
 
 export default function LocationController() {
   return (
-    <Switch> {/*You DO need the nested switches to only show one.*/}
-      {/* This route shows a larger map with the option to change the search. */}
+    <Switch>
       <Route path="/locations/map">
         <LocationsMap />
       </Route>
@@ -25,6 +25,10 @@ export default function LocationController() {
         this is essentially the register page. */}
       <Route path="/locations/claim/:id">
         <LocationClaim />
+      </Route>
+
+      <Route path="/locations/edit/:id">
+        <LocationEdit />
       </Route>
 
       <Route path="/locations/login">

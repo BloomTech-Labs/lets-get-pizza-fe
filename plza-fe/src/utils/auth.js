@@ -1,27 +1,48 @@
+/**
+ * Returns an object from Local Storage or returns false if it does not exist.
+ * @param {string} item
+ */
+function getItem(item) {
+  if (localStorage.hasOwnProperty(item)) {
+    return JSON.parse(localStorage.getItem(item));
+  } else {
+    return false;
+  }
+}
+
 export const hasToken = localStorage.hasOwnProperty("token");
+export const curr_user = getItem("curr_user");
+export const curr_location = getItem("curr_location");
 
-//These two functions return either the current user or a false
-export const curr_user = localStorage.getItem('curr_user') ? JSON.parse(localStorage.getItem('curr_user')) : false
-export const curr_location = localStorage.getItem('curr_location') ? JSON.parse(localStorage.getItem('curr_location')) : false
+/**
+ * Logs out a user by removing all of their Local Storage items and
+ * then redirecting them to the home page.
+ */
+export function logoutUser() {
+  localStorage.removeItem("curr_user");
+  localStorage.removeItem("curr_location");
+  localStorage.removeItem("token");
 
-export const logout = () => { 
-  localStorage.removeItem('curr_user')
-  localStorage.removeItem('curr_location')
-  localStorage.removeItem('token')
-  
-  window.location.replace('/?logout=true');
+  window.location.replace("/?logout=true");
 }
 
-export default function Auth(response) {
+/**
+ * Authenticates a user account by setting a Local Storage
+ * item called `token` which is derived from the Axios response object
+ * the function is called with.
+ *
+ * Afterwards the `curr_user` or `curr_location` items are set based on
+ * what type of user has logged in.
+ * @param {object} response
+ */
+export default function authenticateUser(response) {
   localStorage.setItem("token", response.token);
-  if(response.user) { 
-    //You must stringify to store in localStorage
-    localStorage.setItem('curr_user', JSON.stringify(response.user))
-  }
-  else if(response.location) {
-    //You must stringify to store in localStorage
-    localStorage.setItem('curr_location', JSON.stringify(response.location))
-  }
-  window.location.replace('/users/profile')
-}
 
+  if (response.user) {
+    localStorage.setItem("curr_user", JSON.stringify(response.user));
+  } else if (response.location) {
+    localStorage.setItem("curr_location", JSON.stringify(response.location));
+  }
+
+  window.location.replace("/users/profile");
+}

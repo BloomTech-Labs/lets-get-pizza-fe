@@ -1,12 +1,11 @@
 import React from "react";
-import { Container, Header } from "semantic-ui-react";
-import LoginForm from "../authentication/LoginForm";
+import SimpleContainer from "../main/SimpleContainer";
+import AuthenticateForm from "../authentication/AuthenticateForm";
 
 export default function Login() {
   return (
-    <Container>
-      <Header as={"h1"}>Log in</Header>
-      <LoginForm />
-    </Container>
+    <SimpleContainer icon="sign in" title="Log in">
+      <AuthenticateForm />
+    </SimpleContainer>
   );
 }

@@ -1,14 +1,15 @@
 import React from "react";
-import { Field, ErrorMessage } from "formik";
+import { Input, TextArea, Dropdown } from "formik-semantic-ui";
 
-import RegisterForm from "../authentication/RegisterForm";
+import SimpleContainer from "../main/SimpleContainer";
+import AuthenticateForm from "../authentication/AuthenticateForm";
 
 export default function LocationsRegister() {
   return (
-    <div className="register">
-      <h1>Register Business</h1>
-
-      <RegisterForm
+    <SimpleContainer title="Register a location">
+      <AuthenticateForm
+        isRegistrationForm
+        endpoint={"/auth/location/register"}
         extraValues={{
           business_name: "",
           first_name: "",
@@ -22,37 +23,65 @@ export default function LocationsRegister() {
           store_bio: "",
           dietary_offerings: []
         }}
-        extraSchema={{}}
-        endpoint={"/auth/location/register"}
       >
-        <Field type="text" name="business_name" placeholder="Business name" />
-        <ErrorMessage name="business_name" />
+        <Input
+          name="business_name"
+          label="Business name"
+          inputProps={{ placeholder: "Business name" }}
+        />
 
-        <Field type="text" name="first_name" placeholder="First name" />
-        <Field type="text" name="last_name" placeholder="Last name" />
+        <Input
+          name="first_name"
+          label="First name"
+          inputProps={{ placeholder: "First name" }}
+        />
 
-        <Field type="text" name="address" placeholder="Street address" />
+        <Input
+          name="last_name"
+          label="Last name"
+          inputProps={{ placeholder: "Last name" }}
+        />
 
-        <Field type="url" name="website_url" placeholder="Website URL" />
+        <Input
+          name="address"
+          label="Street address"
+          inputProps={{
+            placeholder: "Use your full postal address"
+          }}
+        />
 
-        <Field
+        <Input
+          name="website_url"
+          label="Website URL"
+          inputProps={{ type: "url", placeholder: "https://example.com/" }}
+        />
+
+        <TextArea
           name="official_description"
-          as="textarea"
-          placeholder="Business description"
+          inputProps={{ placeholder: "Business description" }}
         />
 
-        <Field
+        <TextArea
           name="store_bio"
-          as="textarea"
-          placeholder="Location specific information"
+          inputProps={{
+            placeholder: "Any location specific information goes here"
+          }}
         />
 
-        <Field name="dietary_offerings" as="select" multiple>
-          <option value="gluten-free">Gluten-free</option>
-          <option value="vegetarian">Vegetarian</option>
-          <option value="vegan">Vegan</option>
-        </Field>
-      </RegisterForm>
-    </div>
+        <Dropdown
+          name="dietary_offerings"
+          label="Dietary offerings"
+          inputProps={{
+            multiple: true,
+            placeholder: "Select dietary offerings that you offer"
+          }}
+          options={[
+            { text: "Gluten-free", value: "gluten-free" },
+            { text: "Vegetarian", value: "vegetarian" },
+            { text: "Vegan", value: "vegan" }
+          ]}
+        />
+      </AuthenticateForm>
+    </SimpleContainer>
   );
 }

@@ -1,15 +1,20 @@
 import React from "react";
-import { Field, ErrorMessage } from "formik";
+import { Input, Dropdown } from "formik-semantic-ui";
 import { string } from "yup";
 
-import RegisterForm from "../authentication/RegisterForm";
+import SimpleContainer from "../main/SimpleContainer";
+import AuthenticateForm from "../authentication/AuthenticateForm";
 
 export default function Register() {
   return (
-    <div className="register">
-      <h1>Register Account</h1>
-
-      <RegisterForm
+    <SimpleContainer
+      icon="add user"
+      title="Register account"
+      description="Create an account for great features and fun!"
+    >
+      <AuthenticateForm
+        isRegistrationForm
+        endpoint={"/auth/user/register"}
         extraValues={{
           profile_image: "",
           display_name: "",
@@ -23,23 +28,47 @@ export default function Register() {
           display_location: string()
         }}
       >
-        <Field type="text" name="display_name" placeholder="Display name" />
-        <ErrorMessage name="display_name" />
-
-        <Field as="select" multiple name="dietary_preference">
-          <option value="gluten-free">Gluten-free</option>
-          <option value="vegetarian">Vegetarian</option>
-          <option value="vegan">Vegan</option>
-        </Field>
-
-        <Field
-          type="text"
-          name="favorite_pizza_toppings"
-          placeholder="Favorite pizza toppings"
+        <Input
+          name="display_name"
+          label="Display name"
+          inputProps={{
+            placeholder:
+              "Either a nickname or your real name, or nothing at all, no pressure."
+          }}
         />
 
-        <Field type="text" name="display_location" placeholder="Location" />
-      </RegisterForm>
-    </div>
+        <Dropdown
+          name="dietary_preference"
+          label="Dietary preferences"
+          inputProps={{
+            multiple: true,
+            placeholder: "Select dietary preferences"
+          }}
+          options={[
+            { text: "Gluten-free", value: "gluten-free" },
+            { text: "Vegetarian", value: "vegetarian" },
+            { text: "Vegan", value: "vegan" }
+          ]}
+        />
+
+        <Input
+          name="favorite_pizza_toppings"
+          label="Favorite pizza toppings"
+          inputProps={{
+            icon: "heart",
+            placeholder: "Pepperoni, olives, pineapple, anchovies"
+          }}
+        />
+
+        <Input
+          name="display_location"
+          label="Location"
+          inputProps={{
+            icon: "globe",
+            placeholder: "A rough approximation of where you live"
+          }}
+        />
+      </AuthenticateForm>
+    </SimpleContainer>
   );
 }

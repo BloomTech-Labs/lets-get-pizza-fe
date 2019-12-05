@@ -1,18 +1,9 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import {
-  Loader,
-  Dimmer,
-  Header,
-  Grid,
-  Container,
-  Segment,
-  Card,
-  Form,
-  Search
-} from "semantic-ui-react";
+import { Loader, Header, Grid, Card, Form } from "semantic-ui-react";
 
 import API from "../../utils/API";
+import SimpleContainer from "../main/SimpleContainer";
 import LocationCard from "./search/LocationCard";
 
 class LocationSearch extends Component {
@@ -80,63 +71,56 @@ class LocationSearch extends Component {
     });
     //Setting result of filter to venues and displaying it
     this.setState({
-      filteredVenues: event.target.value !== "" ? filteredVenues : this.state.venues
+      filteredVenues:
+        event.target.value !== "" ? filteredVenues : this.state.venues
     });
   };
 
   render() {
     if (this.state.loading) {
-      return (
-        <Dimmer active>
-          <Loader content="Loading..." />
-        </Dimmer>
-      );
+      return <Loader active content="Loading..." />;
     }
 
     return (
-      <Container>
-        <Header as={"h1"}>Search</Header>
-        We have your current location as:
-        <i>{this.state.userLocation.friendlyTitle} </i>
-        <Grid columns={2} divided stackable>
-          <Grid.Row>
-            <Grid.Column>
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
-                  <Form.Input
-                    onChange={this.handleChange}
-                    placeholder="City or City,State or Zip"
-                    type="text"
-                    name="locationSearch"
-                    value={this.state.locationSearch}
-                  />
-                  <Form.Button type="submit">Go!</Form.Button>
-                </Form.Group>
-              </Form>
-            </Grid.Column>
-            <Grid.Column>
-              <h3>Search by Name</h3>
-              <div class="ui icon input">
+      <SimpleContainer icon="search" title="Search for locations">
+        <Grid columns="equal">
+          <Grid.Column floated="left">
+            <Form onSubmit={this.handleSubmit}>
+              <Header size="medium">Change location</Header>
+              <Form.Group>
                 <Form.Input
-                  onChange={this.filterVenues}
+                  onChange={this.handleChange}
+                  placeholder={this.state.userLocation.friendlyTitle}
+                  icon="globe"
                   type="text"
-                  name="searchTerm"
-                  value={this.state.searchTerm}
+                  name="locationSearch"
+                  value={this.state.locationSearch}
                 />
-                <i class="search icon"></i>
-              </div>
-            </Grid.Column>
-          </Grid.Row>
+                <Form.Button type="submit">Go!</Form.Button>
+              </Form.Group>
+            </Form>
+          </Grid.Column>
+
+          <Grid.Column floated="right">
+            <Header size="medium">Search by name</Header>
+            <Form.Input
+              type="text"
+              name="searchTerm"
+              icon="search"
+              value={this.state.searchTerm}
+              onChange={this.filterVenues}
+            />
+          </Grid.Column>
         </Grid>
-        <Segment>
-          <Card.Group itemsPerRow={3} doubling stackable>
-            {this.state.filteredVenues.map((venue, index) => (
-              <LocationCard loading={this.state.loading} venue={venue} />
-            ))}
-          </Card.Group>
-        </Segment>
+
+        <Card.Group itemsPerRow={3} doubling stackable>
+          {this.state.filteredVenues.map((venue, index) => (
+            <LocationCard key={index} venue={venue} />
+          ))}
+        </Card.Group>
+
         <Link to="/locations/map">See the Map</Link>
-      </Container>
+      </SimpleContainer>
     );
   }
 }

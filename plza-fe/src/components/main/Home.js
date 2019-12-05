@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Grid, Container, Segment, Button } from "semantic-ui-react";
 
 import API from "../../utils/API";
 import Map from "../map/Map";
@@ -47,35 +48,45 @@ export default class Home extends Component {
           </footer>
         </section>
 
-        <hr />
-        <h1>Plza</h1>
-        <h3>Showin' You The Sauce</h3>
-        <hr />
+        <Container>
+          <Grid columns="2">
+            <Grid.Column width="12">
+              <h1>Plza</h1>
+              <h3>Showin' You The Sauce</h3>
+            </Grid.Column>
 
-        <h2>Register as a Pizza Eater</h2>
-        <ul>
-          <li>Find pizza you love</li>
-          <li>Search other cities</li>
-          <li>Leave ratings & reviews**</li>
-          <li>Create & Attend events**</li>
-        </ul>
-        <Link className="big-button" to="/users/register">
-          Register Now!
-        </Link>
+            <Grid.Column>
+              <Segment>
+                <h2>Register as a Pizza Eater</h2>
+                <ul>
+                  <li>Find pizza you love</li>
+                  <li>Search other cities</li>
+                  <li>Leave ratings and reviews</li>
+                  <li>Create and attend events</li>
+                </ul>
 
-        <hr />
+                <Button as={Link} to="/users/register">
+                  Register Now!
+                </Button>
+              </Segment>
+            </Grid.Column>
 
-        <h2>Register as a Pizza Business</h2>
-        <ul>
-          <li>Upload your contact info & images</li>
-          <li>Engage locally with events & promotions**</li>
-          <li>Reply to customer's questions & comments**</li>
-        </ul>
-        <Link className="big-button" to="">
-          Register Now!
-        </Link>
+            <Grid.Column>
+              <Segment>
+                <h2>Register as a Pizza Business</h2>
+                <ul>
+                  <li>Upload your contact info and images</li>
+                  <li>Engage locally with events and promotions</li>
+                  <li>Reply to customer's questions and comments</li>
+                </ul>
 
-        <p>**- features coming soon</p>
+                <Button as={Link} to="/locations/register">
+                  Register Now!
+                </Button>
+              </Segment>
+            </Grid.Column>
+          </Grid>
+        </Container>
       </div>
     );
   }
