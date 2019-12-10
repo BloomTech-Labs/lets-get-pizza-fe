@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { Message } from "semantic-ui-react";
 import { Form, Input, Dropdown, TextArea, Button } from "formik-semantic-ui";
+import { curr_location } from "../../utils/auth";
 
 import API from "../../utils/API";
 import SimpleContainer from "../main/SimpleContainer";
 
-export default function LocationEdit(props) {
+export default function LocationEdit() {
   const { id } = useParams();
+  const history = useHistory();
+
   const [isLoading, setIsLoading] = useState(true);
   const [location, setLocation] = useState({});
 
   const onSubmit = (values, actions) => {
-    alert(JSON.stringify(values, null, 2));
+    API.put("/locations", values)
+      .then(response => history.push(`/locations/${id}`))
+      .catch(error =>
+        actions.setFieldError("message", error.response.data.message)
+      );
   };
 
+  // Whenever ID match param changes, get location data from
+  // the database and then populate component state
   useEffect(() => {
     API.get(`/locations/${id}`)
       .then(response => {
@@ -32,13 +42,22 @@ export default function LocationEdit(props) {
       >
         {formik => (
           <Form.Children>
+            {formik.errors.message && (
+              <Message
+                negative
+                icon="exclamation triangle"
+                header="Sorry, we encountered an error!"
+                content={formik.errors.message}
+              />
+            )}
+
             <Input label="Business name" name="business_name" />
             <Input label="Street address" name="address" />
 
             <Input
               label="Website URL"
               name="website_url"
-              inputProps={{ type: "url", loading: isLoading }}
+              inputProps={{ type: "url" }}
             />
 
             <Dropdown
@@ -58,7 +77,9 @@ export default function LocationEdit(props) {
             <Input
               label="Order service"
               name="order_service"
-              inputProps={{ placeholder: "Test" }}
+              inputProps={{
+                placeholder: "Any order delivery services that you use"
+              }}
             />
 
             <TextArea
