@@ -1,8 +1,8 @@
 import React from "react";
-import { Loader, Container, Header, Icon } from "semantic-ui-react";
+import { Loader, Segment, Container, Header, Icon } from "semantic-ui-react";
 
 export default function SimpleContainer(props) {
-  const { loading, icon, title, description, children } = props;
+  const { loading, error, icon, title, description, children } = props;
 
   if (loading) {
     return <Loader active>Loading</Loader>;
@@ -20,7 +20,7 @@ export default function SimpleContainer(props) {
         )}
       </Header>
 
-      {children}
+      {error ? <Segment>{error}</Segment> : children}
     </Container>
   );
 }

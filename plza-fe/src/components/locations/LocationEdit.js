@@ -12,6 +12,7 @@ export default function LocationEdit() {
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
   const [location, setLocation] = useState({});
 
   const onSubmit = (values, actions) => {
@@ -22,19 +23,30 @@ export default function LocationEdit() {
       );
   };
 
-  // Whenever ID match param changes, get location data from
-  // the database and then populate component state
   useEffect(() => {
-    API.get(`/locations/${id}`)
-      .then(response => {
-        setLocation(response.data);
-        setIsLoading(false);
-      })
-      .catch(error => console.log(error));
+    // Check to see if the currently logged in user matches the
+    // ID set in the match param
+    if (curr_location & (curr_location.id === id)) {
+      // If it does, then retrieve location information
+      API.get(`/locations/${id}`)
+        .then(response => {
+          setLocation(response.data);
+          setIsLoading(false);
+        })
+        .catch(error => console.log(error));
+    } else {
+      setError("Not authorized to edit this location");
+      setIsLoading(false);
+    }
   }, [id]);
 
   return (
-    <SimpleContainer loading={isLoading} icon="edit" title="Edit location">
+    <SimpleContainer
+      loading={isLoading}
+      error={error}
+      icon="edit"
+      title="Edit location"
+    >
       <Form
         enableReinitialize={true}
         initialValues={location}
