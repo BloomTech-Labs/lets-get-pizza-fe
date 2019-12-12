@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { Menu, Dropdown } from "semantic-ui-react";
 import { hasToken, logoutUser } from "../../utils/auth";
 
+import Logo from "./Logo.png";
+
 const UserProfile = () => (
   <>
     <Menu.Item as={NavLink} to="/users/profile">
@@ -25,10 +27,10 @@ const AuthenticateOptions = () => (
 
 export default function Masthead() {
   return (
-    <Menu stackable style={{ borderRadius: 0, marginBottom: 0 }}>
+    <Menu inverted stackable style={{ borderRadius: 0, marginBottom: 0 }}>
       <Menu.Item>
         <div style={{ width: "102px", padding: "0 12px" }}>
-          <img width="100%" src="https://i.imgur.com/os2t6S3.png" />
+          <img width="100%" src={Logo} />
         </div>
       </Menu.Item>
       <Menu.Item as={NavLink} exact to="/">
