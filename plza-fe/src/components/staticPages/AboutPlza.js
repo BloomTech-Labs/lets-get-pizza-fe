@@ -1,9 +1,9 @@
 import React from 'react'
 import { Grid } from "semantic-ui-react";
 
-export default function About() {
+export default function AboutPlza() {
     return (<div style={{textAlign:'center'}}>
-        <h1>About Us</h1>
+        <h1>About Plza</h1>
         <Grid>
             <Grid.Row columns={2}>
                 <Grid.Column>

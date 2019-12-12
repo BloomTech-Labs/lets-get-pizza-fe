@@ -28,7 +28,7 @@ export default function Masthead() {
     <Menu stackable style={{ borderRadius: 0, marginBottom: 0 }}>
       <Menu.Item>
         <div style={{ width: "102px", padding: "0 12px" }}>
-          <img width="100%" src="https://i.imgur.com/os2t6S3.png" />
+          <img alt="" width="100%" src="https://i.imgur.com/os2t6S3.png" />
         </div>
       </Menu.Item>
       <Menu.Item as={NavLink} exact to="/">
@@ -48,8 +48,11 @@ export default function Masthead() {
           <Dropdown.Item as={NavLink} to="/pages/businesses">
             Business Features
           </Dropdown.Item>
-          <Dropdown.Item as={NavLink} to="/pages/about">
-            About Our Team
+          <Dropdown.Item as={NavLink} to="/pages/aboutplza">
+            About The App
+          </Dropdown.Item>
+          <Dropdown.Item as={NavLink} to="/pages/aboutus">
+            Meet Our Team
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
