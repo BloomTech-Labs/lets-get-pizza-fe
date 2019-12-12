@@ -26,7 +26,7 @@ export default function LocationEdit() {
   useEffect(() => {
     // Check to see if the currently logged in user matches the
     // ID set in the match param
-    if (curr_location & (curr_location.id === id)) {
+    if (curr_location && curr_location.id === Number(id)) {
       // If it does, then retrieve location information
       API.get(`/locations/${id}`)
         .then(response => {
