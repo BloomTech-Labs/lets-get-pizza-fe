@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Image, Button, Header } from "semantic-ui-react";
+import { Grid, Image, Button, Header, Reveal } from "semantic-ui-react";
 
 //Importing profile images
 import rf from "../../media/rf.jpg";
@@ -7,6 +7,7 @@ import jh from "../../media/jh.png";
 import jl from "../../media/jl.jpg";
 import cs from "../../media/cs.jpg";
 import ss from "../../media/profile.png";
+import placeholder from "../../media/logo.png"
 
 //Constants for URLs
 //Robin
@@ -33,13 +34,24 @@ const ssws = "https://spencer.summerville.dev";
 
 export default function AboutUs() {
   return (
-    <div style={{ textAlign: "center" }}>
-      <Header as="h1">Meet the Team</Header>
-      <Grid>
-        <Grid.Row columns={3}>
-          <Grid.Column>
-            <Header as="h2">Robin Familara</Header>
-            <Image src={rf} size="small" bordered centered circular />
+    <div style={{ textAlign: "justify" }}>
+      <Header textAlign="center" as="h1">Meet the Team</Header>
+      <Grid columns="equal" stackable padded>
+        <Grid.Row>
+          <Grid.Column >
+            <Header as="h3">
+              Robin Familara
+            </Header>
+
+            <Reveal animated="rotate">
+              <Reveal.Content visible>
+                <Image circular size="small" src={placeholder} />
+              </Reveal.Content>
+              <Reveal.Content hidden>
+                <Image circular size="small" src={rf} />
+              </Reveal.Content>
+            </Reveal>
+
             <Button
               basic
               href={rfgh}
@@ -64,19 +76,28 @@ export default function AboutUs() {
               size="large"
               icon="linkedin"
             />
-            <Header as="h4">
+            <p>
               I’m a loyal Pelicans/Saints fan. My hobby is watching epic battles
               among Marvel superheroes and villains on YouTube while eating
               pizza.
               <br></br>
               Online research beast. I love discussing and learning a tech
               stacks and other tech topics.
-            </Header>
+            </p>
           </Grid.Column>
 
-          <Grid.Column>
-            <Header as="h2">Jordan Hubbard</Header>
-            <Image src={jh} size="small" bordered centered circular />
+          <Grid.Column >
+            <Header  as="h3">
+              Jordan Hubbard
+            </Header>
+            <Reveal animated="rotate">
+              <Reveal.Content visible>
+                <Image circular size="small" src={placeholder} />
+              </Reveal.Content>
+              <Reveal.Content hidden>
+                <Image circular size="small" src={jh} />
+              </Reveal.Content>
+            </Reveal>
             <Button
               basic
               href={jhgh}
@@ -85,15 +106,24 @@ export default function AboutUs() {
               size="large"
               icon="github"
             />
-            <Header as="h4">
+            <p>
               I do art, tech, music, and tv. I like figuring out how things
               work, and then building and creating things with em.
-            </Header>
+            </p>
           </Grid.Column>
 
-          <Grid.Column>
-            <Header as="h2">Justin Landry</Header>
-            <Image src={jl} size="small" bordered centered circular />
+          <Grid.Column >
+            <Header as="h3">
+              Justin Landry
+            </Header>
+            <Reveal animated="rotate">
+              <Reveal.Content visible>
+                <Image circular size="small" src={placeholder} />
+              </Reveal.Content>
+              <Reveal.Content hidden>
+                <Image circular size="small" src={jl} />
+              </Reveal.Content>
+            </Reveal>
             <Button
               basic
               href={jlgh}
@@ -110,14 +140,23 @@ export default function AboutUs() {
               size="large"
               icon="twitter"
             />
-            <Header as="h4">Fighting games, LARP, Proper pizza</Header>
+            <p>Fighting games, LARP, Proper pizza</p>
           </Grid.Column>
         </Grid.Row>
 
-        <Grid.Row columns={2}>
-          <Grid.Column>
-            <Header as="h2">Curtis Scafe</Header>
-            <Image src={cs} size="small" bordered centered circular />
+        <Grid.Row>
+          <Grid.Column >
+            <Header as="h3">
+              Curtis Scafe
+            </Header>
+            <Reveal animated="rotate">
+              <Reveal.Content visible>
+                <Image circular size="small" src={placeholder} />
+              </Reveal.Content>
+              <Reveal.Content hidden>
+                <Image circular size="small" src={cs} />
+              </Reveal.Content>
+            </Reveal>
             <Button
               basic
               href={csgh}
@@ -150,16 +189,25 @@ export default function AboutUs() {
               size="large"
               icon="globe"
             />
-            <Header as="h4">
+            <p>
               Born in Jamaica, grew up in NJ, currently in Nashville.
               <br></br>
               Gearhead\car guy. Love to hike. Foodie and runner.
-            </Header>
+            </p>
           </Grid.Column>
 
-          <Grid.Column>
-            <Header as="h2">Spencer Summerville</Header>
-            <Image src={ss} size="small" bordered centered circular />
+          <Grid.Column >
+            <Header as="h3">
+              Spencer Summerville
+            </Header>
+            <Reveal animated="rotate">
+              <Reveal.Content visible>
+                <Image circular size="small" src={placeholder} />
+              </Reveal.Content>
+              <Reveal.Content hidden>
+                <Image circular size="small" src={ss} />
+              </Reveal.Content>
+            </Reveal>
             <Button
               basic
               href={ssgh}
@@ -176,7 +224,7 @@ export default function AboutUs() {
               size="large"
               icon="globe"
             />
-            <Header as="h4">Pizza and programming aficionado.</Header>
+            <p>Pizza and programming aficionado.</p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
