@@ -30,7 +30,7 @@ export default function Masthead() {
     <Menu inverted stackable style={{ borderRadius: 0, marginBottom: 0 }}>
       <Menu.Item>
         <div style={{ width: "102px", padding: "0 12px" }}>
-          <img width="100%" src={Logo} />
+          <img width="100%" src={Logo} alt="Plza logo" />
         </div>
       </Menu.Item>
       <Menu.Item as={NavLink} exact to="/">

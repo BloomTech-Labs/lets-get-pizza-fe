@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
+  Loader,
   Container,
   Header,
+  Icon,
   Image,
   Grid,
   Segment,
-  Card
+  Button,
+  List
 } from "semantic-ui-react";
 
 import API from "../../utils/API";
-
-import "./LocationPage.css";
 
 // Location detail page
 // Displays all information about a given location through the
@@ -19,58 +20,136 @@ import "./LocationPage.css";
 
 export default function LocationPage() {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
   const [location, setLocation] = useState({});
+
+  const {
+    thumbnail_url,
+    business_name,
+    address,
+    official_description,
+    store_bio,
+    dietary_offerings,
+    website_url,
+    email
+  } = location;
 
   useEffect(() => {
     API.get(`/locations/${id}`)
-      .then(response => setLocation(response.data))
+      .then(response => {
+        setLocation(response.data);
+        setIsLoading(false);
+      })
       .catch(error => console.log(error));
   }, [id]);
 
+  if (isLoading) {
+    return <Loader active>Loading...</Loader>;
+  }
+
   return (
     <Container style={{ margin: "20px 0" }}>
-      <Header size="large">
-        {location.thumbnail_url && (
-          <Image circular src={location.thumbnail_url} />
-        )}
-        {location.business_name}
+      <Header size="huge">
+        <Image
+          circular
+          src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+        />
+        <Header.Content>
+          {business_name}
+          {store_bio && <Header.Subheader>{store_bio}</Header.Subheader>}
+        </Header.Content>
       </Header>
-      <Grid columns="2">
-        <Grid.Row>
-          <h1>Location Information</h1>
+      <Grid stackable>
+        <Grid.Column width={4}>
           <Segment.Group>
             <Segment>
-              <h4>About {location.business_name}</h4>
-              <p>{location.official_description || "-"}</p>
+              <Header size="tiny">
+                <Icon name="building" />
+                <Header.Content>Address</Header.Content>
+              </Header>
+              <p>{address}</p>
             </Segment>
             <Segment>
-              <h4>Our Store</h4>
-              <p>{location.store_bio || "-"}</p>
+              <Header size="tiny">
+                <Icon name="edit" />
+                <Header.Content>About us</Header.Content>
+              </Header>
+              <p>
+                {official_description ||
+                  "This store has not provided information about itself yet."}
+              </p>
             </Segment>
+
             <Segment>
-              <h4>Special Diet Options</h4>
-              <p>{location.dietary_offerings || "-"}</p>
+              <Header size="tiny">
+                <Icon name="food" />
+                <Header.Content>Dietary offerings available</Header.Content>
+              </Header>
+
+              {dietary_offerings ? (
+                <List>
+                  {dietary_offerings.map(offering => (
+                    <List.Item>
+                      <Icon name="check" />
+                      <List.Content>
+                        {offering[0].toUpperCase()}
+                        {`${offering.slice(1)}`}
+                      </List.Content>
+                    </List.Item>
+                  ))}
+                </List>
+              ) : (
+                "This store has not provided information about its dietary/allergen-free offerings yet."
+              )}
+            </Segment>
+
+            <Segment>
+              <Header size="tiny">
+                <Icon name="chain" />
+                <Header.Content>Links</Header.Content>
+              </Header>
+              <List>
+                <List.Item
+                  as="a"
+                  href={website_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <List.Icon name="edit" />
+                  <List.Content>Official website</List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name="edit" />
+                  <List.Content>Order takeout</List.Content>
+                </List.Item>
+                <List.Item>
+                  <List.Icon name="car" />
+                  <List.Content>Order delivery</List.Content>
+                </List.Item>
+              </List>
             </Segment>
           </Segment.Group>
-        </Grid.Row>
-        <Grid.Row>
-          <h1>Events, Reviews, and More</h1>
-        </Grid.Row>
+
+          {!email && (
+            <Button
+              icon
+              labelPosition="left"
+              as={Link}
+              to={`/locations/claim/${location.id}`}
+            >
+              <Icon name="lock" />
+              Claim this location
+            </Button>
+          )}
+        </Grid.Column>
+
+        <Grid.Column width={10}>
+          <Segment>
+            <Header size="medium">Promotions</Header>
+            <p>Coming soon...</p>
+          </Segment>
+        </Grid.Column>
       </Grid>
-      <p>
-        <a
-          href={location.website_url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Website
-        </a>
-      </p>
-      <Link to="/locations/map">Back to Map</Link> |{" "}
-      <Link to="/locations/search">Back to Search</Link> <br />
-      {!location.email && (
-        <Link to={`/locations/claim/${location.id}`}>Claim this Location</Link>
-      )}
     </Container>
   );
 }
