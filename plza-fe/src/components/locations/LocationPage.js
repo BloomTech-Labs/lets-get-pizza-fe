@@ -8,11 +8,12 @@ import {
   Image,
   Grid,
   Segment,
-  Button,
-  List
+  Button
 } from "semantic-ui-react";
 
 import API from "../../utils/API";
+
+import LocationPageSidebar from "./LocationPageSidebar";
 
 // Location detail page
 // Displays all information about a given location through the
@@ -52,8 +53,12 @@ export default function LocationPage() {
       <Header size="huge">
         <Image
           circular
-          src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+          src={
+            thumbnail_url ||
+            "https://react.semantic-ui.com/images/wireframe/square-image.png"
+          }
         />
+
         <Header.Content>
           {business_name}
           {store_bio && <Header.Subheader>{store_bio}</Header.Subheader>}
@@ -61,74 +66,7 @@ export default function LocationPage() {
       </Header>
       <Grid stackable>
         <Grid.Column width={4}>
-          <Segment.Group>
-            <Segment>
-              <Header size="tiny">
-                <Icon name="building" />
-                <Header.Content>Address</Header.Content>
-              </Header>
-              <p>{address}</p>
-            </Segment>
-            <Segment>
-              <Header size="tiny">
-                <Icon name="edit" />
-                <Header.Content>About us</Header.Content>
-              </Header>
-              <p>
-                {official_description ||
-                  "This store has not provided information about itself yet."}
-              </p>
-            </Segment>
-
-            <Segment>
-              <Header size="tiny">
-                <Icon name="food" />
-                <Header.Content>Dietary offerings available</Header.Content>
-              </Header>
-
-              {dietary_offerings ? (
-                <List>
-                  {dietary_offerings.map(offering => (
-                    <List.Item>
-                      <Icon name="check" />
-                      <List.Content>
-                        {offering[0].toUpperCase()}
-                        {`${offering.slice(1)}`}
-                      </List.Content>
-                    </List.Item>
-                  ))}
-                </List>
-              ) : (
-                "This store has not provided information about its dietary/allergen-free offerings yet."
-              )}
-            </Segment>
-
-            <Segment>
-              <Header size="tiny">
-                <Icon name="chain" />
-                <Header.Content>Links</Header.Content>
-              </Header>
-              <List>
-                <List.Item
-                  as="a"
-                  href={website_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <List.Icon name="edit" />
-                  <List.Content>Official website</List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Icon name="edit" />
-                  <List.Content>Order takeout</List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Icon name="car" />
-                  <List.Content>Order delivery</List.Content>
-                </List.Item>
-              </List>
-            </Segment>
-          </Segment.Group>
+          <LocationPageSidebar location={location} />
 
           {!email && (
             <Button
