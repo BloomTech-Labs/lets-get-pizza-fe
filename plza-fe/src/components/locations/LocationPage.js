@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Loader,
   Container,
   Header,
-  Icon,
   Image,
   Grid,
-  Segment,
-  Button
+  Segment
 } from "semantic-ui-react";
 
 import API from "../../utils/API";
@@ -24,16 +22,7 @@ export default function LocationPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [location, setLocation] = useState({});
 
-  const {
-    thumbnail_url,
-    business_name,
-    address,
-    official_description,
-    store_bio,
-    dietary_offerings,
-    website_url,
-    email
-  } = location;
+  const { thumbnail_url, business_name, store_bio } = location;
 
   useEffect(() => {
     API.get(`/locations/${id}`)
@@ -67,18 +56,6 @@ export default function LocationPage() {
       <Grid stackable>
         <Grid.Column width={4}>
           <LocationPageSidebar location={location} />
-
-          {!email && (
-            <Button
-              icon
-              labelPosition="left"
-              as={Link}
-              to={`/locations/claim/${location.id}`}
-            >
-              <Icon name="lock" />
-              Claim this location
-            </Button>
-          )}
         </Grid.Column>
 
         <Grid.Column width={10}>

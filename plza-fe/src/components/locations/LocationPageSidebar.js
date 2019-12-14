@@ -1,5 +1,6 @@
 import React from "react";
-import { Segment, Header, Icon, List } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Segment, Header, Icon, List, Button } from "semantic-ui-react";
 
 const LocationPageSidebar = ({ location }) => (
   <Segment.Group>
@@ -34,7 +35,7 @@ const LocationPageSidebar = ({ location }) => (
               <Icon name="check" />
               <List.Content>
                 {offering[0].toUpperCase()}
-                {`${offering.slice(1)}`}
+                {offering.slice(1)}
               </List.Content>
             </List.Item>
           ))}
@@ -65,7 +66,7 @@ const LocationPageSidebar = ({ location }) => (
           </List.Item>
         )}
         <List.Item>
-          <List.Icon name="edit" />
+          <List.Icon name="edit outline" />
           <List.Content>Order takeout</List.Content>
         </List.Item>
         <List.Item>
@@ -74,6 +75,26 @@ const LocationPageSidebar = ({ location }) => (
         </List.Item>
       </List>
     </Segment>
+
+    {!location.email && (
+      <Segment>
+        <Header size="tiny">
+          <Icon name="question" />
+          <Header.Content>Is this your store?</Header.Content>
+        </Header>
+        <p>Call to action to sign up for Plza</p>
+
+        <Button
+          icon
+          labelPosition="left"
+          as={Link}
+          to={`/locations/claim/${location.id}`}
+        >
+          <Icon name="lock" />
+          Claim this location
+        </Button>
+      </Segment>
+    )}
   </Segment.Group>
 );
 
