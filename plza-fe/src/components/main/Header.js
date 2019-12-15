@@ -1,61 +1,46 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, Dropdown } from "semantic-ui-react";
+import { Menu, Confirm, Dropdown } from "semantic-ui-react";
 import { hasToken, logoutUser } from "../../utils/auth";
 
 import Logo from "./Logo.png";
 
 import "./Header.css";
 
-const UserProfile = () => (
-  <>
-    <Menu.Item as={NavLink} to="/users/profile">
-      Profile
-    </Menu.Item>
-    <Menu.Item onClick={() => logoutUser()}>Logout</Menu.Item>
-  </>
-);
-
-const AuthenticateOptions = () => (
-  <>
-    <Menu.Item as={NavLink} to="/users/register">
-      Register
-    </Menu.Item>
-    <Menu.Item as={NavLink} to="/users/login">
-      Log in
-    </Menu.Item>
-  </>
-);
+const NavbarItem = props => <Menu.Item as={NavLink} {...props} />;
 
 export default function Masthead() {
-  const [isVisible, setVisibility] = useState(false);
+  const [isMenuVisible, setMenuVisibility] = useState(false);
+  const [isModalVisible, setModalVisibility] = useState(false);
 
   const toggleMenuVisibility = () => {
-    setVisibility(!isVisible);
+    setMenuVisibility(!isMenuVisible);
   };
 
   return (
     <Menu
+      attached="top"
       inverted
       stackable
-      className={`${isVisible ? "open" : "closed"}`}
-      style={{ borderRadius: 0, marginBottom: 0 }}
+      className={`${isMenuVisible ? "open" : "closed"}`}
+      style={{ borderRadius: 0 }}
     >
       <Menu.Item header>
-        <div style={{ width: "102px", padding: "0 12px" }}>
-          <img width="100%" src={Logo} alt="Plza logo" />
-        </div>
+        <img
+          style={{ width: "90px", padding: "6px" }}
+          src={Logo}
+          alt="Plza logo"
+        />
       </Menu.Item>
-      <Menu.Item as={NavLink} exact to="/">
+
+      <NavbarItem exact to="/">
         Home
-      </Menu.Item>
-      <Menu.Item as={NavLink} to="/locations/map">
-        Map
-      </Menu.Item>
-      <Menu.Item as={NavLink} to="/locations/search">
-        Search
-      </Menu.Item>
-      <Dropdown text="About" pointing className="link item">
+      </NavbarItem>
+
+      <NavbarItem to="/locations/map">Map</NavbarItem>
+      <NavbarItem to="/locations/search">Search</NavbarItem>
+
+      <Dropdown item text="About" pointing>
         <Dropdown.Menu>
           <Dropdown.Item as={NavLink} to="/pages/eaters">
             User Features
@@ -70,11 +55,29 @@ export default function Masthead() {
       </Dropdown>
 
       <Menu.Menu position="right">
-        {hasToken ? <UserProfile /> : <AuthenticateOptions />}
+        {hasToken ? (
+          <>
+            <NavbarItem to="/users/profile">Profile</NavbarItem>
+            <Menu.Item onClick={() => setModalVisibility(true)}>
+              Log out
+            </Menu.Item>
+            <Confirm
+              open={isModalVisible}
+              content="Would you like to log out?"
+              onCancel={() => setModalVisibility(false)}
+              onConfirm={() => logoutUser()}
+            />
+          </>
+        ) : (
+          <>
+            <NavbarItem to="/users/register">Register</NavbarItem>
+            <NavbarItem to="/users/login">Log in</NavbarItem>
+          </>
+        )}
       </Menu.Menu>
 
       <div
-        className={`hamburger ${isVisible ? "active" : "disabled"}`}
+        className={`hamburger ${isMenuVisible ? "active" : "disabled"}`}
         onClick={() => toggleMenuVisibility()}
       >
         <span className="hamburger-bun"></span>
