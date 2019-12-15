@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, Dropdown } from "semantic-ui-react";
 import { hasToken, logoutUser } from "../../utils/auth";
 
 import Logo from "./Logo.png";
+
+import "./Header.css";
 
 const UserProfile = () => (
   <>
@@ -26,8 +28,19 @@ const AuthenticateOptions = () => (
 );
 
 export default function Masthead() {
+  const [isVisible, setVisibility] = useState(false);
+
+  const toggleMenuVisibility = () => {
+    setVisibility(!isVisible);
+  };
+
   return (
-    <Menu inverted stackable style={{ borderRadius: 0, marginBottom: 0 }}>
+    <Menu
+      inverted
+      stackable
+      className={`${isVisible ? "open" : "closed"}`}
+      style={{ borderRadius: 0, marginBottom: 0 }}
+    >
       <Menu.Item>
         <div style={{ width: "102px", padding: "0 12px" }}>
           <img width="100%" src={Logo} alt="Plza logo" />
@@ -59,6 +72,15 @@ export default function Masthead() {
       <Menu.Menu position="right">
         {hasToken ? <UserProfile /> : <AuthenticateOptions />}
       </Menu.Menu>
+
+      <div
+        className={`hamburger ${isVisible ? "active" : "disabled"}`}
+        onClick={() => toggleMenuVisibility()}
+      >
+        <span className="hamburger-bun"></span>
+        <span className="hamburger-patty"></span>
+        <span className="hamburger-bun"></span>
+      </div>
     </Menu>
   );
 }

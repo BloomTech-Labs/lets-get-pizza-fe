@@ -49,7 +49,7 @@ export default class Home extends Component {
         </section>
 
         <Container>
-          <Grid columns="2">
+          <Grid stackable columns="2">
             <Grid.Column width="12">
               <h1>Plza</h1>
               <h3>Showin' You The Sauce</h3>

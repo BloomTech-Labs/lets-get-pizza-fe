@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { InfoWindow } from "@googlemap-react/core";
 import { Button } from "semantic-ui-react";
+
 import processVenue from "../../utils/processVenue";
 
 export default function LocationInfoWindow({ marker, isVisible }) {

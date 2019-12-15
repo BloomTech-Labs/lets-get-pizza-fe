@@ -53,6 +53,7 @@ export default function LocationPage() {
           {store_bio && <Header.Subheader>{store_bio}</Header.Subheader>}
         </Header.Content>
       </Header>
+
       <Grid stackable>
         <Grid.Column width={4}>
           <LocationPageSidebar location={location} />
