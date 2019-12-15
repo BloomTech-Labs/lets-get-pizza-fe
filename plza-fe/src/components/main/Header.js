@@ -41,7 +41,7 @@ export default function Masthead() {
       className={`${isVisible ? "open" : "closed"}`}
       style={{ borderRadius: 0, marginBottom: 0 }}
     >
-      <Menu.Item>
+      <Menu.Item header>
         <div style={{ width: "102px", padding: "0 12px" }}>
           <img width="100%" src={Logo} alt="Plza logo" />
         </div>

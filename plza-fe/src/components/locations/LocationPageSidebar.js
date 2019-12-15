@@ -31,7 +31,7 @@ const LocationPageSidebar = ({ location }) => (
       {location.dietary_offerings ? (
         <List>
           {location.dietary_offerings.map(offering => (
-            <List.Item>
+            <List.Item key={offering}>
               <Icon name="check" />
               <List.Content>
                 {offering[0].toUpperCase()}
