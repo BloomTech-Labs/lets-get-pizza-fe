@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { Form } from "semantic-ui-react";
 
 import API from "../../utils/API";
-import Map from "../map/Map";
-
+import FancyMap from "../map/FancyMap";
 
 export default class LocationsMap extends Component {
   constructor() {
@@ -17,9 +16,7 @@ export default class LocationsMap extends Component {
     };
   }
 
-  componentDidMount() {
-    this.getVenues();
-  }
+  componentDidMount() {}
 
   getVenues = () => {
     // If there is anything in the state under "search", append a the search query with the input.
@@ -48,11 +45,7 @@ export default class LocationsMap extends Component {
     return (
       <div>
         <div className="large-map">
-          <Map
-            userLocation={this.state.userLocation}
-            venues={this.state.venues}
-            height={"640px"}
-          />
+          <FancyMap height={"640px"} />
         </div>
 
         <div>
