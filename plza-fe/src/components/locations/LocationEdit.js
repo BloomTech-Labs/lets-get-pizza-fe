@@ -1,30 +1,52 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { Message } from "semantic-ui-react";
 import { Form, Input, Dropdown, TextArea, Button } from "formik-semantic-ui";
+import { curr_location } from "../../utils/auth";
 
 import API from "../../utils/API";
 import SimpleContainer from "../main/SimpleContainer";
 
-export default function LocationEdit(props) {
+export default function LocationEdit() {
   const { id } = useParams();
+  const history = useHistory();
+
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
   const [location, setLocation] = useState({});
 
   const onSubmit = (values, actions) => {
-    alert(JSON.stringify(values, null, 2));
+    API.put("/locations", values)
+      .then(response => history.push(`/locations/${id}`))
+      .catch(error =>
+        actions.setFieldError("message", error.response.data.message)
+      );
   };
 
   useEffect(() => {
-    API.get(`/locations/${id}`)
-      .then(response => {
-        setLocation(response.data);
-        setIsLoading(false);
-      })
-      .catch(error => console.log(error));
+    // Check to see if the currently logged in user matches the
+    // ID set in the match param
+    if (curr_location && curr_location.id === Number(id)) {
+      // If it does, then retrieve location information
+      API.get(`/locations/${id}`)
+        .then(response => {
+          setLocation(response.data);
+          setIsLoading(false);
+        })
+        .catch(error => console.log(error));
+    } else {
+      setError("Not authorized to edit this location");
+      setIsLoading(false);
+    }
   }, [id]);
 
   return (
-    <SimpleContainer loading={isLoading} icon="edit" title="Edit location">
+    <SimpleContainer
+      loading={isLoading}
+      error={error}
+      icon="edit"
+      title="Edit location"
+    >
       <Form
         enableReinitialize={true}
         initialValues={location}
@@ -32,13 +54,22 @@ export default function LocationEdit(props) {
       >
         {formik => (
           <Form.Children>
+            {formik.errors.message && (
+              <Message
+                negative
+                icon="exclamation triangle"
+                header="Sorry, we encountered an error!"
+                content={formik.errors.message}
+              />
+            )}
+
             <Input label="Business name" name="business_name" />
             <Input label="Street address" name="address" />
 
             <Input
               label="Website URL"
               name="website_url"
-              inputProps={{ type: "url", loading: isLoading }}
+              inputProps={{ type: "url" }}
             />
 
             <Dropdown
@@ -58,7 +89,9 @@ export default function LocationEdit(props) {
             <Input
               label="Order service"
               name="order_service"
-              inputProps={{ placeholder: "Test" }}
+              inputProps={{
+                placeholder: "Any order delivery services that you use"
+              }}
             />
 
             <TextArea

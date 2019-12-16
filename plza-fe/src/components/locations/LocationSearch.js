@@ -83,7 +83,7 @@ class LocationSearch extends Component {
 
     return (
       <SimpleContainer icon="search" title="Search for locations">
-        <Grid columns="equal">
+        <Grid stackable columns="equal">
           <Grid.Column floated="left">
             <Form onSubmit={this.handleSubmit}>
               <Header size="medium">Change location</Header>

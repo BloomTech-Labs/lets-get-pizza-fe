@@ -1,93 +1,164 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Grid, Container, Segment, Button } from "semantic-ui-react";
+import {
+  Grid,
+  Container,
+  Header,
+  Segment,
+  List,
+  Button,
+  Icon,
+  Divider
+} from "semantic-ui-react";
 
 import API from "../../utils/API";
 import Map from "../map/Map";
 
-export default class Home extends Component {
-  constructor() {
-    super();
+export default function Home() {
+  const [locations, setLocations] = useState([]);
+  const [userLocation, setUserLocation] = useState({});
 
-    this.state = {
-      venues: [],
-      userLocation: {}
-    };
-  }
-
-  componentDidMount() {
-    this.getVenues();
-  }
-
-  getVenues = () => {
+  useEffect(() => {
     API.get("/locations/map")
       .then(response => {
-        this.setState({
-          venues: response.data.results,
-          userLocation: response.data.userLocation
-        });
+        setLocations(response.data.results);
+        setUserLocation(response.data.userLocation);
       })
-      .catch(error => {
-        console.log("ERROR!! " + error);
-      });
-  };
+      .catch(error => console.log("Error:", error));
+  }, []);
 
-  render() {
-    return (
-      <div className="homepage">
-        <section className="map">
-          <Map
-            venues={this.state.venues}
-            userLocation={this.state.userLocation}
-            height={"320px"}
-          />
+  return (
+    <div className="homepage">
+      <section className="map">
+        <Map venues={locations} userLocation={userLocation} height={"350px"} />
 
-          <footer className="geolocation">
-            <p>{this.state.userLocation.friendlyTitle}</p>
-            <Link to="/locations/map">Update Your Location</Link>
-          </footer>
-        </section>
+        <footer className="geolocation">
+          <p>{userLocation.friendlyTitle}</p>
+          <Link to="/locations/map">Update Your Location</Link>
+        </footer>
+      </section>
 
-        <Container>
-          <Grid columns="2">
-            <Grid.Column width="12">
-              <h1>Plza</h1>
-              <h3>Showin' You The Sauce</h3>
-            </Grid.Column>
+      <Container>
+        <Header size="huge" textAlign="center">
+          Plza
+          <Header.Subheader>Showin' you the sauce</Header.Subheader>
+        </Header>
 
-            <Grid.Column>
-              <Segment>
-                <h2>Register as a Pizza Eater</h2>
-                <ul>
-                  <li>Find pizza you love</li>
-                  <li>Search other cities</li>
-                  <li>Leave ratings and reviews</li>
-                  <li>Create and attend events</li>
-                </ul>
+        <Segment.Group raised horizontal>
+          <Segment>
+            <Header size="large">Are you a pizza fanatic?</Header>
 
-                <Button as={Link} to="/users/register">
-                  Register Now!
-                </Button>
-              </Segment>
-            </Grid.Column>
+            <List>
+              <List.Item>
+                <Icon name="search" />
+                <List.Content>
+                  <List.Header>Find pizza you love</List.Header>
+                  <List.Description>
+                    Suspendisse malesuada erat vitae neque consequat, non
+                    lobortis eros tempor. Ut mollis tincidunt nulla. Nam mollis
+                    tortor id augue sodales.
+                  </List.Description>
+                </List.Content>
+              </List.Item>
 
-            <Grid.Column>
-              <Segment>
-                <h2>Register as a Pizza Business</h2>
-                <ul>
-                  <li>Upload your contact info and images</li>
-                  <li>Engage locally with events and promotions</li>
-                  <li>Reply to customer's questions and comments</li>
-                </ul>
+              <List.Item>
+                <Icon name="star" />
+                <List.Content>
+                  <List.Header>Leave ratings and reviews</List.Header>
+                  <List.Description>
+                    Quisque congue venenatis semper. Nulla mollis eros ut
+                    consequat semper. Duis convallis metus non augue malesuada
+                    finibus. Vestibulum nisl magna.
+                  </List.Description>
+                </List.Content>
+              </List.Item>
 
-                <Button as={Link} to="/locations/register">
-                  Register Now!
-                </Button>
-              </Segment>
-            </Grid.Column>
-          </Grid>
-        </Container>
-      </div>
-    );
-  }
+              <List.Item>
+                <Icon name="calendar check" />
+                <List.Content>
+                  <List.Header>Create and attend events</List.Header>
+                  <List.Description>
+                    Sed finibus ex a faucibus varius. Pellentesque consectetur,
+                    justo eget efficitur hendrerit, odio nisl vehicula tellus,
+                    non suscipit dolor lorem.
+                  </List.Description>
+                </List.Content>
+              </List.Item>
+            </List>
+
+            <Button
+              fluid
+              icon
+              primary
+              labelPosition="left"
+              as={Link}
+              to="/users/register"
+            >
+              <Icon name="user circle" />
+              Find great pizza!
+            </Button>
+          </Segment>
+
+          <Segment>
+            <Header size="large">Do you own a restaurant?</Header>
+            <List>
+              <List.Item>
+                <Icon name="lock" />
+                <List.Content>
+                  <List.Header>
+                    Claim your location or create a new one
+                  </List.Header>
+                  <List.Description>
+                    Suspendisse malesuada erat vitae neque consequat, non
+                    lobortis eros tempor. Ut mollis tincidunt nulla. Nam mollis
+                    tortor id augue sodales.
+                  </List.Description>
+                </List.Content>
+              </List.Item>
+
+              <List.Item>
+                <Icon name="percent" />
+                <List.Content>
+                  <List.Header>
+                    Engage locally with events and promotions
+                  </List.Header>
+                  <List.Description>
+                    Quisque congue venenatis semper. Nulla mollis eros ut
+                    consequat semper. Duis convallis metus non augue malesuada
+                    finibus. Vestibulum nisl magna.
+                  </List.Description>
+                </List.Content>
+              </List.Item>
+
+              <List.Item>
+                <Icon name="comments" />
+                <List.Content>
+                  <List.Header>
+                    Reply to customer's questions and comments
+                  </List.Header>
+                  <List.Description>
+                    Sed finibus ex a faucibus varius. Pellentesque consectetur,
+                    justo eget efficitur hendrerit, odio nisl vehicula tellus,
+                    non suscipit dolor lorem.
+                  </List.Description>
+                </List.Content>
+              </List.Item>
+            </List>
+
+            <Button
+              fluid
+              icon
+              secondary
+              labelPosition="left"
+              as={Link}
+              to="/locations/register"
+            >
+              <Icon name="building" />
+              Get started!
+            </Button>
+          </Segment>
+        </Segment.Group>
+      </Container>
+    </div>
+  );
 }
