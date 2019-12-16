@@ -10,19 +10,20 @@ import {
 } from "semantic-ui-react";
 
 import API from "../../utils/API";
-
+import { curr_location } from "../../utils/auth";
 import LocationPageSidebar from "./LocationPageSidebar";
 
 // Location detail page
 // Displays all information about a given location through the
 // `id` param
-
 export default function LocationPage() {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [location, setLocation] = useState({});
 
   const { thumbnail_url, business_name, store_bio } = location;
+
+  const canEdit = curr_location.id === location.id;
 
   useEffect(() => {
     API.get(`/locations/${id}`)
@@ -56,7 +57,7 @@ export default function LocationPage() {
 
       <Grid stackable>
         <Grid.Column width={4}>
-          <LocationPageSidebar location={location} />
+          <LocationPageSidebar location={location} canEdit={canEdit} />
         </Grid.Column>
 
         <Grid.Column width={10}>
