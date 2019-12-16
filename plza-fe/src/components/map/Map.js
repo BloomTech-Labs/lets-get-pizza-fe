@@ -36,7 +36,9 @@ export default function Map({ userLocation, width, height, venues }) {
               stylers: [{ visibility: "off" }]
             }
           ],
+          fullscreenControl: false,
           streetViewControl: false,
+          mapTypeControl: false,
           mapTypeControlOptions: { mapTypeIds: ["roadmap"] }
         }}
         //Able to pass in the WxH
