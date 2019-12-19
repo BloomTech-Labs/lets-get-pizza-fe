@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Button } from "semantic-ui-react";
-import {
-  GoogleMapProvider,
-  MapBox,
-  Marker,
-  InfoWindow
-} from "@googlemap-react/core";
+import { Loader } from "semantic-ui-react";
+import { GoogleMapProvider, MapBox } from "@googlemap-react/core";
 
-import processVenue from "../../utils/processVenue";
+import LocationMarker from "./LocationMarker";
+import LocationInfoWindow from "./LocationInfoWindow";
 
 export default function Map({ userLocation, width, height, venues }) {
-  //Use to navigate to the venues
-  const history = useHistory();
   //Which marker is showing
   const [selectedMarker, setSelectedMarker] = useState({});
   const [infoWindowVisible, setInfoWindowVisible] = useState(false);
@@ -42,50 +35,31 @@ export default function Map({ userLocation, width, height, venues }) {
               elementType: "labels",
               stylers: [{ visibility: "off" }]
             }
-          ]
+          ],
+          fullscreenControl: false,
+          streetViewControl: false,
+          mapTypeControl: false,
+          mapTypeControlOptions: { mapTypeIds: ["roadmap"] }
         }}
         //Able to pass in the WxH
         style={{ width, height }}
+        LoadingComponent={<Loader active>Loading map...</Loader>}
       />
-      
+
       {/* .map() over the markers, creating them on the screen. */}
       {venues.map(venue => (
-        <Marker 
-          id={`marker-${venue.location_id || venue.foursquare_id}`}
+        <LocationMarker
           key={venue.location_id || venue.foursquare_id}
-          opts={{
-            position: { lat: venue.latitude, lng: venue.longitude }
-          }}
-          onClick={() => {
-            // Start displaying the InfoWindow and set this as
-            // the selected marker
-            setInfoWindowVisible(true);
-            setSelectedMarker({
-              id: `marker-${venue.location_id || venue.foursquare_id}`,
-              ...venue
-            });
-          }}
+          venue={venue}
+          setVisible={setInfoWindowVisible}
+          setMarker={setSelectedMarker}
         />
       ))}
 
-      <InfoWindow anchorId={selectedMarker.id} visible={infoWindowVisible}>
-        <h2>{selectedMarker.name}</h2>
-        <p>{selectedMarker.address}</p>
-        {/* Creates a "button" which processes whether or not there is a foursquare/*/}
-        <Button
-          onClick={event => processVenue(event, history)}
-          fsid={
-            selectedMarker.foursquare_id
-              ? `${selectedMarker.foursquare_id}`
-              : null
-          }
-          lid={
-            selectedMarker.location_id ? `${selectedMarker.location_id}` : null
-          }
-        >
-          See The Deets ->
-        </Button>
-      </InfoWindow>
+      <LocationInfoWindow
+        marker={selectedMarker}
+        isVisible={infoWindowVisible}
+      />
     </GoogleMapProvider>
   );
 }

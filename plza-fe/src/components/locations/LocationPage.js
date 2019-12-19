@@ -1,55 +1,72 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Card, Container, Header } from "semantic-ui-react";
+import { useParams } from "react-router-dom";
+import {
+  Loader,
+  Container,
+  Header,
+  Image,
+  Grid,
+  Segment
+} from "semantic-ui-react";
 
 import API from "../../utils/API";
+import { curr_location } from "../../utils/auth";
+import LocationPageSidebar from "./LocationPageSidebar";
 
 // Location detail page
 // Displays all information about a given location through the
 // `id` param
-
 export default function LocationPage() {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
   const [location, setLocation] = useState({});
+
+  const { thumbnail_url, business_name, store_bio } = location;
+
+  const canEdit = curr_location.id === location.id;
 
   useEffect(() => {
     API.get(`/locations/${id}`)
-      .then(response => setLocation(response.data))
+      .then(response => {
+        setLocation(response.data);
+        setIsLoading(false);
+      })
       .catch(error => console.log(error));
   }, [id]);
 
+  if (isLoading) {
+    return <Loader active>Loading...</Loader>;
+  }
+
   return (
-    <div className="location">
-      <Container>
-        <Header as="h1">{location.business_name}</Header>
-        <Card.Description>{location.address}</Card.Description>
-        <p>
-          <a
-            href={location.website_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Website
-          </a>
-        </p>
-        <Card.Description as="h4">
-          About {location.business_name}
-        </Card.Description>
-        <p>{location.official_description || "-"}</p>
-        <Card.Description as="h4">Our Store</Card.Description>
-        <p>{location.store_bio || "-"}</p>
-        <Card.Description as="h4">Special Diet Options</Card.Description>
-        <p>{location.dietary_offerings || "-"}</p>
-        <Link to="/locations/map">Back to Map</Link> |{" "}
-        <Link to="/locations/search">Back to Search</Link> <br />
-        {!location.email && location.foursquare_id ? (
-          <Link to={`/locations/claim/${location.id}`}>
-            Claim this Location
-          </Link>
-        ) : (
-          ""
-        )}
-      </Container>
-    </div>
+    <Container style={{ margin: "20px 0" }}>
+      <Header size="huge">
+        <Image
+          circular
+          src={
+            thumbnail_url ||
+            "https://react.semantic-ui.com/images/wireframe/square-image.png"
+          }
+        />
+
+        <Header.Content>
+          {business_name}
+          {store_bio && <Header.Subheader>{store_bio}</Header.Subheader>}
+        </Header.Content>
+      </Header>
+
+      <Grid stackable>
+        <Grid.Column width={4}>
+          <LocationPageSidebar location={location} canEdit={canEdit} />
+        </Grid.Column>
+
+        <Grid.Column width={10}>
+          <Segment>
+            <Header size="medium">Promotions</Header>
+            <p>Coming soon...</p>
+          </Segment>
+        </Grid.Column>
+      </Grid>
+    </Container>
   );
 }

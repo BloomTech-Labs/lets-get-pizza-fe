@@ -1,20 +1,16 @@
 import React from "react";
-import { Loader, Container, Header, Icon } from "semantic-ui-react";
+import { Loader, Segment, Container, Header, Icon } from "semantic-ui-react";
 
-export default function SimpleContainer({
-  loading,
-  icon,
-  title,
-  description,
-  children
-}) {
+export default function SimpleContainer(props) {
+  const { loading, error, icon, title, description, children } = props;
+
   if (loading) {
     return <Loader active>Loading</Loader>;
   }
 
   return (
-    <Container>
-      <Header size="huge" style={{ margin: "20px 0" }}>
+    <Container style={{ margin: "20px 0" }}>
+      <Header size="huge" style={{ marginBottom: "10px" }}>
         {icon && <Icon name={icon} />}
         <Header.Content>{title}</Header.Content>
         {description && (
@@ -24,7 +20,7 @@ export default function SimpleContainer({
         )}
       </Header>
 
-      {children}
+      {error ? <Segment>{error}</Segment> : children}
     </Container>
   );
 }
