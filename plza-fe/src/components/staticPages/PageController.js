@@ -19,6 +19,9 @@ export default function PagesController() {
         <Route exact path="/pages/eaters">
           <UserFeatures />
         </Route>
+        <Route exact path="/pages/aboutplza">
+          <AboutPlza />
+        </Route>
         <Route exact path="/pages/aboutus">
           <AboutUs />
         </Route>
