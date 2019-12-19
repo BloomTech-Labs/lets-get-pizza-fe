@@ -28,7 +28,6 @@ export default function Masthead() {
   );
 
   return (
-
     <Menu
       attached="top"
       inverted
@@ -56,9 +55,9 @@ export default function Masthead() {
           <NavDropdownItem to="/pages/eaters">User Features</NavDropdownItem>
           <NavDropdownItem to="/pages/businesses">
             Business Features
-
           </NavDropdownItem>
-          <NavDropdownItem to="/pages/about">About Our Team</NavDropdownItem>
+          <NavDropdownItem to="/pages/aboutplza">About The App</NavDropdownItem>
+          <NavDropdownItem to="/pages/aboutus">Meet The Team</NavDropdownItem>
         </Dropdown.Menu>
       </Dropdown>
 
