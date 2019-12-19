@@ -1,34 +1,58 @@
 import React from 'react'
-import { Grid } from "semantic-ui-react";
+import { Grid, Header } from "semantic-ui-react";
 
 export default function AboutPlza() {
-    return (<div style={{textAlign:'center'}}>
-        <h1>About Plza</h1>
-        <Grid>
-            <Grid.Row columns={2}>
-                <Grid.Column>
-                    <h2>Our Mission... for Pizza!</h2>
-                    <h3>What has mankind created that could overshadow pizza?
-                        Pretty much nothing, so we here at Plza decided to make spreading the love of pizza to your friends
-                        our project at Lambda School.
-                            Fresh faced and ready to take on the world, our team is pleased to bring the cheese!</h3>
-                </Grid.Column>
-                <Grid.Column>
-                    <h2>Open Sauce Programming</h2>
-                    <h3>Interested in how this was put together? You can view our Github <a href='www.github.com'>here!</a></h3>
-                </Grid.Column>
-            </Grid.Row>
-            <Grid.Row columns={2}>
-                <Grid.Column>
-                    <h2>Contact Us</h2>
-                    <h3>Got something to say, hit us up!</h3>
-                </Grid.Column>
-                <Grid.Column>
-                    <h2>Survey!</h2>
-                    <h3>Got a free moment? We would love if you took the time to fill out our survey so we can continue
-        being all about bringing you the sauce!</h3>
-                </Grid.Column>
-            </Grid.Row>
+    return (
+      <div style={{ textAlign: "justify" }}>
+        <Header textAlign="center" as="h1">
+          About Plza
+        </Header>
+        <Grid columns="equal" stackable padded>
+          <Grid.Row columns={2}>
+            <Grid.Column>
+              <Header as="h2">Our Mission... for Pizza!</Header>
+              <p>
+                What has mankind created that could overshadow pizza? Pretty
+                much nothing, so we here at Plza decided to make spreading the
+                love of pizza to your friends our project at Lambda School.
+                Fresh faced and ready to take on the world, our team is pleased
+                to bring the cheese!
+              </p>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as="h2">Open Sauce Programming</Header>
+              <p>
+                Interested in how this was put together? You can view our Github.
+                <br></br>
+                <a href="https://github.com/Lambda-School-Labs/lets-get-pizza-fe">
+                  Front end
+                </a>
+                <br></br>
+                <a href="https://github.com/Lambda-School-Labs/lets-get-pizza-be">
+                  Back end
+                </a>
+              </p>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row columns={2}>
+            <Grid.Column>
+              <Header as="h2">Contact Us</Header>
+              <p>Got something to say, hit us up!</p>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as="h2">Survey!</Header>
+              <p>
+                Got a free moment? We would love if you took the time to fill
+                out our survey so we can continue being all about bringing you
+                the sauce!
+                <br></br>
+                <a href="https://s.surveyplanet.com/_BYyEjkf">
+                  Click to take survey
+                </a>
+              </p>
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
-    </div>)
+      </div>
+    );
 }
