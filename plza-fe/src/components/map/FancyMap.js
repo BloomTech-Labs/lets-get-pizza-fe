@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Loader } from "semantic-ui-react";
+import { Icon, Loader } from "semantic-ui-react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
 import "mapbox-gl/dist/mapbox-gl.css";
+
 import API from "../../utils/API";
+import LocationCard from "../locations/search/LocationCard";
 
 export default function FancyMap(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +57,7 @@ export default function FancyMap(props) {
       {...viewport}
       onViewportChange={onViewportChange}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      mapStyle="mapbox://styles/mapbox/streets-v11"
+      mapStyle="mapbox://styles/grenuttag/ck4do0nf04awl1co2h6kb7b6y"
     >
       {locations.map(location => (
         <Marker
@@ -63,26 +65,28 @@ export default function FancyMap(props) {
           latitude={location.latitude}
           longitude={location.longitude}
         >
-          <h1
+          <Icon
+            color={location.location_id ? "red" : "orange"}
+            size="big"
+            name="map marker"
             onClick={() => {
               console.table(location);
               setPopupVisiblility(true);
               setSelectedMarker({ ...location });
             }}
-          >
-            {location.name}
-          </h1>
+          ></Icon>
         </Marker>
       ))}
 
       {isPopupVisible && (
         <Popup
           tipSize={5}
-          anchor="top"
+          anchor="bottom"
           latitude={selectedMarker.latitude}
           longitude={selectedMarker.longitude}
+          onClose={() => setPopupVisiblility(false)}
         >
-          <h2>{selectedMarker.name}</h2>
+          <LocationCard venue={selectedMarker} />
         </Popup>
       )}
     </ReactMapGL>
@@ -90,6 +94,6 @@ export default function FancyMap(props) {
 }
 
 FancyMap.defaultProps = {
-  width: "100%",
-  height: "600px"
+  width: "100vw",
+  height: "100vh"
 };
