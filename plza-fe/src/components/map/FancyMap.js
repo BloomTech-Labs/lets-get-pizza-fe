@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Icon, Loader, Form } from "semantic-ui-react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { FlyToInterpolator, Marker, Popup } from "react-map-gl";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -43,7 +43,9 @@ export default function FancyMap(props) {
     setViewport(viewport => ({
       ...viewport,
       latitude: userLocation.userLatitude,
-      longitude: userLocation.userLongitude
+      longitude: userLocation.userLongitude,
+      transitionDuration: 1000,
+      transitionInterpolator: new FlyToInterpolator()
     }));
   }, [userLocation]);
 
