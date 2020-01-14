@@ -3,6 +3,8 @@ import { Icon, Loader, Form } from "semantic-ui-react";
 import ReactMapGL, {
   LinearInterpolator,
   FlyToInterpolator,
+  Source,
+  Layer,
   Marker,
   Popup
 } from "react-map-gl";
@@ -17,6 +19,18 @@ export default function FancyMap(props) {
 
   // Location state
   const [locations, setLocations] = useState([]);
+
+  const geojson = {
+    type: "FeatureCollection",
+    features: locations.map(location => ({
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [location.longitude, location.latitude]
+      }
+    }))
+  };
+
   const fetchLocations = searchQuery =>
     API.get("/locations/map", { params: { search: searchQuery } })
       .then(response => {
@@ -73,26 +87,25 @@ export default function FancyMap(props) {
     fetchLocations();
   }, []);
 
-  const Markers = React.memo(
-    ({ locations, setPopupVisiblility, setSelectedMarker }) =>
-      locations.map(location => (
-        <Marker
-          key={location.location_id || location.foursquare_id}
-          latitude={location.latitude}
-          longitude={location.longitude}
-        >
-          <Icon
-            color={location.location_id ? "red" : "orange"}
-            size="big"
-            name="map marker"
-            onClick={() => {
-              setPopupVisiblility(true);
-              setSelectedMarker({ ...location });
-            }}
-          />
-        </Marker>
-      ))
-  );
+  // const Markers = React.memo(props =>
+  //   props.locations.map(location => (
+  //     <Marker
+  //       key={location.location_id || location.foursquare_id}
+  //       latitude={location.latitude}
+  //       longitude={location.longitude}
+  //     >
+  //       <Icon
+  //         color={location.location_id ? "red" : "orange"}
+  //         size="big"
+  //         name="map marker"
+  //         onClick={() => {
+  //           props.setPopupVisiblility(true);
+  //           props.setSelectedMarker({ ...location });
+  //         }}
+  //       />
+  //     </Marker>
+  //   ))
+  // );
 
   if (isLoading) {
     return <Loader active>Loading map...</Loader>;
@@ -105,11 +118,16 @@ export default function FancyMap(props) {
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       mapStyle="mapbox://styles/grenuttag/ck4do0nf04awl1co2h6kb7b6y"
     >
-      <Markers
-        locations={locations}
-        setPopupVisiblility={setPopupVisiblility}
-        setSelectedMarker={setSelectedMarker}
-      />
+      <Source type="geojson" data={geojson}>
+        <Layer
+          id="point"
+          type="circle"
+          paint={{
+            "circle-radius": 10,
+            "circle-color": "#007cbf"
+          }}
+        />
+      </Source>
 
       {isPopupVisible && (
         <Popup
