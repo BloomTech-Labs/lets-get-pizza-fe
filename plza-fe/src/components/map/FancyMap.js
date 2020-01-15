@@ -20,13 +20,17 @@ export default function FancyMap(props) {
   // Location state
   const [locations, setLocations] = useState([]);
 
-  const geojson = {
+  const LocationsGeoJSON = {
     type: "FeatureCollection",
     features: locations.map(location => ({
       type: "Feature",
       geometry: {
         type: "Point",
         coordinates: [location.longitude, location.latitude]
+      },
+      properties: {
+        title: location.name,
+        icon: "circle"
       }
     }))
   };
@@ -60,8 +64,6 @@ export default function FancyMap(props) {
   const [viewport, setViewport] = useState({
     latitude: 0,
     longitude: 0,
-    width: props.width,
-    height: props.height,
     pitch: 0,
     zoom: 12,
     minZoom: 12,
@@ -87,26 +89,6 @@ export default function FancyMap(props) {
     fetchLocations();
   }, []);
 
-  // const Markers = React.memo(props =>
-  //   props.locations.map(location => (
-  //     <Marker
-  //       key={location.location_id || location.foursquare_id}
-  //       latitude={location.latitude}
-  //       longitude={location.longitude}
-  //     >
-  //       <Icon
-  //         color={location.location_id ? "red" : "orange"}
-  //         size="big"
-  //         name="map marker"
-  //         onClick={() => {
-  //           props.setPopupVisiblility(true);
-  //           props.setSelectedMarker({ ...location });
-  //         }}
-  //       />
-  //     </Marker>
-  //   ))
-  // );
-
   if (isLoading) {
     return <Loader active>Loading map...</Loader>;
   }
@@ -116,15 +98,28 @@ export default function FancyMap(props) {
       {...viewport}
       onViewportChange={onViewportChange}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      mapStyle="mapbox://styles/grenuttag/ck4do0nf04awl1co2h6kb7b6y"
+      // mapStyle="mapbox://styles/grenuttag/ck4do0nf04awl1co2h6kb7b6y"
+      width={props.width}
+      height={props.height}
     >
-      <Source type="geojson" data={geojson}>
+      <Source type="geojson" data={LocationsGeoJSON}>
         <Layer
-          id="point"
-          type="circle"
+          id="points"
+          type="symbol"
+          layout={{
+            "icon-image": ["concat", ["get", "icon"], "-15"],
+            "text-field": ["get", "title"],
+            "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
+            "text-size": 13,
+            "text-transform": "uppercase",
+            "text-letter-spacing": 0.05,
+            "text-anchor": "top",
+            "text-offset": [0, 0.95]
+          }}
           paint={{
-            "circle-radius": 10,
-            "circle-color": "#007cbf"
+            "text-color": "#202",
+            "text-halo-color": "#fff",
+            "text-halo-width": 2
           }}
         />
       </Source>
