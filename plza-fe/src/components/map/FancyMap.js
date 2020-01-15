@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Icon, Loader, Form } from "semantic-ui-react";
+import { Loader, Form } from "semantic-ui-react";
 import ReactMapGL, {
-  LinearInterpolator,
   FlyToInterpolator,
   Source,
   Layer,
-  Marker,
   Popup
 } from "react-map-gl";
 
@@ -22,13 +20,14 @@ export default function FancyMap(props) {
 
   const LocationsGeoJSON = {
     type: "FeatureCollection",
-    features: locations.map(location => ({
+    features: locations.map((location, index) => ({
       type: "Feature",
       geometry: {
         type: "Point",
         coordinates: [location.longitude, location.latitude]
       },
       properties: {
+        id: index,
         title: location.name,
         icon: "circle"
       }
@@ -41,6 +40,7 @@ export default function FancyMap(props) {
         setLocations(response.data.results);
         setUserLocation(response.data.userLocation);
         setIsLoading(false);
+        setSearchQuery("");
       })
       .catch(error => console.log("Error:", error));
 
@@ -66,20 +66,44 @@ export default function FancyMap(props) {
     longitude: 0,
     pitch: 0,
     zoom: 12,
-    minZoom: 12,
-    maxZoom: 16,
-    transitionDuration: 500,
-    transitionInterpolator: new LinearInterpolator()
+    minZoom: 10,
+    maxZoom: 18
   });
 
   const onViewportChange = viewport => setViewport({ ...viewport });
+
+  const onClick = event => {
+    const feature = event.features[0];
+
+    if (feature && feature.source === "locations") {
+      setSelectedMarker(locations[feature.properties.id]);
+      setPopupVisiblility(true);
+    }
+  };
 
   // Marker popup state
   const [selectedMarker, setSelectedMarker] = useState({});
   const [isPopupVisible, setPopupVisiblility] = useState(false);
 
+  const LocationPopup = React.memo(
+    ({ selectedMarker, setPopupVisiblility }) => (
+      <Popup
+        tipSize={10}
+        anchor="bottom"
+        offsetTop={-15}
+        dynamicPosition={false}
+        latitude={selectedMarker.latitude}
+        longitude={selectedMarker.longitude}
+        onClose={() => setPopupVisiblility(false)}
+      >
+        <LocationCard venue={selectedMarker} />
+      </Popup>
+    )
+  );
+
   // Geocoder state
   const [searchQuery, setSearchQuery] = useState("");
+
   const updateSearchQuery = event => setSearchQuery(event.target.value);
   const searchLocations = event => fetchLocations(searchQuery);
 
@@ -101,10 +125,11 @@ export default function FancyMap(props) {
       // mapStyle="mapbox://styles/grenuttag/ck4do0nf04awl1co2h6kb7b6y"
       width={props.width}
       height={props.height}
+      onClick={onClick}
     >
-      <Source type="geojson" data={LocationsGeoJSON}>
+      <Source id="locations" type="geojson" data={LocationsGeoJSON}>
         <Layer
-          id="points"
+          id="location_points"
           type="symbol"
           layout={{
             "icon-image": ["concat", ["get", "icon"], "-15"],
@@ -125,17 +150,10 @@ export default function FancyMap(props) {
       </Source>
 
       {isPopupVisible && (
-        <Popup
-          tipSize={10}
-          anchor="top"
-          offsetTop={45}
-          offsetLeft={15}
-          latitude={selectedMarker.latitude}
-          longitude={selectedMarker.longitude}
-          onClose={() => setPopupVisiblility(false)}
-        >
-          <LocationCard venue={selectedMarker} />
-        </Popup>
+        <LocationPopup
+          selectedMarker={selectedMarker}
+          setPopupVisiblility={setPopupVisiblility}
+        />
       )}
 
       <Form

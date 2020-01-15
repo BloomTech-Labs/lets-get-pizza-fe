@@ -4,7 +4,7 @@ import FancyMap from "../map/FancyMap";
 
 const LocationsMap = () => (
   <div>
-    <FancyMap height="80vh" />
+    <FancyMap />
   </div>
 );
 
