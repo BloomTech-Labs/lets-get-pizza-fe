@@ -1,74 +1,184 @@
-import React, { useState } from "react";
-import { Loader } from "semantic-ui-react";
-import { GoogleMapProvider, MapBox } from "@googlemap-react/core";
+import React, { useState, useEffect } from "react";
+import { Loader, Form } from "semantic-ui-react";
+import ReactMapGL, {
+  FlyToInterpolator,
+  Source,
+  Layer,
+  Popup
+} from "react-map-gl";
 
-import LocationMarker from "./LocationMarker";
-import LocationInfoWindow from "./LocationInfoWindow";
+import "mapbox-gl/dist/mapbox-gl.css";
 
-export default function Map({ userLocation, width, height, venues }) {
-  //Which marker is showing
+import API from "../../utils/API";
+import LocationCard from "../locations/search/LocationCard";
+
+export default function Map(props) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Location state
+  const [locations, setLocations] = useState([]);
+
+  const LocationsGeoJSON = {
+    type: "FeatureCollection",
+    features: locations.map((location, index) => ({
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [location.longitude, location.latitude]
+      },
+      properties: {
+        id: index,
+        title: location.name,
+        icon: "circle"
+      }
+    }))
+  };
+
+  const fetchLocations = searchQuery =>
+    API.get("/locations/map", { params: { search: searchQuery } })
+      .then(response => {
+        setLocations(response.data.results);
+        setUserLocation(response.data.userLocation);
+        setIsLoading(false);
+        setSearchQuery("");
+      })
+      .catch(error => console.log("Error:", error));
+
+  // User location state
+  const [userLocation, setUserLocation] = useState({});
+
+  // Whenever user location changes, update viewport
+  // to those coordinates and use a fly to transition
+  // so it looks pretty
+  useEffect(() => {
+    setViewport(viewport => ({
+      ...viewport,
+      latitude: userLocation.userLatitude,
+      longitude: userLocation.userLongitude,
+      transitionDuration: 1000,
+      transitionInterpolator: new FlyToInterpolator()
+    }));
+  }, [userLocation]);
+
+  // Initial viewport state
+  const [viewport, setViewport] = useState({
+    latitude: 0,
+    longitude: 0,
+    pitch: 0,
+    zoom: 12,
+    minZoom: 10,
+    maxZoom: 18
+  });
+
+  // Whenever the user updates the viewport, commit those changes
+  // to state
+  const onViewportChange = viewport => setViewport({ ...viewport });
+
+  // When a user clicks on the map, see if it was a location and
+  // if it is, set the selected marker and start displaying the
+  // location popup
+  const onClick = event => {
+    const feature = event.features[0];
+
+    if (feature && feature.source === "locations") {
+      setSelectedMarker(locations[feature.properties.id]);
+      setPopupVisiblility(true);
+    }
+  };
+
+  // Location popup state
   const [selectedMarker, setSelectedMarker] = useState({});
-  const [infoWindowVisible, setInfoWindowVisible] = useState(false);
+  const [isPopupVisible, setPopupVisiblility] = useState(false);
+
+  const LocationPopup = React.memo(
+    ({ selectedMarker, setPopupVisiblility }) => (
+      <Popup
+        tipSize={10}
+        anchor="bottom"
+        offsetTop={-15}
+        dynamicPosition={false}
+        latitude={selectedMarker.latitude}
+        longitude={selectedMarker.longitude}
+        onClose={() => setPopupVisiblility(false)}
+      >
+        <LocationCard venue={selectedMarker} />
+      </Popup>
+    )
+  );
+
+  // Geocoder state
+  const [searchQuery, setSearchQuery] = useState("");
+  const updateSearchQuery = event => setSearchQuery(event.target.value);
+  const searchLocations = event => fetchLocations(searchQuery);
+
+  // On first render, fetch locations without a search query.
+  // This will default to the location retrieved by the backend.
+  useEffect(() => {
+    fetchLocations();
+  }, []);
+
+  if (isLoading) {
+    return <Loader active>Loading map...</Loader>;
+  }
 
   return (
-    <GoogleMapProvider>
-      <MapBox
-        apiKey={process.env.REACT_APP_GOOGLE_MAPS_TOKEN}
-        opts={{
-          //Center the map based on the incoming position
-          center: {
-            lat: userLocation.userLatitude,
-            lng: userLocation.userLongitude
-          },
-          //Set the zoom. The higher, the closer to Earth.
-          zoom: 14,
-          //Next two settings garuntee that no extra fields/settings are show, just our markers
-          clickableIcons: false,
-          styles: [
-            {
-              featureType: "poi",
-              elementType: "labels",
-              stylers: [{ visibility: "off" }]
-            },
-            {
-              featureType: "transit",
-              elementType: "labels",
-              stylers: [{ visibility: "off" }]
-            }
-          ],
-          fullscreenControl: false,
-          streetViewControl: false,
-          mapTypeControl: false,
-          mapTypeControlOptions: { mapTypeIds: ["roadmap"] }
-        }}
-        //Able to pass in the WxH
-        style={{ width, height }}
-        LoadingComponent={<Loader active>Loading map...</Loader>}
-      />
-
-      {/* .map() over the markers, creating them on the screen. */}
-      {venues.map(venue => (
-        <LocationMarker
-          key={venue.location_id || venue.foursquare_id}
-          venue={venue}
-          setVisible={setInfoWindowVisible}
-          setMarker={setSelectedMarker}
+    <ReactMapGL
+      {...viewport}
+      onViewportChange={onViewportChange}
+      mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+      // mapStyle="mapbox://styles/grenuttag/ck4do0nf04awl1co2h6kb7b6y"
+      width={props.width}
+      height={props.height}
+      onClick={onClick}
+    >
+      <Source id="locations" type="geojson" data={LocationsGeoJSON}>
+        <Layer
+          id="location_points"
+          type="symbol"
+          layout={{
+            "icon-image": ["concat", ["get", "icon"], "-15"],
+            "text-field": ["get", "title"],
+            "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
+            "text-size": 13,
+            "text-transform": "uppercase",
+            "text-letter-spacing": 0.05,
+            "text-anchor": "top",
+            "text-offset": [0, 0.95]
+          }}
+          paint={{
+            "text-color": "#202",
+            "text-halo-color": "#fff",
+            "text-halo-width": 2
+          }}
         />
-      ))}
+      </Source>
 
-      <LocationInfoWindow
-        marker={selectedMarker}
-        isVisible={infoWindowVisible}
-      />
-    </GoogleMapProvider>
+      {isPopupVisible && (
+        <LocationPopup
+          selectedMarker={selectedMarker}
+          setPopupVisiblility={setPopupVisiblility}
+        />
+      )}
+
+      <Form
+        onSubmit={searchLocations}
+        style={{
+          width: "250px",
+          margin: "10px"
+        }}
+      >
+        <Form.Input
+          action={{ icon: "search" }}
+          value={searchQuery}
+          placeholder={userLocation.friendlyTitle}
+          onChange={updateSearchQuery}
+        />
+      </Form>
+    </ReactMapGL>
   );
 }
 
 Map.defaultProps = {
-  width: "100%",
-  height: "100vh",
-  userLocation: {
-    userLatitude: 0,
-    userLongitude: 0
-  }
+  width: "100vw",
+  height: "100vh"
 };

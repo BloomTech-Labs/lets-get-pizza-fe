@@ -10,13 +10,13 @@ import {
   Icon
 } from "semantic-ui-react";
 
-import FancyMap from "../map/FancyMap";
+import Map from "../map/Map";
 
 const Home = () => (
   <div className="homepage">
-    <FancyMap height={"400px"} style={{ marginBottom: "20px" }} />
+    <Map height={"400px"} />
 
-    <Container>
+    <Container style={{ marginTop: "20px" }}>
       <Header size="huge" textAlign="center">
         Plza
         <Header.Subheader>Showin' you the sauce</Header.Subheader>

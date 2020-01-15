@@ -1,10 +1,9 @@
 import React from "react";
-
-import FancyMap from "../map/FancyMap";
+import Map from "../map/Map";
 
 const LocationsMap = () => (
   <div>
-    <FancyMap />
+    <Map />
   </div>
 );
 
