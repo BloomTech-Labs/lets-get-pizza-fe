@@ -97,6 +97,7 @@ export default function Map(props) {
         anchor="bottom"
         offsetTop={-15}
         dynamicPosition={false}
+        closeOnClick={false}
         latitude={selectedMarker.latitude}
         longitude={selectedMarker.longitude}
         onClose={() => setPopupVisiblility(false)}
