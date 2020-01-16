@@ -7,8 +7,6 @@ import Logo from "./Logo.png";
 
 import "./Header.css";
 
-const NavbarItem = props => <Menu.Item as={NavLink} {...props} />;
-
 export default function Masthead() {
   const [isMenuVisible, setMenuVisibility] = useState(false);
   const [isModalVisible, setModalVisibility] = useState(false);
@@ -16,6 +14,18 @@ export default function Masthead() {
   const toggleMenuVisibility = () => {
     setMenuVisibility(!isMenuVisible);
   };
+
+  const hideMenu = () => setMenuVisibility(false);
+
+  const NavbarItem = props => (
+    <Menu.Item as={NavLink} {...props} onClick={hideMenu} />
+  );
+
+  const NavDropdownItem = props => (
+    <Dropdown.Item as={NavLink} {...props} onClick={hideMenu}>
+      {props.children}
+    </Dropdown.Item>
+  );
 
   return (
     <Menu
@@ -42,15 +52,12 @@ export default function Masthead() {
 
       <Dropdown item text="About" pointing>
         <Dropdown.Menu>
-          <Dropdown.Item as={NavLink} to="/pages/eaters">
-            User Features
-          </Dropdown.Item>
-          <Dropdown.Item as={NavLink} to="/pages/businesses">
+          <NavDropdownItem to="/pages/eaters">User Features</NavDropdownItem>
+          <NavDropdownItem to="/pages/businesses">
             Business Features
-          </Dropdown.Item>
-          <Dropdown.Item as={NavLink} to="/pages/about">
-            About Our Team
-          </Dropdown.Item>
+          </NavDropdownItem>
+          <NavDropdownItem to="/pages/aboutplza">About The App</NavDropdownItem>
+          <NavDropdownItem to="/pages/aboutus">Meet The Team</NavDropdownItem>
         </Dropdown.Menu>
       </Dropdown>
 

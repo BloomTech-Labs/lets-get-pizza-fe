@@ -1,33 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Segment, Header, Icon, List, Button } from "semantic-ui-react";
+import { Segment, Icon, List, Button } from "semantic-ui-react";
+import SidebarSegment from "./SidebarSegment";
 
-const LocationPageSidebar = ({ location }) => (
+const LocationPageSidebar = ({ location, canEdit }) => (
   <Segment.Group>
-    <Segment>
-      <Header size="tiny">
-        <Icon name="building" />
-        <Header.Content>Address</Header.Content>
-      </Header>
+    <SidebarSegment icon="building" title="Address">
       <p>{location.address}</p>
-    </Segment>
-    <Segment>
-      <Header size="tiny">
-        <Icon name="edit" />
-        <Header.Content>About us</Header.Content>
-      </Header>
+    </SidebarSegment>
+
+    <SidebarSegment icon="edit" title="About us">
       <p>
         {location.official_description ||
           `${location.business_name} has not provided information about itself yet.`}
       </p>
-    </Segment>
+    </SidebarSegment>
 
-    <Segment>
-      <Header size="tiny">
-        <Icon name="food" />
-        <Header.Content>Dietary offerings available</Header.Content>
-      </Header>
-
+    <SidebarSegment icon="food" title="Dietary offerings available">
       {location.dietary_offerings ? (
         <List>
           {location.dietary_offerings.map(offering => (
@@ -46,13 +35,9 @@ const LocationPageSidebar = ({ location }) => (
           dietary/allergen-free offerings yet.
         </p>
       )}
-    </Segment>
+    </SidebarSegment>
 
-    <Segment>
-      <Header size="tiny">
-        <Icon name="chain" />
-        <Header.Content>Links</Header.Content>
-      </Header>
+    <SidebarSegment icon="chain" title="links">
       <List>
         {location.website_url && (
           <List.Item
@@ -74,14 +59,10 @@ const LocationPageSidebar = ({ location }) => (
           <List.Content>Order delivery</List.Content>
         </List.Item>
       </List>
-    </Segment>
+    </SidebarSegment>
 
     {!location.email && (
-      <Segment>
-        <Header size="tiny">
-          <Icon name="question" />
-          <Header.Content>Is this your store?</Header.Content>
-        </Header>
+      <SidebarSegment icon="question" title="Is this your store?">
         <p>Call to action to sign up for Plza</p>
 
         <Button
@@ -91,9 +72,17 @@ const LocationPageSidebar = ({ location }) => (
           to={`/locations/claim/${location.id}`}
         >
           <Icon name="lock" />
-          Claim this location
+          Claim
         </Button>
-      </Segment>
+      </SidebarSegment>
+    )}
+
+    {canEdit && (
+      <SidebarSegment icon="edit" title="Administrate this page">
+        <Button as={Link} to={`/locations/edit/${location.id}`}>
+          Edit
+        </Button>
+      </SidebarSegment>
     )}
   </Segment.Group>
 );

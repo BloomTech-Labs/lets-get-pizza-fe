@@ -30,7 +30,14 @@ export default function LocationEdit() {
       // If it does, then retrieve location information
       API.get(`/locations/${id}`)
         .then(response => {
-          setLocation(response.data);
+          // Copy the response and if dietary offerings is null, make it
+          // an empty array
+          const payload = Object.assign({}, response.data);
+          if (payload.dietary_offerings === null) {
+            payload.dietary_offerings = [];
+          }
+
+          setLocation(payload);
           setIsLoading(false);
         })
         .catch(error => console.log(error));
