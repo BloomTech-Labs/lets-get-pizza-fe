@@ -75,14 +75,25 @@ export default function Map(props) {
   const onViewportChange = viewport => setViewport({ ...viewport });
 
   // When a user clicks on the map, see if it was a location and
-  // if it is, set the selected marker and start displaying the
-  // location popup
+  // if it is, set the selected marker, start displaying the
+  // location popup, and then transition the viewport to the selected marker
   const onClick = event => {
     const feature = event.features[0];
 
     if (feature && feature.source === "locations") {
-      setSelectedMarker(locations[feature.properties.id]);
+      const marker = locations[feature.properties.id];
+
+      setSelectedMarker(marker);
       setPopupVisiblility(true);
+
+      setViewport(viewport => ({
+        ...viewport,
+        latitude: marker.latitude,
+        longitude: marker.longitude,
+        zoom: 15,
+        transitionDuration: 800,
+        transitionInterpolator: new FlyToInterpolator()
+      }));
     }
   };
 
