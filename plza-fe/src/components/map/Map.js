@@ -29,7 +29,7 @@ export default function Map(props) {
       properties: {
         id: index,
         title: location.name,
-        icon: "circle"
+        icon: "restaurant-pizza"
       }
     }))
   };
@@ -39,6 +39,7 @@ export default function Map(props) {
       .then(response => {
         setLocations(response.data.results);
         setUserLocation(response.data.userLocation);
+
         setIsLoading(false);
         setSearchQuery("");
       })
@@ -130,7 +131,13 @@ export default function Map(props) {
   }, []);
 
   if (isLoading) {
-    return <Loader active>Loading map...</Loader>;
+    return (
+      <div style={{ width: props.width, height: props.height }}>
+        <Loader style={{ position: "relative" }} active>
+          Loading...
+        </Loader>
+      </div>
+    );
   }
 
   return (
@@ -138,7 +145,7 @@ export default function Map(props) {
       {...viewport}
       onViewportChange={onViewportChange}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      // mapStyle="mapbox://styles/grenuttag/ck4do0nf04awl1co2h6kb7b6y"
+      mapStyle="mapbox://styles/grenuttag/ck4do0nf04awl1co2h6kb7b6y?optimize=true"
       width={props.width}
       height={props.height}
       onClick={onClick}
@@ -151,7 +158,7 @@ export default function Map(props) {
             "icon-image": ["concat", ["get", "icon"], "-15"],
             "text-field": ["get", "title"],
             "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
-            "text-size": 13,
+            "text-size": 12,
             "text-transform": "uppercase",
             "text-letter-spacing": 0.05,
             "text-anchor": "top",
