@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  Loader,
-  Container,
-  Header,
-  Image,
-  Grid,
-  Segment
-} from "semantic-ui-react";
+import { Loader, Container, Grid } from "semantic-ui-react";
 
 import API from "../../utils/API";
 import { curr_location } from "../../utils/auth";
 
-import LocationPageSidebar from "./LocationPageSidebar";
+import Header from "./detail/Header";
+import Sidebar from "./detail/Sidebar";
+import MainBar from "./detail/MainBar";
 
 // Location detail page
 // Displays all information about a given location through the
@@ -22,8 +17,8 @@ export default function LocationPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [location, setLocation] = useState({});
 
-  const { thumbnail_url, business_name, store_bio } = location;
-
+  // If the currently logged in user is equal to the location ID, then
+  // the user can edit the page
   const canEdit = curr_location.id === location.id;
 
   useEffect(() => {
@@ -41,31 +36,15 @@ export default function LocationPage() {
 
   return (
     <Container style={{ margin: "20px 0" }}>
-      <Header size="huge">
-        <Image
-          circular
-          src={
-            thumbnail_url ||
-            "https://react.semantic-ui.com/images/wireframe/square-image.png"
-          }
-        />
-
-        <Header.Content>
-          {business_name}
-          {store_bio && <Header.Subheader>{store_bio}</Header.Subheader>}
-        </Header.Content>
-      </Header>
+      <Header location={location} />
 
       <Grid stackable>
         <Grid.Column width={4}>
-          <LocationPageSidebar location={location} canEdit={canEdit} />
+          <Sidebar location={location} canEdit={canEdit} />
         </Grid.Column>
 
         <Grid.Column width={10}>
-          <Segment>
-            <Header size="medium">Promotions</Header>
-            <p>Coming soon...</p>
-          </Segment>
+          <MainBar />
         </Grid.Column>
       </Grid>
     </Container>

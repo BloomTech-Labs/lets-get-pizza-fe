@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Segment, Icon, List, Button } from "semantic-ui-react";
 import SidebarSegment from "./SidebarSegment";
 
-const LocationPageSidebar = ({ location, canEdit }) => (
+const Sidebar = ({ location, canEdit }) => (
   <Segment.Group>
     <SidebarSegment icon="building" title="Address">
       <p>{location.address}</p>
@@ -87,4 +87,4 @@ const LocationPageSidebar = ({ location, canEdit }) => (
   </Segment.Group>
 );
 
-export default LocationPageSidebar;
+export default Sidebar;
