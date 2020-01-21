@@ -14,7 +14,7 @@ import Map from "../map/Map";
 
 const Home = () => (
   <div className="homepage">
-    <Map height={"400px"} />
+    <Map height="400px" />
 
     <Container style={{ marginTop: "20px" }}>
       <Header size="huge" textAlign="center">

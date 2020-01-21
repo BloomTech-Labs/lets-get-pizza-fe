@@ -11,6 +11,7 @@ import {
 
 import API from "../../utils/API";
 import { curr_location } from "../../utils/auth";
+
 import LocationPageSidebar from "./LocationPageSidebar";
 
 // Location detail page

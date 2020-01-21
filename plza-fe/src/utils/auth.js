@@ -1,5 +1,6 @@
 /**
  * Returns an object from Local Storage or returns false if it does not exist.
+ *
  * @param {string} item
  */
 function getItem(item) {
@@ -33,6 +34,7 @@ export function logoutUser() {
  *
  * Afterwards the `curr_user` or `curr_location` items are set based on
  * what type of user has logged in.
+ *
  * @param {object} response
  */
 export default function authenticateUser(response) {
