@@ -5,20 +5,20 @@ import Login from "./Login";
 import Register from "./Register";
 import Profile from "./Profile";
 
-export default function UserController() {
-  return (
-    <Switch>
-      <Route path="/users/login">
-        <Login />
-      </Route>
+const UserController = () => (
+  <Switch>
+    <Route path="/users/login">
+      <Login />
+    </Route>
 
-      <Route path="/users/register">
-        <Register />
-      </Route>
-      
-      <Route path="/users/profile">
-        <Profile />
-      </Route>
-    </Switch>
-  );
-}
+    <Route path="/users/register">
+      <Register />
+    </Route>
+
+    <Route path="/users/profile">
+      <Profile />
+    </Route>
+  </Switch>
+);
+
+export default UserController;

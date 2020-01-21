@@ -27,6 +27,17 @@ export default function Masthead() {
     </Dropdown.Item>
   );
 
+  const HamburgerMenu = () => (
+    <div
+      className={`hamburger ${isMenuVisible ? "active" : "disabled"}`}
+      onClick={() => toggleMenuVisibility()}
+    >
+      <span className="hamburger-bun"></span>
+      <span className="hamburger-patty"></span>
+      <span className="hamburger-bun"></span>
+    </div>
+  );
+
   return (
     <Menu
       attached="top"
@@ -83,14 +94,7 @@ export default function Masthead() {
         )}
       </Menu.Menu>
 
-      <div
-        className={`hamburger ${isMenuVisible ? "active" : "disabled"}`}
-        onClick={() => toggleMenuVisibility()}
-      >
-        <span className="hamburger-bun"></span>
-        <span className="hamburger-patty"></span>
-        <span className="hamburger-bun"></span>
-      </div>
+      <HamburgerMenu />
     </Menu>
   );
 }

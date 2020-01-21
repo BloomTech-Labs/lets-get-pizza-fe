@@ -68,7 +68,8 @@ export default function Map(props) {
     pitch: 0,
     zoom: 12,
     minZoom: 10,
-    maxZoom: 18
+    maxZoom: 18,
+    maxPitch: 0
   });
 
   // Whenever the user updates the viewport, commit those changes
@@ -91,7 +92,7 @@ export default function Map(props) {
         ...viewport,
         latitude: marker.latitude,
         longitude: marker.longitude,
-        zoom: 15,
+        zoom: viewport.zoom > 15 ? viewport.zoom : 15,
         transitionDuration: 800,
         transitionInterpolator: new FlyToInterpolator()
       }));

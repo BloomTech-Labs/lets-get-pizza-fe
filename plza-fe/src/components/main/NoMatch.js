@@ -1,9 +1,10 @@
 import React from "react";
+import SimpleContainer from "./SimpleContainer";
 
-export default function NoMatch() {
-  return (
-    <div className="error">
-      <h1>Not Found</h1>
-    </div>
-  );
-}
+const NoMatch = () => (
+  <SimpleContainer title="Page not found">
+    <p>We couldn't locate the page you were looking for.</p>
+  </SimpleContainer>
+);
+
+export default NoMatch;

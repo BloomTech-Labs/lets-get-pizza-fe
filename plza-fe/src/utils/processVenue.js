@@ -5,6 +5,7 @@ import API from "./API";
  * in our database. If not, send an API request to populate it, then modify
  * `location_id` to be the newly created entry and finally redirect to the
  * new location or the already existing one.
+ *
  * @param {SyntheticEvent} event A React SyntheticEvent attached to something
  * like an `onClick` handler.
  * @param {object} history Pass in the variable that initializes `useHistory`
