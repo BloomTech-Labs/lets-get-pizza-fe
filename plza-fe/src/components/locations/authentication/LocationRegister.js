@@ -1,15 +1,15 @@
 import React from "react";
 import { Input, TextArea, Dropdown } from "formik-semantic-ui";
 
-import SimpleContainer from "../main/SimpleContainer";
-import AuthenticateForm from "../authentication/AuthenticateForm";
+import SimpleContainer from "../../main/SimpleContainer";
+import AuthenticateForm from "../../authentication/AuthenticateForm";
 
 export default function LocationsRegister() {
   return (
     <SimpleContainer title="Register a location">
       <AuthenticateForm
         isRegistrationForm
-        endpoint={"/auth/location/register"}
+        endpoint="/auth/location/register"
         extraValues={{
           business_name: "",
           first_name: "",
