@@ -15,7 +15,11 @@ import MainBar from "./detail/MainBar";
 export default function LocationPage() {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
+
   const [location, setLocation] = useState({});
+  const [reviews, setReviews] = useState({});
+  const [promotions, setPromotions] = useState({});
+  const [events, setEvents] = useState({});
 
   // If the currently logged in user is equal to the location ID, then
   // the user can edit the page
@@ -24,7 +28,11 @@ export default function LocationPage() {
   useEffect(() => {
     API.get(`/locations/${id}`)
       .then(response => {
-        setLocation(response.data);
+        setLocation(response.data.location);
+        setReviews(response.data.reviews);
+        setPromotions(response.data.promotions);
+        setEvents(response.data.reviews);
+
         setIsLoading(false);
       })
       .catch(error => console.log(error));
@@ -44,7 +52,7 @@ export default function LocationPage() {
         </Grid.Column>
 
         <Grid.Column width={10}>
-          <MainBar />
+          <MainBar reviews={reviews} promotions={promotions} events={events} />
         </Grid.Column>
       </Grid>
     </Container>
