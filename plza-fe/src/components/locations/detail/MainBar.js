@@ -1,29 +1,23 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
 
-export default function MainBar(props) {
+import Reviews from "./tabs/Reviews";
+import Promotions from "./tabs/Promotions";
+import Events from "./tabs/Events";
+
+export default function MainBar({ reviews, promotions, events }) {
   const TabPanes = [
     {
-      menuItem: { key: "home", icon: "home", content: "Home" },
-      render: () => <Tab.Pane>Home page</Tab.Pane>
-    },
-    {
       menuItem: { key: "reviews", icon: "comments", content: "Reviews" },
-      render: () => (
-        <Tab.Pane>
-          {props.reviews.map(review => (
-            <p>{review.review_text}</p>
-          ))}
-        </Tab.Pane>
-      )
+      render: () => <Reviews reviews={reviews} />
     },
     {
       menuItem: { key: "promotions", icon: "dollar", content: "Promotions" },
-      render: () => <Tab.Pane>Promotions page</Tab.Pane>
+      render: () => <Promotions promotions={promotions} />
     },
     {
       menuItem: { key: "events", icon: "calendar", content: "Events" },
-      render: () => <Tab.Pane>Events page</Tab.Pane>
+      render: () => <Events events={events} />
     }
   ];
 

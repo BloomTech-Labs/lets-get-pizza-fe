@@ -37,7 +37,7 @@ const Sidebar = ({ location, canEdit }) => (
       )}
     </SidebarSegment>
 
-    <SidebarSegment icon="chain" title="links">
+    <SidebarSegment icon="chain" title="Links">
       <List>
         {location.website_url && (
           <List.Item
