@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Image } from "semantic-ui-react";
+import { Header, Image, Rating } from "semantic-ui-react";
 
 const LocationHeader = ({ location }) => (
   <Header size="huge">
@@ -13,6 +13,14 @@ const LocationHeader = ({ location }) => (
 
     <Header.Content>
       {location.business_name}
+
+      <Rating
+        disabled
+        rating={location.average_rating}
+        maxRating={5}
+        style={{ position: "relative", top: "-5px", marginLeft: "10px" }}
+      />
+
       {location.store_bio && (
         <Header.Subheader>{location.store_bio}</Header.Subheader>
       )}
