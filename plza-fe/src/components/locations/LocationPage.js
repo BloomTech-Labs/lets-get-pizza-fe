@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Loader, Container, Grid } from "semantic-ui-react";
 
 import API from "../../utils/API";
@@ -13,8 +13,12 @@ import MainBar from "./detail/MainBar";
 // Displays all information about a given location through the
 // `id` param
 export default function LocationPage() {
-  const { id } = useParams();
+  const { id, tab } = useParams();
+  const history = useHistory();
+
   const [isLoading, setIsLoading] = useState(true);
+
+  const [selectedTab, setSelectedTab] = useState(0);
 
   const [location, setLocation] = useState({});
   const [reviews, setReviews] = useState({});
@@ -38,6 +42,27 @@ export default function LocationPage() {
       .catch(error => console.log(error));
   }, [id]);
 
+  useEffect(() => {
+    if (tab !== undefined) {
+      switch (tab) {
+        case "reviews":
+          setSelectedTab(0);
+          break;
+
+        case "promotions":
+          setSelectedTab(1);
+          break;
+
+        case "events":
+          setSelectedTab(2);
+          break;
+
+        default:
+          break;
+      }
+    }
+  }, [tab]);
+
   if (isLoading) {
     return <Loader active>Loading...</Loader>;
   }
@@ -51,8 +76,16 @@ export default function LocationPage() {
           <Sidebar location={location} canEdit={canEdit} />
         </Grid.Column>
 
-        <Grid.Column width={10}>
-          <MainBar reviews={reviews} promotions={promotions} events={events} />
+        <Grid.Column width={12}>
+          <MainBar
+            history={history}
+            locationID={id}
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+            reviews={reviews}
+            promotions={promotions}
+            events={events}
+          />
         </Grid.Column>
       </Grid>
     </Container>

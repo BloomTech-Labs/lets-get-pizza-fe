@@ -39,7 +39,7 @@ const LocationController = () => (
     </Route>
 
     {/* Individual view page */}
-    <Route path="/locations/:id">
+    <Route path="/locations/:id/:tab?">
       <LocationPage />
     </Route>
   </Switch>
