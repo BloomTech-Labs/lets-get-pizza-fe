@@ -23,7 +23,7 @@ const Sidebar = ({ location, canEdit }) => (
       </p>
     </SidebarSegment>
 
-    <SidebarSegment icon="food" title="Dietary offerings available">
+    <SidebarSegment icon="food" title="Dietary offerings">
       {location.dietary_offerings ? (
         <List>
           {location.dietary_offerings.map(offering => (
