@@ -35,7 +35,7 @@ export default function LocationPage() {
         setLocation(response.data.location);
         setReviews(response.data.reviews);
         setPromotions(response.data.promotions);
-        setEvents(response.data.reviews);
+        setEvents(response.data.events);
 
         setIsLoading(false);
       })
