@@ -38,8 +38,8 @@ const Sidebar = ({ location, canEdit }) => (
         </List>
       ) : (
         <p>
-          This store has not provided information about its
-          dietary/allergen-free offerings yet.
+          This store has not provided information about its special dietary
+          offerings yet.
         </p>
       )}
     </SidebarSegment>
@@ -79,15 +79,19 @@ const Sidebar = ({ location, canEdit }) => (
           to={`/locations/claim/${location.id}`}
         >
           <Icon name="lock" />
-          Claim
+          Claim this page
         </Button>
       </SidebarSegment>
     )}
 
     {canEdit && (
-      <SidebarSegment icon="edit" title="Administrate this page">
+      <SidebarSegment icon="star" title="Administrate this page">
         <Button as={Link} to={`/locations/edit/${location.id}`}>
           Edit
+        </Button>
+
+        <Button as={Link} to="#">
+          New promotion
         </Button>
       </SidebarSegment>
     )}
