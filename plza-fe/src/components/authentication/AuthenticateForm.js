@@ -1,27 +1,12 @@
 import React from "react";
 import { Form, Input, Button } from "formik-semantic-ui";
-import { Label, Message } from "semantic-ui-react";
+import { InputError, ServerErrorMessage } from "../forms/Errors";
 
 import { string, ref } from "yup";
 
 import API from "../../utils/API";
 import authenticateUser from "../../utils/auth";
 import composeSchema from "../../utils/composeSchema";
-
-export const InputError = ({ message }) => (
-  <Label color="red" pointing="above" prompt>
-    {message}
-  </Label>
-);
-
-export const ServerErrorMessage = ({ message }) => (
-  <Message
-    negative
-    icon="exclamation triangle"
-    header="Sorry, we encountered an error!"
-    content={message}
-  />
-);
 
 const baseSchema = {
   username: string().required("Username is required"),

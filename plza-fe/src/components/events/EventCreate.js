@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Form, Input, TextArea, Button } from "formik-semantic-ui";
+import { InputError, ServerErrorMessage } from "../forms/Errors";
 
 import { object, string, date } from "yup";
 
@@ -11,8 +12,8 @@ import { curr_user } from "../../utils/auth";
 const eventCreateSchema = object().shape({
   title: string().required("Title is required"),
   description: string(),
-  start_time: date(),
-  end_time: date()
+  start_time: date().required("Start time is required"),
+  end_time: date().required("End time is required")
 });
 
 export default function EventCreate(props) {
@@ -47,21 +48,41 @@ export default function EventCreate(props) {
         {formik => (
           <Form.Children>
             <Form.Group widths="equal">
-              <Input label="Event title" name="title" />
+              <Input
+                label="Event title"
+                name="title"
+                errorComponent={InputError}
+              />
             </Form.Group>
 
             <Form.Group widths="equal">
-              <TextArea label="Description of event" name="description" />
+              <TextArea
+                label="Description of event"
+                name="description"
+                errorComponent={InputError}
+              />
             </Form.Group>
 
             <Form.Group widths="equal">
-              <Input label="Starts at" name="start_time" />
-              <Input label="Ends at" name="end_time" />
+              <Input
+                inputProps={{ type: "datetime-local" }}
+                label="Starts at"
+                name="start_time"
+                errorComponent={InputError}
+              />
+
+              <Input
+                inputProps={{ type: "datetime-local" }}
+                label="Ends at"
+                name="end_time"
+                errorComponent={InputError}
+              />
             </Form.Group>
 
             <Button.Submit
               primary
               disabled={!formik.isValid || formik.isSubmitting}
+              loading={formik.isSubmitting}
             >
               Add new event
             </Button.Submit>
