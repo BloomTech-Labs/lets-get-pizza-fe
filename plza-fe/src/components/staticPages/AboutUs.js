@@ -33,8 +33,8 @@ const AboutUs = () => (
 
         <Card.Content extra>
           <LinkButton href="https://github.com/rfamilara" icon="github" />
-          <LinkButton href="https://linkedin.com/in/rf2017/" icon="twitter" />
-          <LinkButton href="https://twitter.com/Niborhoods" icon="linkedin" />
+          <LinkButton href="https://linkedin.com/in/rf2017/" icon="linkedin" />
+          <LinkButton href="https://twitter.com/Niborhoods" icon="twitter" />
         </Card.Content>
       </Card>
 
