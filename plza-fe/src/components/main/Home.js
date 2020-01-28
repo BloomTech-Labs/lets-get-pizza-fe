@@ -12,9 +12,19 @@ import {
 
 import Map from "../map/Map";
 
+const FeatureItem = ({ icon, headline, children }) => (
+  <List.Item>
+    <Icon name={icon} />
+    <List.Content>
+      <List.Header>{headline}</List.Header>
+      <List.Description>{children}</List.Description>
+    </List.Content>
+  </List.Item>
+);
+
 const Home = () => (
   <div className="homepage">
-    <Map height="400px" />
+    <Map height="500px" />
 
     <Container style={{ marginTop: "20px" }}>
       <Header size="huge" textAlign="center">
@@ -28,41 +38,26 @@ const Home = () => (
             <Header size="large">Are you a pizza fanatic?</Header>
 
             <List>
-              <List.Item>
-                <Icon name="search" />
-                <List.Content>
-                  <List.Header>Find pizza you love</List.Header>
-                  <List.Description>
-                    Suspendisse malesuada erat vitae neque consequat, non
-                    lobortis eros tempor. Ut mollis tincidunt nulla. Nam mollis
-                    tortor id augue sodales.
-                  </List.Description>
-                </List.Content>
-              </List.Item>
+              <FeatureItem icon="search" headline="Find pizza you love">
+                Suspendisse malesuada erat vitae neque consequat, non lobortis
+                eros tempor. Ut mollis tincidunt nulla. Nam mollis tortor id
+                augue sodales.
+              </FeatureItem>
 
-              <List.Item>
-                <Icon name="star" />
-                <List.Content>
-                  <List.Header>Leave ratings and reviews</List.Header>
-                  <List.Description>
-                    Quisque congue venenatis semper. Nulla mollis eros ut
-                    consequat semper. Duis convallis metus non augue malesuada
-                    finibus. Vestibulum nisl magna.
-                  </List.Description>
-                </List.Content>
-              </List.Item>
+              <FeatureItem icon="star" headline="Leave ratings and reviews">
+                Quisque congue venenatis semper. Nulla mollis eros ut consequat
+                semper. Duis convallis metus non augue malesuada finibus.
+                Vestibulum nisl magna.
+              </FeatureItem>
 
-              <List.Item>
-                <Icon name="calendar check" />
-                <List.Content>
-                  <List.Header>Create and attend events</List.Header>
-                  <List.Description>
-                    Sed finibus ex a faucibus varius. Pellentesque consectetur,
-                    justo eget efficitur hendrerit, odio nisl vehicula tellus,
-                    non suscipit dolor lorem.
-                  </List.Description>
-                </List.Content>
-              </List.Item>
+              <FeatureItem
+                icon="calendar check"
+                headline="Create and attend events"
+              >
+                Sed finibus ex a faucibus varius. Pellentesque consectetur,
+                justo eget efficitur hendrerit, odio nisl vehicula tellus, non
+                suscipit dolor lorem.
+              </FeatureItem>
             </List>
 
             <Button
@@ -83,47 +78,32 @@ const Home = () => (
           <Segment>
             <Header size="large">Do you own a restaurant?</Header>
             <List>
-              <List.Item>
-                <Icon name="lock" />
-                <List.Content>
-                  <List.Header>
-                    Claim your location or create a new one
-                  </List.Header>
-                  <List.Description>
-                    Suspendisse malesuada erat vitae neque consequat, non
-                    lobortis eros tempor. Ut mollis tincidunt nulla. Nam mollis
-                    tortor id augue sodales.
-                  </List.Description>
-                </List.Content>
-              </List.Item>
+              <FeatureItem
+                icon="lock"
+                headline="Claim your location or create a new one"
+              >
+                Suspendisse malesuada erat vitae neque consequat, non lobortis
+                eros tempor. Ut mollis tincidunt nulla. Nam mollis tortor id
+                augue sodales.
+              </FeatureItem>
 
-              <List.Item>
-                <Icon name="percent" />
-                <List.Content>
-                  <List.Header>
-                    Engage locally with events and promotions
-                  </List.Header>
-                  <List.Description>
-                    Quisque congue venenatis semper. Nulla mollis eros ut
-                    consequat semper. Duis convallis metus non augue malesuada
-                    finibus. Vestibulum nisl magna.
-                  </List.Description>
-                </List.Content>
-              </List.Item>
+              <FeatureItem
+                icon="percent"
+                headline="Engage locally with events and promotions"
+              >
+                Quisque congue venenatis semper. Nulla mollis eros ut consequat
+                semper. Duis convallis metus non augue malesuada finibus.
+                Vestibulum nisl magna.
+              </FeatureItem>
 
-              <List.Item>
-                <Icon name="comments" />
-                <List.Content>
-                  <List.Header>
-                    Reply to customer's questions and comments
-                  </List.Header>
-                  <List.Description>
-                    Sed finibus ex a faucibus varius. Pellentesque consectetur,
-                    justo eget efficitur hendrerit, odio nisl vehicula tellus,
-                    non suscipit dolor lorem.
-                  </List.Description>
-                </List.Content>
-              </List.Item>
+              <FeatureItem
+                icon="comments"
+                headline="Reply to customer's questions and comments"
+              >
+                Sed finibus ex a faucibus varius. Pellentesque consectetur,
+                justo eget efficitur hendrerit, odio nisl vehicula tellus, non
+                suscipit dolor lorem.
+              </FeatureItem>
             </List>
 
             <Button

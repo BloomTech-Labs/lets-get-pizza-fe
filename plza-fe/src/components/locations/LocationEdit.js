@@ -32,7 +32,10 @@ export default function LocationEdit() {
         .then(response => {
           // Copy the response and if dietary offerings is null, make it
           // an empty array
-          const payload = Object.assign({}, response.data);
+          const payload = Object.assign({}, response.data.location);
+
+          delete payload.average_rating;
+
           if (payload.dietary_offerings === null) {
             payload.dietary_offerings = [];
           }
@@ -76,7 +79,7 @@ export default function LocationEdit() {
             <Input
               label="Website URL"
               name="website_url"
-              inputProps={{ type: "url" }}
+              inputProps={{ type: "url", icon: "link" }}
             />
 
             <Dropdown

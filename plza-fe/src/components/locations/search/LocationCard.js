@@ -15,7 +15,7 @@ export default function LocationCard({ loading, venue }) {
       </Card.Content>
       <Card.Content extra>
         <Button
-          fluid
+          primary
           onClick={event => processVenue(event, history)}
           fsid={venue.foursquare_id ? `${venue.foursquare_id}` : null}
           lid={venue.location_id ? `${venue.location_id}` : null}

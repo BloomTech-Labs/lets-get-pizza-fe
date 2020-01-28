@@ -1,10 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Segment, Icon, List, Button } from "semantic-ui-react";
+import {
+  SegmentGroup,
+  Image,
+  Label,
+  Icon,
+  List,
+  Button
+} from "semantic-ui-react";
 import SidebarSegment from "./SidebarSegment";
 
-const LocationPageSidebar = ({ location, canEdit }) => (
-  <Segment.Group>
+const Sidebar = ({ location, canEdit }) => (
+  <SegmentGroup>
     <SidebarSegment icon="building" title="Address">
       <p>{location.address}</p>
     </SidebarSegment>
@@ -16,7 +23,7 @@ const LocationPageSidebar = ({ location, canEdit }) => (
       </p>
     </SidebarSegment>
 
-    <SidebarSegment icon="food" title="Dietary offerings available">
+    <SidebarSegment icon="food" title="Dietary offerings">
       {location.dietary_offerings ? (
         <List>
           {location.dietary_offerings.map(offering => (
@@ -31,13 +38,13 @@ const LocationPageSidebar = ({ location, canEdit }) => (
         </List>
       ) : (
         <p>
-          This store has not provided information about its
-          dietary/allergen-free offerings yet.
+          This store has not provided information about its special dietary
+          offerings yet.
         </p>
       )}
     </SidebarSegment>
 
-    <SidebarSegment icon="chain" title="links">
+    <SidebarSegment icon="chain" title="Links">
       <List>
         {location.website_url && (
           <List.Item
@@ -72,19 +79,19 @@ const LocationPageSidebar = ({ location, canEdit }) => (
           to={`/locations/claim/${location.id}`}
         >
           <Icon name="lock" />
-          Claim
+          Claim this page
         </Button>
       </SidebarSegment>
     )}
 
     {canEdit && (
-      <SidebarSegment icon="edit" title="Administrate this page">
+      <SidebarSegment icon="star" title="Administrate this page">
         <Button as={Link} to={`/locations/edit/${location.id}`}>
-          Edit
+          Edit page
         </Button>
       </SidebarSegment>
     )}
-  </Segment.Group>
+  </SegmentGroup>
 );
 
-export default LocationPageSidebar;
+export default Sidebar;

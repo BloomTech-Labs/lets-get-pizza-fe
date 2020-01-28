@@ -1,18 +1,12 @@
 import React from "react";
 import { Form, Input, Button } from "formik-semantic-ui";
-import { Label, Message } from "semantic-ui-react";
+import { InputError, ServerErrorMessage } from "../forms/Errors";
 
 import { string, ref } from "yup";
 
 import API from "../../utils/API";
 import authenticateUser from "../../utils/auth";
 import composeSchema from "../../utils/composeSchema";
-
-export const InputError = ({ message }) => (
-  <Label color="red" pointing="above" prompt>
-    {message}
-  </Label>
-);
 
 const baseSchema = {
   username: string().required("Username is required"),
@@ -31,13 +25,15 @@ const registrationSchema = {
     .required("E-mail address is required")
 };
 
-export default function AuthenticateForm({
-  endpoint,
-  isRegistrationForm,
-  extraValues,
-  extraSchema,
-  children
-}) {
+export default function AuthenticateForm(props) {
+  const {
+    endpoint,
+    isRegistrationForm,
+    extraValues,
+    extraSchema,
+    children
+  } = props;
+
   // If this is a registration form, combine registration schema and
   // base schema together, otherwise just return the base schema.
   const initialSchema = isRegistrationForm
@@ -73,18 +69,12 @@ export default function AuthenticateForm({
     <Form
       initialValues={{ username: "", password: "", ...extraValues }}
       validationSchema={composeSchema(initialSchema, extraSchema)}
-      validateOnBlur={false}
       onSubmit={(values, actions) => onSubmit(values, actions)}
     >
       {formik => (
         <Form.Children>
           {formik.errors.message && (
-            <Message
-              negative
-              icon="exclamation triangle"
-              header="Sorry, we encountered an error!"
-              content={formik.errors.message}
-            />
+            <ServerErrorMessage message={formik.errors.message} />
           )}
 
           <Form.Group widths="equal">

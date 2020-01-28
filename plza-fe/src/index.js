@@ -10,6 +10,7 @@ import NoMatch from "./components/main/NoMatch";
 import Users from "./components/users/UserController";
 import Locations from "./components/locations/LocationController";
 import Pages from "./components/staticPages/PageController";
+import Events from "./components/events/EventController";
 
 // Home page
 import Home from "./components/main/Home";
@@ -27,6 +28,10 @@ ReactDOM.render(
 
       <Route path="/locations">
         <Locations />
+      </Route>
+
+      <Route path="/events">
+        <Events />
       </Route>
 
       <Route exact path="/">

@@ -7,7 +7,7 @@ import LocationEdit from "./LocationEdit";
 import LocationClaim from "./authentication/LocationClaim";
 import LocationLogin from "./authentication/LocationLogin";
 import LocationRegister from "./authentication/LocationRegister";
-import LocationPage from "./LocationPage";
+import LocationPage from "./detail/LocationPage";
 
 const LocationController = () => (
   <Switch>
@@ -39,7 +39,7 @@ const LocationController = () => (
     </Route>
 
     {/* Individual view page */}
-    <Route path="/locations/:id">
+    <Route path="/locations/:id/:tab?">
       <LocationPage />
     </Route>
   </Switch>
