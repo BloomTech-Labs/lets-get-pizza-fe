@@ -35,6 +35,7 @@ const teamMembers = [
   {
     key: "justin",
     image: jl,
+    name: "Justin Landry",
     position: "Backend Developer",
     bio: "Fighting games, LARP, Proper pizza",
     links: [
@@ -45,6 +46,7 @@ const teamMembers = [
   {
     key: "curtis",
     image: cs,
+    name: "Curtis Scafe",
     position: "Backend Developer",
     bio: `Born in Jamaica, grew up in NJ, currently in Nashville. Gearhead/car
     guy. Love to hike. Foodie and runner.`,
@@ -61,6 +63,7 @@ const teamMembers = [
   {
     key: "spencer",
     image: ss,
+    name: "Spencer Summerville",
     position: "Lead Frontend Developer",
     bio: `Pizza and programming aficionado. Northwest raised,
     currently residing in the deep south.`,
