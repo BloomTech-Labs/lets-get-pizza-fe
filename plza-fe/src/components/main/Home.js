@@ -33,9 +33,7 @@ const Home = () => (
                 <List.Content>
                   <List.Header>Find pizza you love</List.Header>
                   <List.Description>
-                    Suspendisse malesuada erat vitae neque consequat, non
-                    lobortis eros tempor. Ut mollis tincidunt nulla. Nam mollis
-                    tortor id augue sodales.
+                    From the big boy chains to the legendary local dives, see all the pizza possibilities near you!
                   </List.Description>
                 </List.Content>
               </List.Item>
@@ -45,9 +43,7 @@ const Home = () => (
                 <List.Content>
                   <List.Header>Leave ratings and reviews</List.Header>
                   <List.Description>
-                    Quisque congue venenatis semper. Nulla mollis eros ut
-                    consequat semper. Duis convallis metus non augue malesuada
-                    finibus. Vestibulum nisl magna.
+                    Become a bold trailblazer of pizza and have your reviews and ratings stand as a beacon for all!
                   </List.Description>
                 </List.Content>
               </List.Item>
@@ -57,9 +53,7 @@ const Home = () => (
                 <List.Content>
                   <List.Header>Create and attend events</List.Header>
                   <List.Description>
-                    Sed finibus ex a faucibus varius. Pellentesque consectetur,
-                    justo eget efficitur hendrerit, odio nisl vehicula tellus,
-                    non suscipit dolor lorem.
+                    Everyone knows that pizza hits the spot better with friends. Create events for you and your friends to jump into or search for any events your friends or local pizza places already have happening!
                   </List.Description>
                 </List.Content>
               </List.Item>
@@ -90,9 +84,7 @@ const Home = () => (
                     Claim your location or create a new one
                   </List.Header>
                   <List.Description>
-                    Suspendisse malesuada erat vitae neque consequat, non
-                    lobortis eros tempor. Ut mollis tincidunt nulla. Nam mollis
-                    tortor id augue sodales.
+                    Local business looking to get on the map? We got you. A francise owner that needs to claim your store? We got you!
                   </List.Description>
                 </List.Content>
               </List.Item>
@@ -104,9 +96,7 @@ const Home = () => (
                     Engage locally with events and promotions
                   </List.Header>
                   <List.Description>
-                    Quisque congue venenatis semper. Nulla mollis eros ut
-                    consequat semper. Duis convallis metus non augue malesuada
-                    finibus. Vestibulum nisl magna.
+                    Everyone loves a party! Good for customers and good for business! Create and manage events happening at your location! Be sure that the locals in the area know what you have going on!
                   </List.Description>
                 </List.Content>
               </List.Item>
@@ -118,9 +108,7 @@ const Home = () => (
                     Reply to customer's questions and comments
                   </List.Header>
                   <List.Description>
-                    Sed finibus ex a faucibus varius. Pellentesque consectetur,
-                    justo eget efficitur hendrerit, odio nisl vehicula tellus,
-                    non suscipit dolor lorem.
+                    Reach your customers and answer questions they have! Let your very own FAQ section form on Plza!
                   </List.Description>
                 </List.Content>
               </List.Item>
