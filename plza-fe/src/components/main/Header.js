@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, Confirm, Dropdown } from "semantic-ui-react";
-import { hasToken, logoutUser } from "../../utils/auth";
+import {
+  hasToken,
+  curr_user,
+  curr_location,
+  logoutUser
+} from "../../utils/auth";
 
 import Logo from "./Logo.png";
 
@@ -26,6 +31,18 @@ export default function Masthead() {
       {props.children}
     </Dropdown.Item>
   );
+
+  const ProfileLink = () => {
+    if (curr_user) {
+      return <NavbarItem to="/users/profile">{curr_user.username}</NavbarItem>;
+    } else if (curr_location) {
+      return (
+        <NavbarItem to={`/locations/${curr_location.id}`}>
+          {curr_location.business_name}
+        </NavbarItem>
+      );
+    }
+  };
 
   const HamburgerMenu = () => (
     <div
@@ -75,7 +92,8 @@ export default function Masthead() {
       <Menu.Menu position="right">
         {hasToken ? (
           <>
-            <NavbarItem to="/users/profile">Profile</NavbarItem>
+            <ProfileLink />
+
             <Menu.Item onClick={() => setModalVisibility(true)}>
               Log out
             </Menu.Item>

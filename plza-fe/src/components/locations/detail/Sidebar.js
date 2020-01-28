@@ -87,11 +87,7 @@ const Sidebar = ({ location, canEdit }) => (
     {canEdit && (
       <SidebarSegment icon="star" title="Administrate this page">
         <Button as={Link} to={`/locations/edit/${location.id}`}>
-          Edit
-        </Button>
-
-        <Button as={Link} to="#">
-          New promotion
+          Edit page
         </Button>
       </SidebarSegment>
     )}

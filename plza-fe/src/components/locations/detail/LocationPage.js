@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Loader, Container, Grid } from "semantic-ui-react";
 
-import API from "../../utils/API";
-import { curr_location } from "../../utils/auth";
+import API from "../../../utils/API";
+import { curr_location } from "../../../utils/auth";
 
-import Header from "./detail/Header";
-import Sidebar from "./detail/Sidebar";
-import MainBar from "./detail/MainBar";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+import MainBar from "./MainBar";
 
 // Location detail page
 // Displays all information about a given location through the
