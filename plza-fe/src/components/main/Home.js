@@ -39,24 +39,23 @@ const Home = () => (
 
             <List>
               <FeatureItem icon="search" headline="Find pizza you love">
-                Suspendisse malesuada erat vitae neque consequat, non lobortis
-                eros tempor. Ut mollis tincidunt nulla. Nam mollis tortor id
-                augue sodales.
+                From the big boy chains to the legendary local dives, see all
+                the pizza possibilities near you!
               </FeatureItem>
 
               <FeatureItem icon="star" headline="Leave ratings and reviews">
-                Quisque congue venenatis semper. Nulla mollis eros ut consequat
-                semper. Duis convallis metus non augue malesuada finibus.
-                Vestibulum nisl magna.
+                Become a bold trailblazer of pizza and have your reviews and
+                ratings stand as a beacon for all!
               </FeatureItem>
 
               <FeatureItem
                 icon="calendar check"
                 headline="Create and attend events"
               >
-                Sed finibus ex a faucibus varius. Pellentesque consectetur,
-                justo eget efficitur hendrerit, odio nisl vehicula tellus, non
-                suscipit dolor lorem.
+                Everyone knows that pizza hits the spot better with friends.
+                Create events for you and your friends to jump into or search
+                for any events your friends or local pizza places already have
+                happening!
               </FeatureItem>
             </List>
 
@@ -82,27 +81,25 @@ const Home = () => (
                 icon="lock"
                 headline="Claim your location or create a new one"
               >
-                Suspendisse malesuada erat vitae neque consequat, non lobortis
-                eros tempor. Ut mollis tincidunt nulla. Nam mollis tortor id
-                augue sodales.
+                Local business looking to get on the map? We got you. A francise
+                owner that needs to claim your store? We got you!
               </FeatureItem>
 
               <FeatureItem
                 icon="percent"
                 headline="Engage locally with events and promotions"
               >
-                Quisque congue venenatis semper. Nulla mollis eros ut consequat
-                semper. Duis convallis metus non augue malesuada finibus.
-                Vestibulum nisl magna.
+                Everyone loves a party! Good for customers and good for
+                business! Create and manage events happening at your location!
+                Be sure that the locals in the area know what you have going on!
               </FeatureItem>
 
               <FeatureItem
                 icon="comments"
                 headline="Reply to customer's questions and comments"
               >
-                Sed finibus ex a faucibus varius. Pellentesque consectetur,
-                justo eget efficitur hendrerit, odio nisl vehicula tellus, non
-                suscipit dolor lorem.
+                Reach your customers and answer questions they have! Let your
+                very own FAQ section form on Plza!
               </FeatureItem>
             </List>
 

@@ -70,7 +70,7 @@ const Sidebar = ({ location, canEdit }) => (
 
     {!location.email && (
       <SidebarSegment icon="question" title="Is this your store?">
-        <p>Call to action to sign up for Plza</p>
+        <p>Sign up now and start working with Plza!</p>
 
         <Button
           icon
