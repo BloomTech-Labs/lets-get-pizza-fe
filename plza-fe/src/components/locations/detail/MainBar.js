@@ -1,17 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Segment, Header, Icon, Button, Tab } from "semantic-ui-react";
 
 import Reviews from "./tabs/Reviews";
 import Promotions from "./tabs/Promotions";
 import Events from "./tabs/Events";
 
-const EmptyContent = ({ icon, type, showAddButton }) => (
+import { curr_user, curr_location } from "../../../utils/auth";
+
+const EmptyContent = ({ icon, type, id, showAddButton }) => (
   <Segment placeholder>
     <Header icon>
       <Icon name={icon} />
       There are currently no {type}s for this location
     </Header>
-    {showAddButton && <Button primary>Add {type}</Button>}
+    {showAddButton && (
+      <Button primary as={Link} to={`/${type}s/${id}/new`}>
+        Add {type}
+      </Button>
+    )}
   </Segment>
 );
 
@@ -49,6 +56,7 @@ export default function MainBar(props) {
         <EmptyContent
           icon={tabIcon}
           type={String(tabType)}
+          id={locationID}
           showAddButton={showAddButton}
         />
       );
@@ -58,16 +66,22 @@ export default function MainBar(props) {
   const tabPanes = [
     {
       menuItem: { key: "reviews", icon: "comments", content: "Reviews" },
-      render: () => renderTab("review", "comments", true, reviews, Reviews)
+      render: () => renderTab("review", "comments", curr_user, reviews, Reviews)
     },
     {
       menuItem: { key: "promotions", icon: "dollar", content: "Promotions" },
       render: () =>
-        renderTab("promotion", "dollar", false, promotions, Promotions)
+        renderTab(
+          "promotion",
+          "dollar",
+          curr_location.id === Number(locationID),
+          promotions,
+          Promotions
+        )
     },
     {
       menuItem: { key: "events", icon: "calendar", content: "Events" },
-      render: () => renderTab("event", "calendar", true, events, Events)
+      render: () => renderTab("event", "calendar", curr_user, events, Events)
     }
   ];
 
