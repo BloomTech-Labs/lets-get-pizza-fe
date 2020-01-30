@@ -81,7 +81,14 @@ export default function MainBar(props) {
     },
     {
       menuItem: { key: "events", icon: "calendar", content: "Events" },
-      render: () => renderTab("event", "calendar", curr_user, events, Events)
+      render: () =>
+        renderTab(
+          "event",
+          "calendar",
+          curr_user || curr_location,
+          events,
+          Events
+        )
     }
   ];
 

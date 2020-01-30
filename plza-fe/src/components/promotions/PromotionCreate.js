@@ -11,9 +11,9 @@ import { curr_user } from "../../utils/auth";
 
 const promotionCreateSchema = object().shape({
   title: string().required("Title is required"),
-  description: string(),
-  start_time: date().required("Start time is required"),
-  end_time: date().required("End time is required")
+  text: string(),
+  start_date: date().required("Start date is required"),
+  end_date: date().required("End date is required")
 });
 
 export default function EventCreate(props) {
@@ -41,9 +41,9 @@ export default function EventCreate(props) {
         initialValues={{
           location_id: id,
           title: "",
-          description: "",
-          start_time: "",
-          end_time: ""
+          text: "",
+          start_date: "",
+          end_date: ""
         }}
         validationSchema={promotionCreateSchema}
         onSubmit={(values, actions) => onSubmit(values, actions)}
@@ -61,33 +61,28 @@ export default function EventCreate(props) {
             <Form.Group widths="equal">
               <TextArea
                 label="Description of promotion"
-                name="description"
+                name="text"
                 errorComponent={InputError}
               />
             </Form.Group>
 
             <Form.Group widths="equal">
               <Input
-                inputProps={{ type: "datetime-local" }}
-                label="Starts at"
-                name="start_time"
+                inputProps={{ type: "date" }}
+                label="Start date"
+                name="start_date"
                 errorComponent={InputError}
               />
 
               <Input
-                inputProps={{ type: "datetime-local" }}
-                label="Ends at"
-                name="end_time"
+                inputProps={{ type: "date" }}
+                label="Ends date"
+                name="end_date"
                 errorComponent={InputError}
               />
             </Form.Group>
 
-            <Button.Submit
-              primary
-              disabled={!formik.isValid || formik.isSubmitting}
-            >
-              Add new promotion
-            </Button.Submit>
+            <Button.Submit primary>Add new promotion</Button.Submit>
           </Form.Children>
         )}
       </Form>
