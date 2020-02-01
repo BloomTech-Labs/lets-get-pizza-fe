@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Form, Input, TextArea, Button } from "formik-semantic-ui";
 import { InputError, ServerErrorMessage } from "../forms/Errors";
 
@@ -18,12 +18,16 @@ const eventCreateSchema = object().shape({
 
 export default function EventCreate(props) {
   const { id } = useParams();
+  const history = useHistory();
 
   const onSubmit = (values, actions) => {
     actions.setSubmitting(true);
 
     API.post("/events", values)
-      .then(response => actions.setSubmitting(false))
+      .then(response => {
+        actions.setSubmitting(false);
+        history.push(`/locations/${id}/events`);
+      })
       .catch(error => {
         actions.setFieldError("message", error.response.data.message);
         actions.setSubmitting(false);
