@@ -50,20 +50,26 @@ export default function MainBar(props) {
 
       return (
         <React.Fragment>
-          <Segment basic clearing style={{ margin: 0, padding: 0 }}>
-            <Header floated="left" size="large" style={{ marginTop: 0 }}>
-              {pageTitle}
-            </Header>
+          <Segment basic clearing style={{ marginBottom: "10px", padding: 0 }}>
+            <Header
+              floated="left"
+              size="large"
+              content={pageTitle}
+              style={{ marginTop: 0 }}
+            />
 
-            <Button
-              compact
-              floated="right"
-              as={Link}
-              to={`/${tabType}s/${locationID}/new`}
-            >
-              <Icon name="plus" />
-              Add {tabType}
-            </Button>
+            {showAddButton && (
+              <Button
+                compact
+                floated="right"
+                as={Link}
+                to={`/${tabType}s/${locationID}/new`}
+                style={{ margin: 0 }}
+              >
+                <Icon name="plus" />
+                Add {tabType}
+              </Button>
+            )}
           </Segment>
 
           <Tab.Pane>
