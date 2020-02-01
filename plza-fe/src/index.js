@@ -10,9 +10,7 @@ import NoMatch from "./components/main/NoMatch";
 import Users from "./components/users/UserController";
 import Locations from "./components/locations/LocationController";
 import Pages from "./components/staticPages/PageController";
-import Reviews from "./components/ratings/RatingController";
-import Promotions from "./components/promotions/PromotionController";
-import Events from "./components/events/EventController";
+import Items from "./components/items/ItemController";
 
 // Home page
 import Home from "./components/main/Home";
@@ -32,20 +30,20 @@ ReactDOM.render(
         <Locations />
       </Route>
 
-      <Route path="/reviews">
-        <Reviews />
-      </Route>
-
-      <Route path="/promotions">
-        <Promotions />
+      <Route exact path="/">
+        <Home />
       </Route>
 
       <Route path="/events">
-        <Events />
+        <Items />
       </Route>
 
-      <Route exact path="/">
-        <Home />
+      <Route path="/promotions">
+        <Items />
+      </Route>
+
+      <Route path="/reviews">
+        <Items />
       </Route>
 
       <Route path="/pages">

@@ -46,10 +46,30 @@ export default function MainBar(props) {
    */
   const renderTab = (tabType, tabIcon, showAddButton, content, Component) => {
     if (content.length) {
+      const pageTitle = tabType[0].toUpperCase() + tabType.slice(1) + "s";
+
       return (
-        <Tab.Pane>
-          <Component content={content} />
-        </Tab.Pane>
+        <React.Fragment>
+          <Segment basic clearing style={{ margin: 0, padding: 0 }}>
+            <Header floated="left" size="large" style={{ marginTop: 0 }}>
+              {pageTitle}
+            </Header>
+
+            <Button
+              compact
+              floated="right"
+              as={Link}
+              to={`/${tabType}s/${locationID}/new`}
+            >
+              <Icon name="plus" />
+              Add {tabType}
+            </Button>
+          </Segment>
+
+          <Tab.Pane>
+            <Component content={content} />
+          </Tab.Pane>
+        </React.Fragment>
       );
     } else {
       return (
@@ -65,11 +85,11 @@ export default function MainBar(props) {
 
   const tabPanes = [
     {
-      menuItem: { key: "reviews", icon: "comments", content: "Reviews" },
+      menuItem: { key: "reviews", icon: "comments" },
       render: () => renderTab("review", "comments", curr_user, reviews, Reviews)
     },
     {
-      menuItem: { key: "promotions", icon: "dollar", content: "Promotions" },
+      menuItem: { key: "promotions", icon: "dollar" },
       render: () =>
         renderTab(
           "promotion",
@@ -80,7 +100,7 @@ export default function MainBar(props) {
         )
     },
     {
-      menuItem: { key: "events", icon: "calendar", content: "Events" },
+      menuItem: { key: "events", icon: "calendar" },
       render: () =>
         renderTab(
           "event",
