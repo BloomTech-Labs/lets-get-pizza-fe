@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Form, Input, TextArea, Button } from "formik-semantic-ui";
+import { DateTimeInput } from "semantic-ui-calendar-react";
 import { InputError, ServerErrorMessage } from "../forms/Errors";
 
 import { object, string, date } from "yup";
@@ -11,7 +12,7 @@ import { curr_user } from "../../utils/auth";
 
 const eventCreateSchema = object().shape({
   title: string().required("Title is required"),
-  description: string(),
+  description: string().required("Description is required"),
   start_time: date().required("Start time is required"),
   end_time: date().required("End time is required")
 });
@@ -29,7 +30,7 @@ export default function EventCreate(props) {
         history.push(`/locations/${id}/events`);
       })
       .catch(error => {
-        actions.setFieldError("message", error.response.data.message);
+        console.log(error);
         actions.setSubmitting(false);
       });
   };
@@ -37,7 +38,6 @@ export default function EventCreate(props) {
   return (
     <SimpleContainer icon="calendar plus" title="Add new event">
       <Form
-        enableReinitialize
         initialValues={{
           user_id: curr_user.id,
           location_id: id,
@@ -49,49 +49,70 @@ export default function EventCreate(props) {
         validationSchema={eventCreateSchema}
         onSubmit={(values, actions) => onSubmit(values, actions)}
       >
-        {formik => (
-          <Form.Children>
-            <Form.Group widths="equal">
-              <Input
-                label="Event title"
-                name="title"
-                errorComponent={InputError}
-              />
-            </Form.Group>
-
-            <Form.Group widths="equal">
-              <TextArea
-                label="Description of event"
-                name="description"
-                errorComponent={InputError}
-              />
-            </Form.Group>
-
-            <Form.Group widths="equal">
-              <Input
-                inputProps={{ type: "datetime-local" }}
-                label="Starts at"
-                name="start_time"
-                errorComponent={InputError}
+        {formik => {
+          const DateTimePicker = ({ label, name, value }) => (
+            <Form.Field>
+              <label>{label}</label>
+              <DateTimeInput
+                name={name}
+                value={value}
+                onChange={(event, { name, value }) =>
+                  formik.setFieldValue(`${name}`, value)
+                }
+                popupPosition="bottom center"
+                dateFormat="MM-DD-YYYY"
+                timeFormat="ampm"
+                iconPosition="right"
               />
 
-              <Input
-                inputProps={{ type: "datetime-local" }}
-                label="Ends at"
-                name="end_time"
-                errorComponent={InputError}
-              />
-            </Form.Group>
+              {formik.errors[name] && (
+                <InputError message={formik.errors[name]} />
+              )}
+            </Form.Field>
+          );
 
-            <Button.Submit
-              primary
-              disabled={!formik.isValid || formik.isSubmitting}
-              loading={formik.isSubmitting}
-            >
-              Add new event
-            </Button.Submit>
-          </Form.Children>
-        )}
+          return (
+            <Form.Children>
+              <Form.Group widths="equal">
+                <Input
+                  label="Event title"
+                  name="title"
+                  errorComponent={InputError}
+                />
+              </Form.Group>
+
+              <Form.Group widths="equal">
+                <TextArea
+                  label="Description of event"
+                  name="description"
+                  errorComponent={InputError}
+                />
+              </Form.Group>
+
+              <Form.Group widths="equal">
+                <DateTimePicker
+                  label="Starts at"
+                  name="start_time"
+                  value={formik.values.start_time}
+                />
+
+                <DateTimePicker
+                  label="Ends at"
+                  name="end_time"
+                  value={formik.values.end_time}
+                />
+              </Form.Group>
+
+              <Button.Submit
+                primary
+                disabled={!formik.isValid || formik.isSubmitting}
+                loading={formik.isSubmitting}
+              >
+                Add new event
+              </Button.Submit>
+            </Form.Children>
+          );
+        }}
       </Form>
     </SimpleContainer>
   );

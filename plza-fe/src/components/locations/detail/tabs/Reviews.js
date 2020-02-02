@@ -16,7 +16,10 @@ const Reviews = ({ content }) => (
             />
           </Item.Header>
           <Item.Description>{review.review_text}</Item.Description>
-          <Item.Extra>Posted by {review.username}</Item.Extra>
+          <Item.Extra>
+            Posted by
+            {review.display_name ? review.display_name : review.username}
+          </Item.Extra>
         </Item.Content>
       </Item>
     ))}

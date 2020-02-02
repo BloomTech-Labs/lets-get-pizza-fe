@@ -1,13 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  SegmentGroup,
-  Image,
-  Label,
-  Icon,
-  List,
-  Button
-} from "semantic-ui-react";
+import { SegmentGroup, Icon, List, Button } from "semantic-ui-react";
+
 import SidebarSegment from "./SidebarSegment";
 
 const Sidebar = ({ location, canEdit }) => (

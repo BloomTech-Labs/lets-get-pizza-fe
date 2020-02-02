@@ -62,9 +62,9 @@ export default function MainBar(props) {
               <Button
                 compact
                 floated="right"
+                style={{ margin: 0 }}
                 as={Link}
                 to={`/${tabType}s/${locationID}/new`}
-                style={{ margin: 0 }}
               >
                 <Icon name="plus" />
                 Add {tabType}
