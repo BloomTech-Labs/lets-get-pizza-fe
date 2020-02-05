@@ -41,8 +41,10 @@ export default function authenticateUser(response) {
   localStorage.setItem("token", response.token);
 
   if (response.user) {
+    localStorage.removeItem("curr_location");
     localStorage.setItem("curr_user", JSON.stringify(response.user));
   } else if (response.location) {
+    localStorage.removeItem("curr_user");
     localStorage.setItem("curr_location", JSON.stringify(response.location));
   }
 

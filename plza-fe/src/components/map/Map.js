@@ -184,19 +184,14 @@ export default function Map(props) {
         />
       )}
 
-      <Form
-        onSubmit={searchLocations}
-        style={{
-          width: "250px",
-          margin: "10px"
-        }}
-      >
+      <Form onSubmit={searchLocations}>
         <Input
-          icon={{ name: "search", circular: true, link: true }}
+          icon={{ name: "search", circular: true }}
           loading={fetchingLocations ? true : false}
           value={searchQuery}
           placeholder={userLocation.friendlyTitle}
           onChange={updateSearchQuery}
+          style={{ margin: "10px" }}
         />
       </Form>
     </ReactMapGL>
