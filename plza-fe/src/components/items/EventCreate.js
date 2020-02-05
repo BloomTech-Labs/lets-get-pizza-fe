@@ -39,7 +39,7 @@ export default function EventCreate(props) {
     <SimpleContainer icon="calendar plus" title="Add new event">
       <Form
         initialValues={{
-          user_id: curr_user.id,
+          user_id: curr_user ? curr_user.id : null,
           location_id: id,
           title: "",
           description: "",

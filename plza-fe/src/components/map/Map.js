@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Loader, Form } from "semantic-ui-react";
+import { Loader, Form, Input } from "semantic-ui-react";
 import ReactMapGL, {
   FlyToInterpolator,
   Source,
@@ -14,6 +14,7 @@ import LocationCard from "../locations/search/LocationCard";
 
 export default function Map(props) {
   const [isLoading, setIsLoading] = useState(true);
+  const [fetchingLocations, setFetchingLocations] = useState(true);
 
   // Location state
   const [locations, setLocations] = useState([]);
@@ -34,7 +35,8 @@ export default function Map(props) {
     }))
   };
 
-  const fetchLocations = searchQuery =>
+  const fetchLocations = searchQuery => {
+    setFetchingLocations(true);
     API.get("/locations/map", { params: { search: searchQuery } })
       .then(response => {
         setLocations(response.data.results);
@@ -44,6 +46,7 @@ export default function Map(props) {
         setSearchQuery("");
       })
       .catch(error => console.log("Error:", error));
+  };
 
   // User location state
   const [userLocation, setUserLocation] = useState({});
@@ -59,6 +62,7 @@ export default function Map(props) {
       transitionDuration: 1000,
       transitionInterpolator: new FlyToInterpolator()
     }));
+    setFetchingLocations(false);
   }, [userLocation]);
 
   // Initial viewport state
@@ -187,8 +191,9 @@ export default function Map(props) {
           margin: "10px"
         }}
       >
-        <Form.Input
-          action={{ icon: "search" }}
+        <Input
+          icon={{ name: "search", circular: true, link: true }}
+          loading={fetchingLocations ? true : false}
           value={searchQuery}
           placeholder={userLocation.friendlyTitle}
           onChange={updateSearchQuery}
