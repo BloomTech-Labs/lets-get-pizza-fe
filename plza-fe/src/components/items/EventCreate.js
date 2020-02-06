@@ -47,6 +47,7 @@ export default function EventCreate(props) {
           end_time: ""
         }}
         validationSchema={eventCreateSchema}
+        validateOnBlur={false}
         onSubmit={(values, actions) => onSubmit(values, actions)}
       >
         {formik => {
@@ -59,7 +60,7 @@ export default function EventCreate(props) {
                 onChange={(event, { name, value }) =>
                   formik.setFieldValue(`${name}`, value)
                 }
-                popupPosition="bottom center"
+                popupPosition="top center"
                 dateFormat="MM-DD-YYYY"
                 timeFormat="ampm"
                 iconPosition="right"
