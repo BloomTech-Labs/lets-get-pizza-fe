@@ -9,12 +9,12 @@ const Reviews = ({ content }) => (
           <Item.Header>{review.review_title}</Item.Header>
           <Item.Description>{review.review_text}</Item.Description>
           <Item.Extra>
-            <Label>
+            <Label title="Posted by">
               <Icon name="user" />
               {review.display_name ? review.display_name : review.username}
             </Label>
 
-            <Label>
+            <Label title="User rating">
               <Rating
                 size="mini"
                 disabled

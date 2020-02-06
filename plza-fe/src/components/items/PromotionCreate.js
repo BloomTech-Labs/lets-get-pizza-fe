@@ -46,6 +46,7 @@ export default function EventCreate(props) {
           end_date: ""
         }}
         validationSchema={promotionCreateSchema}
+        validateOnBlur={false}
         onSubmit={(values, actions) => onSubmit(values, actions)}
       >
         {formik => (

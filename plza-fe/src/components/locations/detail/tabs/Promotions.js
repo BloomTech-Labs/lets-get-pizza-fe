@@ -1,5 +1,6 @@
 import React from "react";
-import { Item } from "semantic-ui-react";
+import { Item, Label, Icon } from "semantic-ui-react";
+import Moment from "react-moment";
 
 const Promotions = ({ content }) => (
   <Item.Group divided>
@@ -8,7 +9,13 @@ const Promotions = ({ content }) => (
         <Item.Content>
           <Item.Header>{promotion.title}</Item.Header>
           <Item.Description>{promotion.text}</Item.Description>
-          <Item.Extra>Expires {promotion.end_date}</Item.Extra>
+          <Item.Extra>
+            <Label>
+              <Icon name="calendar check" />
+              <Moment format="MMM Do" date={promotion.start_date} /> to{" "}
+              <Moment format="MMM Do" date={promotion.end_date} />
+            </Label>
+          </Item.Extra>
         </Item.Content>
       </Item>
     ))}

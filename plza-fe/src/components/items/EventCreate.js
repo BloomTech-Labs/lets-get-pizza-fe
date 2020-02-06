@@ -48,6 +48,7 @@ export default function EventCreate(props) {
           end_time: ""
         }}
         validationSchema={eventCreateSchema}
+        validateOnBlur={false}
         onSubmit={(values, actions) => onSubmit(values, actions)}
       >
         {formik => {

@@ -68,6 +68,7 @@ export default function AuthenticateForm(props) {
   return (
     <Form
       initialValues={{ username: "", password: "", ...extraValues }}
+      validateOnBlur={false}
       validationSchema={composeSchema(initialSchema, extraSchema)}
       onSubmit={(values, actions) => onSubmit(values, actions)}
     >
