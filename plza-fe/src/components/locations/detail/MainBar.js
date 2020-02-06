@@ -6,8 +6,6 @@ import Reviews from "./tabs/Reviews";
 import Promotions from "./tabs/Promotions";
 import Events from "./tabs/Events";
 
-import { curr_user, curr_location } from "../../../utils/auth";
-
 const EmptyContent = ({ icon, type, id, showAddButton }) => (
   <Segment placeholder>
     <Header icon>
@@ -26,6 +24,8 @@ export default function MainBar(props) {
   const {
     history,
     locationID,
+    canEdit,
+    currUser,
     selectedTab,
     setSelectedTab,
     reviews,
@@ -92,29 +92,17 @@ export default function MainBar(props) {
   const tabPanes = [
     {
       menuItem: { key: "reviews", icon: "comments" },
-      render: () => renderTab("review", "comments", curr_user, reviews, Reviews)
+      render: () => renderTab("review", "comments", currUser, reviews, Reviews)
     },
     {
       menuItem: { key: "promotions", icon: "dollar" },
       render: () =>
-        renderTab(
-          "promotion",
-          "dollar",
-          curr_location.id === Number(locationID),
-          promotions,
-          Promotions
-        )
+        renderTab("promotion", "dollar", canEdit, promotions, Promotions)
     },
     {
       menuItem: { key: "events", icon: "calendar" },
       render: () =>
-        renderTab(
-          "event",
-          "calendar",
-          curr_user || curr_location,
-          events,
-          Events
-        )
+        renderTab("event", "calendar", currUser || canEdit, events, Events)
     }
   ];
 

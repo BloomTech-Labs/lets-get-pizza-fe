@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { Loader, Container, Grid } from "semantic-ui-react";
 
 import API from "../../../utils/API";
-import { curr_location } from "../../../utils/auth";
+import { curr_user, curr_location } from "../../../utils/auth";
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -73,13 +73,19 @@ export default function LocationPage() {
 
       <Grid stackable>
         <Grid.Column width={4}>
-          <Sidebar location={location} canEdit={canEdit} />
+          <Sidebar
+            location={location}
+            canEdit={canEdit}
+            currLocation={curr_location}
+          />
         </Grid.Column>
 
         <Grid.Column width={12}>
           <MainBar
             history={history}
             locationID={id}
+            currUser={curr_user}
+            canEdit={canEdit}
             selectedTab={selectedTab}
             setSelectedTab={setSelectedTab}
             reviews={reviews}
