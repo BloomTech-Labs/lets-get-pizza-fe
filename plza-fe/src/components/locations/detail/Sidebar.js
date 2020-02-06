@@ -4,7 +4,7 @@ import { SegmentGroup, Icon, List, Button } from "semantic-ui-react";
 
 import SidebarSegment from "./SidebarSegment";
 
-const Sidebar = ({ location, canEdit }) => (
+const Sidebar = ({ location, canEdit, currLocation }) => (
   <SegmentGroup>
     <SidebarSegment icon="building" title="Address">
       <p>{location.address}</p>
@@ -62,7 +62,7 @@ const Sidebar = ({ location, canEdit }) => (
       </List>
     </SidebarSegment>
 
-    {!location.email && (
+    {!location.email && !currLocation && (
       <SidebarSegment icon="question" title="Is this your store?">
         <p>Sign up now and start working with Plza!</p>
 

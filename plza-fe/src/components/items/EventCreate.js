@@ -38,6 +38,7 @@ export default function EventCreate(props) {
   return (
     <SimpleContainer icon="calendar plus" title="Add new event">
       <Form
+        validateOnBlur={false}
         initialValues={{
           user_id: curr_user ? curr_user.id : null,
           location_id: id,
@@ -60,15 +61,12 @@ export default function EventCreate(props) {
                 onChange={(event, { name, value }) =>
                   formik.setFieldValue(`${name}`, value)
                 }
-                popupPosition="top center"
+                error={formik.errors[name]}
+                popupPosition="bottom center"
                 dateFormat="MM-DD-YYYY"
                 timeFormat="ampm"
                 iconPosition="right"
               />
-
-              {formik.errors[name] && (
-                <InputError message={formik.errors[name]} />
-              )}
             </Form.Field>
           );
 

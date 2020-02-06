@@ -41,10 +41,12 @@ export default function authenticateUser(response) {
   localStorage.setItem("token", response.token);
 
   if (response.user) {
+    localStorage.removeItem("curr_location");
     localStorage.setItem("curr_user", JSON.stringify(response.user));
 
     window.location.replace("/locations/map");
   } else if (response.location) {
+    localStorage.removeItem("curr_user");
     localStorage.setItem("curr_location", JSON.stringify(response.location));
 
     window.location.replace(`/locations/${response.location.id}`);
