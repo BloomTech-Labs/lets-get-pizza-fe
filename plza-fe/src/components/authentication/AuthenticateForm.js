@@ -12,7 +12,7 @@ const baseSchema = {
   username: string().required("Username is required"),
   password: string()
     .min(4, "Password is too short")
-    .required("Password is required")
+    .required("Password is required"),
 };
 
 const registrationSchema = {
@@ -20,9 +20,7 @@ const registrationSchema = {
     .oneOf([ref("password")], "Passwords are not the same")
     .min(4, "Password is too short")
     .required("Password confirmation is required"),
-  email: string()
-    .email("Invalid email")
-    .required("E-mail address is required")
+  email: string().email("Invalid email").required("E-mail address is required"),
 };
 
 export default function AuthenticateForm(props) {
@@ -31,7 +29,7 @@ export default function AuthenticateForm(props) {
     isRegistrationForm,
     extraValues,
     extraSchema,
-    children
+    children,
   } = props;
 
   // If this is a registration form, combine registration schema and
@@ -54,13 +52,14 @@ export default function AuthenticateForm(props) {
     }
 
     API.post(endpoint, payload)
-      .then(response => {
+      .then((response) => {
         authenticateUser(response.data);
         actions.setSubmitting(false);
       })
-      .catch(error => {
+      .catch((error) => {
         // Display server error at top of form
-        actions.setFieldError("message", error.response.data.message);
+        //actions.setFieldError("message", error.response.data.message);
+        console.log("my log ", error);
         actions.setSubmitting(false);
       });
   };
@@ -72,7 +71,7 @@ export default function AuthenticateForm(props) {
       validationSchema={composeSchema(initialSchema, extraSchema)}
       onSubmit={(values, actions) => onSubmit(values, actions)}
     >
-      {formik => (
+      {(formik) => (
         <Form.Children>
           {formik.errors.message && (
             <ServerErrorMessage message={formik.errors.message} />
@@ -82,7 +81,7 @@ export default function AuthenticateForm(props) {
             <Input
               inputProps={{
                 icon: "user",
-                placeholder: "Something memorable"
+                placeholder: "Something memorable",
               }}
               label="Username"
               name="username"
@@ -93,7 +92,7 @@ export default function AuthenticateForm(props) {
               inputProps={{
                 icon: "lock",
                 type: "password",
-                placeholder: "Minimum 4 characters"
+                placeholder: "Minimum 4 characters",
               }}
               label="Password"
               name="password"
@@ -107,7 +106,7 @@ export default function AuthenticateForm(props) {
                   inputProps={{
                     icon: "lock",
                     type: "password",
-                    placeholder: "Re-enter your password"
+                    placeholder: "Re-enter your password",
                   }}
                   label="Verify password"
                   name="password_verify"
@@ -118,7 +117,7 @@ export default function AuthenticateForm(props) {
                   inputProps={{
                     icon: "at",
                     type: "email",
-                    placeholder: "test@example.com"
+                    placeholder: "test@example.com",
                   }}
                   label="Email address"
                   name="email"
@@ -144,5 +143,5 @@ export default function AuthenticateForm(props) {
 
 AuthenticateForm.defaultProps = {
   isRegistrationForm: false,
-  endpoint: "/auth/user/login"
+  endpoint: "/auth/user/login",
 };

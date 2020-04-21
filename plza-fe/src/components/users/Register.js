@@ -19,12 +19,12 @@ const Register = () => (
         display_name: "",
         dietary_preference: [],
         favorite_pizza_toppings: "",
-        display_location: ""
+        display_location: "",
       }}
       extraSchema={{
         display_name: string(),
         favorite_pizza_toppings: string(),
-        display_location: string()
+        display_location: string(),
       }}
     >
       <Input
@@ -32,7 +32,7 @@ const Register = () => (
         label="Display name"
         inputProps={{
           placeholder:
-            "Either a nickname or your real name, or nothing at all, no pressure."
+            "Either a nickname or your real name, or nothing at all, no pressure.",
         }}
       />
 
@@ -41,21 +41,29 @@ const Register = () => (
         label="Dietary preferences"
         inputProps={{
           multiple: true,
-          placeholder: "Select dietary preferences"
+          placeholder: "Select dietary preferences",
         }}
         options={[
           { text: "Gluten-free", value: "gluten-free" },
           { text: "Vegetarian", value: "vegetarian" },
-          { text: "Vegan", value: "vegan" }
+          { text: "Vegan", value: "vegan" },
+          { text: "Keto", value: "keto" },
+          { text: "Pescetarian", value: "pescetarian" },
+          { text: "Lacto-Vegetarian", value: "lacto-vegetarian" },
+          { text: "Ovo-Vegetarian", value: "ovo-vegetarian" },
+          { text: "Paleo", value: "paleo" },
+          { text: "Kosher", value: "kosher" },
+          { text: "Halal", value: "halal" },
+          { text: "Wheat-free", value: "wheat-free" },
+          { text: "Nut-free", value: "nut-free" },
         ]}
       />
-
       <Input
         name="favorite_pizza_toppings"
         label="Favorite pizza toppings"
         inputProps={{
           icon: "heart",
-          placeholder: "Pepperoni, olives, pineapple, anchovies"
+          placeholder: "Pepperoni, olives, pineapple, anchovies",
         }}
       />
 
@@ -64,7 +72,7 @@ const Register = () => (
         label="Location"
         inputProps={{
           icon: "globe",
-          placeholder: "A rough approximation of where you live"
+          placeholder: "A rough approximation of where you live",
         }}
       />
     </AuthenticateForm>
