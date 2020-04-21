@@ -1,5 +1,8 @@
 import React from "react";
-import {curr_user, curr_location} from '../../utils/auth'
+import { curr_user, curr_location } from '../../utils/auth'
+
+import { Switch, Route } from "react-router-dom"; 
+import UserSections from "./sections/UserSectionsController";
 
 //THIS NEEDS TO SPLIT INTO TWO DIFFERENT COMPONENTS
 export default function Profile() {
@@ -22,6 +25,10 @@ export default function Profile() {
           <p>Lat/Lng: {curr_location.latitude}, {curr_location.longitude}</p>
         </div> : "" 
     }
+
+    <Route path="/users/profile">
+      <UserSections />
+    </Route>
 
   </div>
 }
