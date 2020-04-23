@@ -12,6 +12,16 @@ export default function Profile() {
     setActive(data.name);
   }
 
+  const menuItems = [
+    { name: 'Home', icon: icons.homeIcon },
+    { name: 'My Friends', icon: icons.networkIcon },
+    { name: 'Events', icon: icons.eventsIcon },
+    { name: 'Promotions', icon: icons.promotionsIcon },
+    { name: 'Fav Pizza Shop', icon: icons.pizzaIcon },
+    { name: 'Personal Reviews', icon: icons.contactIcon },
+    { name: 'Profile', icon: icons.profileIcon },
+  ]
+
   return (
     // profile div with 2 child components to render side-by-side
     // left-menu-bar div to have tabs/actions to conditionally render list components to the right
@@ -20,55 +30,19 @@ export default function Profile() {
       <Grid.Row>
         <Grid.Column floated='left' width={5} style={{ paddingTop: '2vh', height: '45vh' }} >
           <Menu size='large' fluid='true' pointing tabular vertical >
-            <Menu.Item name='Home'
-              active={active === 'Home'}
-              onClick={selectComponet}
-              style={flex}>
-              <img src={icons.homeIcon} />
-              <p>Home</p>
-            </Menu.Item>
-            <Menu.Item name='My Friends'
-              active={active === 'My Friends'}
-              onClick={selectComponet}
-              style={flex}>
-              <img src={icons.networkIcon} />
-              <p>My Friends</p>
-            </Menu.Item>
-            <Menu.Item name='Events'
-              active={active === 'Events'}
-              onClick={selectComponet}
-              style={flex}>
-              <img src={icons.eventsIcon} />
-              <p>Events</p>
-            </Menu.Item>
-            <Menu.Item name='Promotions'
-              active={active === 'Promotions'}
-              onClick={selectComponet}
-              style={flex}>
-              <img src={icons.promotionsIcon} />
-              <p>Promotions</p>
-            </Menu.Item>
-            <Menu.Item name='Fav Pizza Shop'
-              active={active === 'Fav Pizza Shop'}
-              onClick={selectComponet}
-              style={flex}>
-              <img src={icons.pizzaIcon} />
-              <p>Fav Pizza Shop</p>
-            </Menu.Item>
-            <Menu.Item name='Personal Reviews'
-              active={active === 'Personal Reviews'}
-              onClick={selectComponet}
-              style={flex}>
-              <img src={icons.contactIcon} />
-              <p>Personal Reviews</p>
-            </Menu.Item>
-            <Menu.Item name='Profile'
-              active={active === 'Profile'}
-              onClick={selectComponet}
-              style={flex}>
-              <img src={icons.profileIcon} />
-              <p>Profile</p>
-            </Menu.Item>
+            {
+              menuItems.map(item => {
+                return (
+                  <Menu.Item name={item.name}
+                    active={active === item.name}
+                    onClick={selectComponet}
+                    style={flex}>
+                    <img src={item.icon} />
+                    <p>{item.name}</p>
+                  </Menu.Item>
+                )
+              })
+            }
           </Menu>
         </Grid.Column>
         <Grid.Column width={11} align={'left'} style={{ paddingTop: '2vh' }}>
