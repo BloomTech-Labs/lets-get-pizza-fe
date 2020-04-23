@@ -3,7 +3,7 @@ import events from '../../../media/dashboard-icons/events-icon.png'
 import home from '../../../media/dashboard-icons/home-icon.png'
 import network from '../../../media/dashboard-icons/network-icon.png'
 import pizza from '../../../media/dashboard-icons/pizza-icon.gif'
-import profile from '../../../media/dashboard-icons/profile-icon.jpg'
+import profile from '../../../media/dashboard-icons/profile-icon.png'
 import promotions from '../../../media/dashboard-icons/promotions-icon.jpg'
 import search from '../../../media/dashboard-icons/search-icon.jpg'
 

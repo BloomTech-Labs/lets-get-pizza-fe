@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { curr_user, curr_location } from '../../utils/auth'
-import { Grid, Menu, Header, Icon } from "semantic-ui-react";
-import icons from './user-utils/icons';
+import { Grid, Menu, Header } from "semantic-ui-react";
+import icons from './profile-utils/icons';
 
 //THIS NEEDS TO SPLIT INTO TWO DIFFERENT COMPONENTS
 export default function Profile() {
@@ -19,7 +18,7 @@ export default function Profile() {
     // list component container
     <Grid container columns={2} width={16} stackable>
       <Grid.Row>
-        <Grid.Column floated='left' width={5} style={{ paddingTop: '2vh', height: '45vh' }}>
+        <Grid.Column floated='left' width={5} style={{ paddingTop: '2vh', height: '45vh' }} >
           <Menu size='large' fluid='true' pointing tabular vertical >
             <Menu.Item name='Home'
               active={active === 'Home'}
@@ -82,19 +81,8 @@ export default function Profile() {
 
 
           </Menu>
-
-
-          {/* <Menu items={[
-            { key: '1', name: 'Home', content: 'Home' },
-            { key: '2', name: 'My Friends', content: 'My Friends' },
-            { key: '3', name: 'Events', content: 'Events' },
-            { key: '4', name: 'Promotions', content: 'Promotions' },
-            { key: '5', name: 'Fav Pizza Shop', content: 'Fav Pizza Shop' },
-            { key: '6', name: 'Personal Reviews', content: 'Personal Reviews' },
-            { key: '7', name: 'Profile', content: 'Profile' }
-          ]} /> */}
         </Grid.Column>
-        <Grid.Column width={11} align={'center'} style={{ paddingTop: '2vh' }}>
+        <Grid.Column width={11} align={'left'} style={{ paddingTop: '2vh' }}>
           <Header as='h2' textAlign='center'>
             <Header.Content>{active}</Header.Content>
           </Header>
