@@ -10,8 +10,11 @@ const UserEventsList = () => {
   useEffect(() => {
     API.get(`/events/users/${curr_user.id}`)
       .then((res) => {
-        console.log(res.data)
-        setEvents(res.data)
+        setEvents(
+          res.data.sort(
+            (a, b) => new Date(a.start_time) - new Date(b.start_time)
+          )
+        );
       })
       .catch((err) => console.log(err));
   }, [setEvents]);

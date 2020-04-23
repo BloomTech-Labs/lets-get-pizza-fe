@@ -25,7 +25,6 @@ export default function Profile() {
 
         </Grid.Column>
         <Grid.Column width={11} align={'left'} style={{ paddingTop: '2vh' }}>
-          List Component
           <UserSectionsController />
       </Grid.Column>
       </Grid.Row>
