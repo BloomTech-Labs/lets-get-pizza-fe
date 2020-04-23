@@ -11,7 +11,7 @@ export default function Profile() {
     console.log(data.name)
     setActive(data.name);
   }
-  console.log(icons)
+
   return (
     // profile div with 2 child components to render side-by-side
     // left-menu-bar div to have tabs/actions to conditionally render list components to the right
@@ -27,7 +27,6 @@ export default function Profile() {
               <img src={icons.homeIcon} />
               <p>Home</p>
             </Menu.Item>
-
             <Menu.Item name='My Friends'
               active={active === 'My Friends'}
               onClick={selectComponet}
@@ -35,8 +34,6 @@ export default function Profile() {
               <img src={icons.networkIcon} />
               <p>My Friends</p>
             </Menu.Item>
-
-
             <Menu.Item name='Events'
               active={active === 'Events'}
               onClick={selectComponet}
@@ -44,8 +41,6 @@ export default function Profile() {
               <img src={icons.eventsIcon} />
               <p>Events</p>
             </Menu.Item>
-
-
             <Menu.Item name='Promotions'
               active={active === 'Promotions'}
               onClick={selectComponet}
@@ -53,8 +48,6 @@ export default function Profile() {
               <img src={icons.promotionsIcon} />
               <p>Promotions</p>
             </Menu.Item>
-
-
             <Menu.Item name='Fav Pizza Shop'
               active={active === 'Fav Pizza Shop'}
               onClick={selectComponet}
@@ -62,7 +55,6 @@ export default function Profile() {
               <img src={icons.pizzaIcon} />
               <p>Fav Pizza Shop</p>
             </Menu.Item>
-
             <Menu.Item name='Personal Reviews'
               active={active === 'Personal Reviews'}
               onClick={selectComponet}
@@ -70,7 +62,6 @@ export default function Profile() {
               <img src={icons.contactIcon} />
               <p>Personal Reviews</p>
             </Menu.Item>
-
             <Menu.Item name='Profile'
               active={active === 'Profile'}
               onClick={selectComponet}
@@ -78,8 +69,6 @@ export default function Profile() {
               <img src={icons.profileIcon} />
               <p>Profile</p>
             </Menu.Item>
-
-
           </Menu>
         </Grid.Column>
         <Grid.Column width={11} align={'left'} style={{ paddingTop: '2vh' }}>
