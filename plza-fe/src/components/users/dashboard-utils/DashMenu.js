@@ -23,7 +23,7 @@ export default function DashMenu(props) {
                             active={props.active === item.name}
                             onClick={props.selectComponent}
                             style={flex}>
-                            <img src={item.icon} />
+                            <img src={item.icon} style={{ marginRight: '2%' }} />
                             <p>{item.name}</p>
                         </Menu.Item>
                     )
