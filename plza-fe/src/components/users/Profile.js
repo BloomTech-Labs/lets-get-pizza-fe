@@ -2,10 +2,11 @@ import React from "react";
 import { curr_user, curr_location } from '../../utils/auth'
 import { Grid, Menu } from "semantic-ui-react";
 
+import UserSectionsController from './sections/UserSectionsController'
+
 //THIS NEEDS TO SPLIT INTO TWO DIFFERENT COMPONENTS
 export default function Profile() {
   return (
-
     // profile div with 2 child components to render side-by-side
     // left-menu-bar div to have tabs/actions to conditionally render list components to the right
     // list component container
@@ -23,32 +24,10 @@ export default function Profile() {
           ]} size='large' fluid='true' pointing tabular vertical />
 
         </Grid.Column>
-        <Grid.Column width={11} align={'center'} style={{ paddingTop: '2vh' }}>
-          List Component
+        <Grid.Column width={11} align={'left'} style={{ paddingTop: '2vh' }}>
+          <UserSectionsController />
       </Grid.Column>
       </Grid.Row>
     </Grid>
   )
-
-  // <div> 
-  //   { 
-  //     curr_user ? 
-  //       <div className="profile">
-  //         <h1>Welcome, {curr_user.display_name}</h1>
-  //         <p>{curr_user.email}, {curr_user.username}</p>
-  //         <p>{curr_user.display_location}</p>
-  //         <p>{curr_user.dietary_preference}, {curr_user.favorite_pizza_toppings}</p>
-  //       </div> : "" 
-  //   }
-  //   { 
-  //     curr_location ? 
-  //       <div className="profile">
-  //         <h1>Welcome, {curr_location.username}</h1>
-  //         <h3>{curr_location.business_name}</h3>
-  //         <p>{curr_location.address}</p>
-  //         <p>Lat/Lng: {curr_location.latitude}, {curr_location.longitude}</p>
-  //       </div> : "" 
-  //   }
-
-  // </div>
 }
