@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Grid, Header } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import DashMenu from './dashboard-utils/DashMenu';
+import UserSectionsController from './sections/UserSectionsController'
 
 
-export default function Profile() {
+export default function Dashboard() {
   const [active, setActive] = useState('Home');
 
   const selectComponent = (e, data) => {
@@ -21,9 +22,7 @@ export default function Profile() {
           <DashMenu selectComponent={selectComponent} active={active} />
         </Grid.Column>
         <Grid.Column width={11} align={'left'} style={{ paddingTop: '2vh' }}>
-          <Header as='h2' textAlign='center'>
-            <Header.Content>{active}</Header.Content>
-          </Header>
+          <UserSectionsController />
         </Grid.Column>
       </Grid.Row>
     </Grid>
