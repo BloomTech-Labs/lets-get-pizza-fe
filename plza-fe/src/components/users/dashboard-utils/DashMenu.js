@@ -8,8 +8,8 @@ const menuItems = [
     { name: 'My Friends', icon: icons.networkIcon, route: '/users/profile/friends' },
     { name: 'Events', icon: icons.eventsIcon, route: '/users/profile/events' },
     { name: 'Promotions', icon: icons.promotionsIcon, route: '/users/profile/promotions' },
+    { name: 'Personal Reviews', icon: icons.reviewIcon, route: '/users/profile/reviews' },
     { name: 'Fav Pizza Shop', icon: icons.pizzaIcon, route: '/users/profile/favoriteShop' },
-    { name: 'Personal Reviews', icon: icons.contactIcon, route: '/users/profile/reviews' },
     { name: 'Profile', icon: icons.profileIcon, route: '/users/profile/profile' },
 ]
 
