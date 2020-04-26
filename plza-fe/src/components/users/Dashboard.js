@@ -18,7 +18,7 @@ export default function Dashboard() {
     // list component container
     <Grid container columns={2} width={16} stackable>
       <Grid.Row>
-        <Grid.Column floated='left' width={5} style={{ paddingTop: '2vh', height: '45vh' }} >
+        <Grid.Column floated='left' width={5} style={{ paddingTop: '2vh', height: '30rem' }} >
           <DashMenu selectComponent={selectComponent} active={active} />
         </Grid.Column>
         <Grid.Column width={11} align={'left'} style={{ paddingTop: '2vh' }}>
