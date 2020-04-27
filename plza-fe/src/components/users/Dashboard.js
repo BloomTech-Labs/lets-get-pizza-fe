@@ -5,6 +5,9 @@ import UserSectionsController from './UserSectionsController';
 import { useHistory } from 'react-router-dom'
 
 export default function Dashboard() {
+  // this initial state grabs the current browser's path.
+  // if there is no path after '/users/dash/' then it will by default render the profile compnent
+  // this will let the user immidiately see where they can update their own info once they click on their own name in the top menu
   const [active, setActive] = useState(useHistory().location.pathname.slice(12) || "profile");
 
   const selectComponent = (e, data) => {
