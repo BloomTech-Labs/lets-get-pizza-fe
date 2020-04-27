@@ -34,7 +34,7 @@ export default function Masthead() {
 
   const ProfileLink = () => {
     if (curr_user) {
-      return <NavbarItem to="/users/profile">{curr_user.username}</NavbarItem>;
+      return <NavbarItem to="/users/dash">{curr_user.username}</NavbarItem>;
     } else if (curr_location) {
       return (
         <NavbarItem to={`/locations/${curr_location.id}`}>
@@ -105,11 +105,11 @@ export default function Masthead() {
             />
           </>
         ) : (
-          <>
-            <NavbarItem to="/users/register">Register</NavbarItem>
-            <NavbarItem to="/users/login">Log in</NavbarItem>
-          </>
-        )}
+            <>
+              <NavbarItem to="/users/register">Register</NavbarItem>
+              <NavbarItem to="/users/login">Log in</NavbarItem>
+            </>
+          )}
       </Menu.Menu>
 
       <HamburgerMenu />

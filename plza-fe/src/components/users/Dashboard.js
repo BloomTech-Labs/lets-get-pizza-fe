@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid } from "semantic-ui-react";
 import DashMenu from './dashboard-utils/DashMenu';
-import UserSectionsController from './sections/UserSectionsController'
+import UserSectionsController from './UserSectionsController';
 
 
 export default function Dashboard() {
