@@ -5,8 +5,7 @@ import UserSectionsController from './UserSectionsController';
 import { useHistory } from 'react-router-dom'
 
 export default function Dashboard() {
-  const currentRoute = useHistory().location.pathname.slice(12) || "profile"
-  const [active, setActive] = useState(currentRoute);
+  const [active, setActive] = useState(useHistory().location.pathname.slice(12) || "profile");
 
   const selectComponent = (e, data) => {
     setActive(data.key);
