@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Grid } from "semantic-ui-react";
 import DashMenu from './dashboard-utils/DashMenu';
 import UserSectionsController from './UserSectionsController';
-
+import { useHistory } from 'react-router-dom'
 
 export default function Dashboard() {
-  const [active, setActive] = useState('Home');
+  const currentRoute = useHistory().location.pathname.slice(12) || "profile"
+  const [active, setActive] = useState(currentRoute);
 
   const selectComponent = (e, data) => {
-    console.log(data.name)
-    setActive(data.name);
+    setActive(data.key);
   }
 
   return (
