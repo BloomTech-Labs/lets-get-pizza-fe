@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import icons from './icons';
 
 const menuItems = [
-    { name: 'Home', icon: icons.homeIcon, route: '/users/dash/home', routeName: 'home' },
+    { name: 'Profile', icon: icons.homeIcon, route: '/users/dash/profile', routeName: 'profile' },
     { name: 'My Friends', icon: icons.networkIcon, route: '/users/dash/friends', routeName: 'friends' },
     { name: 'Events', icon: icons.eventsIcon, route: '/users/dash/events', routeName: 'events' },
     { name: 'Promotions', icon: icons.promotionsIcon, route: '/users/dash/promotions', routeName: 'promotions' },
     { name: 'Personal Reviews', icon: icons.reviewIcon, route: '/users/dash/reviews', routeName: 'reviews' },
     { name: 'Fav Pizza Shop', icon: icons.pizzaIcon, route: '/users/dash/favoriteShop', routeName: 'favoriteShop' },
-    { name: 'Profile', icon: icons.profileIcon, route: '/users/dash/profile', routeName: 'profile' },
+    { name: 'Settings', icon: icons.profileIcon, route: '/users/dash/settings', routeName: 'settings' },
 ]
 
 export default function DashMenu(props) {
@@ -22,6 +22,7 @@ export default function DashMenu(props) {
                     return (
                         <Menu.Item name={item.name}
                             key={item.routeName}
+                            routeName={item.routeName}
                             active={props.active === item.routeName}
                             onClick={props.selectComponent}
                             style={flex}
