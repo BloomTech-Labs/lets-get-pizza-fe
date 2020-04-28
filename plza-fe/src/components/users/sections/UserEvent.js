@@ -2,14 +2,16 @@ import React from "react";
 import { Button, Icon, Image, Item, Label } from "semantic-ui-react";
 import Moment from "react-moment";
 
-const UserEvent = ({event}) => {
+const UserEvent = ({ event, deleteEvent }) => {
   console.log(event);
   return (
     <Item>
       <Item.Image src="http://place-puppy.com/250x200" />
 
       <Item.Content>
-        <Item.Header as="a" href={`/locations/${event.location_id}/events`}>{event.title}</Item.Header>
+        <Item.Header as="a" href={`/locations/${event.location_id}/events`}>
+          {event.title}
+        </Item.Header>
         <Item.Description>{event.description}</Item.Description>
         <Item.Meta>
           <span className="">{event.business_name}</span>
@@ -36,7 +38,14 @@ const UserEvent = ({event}) => {
             <Icon name="edit" />
           </Label>
 
-          <Label title="Delete event">
+          <Label
+            title="Delete event"
+            as="a"
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteEvent(event.id);
+            }}
+          >
             <Icon name="trash" />
           </Label>
         </Item.Extra>

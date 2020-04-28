@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Item } from "semantic-ui-react";
 import UserEvent from "./UserEvent";
 import { curr_user } from "../../../utils/auth";
-import API from "../../../utils/API"
+import API from "../../../utils/API";
 
 const UserEventsList = () => {
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     API.get(`/events/users/${curr_user.id}`)
@@ -19,10 +19,20 @@ const UserEventsList = () => {
       .catch((err) => console.log(err));
   }, [setEvents]);
 
+  const deleteEvent = (id) => {
+    API.delete(`/events/${id}`)
+      .then((res) => {
+        console.log("Event Deleted", id, res);
+        const filterDeletedEvent = events.filter((event) => event.id !== id);
+        setEvents([...filterDeletedEvent]);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Item.Group divided>
-      {events.map(event => (
-        <UserEvent key={event.id} event={event} />
+      {events.map((event) => (
+        <UserEvent key={event.id} event={event} deleteEvent={deleteEvent} />
       ))}
     </Item.Group>
   );
