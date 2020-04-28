@@ -31,6 +31,14 @@ const UserEvent = ({event}) => {
             &mdash;
             <Moment format="h:mm a" date={event.end_time} />
           </Label>
+
+          <Label title="Edit event">
+            <Icon name="edit" />
+          </Label>
+
+          <Label title="Delete event">
+            <Icon name="trash" />
+          </Label>
         </Item.Extra>
       </Item.Content>
     </Item>
