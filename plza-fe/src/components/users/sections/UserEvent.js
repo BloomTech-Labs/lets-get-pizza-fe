@@ -12,10 +12,10 @@ const UserEvent = ({event}) => {
         <Item.Header as="a">{event.title}</Item.Header>
         <Item.Description>{event.description}</Item.Description>
         <Item.Meta>
-          <span className="">Business Name</span>
+          <span className="">{event.business_name}</span>
         </Item.Meta>
         <Item.Meta>
-          <span className="">Business Address</span>
+          <span className="">{event.address}</span>
         </Item.Meta>
         <Item.Extra>
           <Label title="Event date">
