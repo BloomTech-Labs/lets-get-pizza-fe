@@ -1,7 +1,6 @@
 import React from "react";
 import { curr_user, curr_location } from "../../utils/auth";
 import { Grid, Menu } from "semantic-ui-react";
-import FriendsList from "./FriendsList";
 
 //THIS NEEDS TO SPLIT INTO TWO DIFFERENT COMPONENTS
 export default function Profile() {
@@ -33,9 +32,7 @@ export default function Profile() {
             vertical
           />
         </Grid.Column>
-        <Grid.Column width={11} style={{ paddingTop: "2vh" }}>
-          <FriendsList />
-        </Grid.Column>
+        <Grid.Column width={11} style={{ paddingTop: "2vh" }}></Grid.Column>
       </Grid.Row>
     </Grid>
   );

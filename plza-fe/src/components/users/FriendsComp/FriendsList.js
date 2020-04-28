@@ -1,5 +1,5 @@
 import React from "react";
-import { curr_user } from "../../utils/auth";
+import { curr_user } from "../../../utils/auth";
 import { List } from "semantic-ui-react";
 import FriendOnList from "./FriendOnList";
 
