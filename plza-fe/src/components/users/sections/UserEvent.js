@@ -9,7 +9,7 @@ const UserEvent = ({event}) => {
       <Item.Image src="http://place-puppy.com/250x200" />
 
       <Item.Content>
-        <Item.Header as="a">{event.title}</Item.Header>
+        <Item.Header as="a" href={`/locations/${event.location_id}/events`}>{event.title}</Item.Header>
         <Item.Description>{event.description}</Item.Description>
         <Item.Meta>
           <span className="">{event.business_name}</span>
