@@ -16,13 +16,13 @@ const menuItems = [
 export default function DashMenu(props) {
     const flex = { display: "flex", alignItems: 'center' };
     return (
-        <Menu size='large' fluid='true' pointing tabular vertical >
+        <Menu size='large' fluid={true} pointing tabular vertical >
             {
                 menuItems.map(item => {
                     return (
                         <Menu.Item name={item.name}
                             key={item.routeName}
-                            routeName={item.routeName}
+                            routename={item.routeName}
                             active={props.active === item.routeName}
                             onClick={props.selectComponent}
                             style={flex}

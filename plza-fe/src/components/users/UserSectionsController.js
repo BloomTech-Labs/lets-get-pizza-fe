@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import UserEventsList from './events/UserEventsList';
-import UserSettings from './settings/userSettings';
+import UserSettings from './settings/UserSettings';
 
 const UserSectionsController = () => (
   <>

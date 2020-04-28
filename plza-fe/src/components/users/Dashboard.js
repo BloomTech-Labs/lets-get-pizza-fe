@@ -11,7 +11,7 @@ export default function Dashboard() {
   const [active, setActive] = useState(useHistory().location.pathname.slice(12) || "profile");
   console.log(active)
   const selectComponent = (e, data) => {
-    setActive(data.routeName);
+    setActive(data.routename);
   }
 
   return (
