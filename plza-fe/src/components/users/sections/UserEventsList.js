@@ -22,17 +22,16 @@ const UserEventsList = () => {
   const deleteEvent = (id) => {
     API.delete(`/events/${id}`)
       .then((res) => {
-        console.log("Event Deleted", id, res);
         const filterDeletedEvent = events.filter((event) => event.id !== id);
         setEvents([...filterDeletedEvent]);
       })
       .catch((err) => console.log(err));
-  };
+  }
 
   return (
     <Item.Group divided>
       {events.map((event) => (
-        <UserEvent key={event.id} event={event} deleteEvent={deleteEvent} />
+        <UserEvent key={event.id} event={event} setEvents={setEvents} deleteEvent={deleteEvent} />
       ))}
     </Item.Group>
   );
