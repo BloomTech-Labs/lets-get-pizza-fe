@@ -9,7 +9,6 @@ frontend:
     build:
       commands: npm run build 
   artifacts:
-    # IMPORTANT - Please verify your build output directory
     baseDirectory: /plza-fe/public
     files:
       - '**/*'

@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Login from "./Login";
 import Register from "./Register";
-import Profile from "./Profile";
+import Dashboard from './Dashboard';
 
 const UserController = () => (
   <Switch>
@@ -16,7 +16,7 @@ const UserController = () => (
     </Route>
 
     <Route path="/users/profile">
-      <Profile />
+      <Dashboard />
     </Route>
   </Switch>
 );
