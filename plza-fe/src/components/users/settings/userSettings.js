@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { List, Image, Button, Icon, Input } from 'semantic-ui-react';
+import { List, Image, Input } from 'semantic-ui-react';
 import { curr_user } from "../../../utils/auth";
 import UserSettingsList from './UserSettingsList';
 import UserEditButton from './UserEditButton';
@@ -8,9 +8,15 @@ import API from "../../../utils/API";
 
 
 export default function UserSettings() {
-    const [current, setCurrent] = useState('')
+    const [current, setCurrent] = useState('');
     const [user, setUser] = useState({ ...curr_user });
-    // console.log(user)
+
+    const listItems = [
+        { title: 'Email', name: 'email', icon: 'mail', value: user.email },
+        { title: 'Location', name: 'display_location', icon: 'location arrow', value: user.display_location },
+        { title: 'Favorite Toppings', name: 'favorite_pizza_toppings', icon: 'mail', value: user.favorite_pizza_toppings },
+        { title: 'Dietary Preferences', name: 'dietary_preference', icon: 'ban', value: user.dietary_preference },
+    ];
 
     const handleSubmit = e => {
         setCurrent('')
@@ -19,7 +25,6 @@ export default function UserSettings() {
     const handleClick = e => {
         console.log(e.target)
         setCurrent(e.target.id)
-        console.log(current)
     }
 
     const handleChange = (e, { value }) => {
@@ -31,12 +36,7 @@ export default function UserSettings() {
             )
     }
 
-    const listItems = [
-        { title: 'Email', name: 'email', icon: 'mail', value: user.email },
-        { title: 'Location', name: 'display_location', icon: 'location arrow', value: user.display_location },
-        { title: 'Favorite Toppings', name: 'favorite_pizza_toppings', icon: 'mail', value: user.favorite_pizza_toppings },
-        { title: 'Dietary Preferences', name: 'dietary_preference', icon: 'ban', value: user.dietary_preference },
-    ]
+
 
     return (
         <List divided relaxed='very'>
@@ -57,13 +57,13 @@ export default function UserSettings() {
                                 value={user.display_name}
                             />
                             <UserEditButton text={'Save'}
-                                item={{ title: 'Display Name', icon: 'edit', value: user.display_name }}
+                                item={{ name: 'Display Name', value: user.display_name }}
                                 handleClick={handleSubmit}
                             />
                         </List.Content>
                     ) : (
                             <UserEditButton text={'Edit'}
-                                item={{ title: 'Display Name', icon: 'edit', value: user.display_name }}
+                                item={{ name: 'Display Name', value: user.display_name }}
                                 handleClick={handleClick}
                             />
                         )}
