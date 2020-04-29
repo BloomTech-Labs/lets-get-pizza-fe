@@ -21,7 +21,7 @@ const DropzoneComp = ({preview, setPreview, setImage}) => {
         {({ getRootProps, getInputProps, isDragActive }) => (
         <section>
             <div
-            className={isDragActive ? "drag-active " : "" + "img-drop"}
+            className={isDragActive ? `drag-active img-drop` : `img-drop`}
             {...getRootProps()}
             >
             <input
@@ -29,7 +29,7 @@ const DropzoneComp = ({preview, setPreview, setImage}) => {
                 {...getInputProps()}
                 style={{ display: "inline-block" }}
             />
-            {preview && <img src={preview} />}
+            {preview && <img src={preview} alt='user profile'/>}
             </div>
             {isDragActive ? (
             <p className="drop-text">Release the image file here</p>
