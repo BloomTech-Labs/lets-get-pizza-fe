@@ -9,8 +9,8 @@ import API from "../../../utils/API";
 
 export default function UserSettings() {
     const [current, setCurrent] = useState('')
-    const [user, setUser] = useState({ ...curr_user, dietary_preference: ['corn', 'pork', 'dairy'] });
-    console.log(user)
+    const [user, setUser] = useState({ ...curr_user });
+    // console.log(user)
 
     const handleSubmit = e => {
         setCurrent('')
@@ -22,9 +22,13 @@ export default function UserSettings() {
         console.log(current)
     }
 
-    const handleChange = e => {
-        console.log(e.target)
-        setUser({ ...user, [e.target.name]: e.target.value })
+    const handleChange = (e, { value }) => {
+        console.log(value)
+        !e.target.name ? (
+            setUser({ ...user, dietary_preference: value })
+        ) : (
+                setUser({ ...user, [e.target.name]: value })
+            )
     }
 
     const listItems = [
@@ -39,8 +43,7 @@ export default function UserSettings() {
             {/* Top section with user avatar image & display name */}
             <List.Item style={{ display: "flex" }}>
                 <List.Content>
-                    {/* <Image avatar size={'tiny'} src={user.profile_image} /> */}
-                    <Image avatar size={'tiny'} src={"http://place-puppy.com/1000x1000"} />
+                    <Image avatar size={'tiny'} src={`${user.profile_image}`} />
                 </List.Content>
                 <List.Content style={{ marginLeft: "1rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                     <List.Content>
