@@ -4,13 +4,8 @@ import UserEditButton from './UserEditButton';
 
 
 export default function UserSettingsList(props) {
-
-
-
     return (
         <Grid columns={2} >
-
-
             {props.current === props.item.name ? (
                 <Grid.Row style={{ borderBottom: '1px solid lightgrey' }}>
                     <Grid.Column style={{ display: 'flex', alignItems: 'center' }}>
@@ -47,7 +42,6 @@ export default function UserSettingsList(props) {
                                 ) : (
                                         <List.Description>{props.item.value}</List.Description>
                                     )}
-
                             </div>
                         </Grid.Column>
                         <UserEditButton text={'Edit'} item={props.item} handleClick={props.handleClick} />
