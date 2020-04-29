@@ -3,17 +3,22 @@ import { Button } from 'semantic-ui-react'
 import API from '../../../utils/API'
 
 
-const ModalButtons = ({setOpen, image}) => {
+const DropzoneButtons = ({setOpen, image, setIsLoading}) => {
     const handleSubmit = e => {
+        setIsLoading(true)
         e.preventDefault()
         const formData = new FormData()
         formData.append('image-raw', image)
         API.put('/users/images', formData, {headers: {"Content-Type": "multipart/form-data"}})
             .then(res => {
-                setOpen(false)
                 localStorage.setItem('curr_user', JSON.stringify(res.data))
+                setOpen(false)
+                setIsLoading(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                setIsLoading(false)
+            })
     }
     return(
     <>
@@ -31,5 +36,5 @@ const ModalButtons = ({setOpen, image}) => {
     )
 }
 
-export default ModalButtons
+export default DropzoneButtons
 

@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { Modal, Header, Image } from 'semantic-ui-react'
-import ModalButtons from './DropzoneButtons.js'
+import DropzoneButtons from './DropzoneButtons.js'
 import '../dropzone.css'
 import DropzoneComp from './Dropzone'
+import { LoadingLottie } from './LoadingLottie.js'
 
 const DropzoneModal = ()  => {
     const user = JSON.parse(localStorage.getItem('curr_user'))
     const [preview, setPreview] = useState(user.profile_image)
     const [image, setImage] = useState()
     const [open, setOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     return (
       <Modal 
       size='large' 
@@ -21,20 +23,12 @@ const DropzoneModal = ()  => {
       >
         <Header>Upload Image</Header>
         <Modal.Content>
-            <DropzoneComp 
-                preview={preview}
-                setPreview={setPreview}
-                setImage={setImage}
-            />
+            {isLoading ? <LoadingLottie /> : <DropzoneComp preview={preview} setPreview={setPreview} setImage={setImage}/>}
         </Modal.Content>
         <Modal.Actions>
-            <ModalButtons 
-                image={image}
-                setOpen={setOpen}
-            />
+            <DropzoneButtons image={image} setOpen={setOpen} setIsLoading={setIsLoading}/>
         </Modal.Actions>
       </Modal>
     );
 }
-
 export default DropzoneModal
