@@ -1,13 +1,14 @@
 import React from 'react';
 import { List, Image, Input } from 'semantic-ui-react';
 import UserEditButton from './UserEditButton';
+import DropzoneModal from '../dashboard-utils/DropzoneModal';
 
 export default function UserDisplayInfo(props) {
 
     return (
         <List.Item style={{ display: "flex" }}>
             <List.Content>
-                <Image avatar size={'tiny'} src={`${props.user.profile_image}`} />
+                <DropzoneModal />
             </List.Content>
             <List.Content style={{ marginLeft: "1rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <List.Content>
