@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Icon, Image, Item, Label } from "semantic-ui-react";
 import Moment from "react-moment";
 import EventUpdate from "./EventUpdate";
@@ -6,13 +6,28 @@ import API from "../../../utils/API";
 
 const UserEvent = ({ event, setEvents, deleteEvent }) => {
   console.log(event);
+  const [toggleEdit, setToggleEdit] = useState(false);
+  const [eventToEdit, setEventToEdit] = useState({});
 
-  const saveEdit = (e) => {};
+  const saveEdit = (e) => {
+    e.preventDefault();
+
+    API.put(`/events/${eventToEdit.id}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const editEvent = (event) => {
+    setEventToEdit(event);
+  };
 
   return (
     <>
       <Item>
-        <Item.Image src="http://place-puppy.com/250x200" />
+        {/** Place Business Image Here **/}
+        {/* <Item.Image src="http://place-puppy.com/250x200" /> */}
 
         <Item.Content>
           <Item.Header as="a" href={`/locations/${event.location_id}/events`}>
@@ -40,7 +55,14 @@ const UserEvent = ({ event, setEvents, deleteEvent }) => {
               <Moment format="h:mm a" date={event.end_time} />
             </Label>
 
-            <Label title="Edit event">
+            <Label
+              title="Edit event"
+              as="a"
+              onClick={() => {
+                editEvent(event);
+                setToggleEdit(!toggleEdit);
+              }}
+            >
               <Icon name="edit" />
             </Label>
 
@@ -57,7 +79,7 @@ const UserEvent = ({ event, setEvents, deleteEvent }) => {
           </Item.Extra>
         </Item.Content>
       </Item>
-      <EventUpdate />
+      {toggleEdit && <EventUpdate />}
     </>
   );
 };
