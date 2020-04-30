@@ -23,7 +23,7 @@ export default function UserDisplayInfo(props) {
                         />
                         <UserEditButton text={'Save'}
                             item={{ name: 'Display Name', value: props.user.display_name }}
-                            handleClick={props.handleSubmit}
+                            handleClick={props.handleClick}
                         />
                     </List.Content>
                 ) : (

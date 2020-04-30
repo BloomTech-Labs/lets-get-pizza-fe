@@ -26,7 +26,7 @@ export default function UserEditActive(props) {
                     )}
 
             </Grid.Column>
-            <UserEditButton text={'Save'} item={props.item} handleClick={props.handleSubmit} />
+            <UserEditButton text={'Save'} item={props.item} handleClick={props.handleClick} />
         </Grid.Row>
     )
 }
