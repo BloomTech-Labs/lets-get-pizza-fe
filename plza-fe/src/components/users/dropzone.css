@@ -1,0 +1,57 @@
+.img-input {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 1e-05;
+    pointer-events: none;
+    width: 200px;
+    height: 200px;
+  }
+  
+  
+  .img-drop {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-width: 2px;
+    border-color: rgb(102, 102, 102);
+    border-style: dashed;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .drag-active {
+    border-color: rgb(11, 134, 48);
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .drop-text {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .error {
+    text-align: center;
+    color: #ff0000;
+  }
+  
+  
+  img {
+    max-width: 200px;
+    max-height: 200px;
+    padding: 5px;
+  }
