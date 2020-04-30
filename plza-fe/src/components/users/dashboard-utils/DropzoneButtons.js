@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react'
 import API from '../../../utils/API'
 
 
-const DropzoneButtons = ({setOpen, image, setIsLoading}) => {
+const DropzoneButtons = ({setOpen, image, setIsLoading, setError}) => {
     const handleSubmit = e => {
         setIsLoading(true)
         e.preventDefault()
@@ -14,9 +14,10 @@ const DropzoneButtons = ({setOpen, image, setIsLoading}) => {
                 localStorage.setItem('curr_user', JSON.stringify(res.data))
                 setOpen(false)
                 setIsLoading(false)
+                setError(false)
             })
             .catch(err => {
-                console.log(err)
+                setError(true)
                 setIsLoading(false)
             })
     }

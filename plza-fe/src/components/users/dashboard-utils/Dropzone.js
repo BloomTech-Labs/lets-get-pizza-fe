@@ -2,7 +2,8 @@ import React, {useCallback} from 'react'
 import ReactDropZone from 'react-dropzone'
 import '../dropzone.css'
 
-const DropzoneComp = ({preview, setPreview, setImage}) => {
+const DropzoneComp = ({preview, setPreview, setImage, error}) => {
+    
     const onDrop = useCallback(files => {
         setImage(files[0])
         files.map(file => {
@@ -35,9 +36,10 @@ const DropzoneComp = ({preview, setPreview, setImage}) => {
             <p className="drop-text">Release the image file here</p>
             ) : (
             <p className="drop-text">
-                Drag 'n' drop an image here or select to upload an image
+                Drag 'n' drop an image here or click to select an image
             </p>
             )}
+            {error ? <p className='error'>There was an error uploading your image</p> : null}
         </section>
         )}
     </ReactDropZone>
