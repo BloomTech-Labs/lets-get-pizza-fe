@@ -9,7 +9,7 @@ export default function UserSettingsList(props) {
     return (
         <Grid columns={2} >
             {props.current === props.item.name ? (
-                <UserEditActive item={props.item} current={props.current} handleChange={props.handleChange} />
+                <UserEditActive item={props.item} current={props.current} handleChange={props.handleChange} handleClick={props.handleClick} />
             ) : (
                     <UserEditInactive item={props.item} current={props.current} handleClick={props.handleClick} />
                 )}

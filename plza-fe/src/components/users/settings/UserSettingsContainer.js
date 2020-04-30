@@ -25,7 +25,6 @@ export default function UserSettingsContainer() {
     }
     // update user inputs
     const handleChange = (e, { value }) => {
-        console.log(value)
         !e.target.name ? (
             setUser({ ...user, dietary_preference: value })
         ) : (
