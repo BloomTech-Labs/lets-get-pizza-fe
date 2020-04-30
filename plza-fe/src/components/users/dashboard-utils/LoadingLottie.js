@@ -16,8 +16,8 @@ export const LoadingLottie = () => {
           <div>
               <Lottie 
                 options={defaultOptions}
-                height={400}
-                width={400}
+                height={228}
+                width={228}
               />
           </div>
       )
