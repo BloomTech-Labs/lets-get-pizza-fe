@@ -14,7 +14,6 @@ import Items from "./components/items/ItemController";
 
 // Home page
 import Home from "./components/main/Home";
-import DropzoneModal from './components/users/dashboard-utils/DropzoneModal'
 
 import "semantic-ui-css/semantic.min.css";
 
@@ -49,10 +48,6 @@ ReactDOM.render(
 
       <Route path="/pages">
         <Pages />
-      </Route>
-
-      <Route path='/drop'>
-        <DropzoneModal />
       </Route>
 
       <Route>
