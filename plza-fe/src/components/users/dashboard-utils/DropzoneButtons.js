@@ -5,10 +5,14 @@ import API from '../../../utils/API'
 
 const DropzoneButtons = ({setOpen, image, setIsLoading, setError}) => {
     const handleSubmit = e => {
-        setIsLoading(true)
         e.preventDefault()
+        setIsLoading(true)
+        
+        // Creating new instance of form-data
         const formData = new FormData()
+        // Adding a key-value pair to the formData object
         formData.append('image-raw', image)
+        // set header `Content-Type` to `multipart/form-data` 
         API.put('/users/images', formData, {headers: {"Content-Type": "multipart/form-data"}})
             .then(res => {
                 localStorage.setItem('curr_user', JSON.stringify(res.data))

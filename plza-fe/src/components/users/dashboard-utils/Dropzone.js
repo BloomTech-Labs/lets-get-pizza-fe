@@ -5,11 +5,15 @@ import '../dropzone.css'
 const DropzoneComp = ({preview, setPreview, setImage, error}) => {
     
     const onDrop = useCallback(files => {
+        // Saving the image file to state 
         setImage(files[0])
-        files.map(file => {
-            const reader = new FileReader()
     
+        files.map(file => {
+            // Reading the files and converting to datauri 
+            const reader = new FileReader()
+            
             reader.onload = (e) => {
+                // setting the converted image to state to allow for previews
                 setPreview(e.target.result)
             }
             reader.readAsDataURL(file)

@@ -43,6 +43,11 @@
     font-size: 1.4rem;
     text-align: center;
   }
+
+  .error {
+    text-align: center;
+    color: #ff0000;
+  }
   
   
   img {
