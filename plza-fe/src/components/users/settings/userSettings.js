@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { List, Button } from 'semantic-ui-react';
 
 import UserSettingsList from './UserSettingsList';
-import UserDisplayInfo from './UserDisplayInfo';
-
-
+import UserDisplayInfoContainer from './UserDisplayInfoContainer';
 
 
 export default function UserSettings(props) {
@@ -13,7 +11,7 @@ export default function UserSettings(props) {
         <>
             <List divided relaxed='very'>
                 {/* Top section with user avatar image & display name */}
-                <UserDisplayInfo user={props.user} handleChange={props.handleChange} handleClick={props.handleClick} current={props.current} />
+                <UserDisplayInfoContainer user={props.user} handleChange={props.handleChange} handleClick={props.handleClick} current={props.current} />
 
                 {/* Map through user settings array & render rows */}
                 {props.listItems.map(item => <UserSettingsList current={props.current}
