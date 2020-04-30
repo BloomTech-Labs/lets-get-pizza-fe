@@ -1,3 +1,4 @@
+// Creating Lottie Animation component
 import React from 'react'
 import animationData from '../../../media/pizzaLoader.json'
 import Lottie from 'react-lottie';
