@@ -88,7 +88,8 @@ export default function FriendsList() {
   }, [setFriends]);
 
   const limit = 10;
-  const pageCount = dummyList.length > 10 ? dummyList.length / 10 : 1;
+  const pageCount =
+    dummyList.length > 10 ? Math.ceil(dummyList.length / 10) : 1;
   const total = pageCount;
   console.log(pageCount);
   return (
