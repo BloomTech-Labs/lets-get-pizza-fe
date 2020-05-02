@@ -8,16 +8,17 @@ const UserEvent = ({ event, setEvents, deleteEvent }) => {
   console.log(event);
   const [toggleEdit, setToggleEdit] = useState(false);
   const [eventToEdit, setEventToEdit] = useState({});
+  console.log(eventToEdit);
 
-  const saveEdit = (e) => {
-    e.preventDefault();
+  // const saveEdit = (e) => {
+  //   e.preventDefault();
 
-    API.put(`/events/${eventToEdit.id}`)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
+  //   API.put(`/events/${eventToEdit.id}`, eventToEdit)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   const editEvent = (event) => {
     setEventToEdit(event);
@@ -79,7 +80,13 @@ const UserEvent = ({ event, setEvents, deleteEvent }) => {
           </Item.Extra>
         </Item.Content>
       </Item>
-      {toggleEdit && <EventUpdate />}
+      {toggleEdit && (
+        <EventUpdate
+          event={event}
+          eventToEdit={eventToEdit}
+          setEventToEdit={setEventToEdit}
+        />
+      )}
     </>
   );
 };
