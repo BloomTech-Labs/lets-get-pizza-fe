@@ -4,7 +4,6 @@ import * as types from '../types'
 
 export const userLogin = ({username, password}, history) => dispatch => {
     dispatch({type: types.LOGIN_START})
-    console.log({username, password})
     API.post('/auth/user/login', {username, password})
         .then(res => {
             console.log(res)

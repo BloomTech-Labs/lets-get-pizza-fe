@@ -23,8 +23,8 @@ const AuthForm = ({isRegistrationForm = false}) => {
   },[])
 
   const registerSubmit = (data) => {
-    data.password === data.verify_password ? 
-    dispatch(userRegister(data, history)) : setError('verify_password', {type: 'noMatch'})
+    if(data.password === data.verify_password) { dispatch(userRegister(data, history)) }
+    else {setError('verify_password', {type: 'noMatch'})}
   }
 
   const handleChange = async (e, { name, value }) => {
