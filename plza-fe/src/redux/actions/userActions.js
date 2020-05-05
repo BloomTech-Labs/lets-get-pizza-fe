@@ -7,7 +7,7 @@ export const userLogin = ({username, password}, history) => dispatch => {
     API.post('/auth/user/login', {username, password})
         .then(res => {
             console.log(res)
-            // localStorage.setItem('token', JSON.stringify(res.data.token))
+            localStorage.setItem('token', JSON.stringify(res.data.token))
             dispatch({type: types.LOGIN_SUCCESS, payload: res.data.user})
             history.push('/')
         })

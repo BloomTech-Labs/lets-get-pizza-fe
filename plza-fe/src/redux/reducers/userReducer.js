@@ -1,15 +1,5 @@
 import * as types from '../types'
 const initialState = {
-  bio: "",
-  dietary_preference: "",
-  display_location: "",
-  display_name: "",
-  email: "",
-  favorite_pizza_shop: null,
-  favorite_pizza_toppings: "",
-  id: null,
-  profile_image: "",
-  username: "",
   isLoading: false,
   friends: []
 };

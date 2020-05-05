@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux'
-import { store } from './redux/store'
+import { store, persistor } from './redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 // Base app components
 import Header from "./components/main/Header";
@@ -18,9 +19,11 @@ import Items from "./components/items/ItemController";
 import Home from "./components/main/Home";
 
 import "semantic-ui-css/semantic.min.css";
+import { Loader } from "semantic-ui-react";
 
 ReactDOM.render(
   <Provider store={store}>
+    <PersistGate loading={<Loader />} persistor={persistor}>
     <Router>
       <Header />
 
@@ -58,6 +61,7 @@ ReactDOM.render(
         </Route>
       </Switch>
     </Router>
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

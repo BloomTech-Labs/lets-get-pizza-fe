@@ -3,7 +3,7 @@
  *
  * @param {string} item
  */
-function getItem(item) {
+export function getItem(item) {
   if (localStorage.hasOwnProperty(item)) {
     return JSON.parse(localStorage.getItem(item));
   } else {
