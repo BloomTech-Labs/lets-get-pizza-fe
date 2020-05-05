@@ -1,0 +1,31 @@
+.head-ch {
+  display: flex;
+}
+
+.Header-ch {
+  padding: 10%;
+  font-size: 400%;
+}
+.Desc-ch {
+  padding: 3%;
+}
+
+.bio-ch {
+  font-size: x-large;
+  margin-bottom: 5%;
+}
+
+.address-ch {
+  font-size: large;
+  margin-bottom: 5%;
+}
+
+.url-ch {
+  font-size: medium;
+}
+
+.heading-favorite-shop-ch {
+  text-align: center;
+  font-size: large;
+  color: gray;
+}

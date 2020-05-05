@@ -15,7 +15,7 @@ const UserController = () => (
       <Register />
     </Route>
 
-    <Route path="/users/profile">
+    <Route path="/users/dash">
       <Dashboard />
     </Route>
   </Switch>
