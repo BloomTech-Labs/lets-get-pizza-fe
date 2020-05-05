@@ -13,7 +13,7 @@ import Logo from "./Logo.png";
 import "./Header.css";
 
 export default function Masthead() {
-  const user = useSelector(({user}) => user)
+  const user = useSelector(({ user }) => user)
   const token = getItem('token')
   const [isMenuVisible, setMenuVisibility] = useState(false);
   const [isModalVisible, setModalVisibility] = useState(false);
@@ -35,7 +35,6 @@ export default function Masthead() {
   );
 
   const ProfileLink = () => {
-    console.log(user.username)
     if (user.username) {
       return <NavbarItem to="/users/profile">{user.username}</NavbarItem>;
     } else if (curr_location) {
@@ -108,11 +107,11 @@ export default function Masthead() {
             />
           </>
         ) : (
-          <>
-            <NavbarItem to="/users/register">Register</NavbarItem>
-            <NavbarItem to="/users/login">Log in</NavbarItem>
-          </>
-        )}
+            <>
+              <NavbarItem to="/users/register">Register</NavbarItem>
+              <NavbarItem to="/users/login">Log in</NavbarItem>
+            </>
+          )}
       </Menu.Menu>
 
       <HamburgerMenu />
