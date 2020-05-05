@@ -1,19 +1,17 @@
 import React, { useEffect } from "react";
 import { Form, Button } from "semantic-ui-react";
 import {useForm} from 'react-hook-form';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userLogin, userRegister } from "../../redux/actions/userActions";
 import FormFields from "../forms/FormFields";
-import { registerFields, baseFields, verificationFields, options } from "../forms/FormInformation";
+import { baseFields, verificationFields, options } from "../forms/FormInformation";
 
-// Combine all input field information
-const allFields = [...registerFields, ...baseFields, ...verificationFields, {name: 'dietary_preference'}]
-
-const AuthForm = ({isRegistrationForm = false}) => {
+const AuthForm = ({isRegistrationForm = false, registerFields = '', loginSubmit, registerSubmit, type, diet}) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const {pathname} = useLocation()
   const { register, errors, setError, handleSubmit, setValue, triggerValidation } = useForm();
+  const allFields = [...registerFields, ...baseFields, ...verificationFields, {name: diet.name}]
 
   useEffect(() => {
     // Register all input fields
@@ -22,9 +20,9 @@ const AuthForm = ({isRegistrationForm = false}) => {
     })
   },[])
 
-  const registerSubmit = (data) => {
+  const handleRegister = (data) => {
     data.password === data.verify_password ? 
-    dispatch(userRegister(data, history)) : setError('verify_password', {type: 'noMatch'})
+    dispatch(registerSubmit(data, history)) : setError('verify_password', {type: 'noMatch'})
   }
 
   const handleChange = async (e, { name, value }) => {
@@ -35,8 +33,8 @@ const AuthForm = ({isRegistrationForm = false}) => {
   return (
     <Form 
       onSubmit={isRegistrationForm ? 
-        handleSubmit(registerSubmit) : 
-        handleSubmit((data) => dispatch(userLogin(data, history)))
+        handleSubmit(handleRegister) : 
+        handleSubmit((data) => dispatch(loginSubmit(data, history)))
       }
     >
       <Form.Group widths="equal">
@@ -51,14 +49,20 @@ const AuthForm = ({isRegistrationForm = false}) => {
         <>
           <FormFields fields={registerFields} errors={errors} handleChange={handleChange}/>
           <Form.Dropdown
-            name="dietary_preference" 
-            label="Dietary Preferences" placeholder="Select Dietary Preferences"
+            name={diet.name} 
+            label={diet.label} placeholder="Select Dietary Options"
             multiple selection options={options} onChange={handleChange}
             error={errors.dietary_preference ? {content: 'Please select an option'} : false}
           />
         </>
       )}
-      <Button color='blue' type="submit">Submit</Button>
+      <Form.Group>
+        <Button color='blue' type="submit">Submit</Button>
+        {pathname.includes('users') ? 
+        <Link to={`/locations/${type}`}>Business {type}</Link> : 
+        <Link to={`/users/${type}`}>User {type}</Link>
+        }
+      </Form.Group>
     </Form>
   );
 }
