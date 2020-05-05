@@ -2,23 +2,12 @@ import React, { useState } from "react";
 import { Button, Icon, Image, Item, Label } from "semantic-ui-react";
 import Moment from "react-moment";
 import EventUpdate from "./EventUpdate";
-import API from "../../../utils/API";
 
 const UserEvent = ({ event, setEvents, deleteEvent }) => {
   console.log(event);
   const [toggleEdit, setToggleEdit] = useState(false);
   const [eventToEdit, setEventToEdit] = useState({});
   console.log(eventToEdit);
-
-  // const saveEdit = (e) => {
-  //   e.preventDefault();
-
-  //   API.put(`/events/${eventToEdit.id}`, eventToEdit)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
 
   const editEvent = (event) => {
     setEventToEdit(event);
@@ -85,6 +74,8 @@ const UserEvent = ({ event, setEvents, deleteEvent }) => {
           event={event}
           eventToEdit={eventToEdit}
           setEventToEdit={setEventToEdit}
+          toggleEdit={toggleEdit}
+          setToggleEdit={setToggleEdit}
         />
       )}
     </>

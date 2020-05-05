@@ -2,31 +2,63 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import API from "../../../utils/API";
 
-const EventUpdate = ({ event, eventToEdit, setEventToEdit }) => {
+const EventUpdate = ({
+  event,
+  eventToEdit,
+  setEventToEdit,
+  toggleEdit,
+  setToggleEdit,
+}) => {
   const { handleSubmit, register, errors } = useForm();
-  const onSubmit = (values) => console.log(values);
-
-  // console.log(watch("example"));
-  // console.log(event);
 
   const saveEdit = (values) => {
-    // e.preventDefault();
-
+    console.log(values);
     API.put(`/events/${eventToEdit.id}`, values)
       .then((res) => {
         console.log(res.data);
+        setEventToEdit({
+          title: "",
+          description: "",
+          start_time: "",
+          end_time: "",
+        });
+        setToggleEdit(!toggleEdit);
       })
       .catch((err) => console.log(err));
   };
 
-  const handleChange = (event) => {
-    event.persist();
-    console.log(event);
-    setEventToEdit({ ...eventToEdit, title: event.target.value });
+  // const handleChange = (event) => {
+  //   event.persist();
+  //   console.log(event);
+  //   setEventToEdit({ ...eventToEdit, title: event.target.value });
+  // };
+
+  const convertDate = (date) => {
+    let d = new Date(date);
+    let year = d.getFullYear();
+    let month = d.getMonth() + 1;
+    let dt = d.getDate();
+    let hour = d.getHours();
+    let mins = d.getMinutes();
+
+    if (dt < 10) {
+      dt = "0" + dt;
+    }
+    if (month < 10) {
+      month = "0" + month;
+    }
+    if (hour < 10) {
+      hour = "0" + hour;
+    }
+    if (mins < 10) {
+      mins = "0" + mins;
+    }
+
+    return `${year}-${month}-${dt}T${hour}:${mins}`;
   };
 
   return (
-    <form className="ui tiny form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="ui tiny form" onSubmit={handleSubmit(saveEdit)}>
       <div className="required field">
         <label>Title</label>
         <input
@@ -74,7 +106,7 @@ const EventUpdate = ({ event, eventToEdit, setEventToEdit }) => {
             onChange={(e) =>
               setEventToEdit({ ...eventToEdit, start_time: e.target.value })
             }
-            value={eventToEdit.start_time}
+            value={convertDate(eventToEdit.start_time)}
           />
           {errors.start_time && (
             <span className="ui pointing red basic label">
@@ -92,7 +124,7 @@ const EventUpdate = ({ event, eventToEdit, setEventToEdit }) => {
             onChange={(e) =>
               setEventToEdit({ ...eventToEdit, end_time: e.target.value })
             }
-            value={eventToEdit.end_time}
+            value={convertDate(eventToEdit.end_time)}
           />
           {errors.end_time && (
             <span className="ui pointing red basic label">
