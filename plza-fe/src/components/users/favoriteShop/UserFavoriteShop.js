@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import API from "../../../../utils/API";
-import { curr_user } from "../../../../utils/auth";
+import API from '../../../utils/API';
+import { curr_user } from "../../../utils/auth";
 import ShopList from "./ShopList";
 import "./favoriteShop.css";
 
