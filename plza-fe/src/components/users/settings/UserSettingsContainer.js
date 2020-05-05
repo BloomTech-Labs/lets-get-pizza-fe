@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { curr_user } from "../../../utils/auth";
+import { useSelector } from 'react-redux';
+import { curr_user } from '../../../utils/auth';
 import API from "../../../utils/API";
+
 import UserSettings from './UserSettings';
 
 
 export default function UserSettingsContainer() {
     const [current, setCurrent] = useState('');
     const [user, setUser] = useState({ ...curr_user });
+    // const user = useSelector(({user}) => user);
 
     const listItems = [
         { title: 'Email', name: 'email', icon: 'mail', value: user.email },
