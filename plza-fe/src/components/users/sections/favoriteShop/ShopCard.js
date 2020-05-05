@@ -7,7 +7,7 @@ const ShopCard = ({ location }) => {
     <Container>
       <div className="head-ch">
         <Image
-          src="https://www.papajohns.com/static-assets/a/images/web/marketing-item/pj-blade-icon-compressed.jpg"
+          src={location.thumbnail_image}
           size="medium"
           circular
         />
