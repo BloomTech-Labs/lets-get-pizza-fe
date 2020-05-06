@@ -44,8 +44,8 @@ export const userToggleEdit = (event, field) => dispatch => {
 }
 
 export const userEditSettings = (event, value) => dispatch => {
-    console.log("[[event]]", event.target.name)
-    console.log("[[value]]", value)
+    // console.log("[[event]]", event.target.name)
+    // console.log("[[value]]", value)
     !event.target.name ? (
         dispatch({ type: types.EDIT_SETTINGS, payload: { dietary_preference: value } })
     ) : (
@@ -65,6 +65,6 @@ export const userSubmitSettings = (event, user) => dispatch => {
                 dispatch({ type: types.SUBMIT_SETTINGS_FAIL, payload: false })
             })
     } else {
-        dispatch({ type: types.CANCEL_CHANGES })
+        dispatch({ type: types.EDIT_CANCEL_CHANGES })
     }
 }

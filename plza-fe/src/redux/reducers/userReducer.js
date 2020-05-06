@@ -38,7 +38,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state, pendingUserChanges: { ...state.pendingUserChanges, ...payload }
             }
-        case types.CANCEL_CHANGES:
+        case types.EDIT_CANCEL_CHANGES:
             return {
                 ...state, pendingUserChanges: { ...state }
             }
