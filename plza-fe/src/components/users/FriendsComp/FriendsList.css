@@ -1,0 +1,55 @@
+.plzaFriendsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+}
+
+.pagination li {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.pagination li a {
+  color: #14141f;
+}
+
+h1 {
+  text-align: center;
+}
+
+.actualList {
+  width: 100%;
+}
+
+.listItem {
+  width: 80%;
+  display: flex;
+}
+
+.friendStyling {
+  width: 100%;
+}
+
+.friendButton {
+  width: 15rem;
+  text-align: center;
+  height: 3.5rem;
+}
+
+.pleaseWork {
+  width: 100%;
+}
+
+.listDisplay {
+  width: 100%;
+}
+
+.finalDisplay {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}

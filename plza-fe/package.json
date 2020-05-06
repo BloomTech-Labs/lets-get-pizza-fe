@@ -10,6 +10,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.0.1",
+    "react-js-pagination": "^3.0.3",
     "react-lottie": "^1.2.3",
     "react-map-gl": "^5.2.3",
     "react-moment": "^0.9.7",

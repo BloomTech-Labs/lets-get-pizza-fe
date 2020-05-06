@@ -3,77 +3,27 @@ import { curr_user } from "../../../utils/auth";
 import { List } from "semantic-ui-react";
 import FriendOnList from "./FriendOnList";
 import API from "../../../utils/API";
-import Pagination from "react-paginating";
-
-const dummyList = [
-  {
-    name: "Buddy2",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-  {
-    name: "Buddy1",
-    image: "https://ca.slack-edge.com/T4JUEB3ME-UHET379TP-a6cf2301dafe-512",
-    bio: "Pineapple was made for pizza",
-  },
-];
+import Pagination from "react-js-pagination";
+import "./FriendsList.css";
 
 export default function FriendsList() {
   const [friends, setFriends] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [activePage, setActivePage] = useState(1);
+  const [itemLength, setItemLength] = useState(0);
+  const [currentData, setCurrentData] = useState([]);
 
-  const handlePageChange = (page, e) => {
-    setCurrentPage(page);
+  const handlePageChange = (pageNumber) => {
+    //everything with 2 needs to be 10 on final render for 10 friends per page, 2 is for test
+    let upperLimit = parseInt(pageNumber) * 2;
+    let lowerLimit = upperLimit - 2;
+    let data = [];
+    if (upperLimit <= itemLength) {
+      data = friends.slice(lowerLimit, upperLimit);
+    } else {
+      data = friends.slice(lowerLimit);
+    }
+    setCurrentData(data);
+    setActivePage(pageNumber);
   };
 
   useEffect(() => {
@@ -81,109 +31,33 @@ export default function FriendsList() {
       .then((res) => {
         console.log(res.data);
         setFriends(res.data);
+        setItemLength(res.data.length);
+        res.data.length > 2
+          ? setCurrentData(res.data.slice(0, 2))
+          : setCurrentData(res.data.slice(0, res.data.length));
+        //if less than 10 make res.data.length
       })
       .catch((err) => {
         console.log(err);
       });
   }, [setFriends]);
 
-  const limit = 10;
-  const pageCount =
-    dummyList.length > 10 ? Math.ceil(dummyList.length / 10) : 1;
-  const total = pageCount;
-  console.log(pageCount);
   return (
-    <>
-      <div>
-        <List floated="left" size="big">
-          {console.log("here")}
-
-          {dummyList.map((friend) => {
-            return <FriendOnList key={friend.name} friends={friend} />;
-          })}
-        </List>
-
-        <Pagination
-          total={total}
-          limit={limit}
-          pageCount={pageCount}
-          currentPage={currentPage}
-          className="bg-red"
-        >
-          {({
-            pages = { pageCount },
-            currentPage,
-            hasNextPage,
-            hasPreviousPage,
-            previousPage,
-            nextPage,
-            totalPages,
-            getPageItemProps,
-          }) => (
-            <div>
-              <button
-                {...getPageItemProps({
-                  pageValue: 1,
-                  onPageChange: handlePageChange,
-                })}
-              >
-                first
-              </button>
-
-              {hasPreviousPage && (
-                <button
-                  {...getPageItemProps({
-                    pageValue: previousPage,
-                    onPageChange: handlePageChange,
-                  })}
-                >
-                  {"<"}
-                </button>
-              )}
-
-              {pages.map((page) => {
-                let activePage = null;
-                if (currentPage === page) {
-                  activePage = { backgroundColor: "#fdce09" };
-                }
-                return (
-                  <button
-                    {...getPageItemProps({
-                      pageValue: page,
-                      key: page,
-                      style: activePage,
-                      onPageChange: handlePageChange,
-                    })}
-                  >
-                    {page}
-                  </button>
-                );
-              })}
-
-              {hasNextPage && (
-                <button
-                  {...getPageItemProps({
-                    pageValue: nextPage,
-                    onPageChange: handlePageChange,
-                  })}
-                >
-                  {">"}
-                </button>
-              )}
-
-              <button
-                {...getPageItemProps({
-                  pageValue: pageCount,
-                  onPageChange: handlePageChange,
-                })}
-              >
-                {console.log(totalPages, "total pages")}
-                last
-              </button>
-            </div>
-          )}
-        </Pagination>
-      </div>
-    </>
+    <div className="plzaFriendsList">
+      <h1>{curr_user.username}'s Friends</h1>
+      <List className="actualList" floated="left" size="big">
+        {currentData.map((friend) => {
+          return <FriendOnList key={friend.name} friends={friend} />;
+        })}
+      </List>
+      <Pagination
+        activePage={activePage}
+        itemsCountPerPage={2}
+        totalItemsCount={itemLength}
+        pageRangeDisplayed={1}
+        onChange={handlePageChange}
+        className="pagination"
+      />
+    </div>
   );
 }
