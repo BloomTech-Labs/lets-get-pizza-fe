@@ -8,25 +8,23 @@ export default function UserDisplayInfo() {
     const dispatch = useDispatch();
     const user = useSelector(({ user }) => user);
 
+    const handleChange = (event, { value }) => {
+        dispatch(userEditSettings(event, value))
+    }
+
     return (
         <>
             {user.field === 'Display Name' ? (
                 <List.Content style={{ display: 'flex' }}>
                     <Input
-                        onChange={(event) => dispatch(userEditSettings(event))}
+                        onChange={handleChange}
                         name='display_name'
-                        value={user.display_name}
+                        value={user.pendingUserChanges.display_name}
                     />
-                    <UserEditButton text={'Save'}
-                        item={{ name: 'Display Name', value: user.display_name }}
-                    // handleClick={handleClick}
-                    />
+                    <UserEditButton text={'Save'} item={{ name: 'Display Name', value: user.pendingUserChanges.display_name }} />
                 </List.Content>
             ) : (
-                    <UserEditButton text={'Edit'}
-                        item={{ name: 'Display Name', value: user.display_name }}
-                    // handleClick={handleClick}
-                    />
+                    <UserEditButton text={'Edit'} item={{ name: 'Display Name', value: user.pendingUserChanges.display_name }} />
                 )}
         </>
     )

@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import UserEventsList from './events/UserEventsList';
-import UserSettingsContainer from './settings/UserSettingsContainer';
+import UserSettings from './settings/UserSettings';
 import UserFavoriteShop from './favoriteShop/UserFavoriteShop';
 
 const UserSectionsController = () => (
@@ -14,7 +14,7 @@ const UserSectionsController = () => (
     </Switch>
     <Switch>
       <Route path="/users/dash/settings">
-        <UserSettingsContainer />
+        <UserSettings />
       </Route>
     </Switch>
     <Switch>

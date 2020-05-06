@@ -2,7 +2,8 @@ import * as types from '../types'
 const initialState = {
     isLoading: false,
     friends: [],
-    field: ''
+    field: '',
+    pendingUserChanges: {}
 };
 
 export const userReducer = (state = initialState, { type, payload }) => {
@@ -19,7 +20,8 @@ export const userReducer = (state = initialState, { type, payload }) => {
         case types.SUBMIT_SETTINGS_SUCCESS:
             return {
                 ...payload,
-                isLoading: false
+                isLoading: false,
+                pendingUserChanges: { ...payload }
             }
         case types.LOGIN_FAIL:
         case types.REGISTER_FAIL:
@@ -32,7 +34,14 @@ export const userReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state, field: payload
             }
+        case types.EDIT_SETTINGS:
+            return {
+                ...state, pendingUserChanges: { ...state.pendingUserChanges, ...payload }
+            }
         case types.CANCEL_CHANGES:
+            return {
+                ...state, pendingUserChanges: { ...state }
+            }
         default:
             return state
     }

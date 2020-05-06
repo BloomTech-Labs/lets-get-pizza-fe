@@ -15,9 +15,9 @@ export default function UserDisplayInfoContainer() {
             <List.Content style={{ marginLeft: "1rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <List.Content>
                     <List.Header>Display Name</List.Header>
-                    <List.Description>{user.display_name}</List.Description>
+                    <List.Description>{user.pendingUserChanges.display_name}</List.Description>
                 </List.Content>
-                <UserDisplayInfo user={user} />
+                <UserDisplayInfo />
             </List.Content>
         </List.Item>
     )

@@ -7,19 +7,13 @@ import UserEditInactive from './UserEditInactive';
 
 
 export default function UserSettingsList({ item }) {
-    const dispatch = useDispatch();
     const field = useSelector(({ user }) => user.field);
-
     return (
         <Grid columns={2} >
             {field === item.name ? (
-                <UserEditActive item={item}
-                // current={props.current} handleChange={props.handleChange} handleClick={props.handleClick} 
-                />
+                <UserEditActive item={item} />
             ) : (
-                    <UserEditInactive item={item}
-                    //  current={props.current} handleClick={props.handleClick} 
-                    />
+                    <UserEditInactive item={item} />
                 )}
         </Grid>
     )

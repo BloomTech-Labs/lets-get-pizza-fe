@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { curr_user } from '../../../utils/auth';
-import API from "../../../utils/API";
+import React from 'react';
 
 import UserSettings from './UserSettings';
 
 
 export default function UserSettingsContainer() {
-    const [current, setCurrent] = useState('');
+    // const [current, setCurrent] = useState('');
     // const [user, setUser] = useState({ ...curr_user });
 
 
