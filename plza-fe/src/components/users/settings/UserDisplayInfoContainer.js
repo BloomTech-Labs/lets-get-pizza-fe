@@ -1,9 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { List, } from 'semantic-ui-react';
 import UserDisplayInfo from './UserDisplayInfo';
 import DropzoneModal from '../dashboard-utils/DropzoneModal';
 
-export default function UserDisplayInfoContainer(props) {
+export default function UserDisplayInfoContainer() {
+    const user = useSelector(({ user }) => user);
 
     return (
         <List.Item style={{ display: "flex" }}>
@@ -13,9 +15,9 @@ export default function UserDisplayInfoContainer(props) {
             <List.Content style={{ marginLeft: "1rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <List.Content>
                     <List.Header>Display Name</List.Header>
-                    <List.Description>{props.user.display_name}</List.Description>
+                    <List.Description>{user.display_name}</List.Description>
                 </List.Content>
-                <UserDisplayInfo user={props.user} handleChange={props.handleChange} handleClick={props.handleClick} />
+                <UserDisplayInfo user={user} />
             </List.Content>
         </List.Item>
     )
