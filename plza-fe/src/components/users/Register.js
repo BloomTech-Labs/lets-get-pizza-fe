@@ -1,10 +1,8 @@
 import React from "react";
-import { Input, Dropdown } from "formik-semantic-ui";
-import { string } from "yup";
-
 import SimpleContainer from "../main/SimpleContainer";
-import AuthenticateForm from "../authentication/AuthenticateForm";
 import AuthForm from "../authentication/AuthForm";
+import { userRegisterFields } from "../forms/FormInformation";
+import { userRegister } from "../../redux/actions/userActions";
 
 const Register = () => (
   <SimpleContainer
@@ -14,6 +12,10 @@ const Register = () => (
   >
     <AuthForm
       isRegistrationForm
+      registerFields={userRegisterFields}
+      registerSubmit={userRegister}
+      type='register'
+      diet={{name: 'dietary_preference', label: 'Dietary Preferences'}}
     />
   </SimpleContainer>
 );
