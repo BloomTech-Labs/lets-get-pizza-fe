@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux'
 import { Menu, Confirm, Dropdown } from "semantic-ui-react";
 import {
-  hasToken,
-  curr_user,
+  getItem,
   curr_location,
   logoutUser
 } from "../../utils/auth";
@@ -13,6 +13,8 @@ import Logo from "./Logo.png";
 import "./Header.css";
 
 export default function Masthead() {
+  const user = useSelector(({ user }) => user)
+  const token = getItem('token')
   const [isMenuVisible, setMenuVisibility] = useState(false);
   const [isModalVisible, setModalVisibility] = useState(false);
 
@@ -33,8 +35,8 @@ export default function Masthead() {
   );
 
   const ProfileLink = () => {
-    if (curr_user) {
-      return <NavbarItem to="/users/profile">{curr_user.username}</NavbarItem>;
+    if (user.username) {
+      return <NavbarItem to="/users/dash">{user.username}</NavbarItem>;
     } else if (curr_location) {
       return (
         <NavbarItem to={`/locations/${curr_location.id}`}>
@@ -90,7 +92,7 @@ export default function Masthead() {
       </Dropdown>
 
       <Menu.Menu position="right">
-        {hasToken ? (
+        {token ? (
           <>
             <ProfileLink />
 
@@ -105,11 +107,11 @@ export default function Masthead() {
             />
           </>
         ) : (
-          <>
-            <NavbarItem to="/users/register">Register</NavbarItem>
-            <NavbarItem to="/users/login">Log in</NavbarItem>
-          </>
-        )}
+            <>
+              <NavbarItem to="/users/register">Register</NavbarItem>
+              <NavbarItem to="/users/login">Log in</NavbarItem>
+            </>
+          )}
       </Menu.Menu>
 
       <HamburgerMenu />

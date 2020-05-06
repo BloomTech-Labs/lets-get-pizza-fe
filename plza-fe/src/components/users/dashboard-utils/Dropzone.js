@@ -43,7 +43,7 @@ const DropzoneComp = ({preview, setPreview, setImage, error}) => {
                 Drag 'n' drop an image here or click to select an image
             </p>
             )}
-            {error ? <p className='error'>There was an error uploading your image</p> : null}
+            {error ? <p className='show-error'>There was an error uploading your image</p> : null}
         </section>
         )}
     </ReactDropZone>
