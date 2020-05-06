@@ -4,10 +4,11 @@ import DropzoneButtons from './DropzoneButtons.js'
 import '../dropzone.css'
 import Dropzone from './Dropzone'
 import { LoadingLottie } from './LoadingLottie.js'
+import { useSelector } from 'react-redux'
 
 const DropzoneModal = ()  => {
-    const user = JSON.parse(localStorage.getItem('curr_user'))
-    const [preview, setPreview] = useState(user.profile_image)
+    const profile_image = useSelector(({user}) => user.profile_image)
+    const [preview, setPreview] = useState(profile_image)
     const [image, setImage] = useState()
     const [open, setOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -20,7 +21,7 @@ const DropzoneModal = ()  => {
       closeOnDimmerClick={false}
       centered={false} 
       closeIcon
-      trigger={<Image avatar size={'tiny'} src={`${user.profile_image}`} onClick={() => setOpen(true)}/>}
+      trigger={<Image avatar size={'tiny'} src={`${profile_image}`} onClick={() => setOpen(true)}/>}
       >
         <Header>Upload Image</Header>
         <Modal.Content>
