@@ -15,7 +15,6 @@ const DropzoneButtons = ({setOpen, image, setIsLoading, setError}) => {
         // set header `Content-Type` to `multipart/form-data` 
         API.put('/users/images', formData, {headers: {"Content-Type": "multipart/form-data"}})
             .then(res => {
-                localStorage.setItem('curr_user', JSON.stringify(res.data))
                 setOpen(false)
                 setIsLoading(false)
                 setError(false)

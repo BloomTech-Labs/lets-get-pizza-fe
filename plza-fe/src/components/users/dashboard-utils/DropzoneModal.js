@@ -25,7 +25,7 @@ const DropzoneModal = ()  => {
       >
         <Header>Upload Image</Header>
         <Modal.Content>
-            {isLoading ? <LoadingLottie /> : <Dropzone error={error} preview={preview} setPreview={setPreview} setImage={setImage}/>}
+            {isLoading ? <LoadingLottie height={228} width={228}/> : <Dropzone error={error} preview={preview} setPreview={setPreview} setImage={setImage}/>}
         </Modal.Content>
         <Modal.Actions>
             <DropzoneButtons image={image} setOpen={setOpen} setIsLoading={setIsLoading} setError={setError}/>
