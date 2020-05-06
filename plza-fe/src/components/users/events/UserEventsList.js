@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Item } from "semantic-ui-react";
 import UserEvent from "./UserEvent";
 import { curr_user } from "../../../utils/auth";
-import API from "../../../utils/API"
+import API from "../../../utils/API";
 
 const UserEventsList = () => {
   const [events, setEvents] = useState([])
