@@ -6,7 +6,7 @@ import UserEvent from "./UserEvent";
 import API from "../../../utils/API";
 
 const UserEventsList = () => {
-  const user = useSelector(state => state.user)
+  const user = useSelector((state) => state.user);
   const [events, setEvents] = useState([]);
 
   console.log(user.id);
@@ -14,15 +14,18 @@ const UserEventsList = () => {
   useEffect(() => {
     API.get(`/events/users/${user.id}`)
       .then((res) => {
+        const currentDate = new Date().toISOString();
+        console.log(currentDate, "current date")
         setEvents(
-          res.data.sort(
-            (a, b) => new Date(a.start_time) - new Date(b.start_time)
-          )
+          res.data
+            .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
+            .filter(date => date.start_time > currentDate)
         );
       })
       .catch((err) => console.log(err));
   }, [setEvents]);
 
+  console.log(events);
   const deleteEvent = (id) => {
     API.delete(`/events/${id}`)
       .then((res) => {
@@ -30,12 +33,17 @@ const UserEventsList = () => {
         setEvents([...filterDeletedEvent]);
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   return (
     <Item.Group divided>
       {events.map((event) => (
-        <UserEvent key={event.id} event={event} setEvents={setEvents} deleteEvent={deleteEvent} />
+        <UserEvent
+          key={event.id}
+          event={event}
+          setEvents={setEvents}
+          deleteEvent={deleteEvent}
+        />
       ))}
     </Item.Group>
   );
