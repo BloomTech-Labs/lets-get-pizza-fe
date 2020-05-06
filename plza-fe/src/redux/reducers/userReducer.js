@@ -4,7 +4,8 @@ const initialState = {
   reviews: [],
   friends: [],
   favShopDetails: {},
-  isLoading: false
+  isLoading: false,
+  error: undefined
 };
 
 export const userReducer = (state = initialState, {type, payload}) => {
@@ -23,7 +24,12 @@ export const userReducer = (state = initialState, {type, payload}) => {
                 ...payload, 
                 isLoading: false
             }
-        case types.LOGIN_FAIL: 
+        case types.LOGIN_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: payload
+            } 
         case types.REGISTER_FAIL:
         case types.USER_LOCATION_FAIL:
             return {
