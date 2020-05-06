@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Item } from "semantic-ui-react";
 import UserEvent from "./UserEvent";
-import { curr_user } from "../../../utils/auth";
+// import { curr_user } from "../../../utils/auth";
 import API from "../../../utils/API";
 
 const UserEventsList = () => {
+  const user = useSelector(state => state.user)
   const [events, setEvents] = useState([]);
 
+  console.log(user.id);
+
   useEffect(() => {
-    API.get(`/events/users/${curr_user.id}`)
+    API.get(`/events/users/${user.id}`)
       .then((res) => {
         setEvents(
           res.data.sort(
