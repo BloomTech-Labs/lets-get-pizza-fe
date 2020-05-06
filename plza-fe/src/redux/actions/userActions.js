@@ -9,7 +9,7 @@ export const userLogin = ({username, password}, history) => dispatch => {
             console.log(res)
             localStorage.setItem('token', JSON.stringify(res.data.token))
             dispatch({type: types.LOGIN_SUCCESS, payload: res.data.user})
-            history.push('/')
+            history.push('/users/dash')
         })
         .catch(err => {
             dispatch({type: types.LOGIN_FAIL, payload: false})
@@ -24,7 +24,7 @@ export const userRegister = (data, history) => dispatch => {
             console.log(res)
             // localStorage.setItem('token', JSON.stringify(res.data.token))
             dispatch({type: types.REGISTER_SUCCESS, payload: res.data.user})
-            history.push('/')
+            history.push('/users/dash')
         })
         .catch(err => {
             dispatch({type: types.REGISTER_FAIL, payload: false})
