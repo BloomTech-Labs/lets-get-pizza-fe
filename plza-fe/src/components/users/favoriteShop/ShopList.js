@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
-import API from "../../../utils/API";
+import {useSelector, useDispatch} from 'react-redux'
 import ShopCard from "./ShopCard";
+import {locationByUser} from '../../../redux/actions/userActions.js'
 
-const ShopList = ({ userId }) => {
-  const [location, setLocation] = useState({});
+const ShopList = () => {
+  const [favShopId, favShopDetails] = useSelector(({user}) => [user.favorite_pizza_shop, user.favShopDetails])
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    API.get(`locations/${userId.favorite_pizza_shop}`)
-      .then((res) => {
-        console.log(res.data);
-        setLocation(res.data.location);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, [userId]);
+    dispatch(locationByUser(favShopId))
+  }, []);
 
-  return <ShopCard location={location} />;
+  return (
+    <ShopCard location={favShopDetails}/>
+  );
 };
 
 export default ShopList;
