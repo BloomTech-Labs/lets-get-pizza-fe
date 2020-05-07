@@ -24,7 +24,10 @@ export const userRegister = (data) => dispatch => {
             window.location.replace("/users/dash")
         })
         .catch(err => {
-            dispatch({ type: types.REGISTER_FAIL, payload: false })
+            dispatch({ 
+                type: types.REGISTER_FAIL, 
+                payload: {error: 'There was an error with your registration, please try again', isLoading: false} 
+            })
         })
 }
 

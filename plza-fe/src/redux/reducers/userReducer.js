@@ -34,12 +34,12 @@ export const userReducer = (state = initialState, { type, payload }) => {
                 pendingUserChanges: { ...payload }
             }
         case types.LOGIN_FAIL:
+        case types.REGISTER_FAIL:
             return {
                 ...state,
-                isLoading: false,
-                error: payload
+                isLoading: payload.isLoading,
+                error: payload.error
             }
-        case types.REGISTER_FAIL:
         case types.SUBMIT_SETTINGS_FAIL:
         case types.USER_LOCATION_FAIL:
             return {
