@@ -60,7 +60,16 @@ export const userReducer = (state = initialState, { type, payload }) => {
             }
         case types.EDIT_CANCEL_CHANGES:
             return {
-                ...state, pendingUserChanges: { ...state }
+                ...state, pendingUserChanges: {
+                    ...state.pendingUserChanges,
+                    display_name: state.display_name,
+                    dietary_preference: state.dietary_preference,
+                    display_location: state.display_location,
+                    email: state.email,
+                    favorite_pizza_shop: state.favorite_pizza_shop,
+                    favorite_pizza_toppings: state.favorite_pizza_toppings,
+                    profile_image: state.profile_image
+                }
             }
         default:
             return state
