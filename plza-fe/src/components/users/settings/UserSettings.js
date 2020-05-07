@@ -9,7 +9,7 @@ import UserDisplayInfoContainer from './UserDisplayInfoContainer';
 export default function UserSettings() {
     const user = useSelector(({ user }) => user.pendingUserChanges);
     const dispatch = useDispatch();
-    console.log(user)
+
     const listItems = [
         { id: 0, title: 'Email', name: 'email', icon: 'mail', value: user.email },
         { id: 1, title: 'Location', name: 'display_location', icon: 'location arrow', value: user.display_location },

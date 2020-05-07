@@ -30,8 +30,6 @@ export const userRegister = (data) => dispatch => {
 
 // Settings
 export const userToggleEdit = (event, field) => dispatch => {
-    // console.log(event.target.id, "[[event target id]]")
-    // console.log(field, "[[field]]")
     if (event.target.id === field) {
         dispatch({ type: types.TOGGLE_EDIT, payload: '' })
     } else {
@@ -40,8 +38,6 @@ export const userToggleEdit = (event, field) => dispatch => {
 }
 
 export const userEditSettings = (event, value) => dispatch => {
-    // console.log("[[event]]", event.target.name)
-    // console.log("[[value]]", value)
     !event.target.name ? (
         dispatch({ type: types.EDIT_SETTINGS, payload: { dietary_preference: value } })
     ) : (
@@ -50,8 +46,6 @@ export const userEditSettings = (event, value) => dispatch => {
 }
 
 export const userSubmitSettings = (event, user) => dispatch => {
-    console.log("[[event]]", event)
-    console.log("[[user]]", user)
     dispatch({ type: types.SUBMIT_SETTINGS_START })
     if (event.target.id === 'save') {
         API.put(`/users`, user)
