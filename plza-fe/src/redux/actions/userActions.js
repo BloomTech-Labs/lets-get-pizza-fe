@@ -46,7 +46,7 @@ export const userEditSettings = (event, value) => dispatch => {
 }
 
 export const userSubmitSettings = (event, user) => dispatch => {
-    dispatch({ type: types.SUBMIT_SETTINGS_START })
+    dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true })
     if (event.target.id === 'save') {
         API.put(`/users`, user)
             .then(res => {
@@ -59,6 +59,23 @@ export const userSubmitSettings = (event, user) => dispatch => {
     } else {
         dispatch({ type: types.EDIT_CANCEL_CHANGES })
     }
+}
+
+export const uploadImage = (formData, setOpen) => dispatch => {
+    dispatch({ type: types.IMAGE_UPLOAD_START, payload: true })
+
+    // set header `Content-Type` to `multipart/form-data`
+    API.put('/users/images', formData, {headers: {"Content-Type": "multipart/form-data"}})
+    .then(res => {
+        dispatch({type: types.IMAGE_UPLOAD_SUCCESS, payload: res.data})
+        setOpen(false)
+    })
+    .catch(err => {
+        dispatch({
+            type: types.IMAGE_UPLOAD_FAIL, 
+            payload: {error: 'There was an error uploading your image', isLoading: false}
+        })
+    })
 }
 
 // Location

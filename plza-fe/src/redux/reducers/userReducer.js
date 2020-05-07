@@ -1,6 +1,5 @@
 import * as types from '../types'
 const initialState = {
-    isLoading: false,
     friends: [],
     field: '',
     pendingUserChanges: {},
@@ -18,6 +17,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
         case types.REGISTER_START:
         case types.SUBMIT_SETTINGS_START:
         case types.USER_LOCATION_START:
+        case types.IMAGE_UPLOAD_START:
             return {
                 ...state,
                 isLoading: payload
@@ -25,10 +25,12 @@ export const userReducer = (state = initialState, { type, payload }) => {
         case types.LOGIN_SUCCESS:
         case types.REGISTER_SUCCESS:
         case types.SUBMIT_SETTINGS_SUCCESS:
+        case types.IMAGE_UPLOAD_SUCCESS:
             return {
                 ...state,
                 ...payload,
                 isLoading: false,
+                error: undefined,
                 pendingUserChanges: { ...payload }
             }
         case types.LOGIN_FAIL:
@@ -48,7 +50,8 @@ export const userReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 isLoading: false,
-                favShopDetails: { ...payload }
+                favShopDetails: { ...payload },
+                error: undefined
             }
         case types.TOGGLE_EDIT:
             return {
@@ -70,6 +73,12 @@ export const userReducer = (state = initialState, { type, payload }) => {
                     favorite_pizza_toppings: state.favorite_pizza_toppings,
                     profile_image: state.profile_image
                 }
+            }
+        case types.IMAGE_UPLOAD_FAIL:
+            return {
+                ...state,
+                isLoading: payload.isLoading,
+                error: payload.error
             }
         default:
             return state
