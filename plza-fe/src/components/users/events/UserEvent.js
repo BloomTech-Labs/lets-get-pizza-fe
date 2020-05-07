@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Button, Icon, Image, Item, Label } from "semantic-ui-react";
+import { Icon, Item, Label } from "semantic-ui-react";
 import Moment from "react-moment";
 import EventUpdate from "./EventUpdate";
 
-const UserEvent = ({ event, setEvents, deleteEvent }) => {
-  console.log(event);
+const UserEvent = ({ event, events, setEvents, deleteEvent }) => {
   const [toggleEdit, setToggleEdit] = useState(false);
   const [eventToEdit, setEventToEdit] = useState({});
-  console.log(eventToEdit);
 
   const editEvent = (event) => {
     setEventToEdit(event);
@@ -72,6 +70,8 @@ const UserEvent = ({ event, setEvents, deleteEvent }) => {
       {toggleEdit && (
         <EventUpdate
           event={event}
+          events={events}
+          setEvents={setEvents}
           eventToEdit={eventToEdit}
           setEventToEdit={setEventToEdit}
           toggleEdit={toggleEdit}

@@ -4,6 +4,8 @@ import API from "../../../utils/API";
 
 const EventUpdate = ({
   event,
+  events,
+  setEvents,
   eventToEdit,
   setEventToEdit,
   toggleEdit,
@@ -12,10 +14,17 @@ const EventUpdate = ({
   const { handleSubmit, register, errors } = useForm();
 
   const saveEdit = (values) => {
-    console.log(values);
     API.put(`/events/${eventToEdit.id}`, values)
       .then((res) => {
-        console.log(res.data);
+        const filterEditEvent = events.filter(
+          (event) => event.id !== res.data.id
+        );
+        const updatedEvent = { ...event, ...res.data }
+        setEvents(
+          [...filterEditEvent, updatedEvent].sort(
+            (a, b) => new Date(a.start_time) - new Date(b.start_time)
+          )
+        );
         setEventToEdit({
           title: "",
           description: "",
@@ -26,12 +35,6 @@ const EventUpdate = ({
       })
       .catch((err) => console.log(err));
   };
-
-  // const handleChange = (event) => {
-  //   event.persist();
-  //   console.log(event);
-  //   setEventToEdit({ ...eventToEdit, title: event.target.value });
-  // };
 
   const convertDate = (date) => {
     let d = new Date(date);
