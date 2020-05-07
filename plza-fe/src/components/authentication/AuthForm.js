@@ -1,27 +1,27 @@
 import React, { useEffect } from "react";
 import { Form, Button, Header } from "semantic-ui-react";
-import {useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useLocation, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import FormFields from "../forms/FormFields";
 import { baseFields, verificationFields, options } from "../forms/FormInformation";
 
-const AuthForm = ({isRegistrationForm=false,registerFields='',loginSubmit,registerSubmit,type,diet,loading,error}) => {
+const AuthForm = ({ isRegistrationForm = false, registerFields = '', loginSubmit, registerSubmit, type, diet, loading, error }) => {
   const dispatch = useDispatch()
-  const {pathname} = useLocation()
+  const { pathname } = useLocation()
   const { register, errors, setError, handleSubmit, setValue, triggerValidation } = useForm();
-  const allFields = [...registerFields, ...baseFields, ...verificationFields, {name: diet.name}]
+  const allFields = [...registerFields, ...baseFields, ...verificationFields, { name: diet.name }]
 
   useEffect(() => {
     // Register all input fields
     allFields.forEach(field => {
-      register({name: field.name}, {required: field.hasOwnProperty('required') ? field.required : isRegistrationForm})
+      register({ name: field.name }, { required: field.hasOwnProperty('required') ? field.required : isRegistrationForm })
     })
-  },[])
+  }, [])
 
   const handleRegister = (data) => {
-    data.password === data.verify_password ? 
-    dispatch(registerSubmit(data)) : setError('verify_password', {type: 'noMatch'})
+    data.password === data.verify_password ?
+      dispatch(registerSubmit(data)) : setError('verify_password', { type: 'noMatch' })
   }
 
   const handleChange = async (e, { name, value }) => {
@@ -31,38 +31,38 @@ const AuthForm = ({isRegistrationForm=false,registerFields='',loginSubmit,regist
 
   return (
     <>
-    <Form 
-      onSubmit={isRegistrationForm ? 
-        handleSubmit(handleRegister) : 
-        handleSubmit((data) => dispatch(loginSubmit(data)))
-      }
-    >
-      <Form.Group widths="equal">
-          <FormFields fields={baseFields} handleChange={handleChange} errors={errors}/>
+      <Form
+        onSubmit={isRegistrationForm ?
+          handleSubmit(handleRegister) :
+          handleSubmit((data) => dispatch(loginSubmit(data)))
+        }
+      >
+        <Form.Group widths="equal">
+          <FormFields fields={baseFields} handleChange={handleChange} errors={errors} />
+          {isRegistrationForm && (
+            <>
+              <FormFields fields={verificationFields} errors={errors} handleChange={handleChange} />
+            </>
+          )}
+        </Form.Group>
         {isRegistrationForm && (
           <>
-            <FormFields fields={verificationFields} errors={errors} handleChange={handleChange}/>
+            <FormFields fields={registerFields} errors={errors} handleChange={handleChange} />
+            <Form.Dropdown
+              name={diet.name}
+              label={diet.label} placeholder="Select Dietary Options"
+              multiple selection options={options} onChange={handleChange}
+              error={errors.dietary_preference ? { content: 'Please select an option' } : false}
+            />
           </>
         )}
-      </Form.Group>
-      {isRegistrationForm && (
-        <>
-          <FormFields fields={registerFields} errors={errors} handleChange={handleChange}/>
-          <Form.Dropdown
-            name={diet.name} 
-            label={diet.label} placeholder="Select Dietary Options"
-            multiple selection options={options} onChange={handleChange}
-            error={errors.dietary_preference ? {content: 'Please select an option'} : false}
-          />
-        </>
-      )}
-        {error!==undefined && <Header sub color='red'>{error}</Header>}<br/>
+        {error !== undefined && <Header sub color='red'>{error}</Header>}<br />
         <Button color='blue' type="submit">Submit</Button>
-    </Form>
-    {pathname.includes('users') ? 
-    <Link to={`/locations/${type}`}>Business {type}</Link> : 
-    <Link to={`/users/${type}`}>User {type}</Link>
-    }
+      </Form>
+      {pathname.includes('users') ?
+        <Link to={`/locations/${type}`}>Business {type}</Link> :
+        <Link to={`/users/${type}`}>User {type}</Link>
+      }
     </>
   );
 }
