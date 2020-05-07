@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { curr_user } from "../../../utils/auth";
+import { useSelector, useDispatch } from "react-redux";
 import { List } from "semantic-ui-react";
 import FriendOnList from "./FriendOnList";
 import API from "../../../utils/API";
@@ -11,6 +12,7 @@ export default function FriendsList() {
   const [activePage, setActivePage] = useState(1);
   const [itemLength, setItemLength] = useState(0);
   const [currentData, setCurrentData] = useState([]);
+  const user = useSelector(({ user }) => user);
 
   const handlePageChange = (pageNumber) => {
     //everything with 2 needs to be 10 on final render for 10 friends per page, 2 is for test
@@ -26,10 +28,16 @@ export default function FriendsList() {
     setActivePage(pageNumber);
   };
 
+  const removeFriend = (id) => {
+    let newList = friends.filter((keepfriend) => keepfriend.friends_id != id);
+    console.log(newList);
+  };
+
   useEffect(() => {
-    API.get(`/friends/${curr_user.id}`)
+    API.get(`/friends/${user.id}`)
       .then((res) => {
         console.log(res.data);
+        console.log(user);
         setFriends(res.data);
         setItemLength(res.data.length);
         res.data.length > 2
@@ -44,10 +52,16 @@ export default function FriendsList() {
 
   return (
     <div className="plzaFriendsList">
-      <h1>{curr_user.username}'s Friends</h1>
+      <h1>{user.username}'s Friends</h1>
       <List className="actualList" floated="left" size="big">
         {currentData.map((friend) => {
-          return <FriendOnList key={friend.name} friends={friend} />;
+          return (
+            <FriendOnList
+              key={friend.friends_id}
+              friends={friend}
+              remove={removeFriend}
+            />
+          );
         })}
       </List>
       <Pagination

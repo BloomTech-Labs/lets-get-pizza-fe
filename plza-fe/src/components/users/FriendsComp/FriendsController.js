@@ -5,7 +5,7 @@ import FriendsList from "./FriendsList";
 
 const FriendsListController = () => (
   <Switch>
-    <Route path="/users/profile/friends">
+    <Route path="/users/dash/friends">
       <FriendsList />
     </Route>
   </Switch>

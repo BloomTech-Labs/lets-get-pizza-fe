@@ -32,11 +32,9 @@ export default function FriendOnList(props) {
         open={modalVisibility}
         content={deleteUserMessage}
         onCancel={() => setModalVisibility(false)}
-        onConfirm={() =>
-          console.log(
-            `removed ${props.friends.friend_username} from friends list`
-          )
-        }
+        onConfirm={() => {
+          props.remove(props.friends.friends_id);
+        }}
       />
     </div>
   );
