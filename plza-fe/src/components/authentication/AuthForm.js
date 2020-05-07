@@ -10,7 +10,7 @@ const AuthForm = ({ isRegistrationForm = false, registerFields = '', loginSubmit
   const dispatch = useDispatch()
   const { pathname } = useLocation()
   const { register, errors, setError, handleSubmit, setValue, triggerValidation } = useForm();
-  const allFields = [...registerFields, ...baseFields, ...verificationFields, { name: diet.name }]
+  const allFields = [...registerFields, ...baseFields, ...verificationFields, { name: diet.name, required: false }]
 
   useEffect(() => {
     // Register all input fields
