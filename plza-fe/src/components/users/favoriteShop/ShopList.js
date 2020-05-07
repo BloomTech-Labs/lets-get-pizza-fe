@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
-import API from "../../../utils/API";
 import {useSelector, useDispatch} from 'react-redux'
 import ShopCard from "./ShopCard";
-import {locationByUser} from '../../../redux/actions/locationActions.js'
+import {locationByUser} from '../../../redux/actions/userActions.js'
 
-const ShopList = ({ userId }) => {
-  // const [location, setLocation] = useState({});
-  const user = useSelector(({user}) => user.favorite_pizza_shop)
-  const location = useSelector(({location}) => location)
-const dispatch = useDispatch()
+const ShopList = () => {
+  const [favShopId, favShopDetails] = useSelector(({user}) => [user.favorite_pizza_shop, user.favShopDetails])
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(locationByUser(user))
-    console.log(location, 'state of location')
+    dispatch(locationByUser(favShopId))
   }, []);
 
   return (
-    <ShopCard location={location.locations.location}/>
+    <ShopCard location={favShopDetails}/>
   );
 };
 

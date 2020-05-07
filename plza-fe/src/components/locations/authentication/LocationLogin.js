@@ -1,11 +1,15 @@
 import React from "react";
-
 import SimpleContainer from "../../main/SimpleContainer";
-import AuthenticateForm from "../../authentication/AuthenticateForm";
+import AuthForm from "../../authentication/AuthForm";
+import { locationLogin } from "../../../redux/actions/locationsActions";
 
 const LocationsLogin = () => (
-  <SimpleContainer icon="sign in" title="Log in">
-    <AuthenticateForm endpoint="/auth/location/login" />
+  <SimpleContainer icon="sign in" title="Business Log In">
+    <AuthForm 
+      type='login' 
+      loginSubmit={locationLogin} 
+      diet={{name: 'dietary_offerings', label: 'Dietary Offerings'}}
+    />
   </SimpleContainer>
 );
 
