@@ -3,8 +3,12 @@ import SimpleContainer from "../main/SimpleContainer";
 import AuthForm from "../authentication/AuthForm";
 import { userRegisterFields } from "../forms/FormInformation";
 import { userRegister } from "../../redux/actions/userActions";
+import { useSelector } from "react-redux";
 
-const Register = () => (
+const Register = () => {
+  const[loading, error] = useSelector(({user}) => [user.isLoading, user.error])
+
+  return(
   <SimpleContainer
     icon="add user"
     title="Register account"
@@ -16,8 +20,11 @@ const Register = () => (
       registerSubmit={userRegister}
       type='register'
       diet={{name: 'dietary_preference', label: 'Dietary Preferences'}}
+      loading={loading}
+      error={error}
     />
   </SimpleContainer>
-);
+  )
+};
 
 export default Register;
