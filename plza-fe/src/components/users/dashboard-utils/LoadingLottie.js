@@ -3,7 +3,7 @@ import React from 'react'
 import animationData from '../../../media/pizzaLoader.json'
 import Lottie from 'react-lottie';
 
-export const LoadingLottie = () => {
+export const LoadingLottie = ({height, width}) => {
     const defaultOptions = {
         loop: true,
         autoplay: true, 
@@ -17,8 +17,8 @@ export const LoadingLottie = () => {
           <div>
               <Lottie 
                 options={defaultOptions}
-                height={228}
-                width={228}
+                height={height || 500}
+                width={width || 500}
               />
           </div>
       )

@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Form, Input, TextArea, Button } from "formik-semantic-ui";
 import { DateTimeInput } from "semantic-ui-calendar-react";
 import { InputError, ServerErrorMessage } from "../forms/Errors";
@@ -8,7 +9,8 @@ import { object, string, date } from "yup";
 
 import SimpleContainer from "../main/SimpleContainer";
 import API from "../../utils/API";
-import { curr_user } from "../../utils/auth";
+
+// import { curr_user } from "../../utils/auth";
 
 const eventCreateSchema = object().shape({
   title: string().required("Title is required"),
@@ -20,6 +22,8 @@ const eventCreateSchema = object().shape({
 export default function EventCreate(props) {
   const { id } = useParams();
   const history = useHistory();
+
+  const user = useSelector(state => state.user) 
 
   const onSubmit = (values, actions) => {
     actions.setSubmitting(true);
@@ -40,7 +44,7 @@ export default function EventCreate(props) {
       <Form
         validateOnBlur={false}
         initialValues={{
-          user_id: curr_user ? curr_user.id : null,
+          user_id: user ? user.id : null,
           location_id: id,
           title: "",
           description: "",

@@ -9,10 +9,14 @@
     "formik-semantic-ui": "^0.10.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+<<<<<<< HEAD
     "react-dropzone": "^11.0.1",
     "react-js-pagination": "^3.0.3",
     "react-paginating": "^1.4.0",
+=======
+>>>>>>> master
     "react-hook-form": "^5.6.0",
+    "react-dropzone": "^11.0.1",
     "react-lottie": "^1.2.3",
     "react-map-gl": "^5.2.3",
     "react-moment": "^0.9.7",
@@ -21,6 +25,8 @@
     "react-scripts": "^3.4.1",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
+    "redux-persist-transform-encrypt": "^2.0.1",
+    "redux-persist-transform-filter": "0.0.20",
     "redux-thunk": "^2.3.0",
     "semantic-ui-calendar-react": "^0.15.3",
     "semantic-ui-css": "^2.4.1",
