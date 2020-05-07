@@ -5,7 +5,7 @@ import { userLogin } from "../../redux/actions/userActions";
 import { useSelector } from "react-redux";
 
 const Login = () => {
-  const[loading, error] = useSelector(({user}) => [user.isLoading, user.error])
+  const [loading, error] = useSelector(({user}) => [user.isLoading, user.error])
   return (
   <SimpleContainer icon="sign in" title="User Log In">
     <AuthForm 
