@@ -6,7 +6,6 @@ import "./favoriteShop.css";
 
 const FavoriteShop = () => {
   const user = useSelector(({user}) => user)
-  console.log('right here brother', user.id)
 
   return (
     <div>

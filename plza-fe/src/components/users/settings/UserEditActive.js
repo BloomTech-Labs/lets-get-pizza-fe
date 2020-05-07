@@ -1,14 +1,22 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown, Icon, Input, Grid } from 'semantic-ui-react';
+import { userEditSettings } from '../../../redux/actions/userActions';
 import UserEditButton from './UserEditButton';
 
-export default function UserEditActive(props) {
+export default function UserEditActive({ item }) {
+    const dispatch = useDispatch();
+    const field = useSelector(({ user }) => user.field);
+
+    const handleChange = (event, { value }) => {
+        dispatch(userEditSettings(event, value))
+    }
 
     return (
         <Grid.Row style={{ borderBottom: '1px solid lightgrey' }}>
             <Grid.Column style={{ display: 'flex', alignItems: 'center' }}>
-                <Icon name={props.item.icon} size='large' />
-                {props.current === 'dietary_preference' ? (
+                <Icon name={item.icon} size='large' />
+                {field === 'dietary_preference' ? (
                     <Dropdown multiple
                         selection
                         name="dietary_preference"
@@ -19,14 +27,16 @@ export default function UserEditActive(props) {
                             { text: "Vegan", value: "vegan" }
                         ]}
 
-                        onChange={props.handleChange}
+                        onChange={handleChange}
                     />
                 ) : (
-                        <Input onChange={props.handleChange} name={props.item.name} value={props.item.value} />
+                        <Input
+                            onChange={handleChange}
+                            name={item.name} value={item.value} />
                     )}
 
             </Grid.Column>
-            <UserEditButton text={'Save'} item={props.item} handleClick={props.handleClick} />
+            <UserEditButton text={'Save'} item={item} />
         </Grid.Row>
     )
 }

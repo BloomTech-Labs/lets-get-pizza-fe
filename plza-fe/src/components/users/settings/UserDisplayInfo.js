@@ -1,28 +1,30 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { List, Input } from 'semantic-ui-react';
-
+import { userEditSettings } from '../../../redux/actions/userActions';
 import UserEditButton from './UserEditButton';
 
-export default function UserDisplayInfo(props) {
+export default function UserDisplayInfo() {
+    const dispatch = useDispatch();
+    const user = useSelector(({ user }) => user);
+
+    const handleChange = (event, { value }) => {
+        dispatch(userEditSettings(event, value))
+    }
 
     return (
         <>
-            {props.current === 'Display Name' ? (
+            {user.field === 'Display Name' ? (
                 <List.Content style={{ display: 'flex' }}>
-                    <Input onChange={props.handleChange}
+                    <Input
+                        onChange={handleChange}
                         name='display_name'
-                        value={props.user.display_name}
+                        value={user.pendingUserChanges.display_name}
                     />
-                    <UserEditButton text={'Save'}
-                        item={{ name: 'Display Name', value: props.user.display_name }}
-                        handleClick={props.handleClick}
-                    />
+                    <UserEditButton text={'Save'} item={{ name: 'Display Name', value: user.pendingUserChanges.display_name }} />
                 </List.Content>
             ) : (
-                    <UserEditButton text={'Edit'}
-                        item={{ name: 'Display Name', value: props.user.display_name }}
-                        handleClick={props.handleClick}
-                    />
+                    <UserEditButton text={'Edit'} item={{ name: 'Display Name', value: user.pendingUserChanges.display_name }} />
                 )}
         </>
     )
