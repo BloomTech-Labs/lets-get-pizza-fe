@@ -56,12 +56,12 @@ const AuthForm = ({ isRegistrationForm = false, registerFields = '', loginSubmit
             />
           </>
         )}
-        {error !== undefined && <Header sub color='red'>{error}</Header>}<br />
-        <Button color='blue' type="submit">Submit</Button>
+        {error !== undefined && <Header sub color='red' style={{margin: '0 0 10px'}}>{error}</Header>}
+        <Button color='blue' type="submit" style={{marginBottom: '10px'}}>Submit</Button>
       </Form>
       {pathname.includes('users') ?
-        <Link to={`/locations/${type}`}>Business {type}</Link> :
-        <Link to={`/users/${type}`}>User {type}</Link>
+        <p>Business Owner |  <Link to={`/locations/${type}`} style={{textTransform: 'capitalize'}}>{type} Here</Link></p> :
+        <p>Pizza Eater |  <Link to={`/users/${type}`} style={{textTransform: 'capitalize'}}>{type} Here</Link></p>
       }
     </>
   );
