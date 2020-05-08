@@ -30,14 +30,22 @@ export default function FriendsList() {
 
   const removeFriend = (id) => {
     let newList = friends.filter((keepfriend) => keepfriend.friends_id != id);
-    console.log(newList);
+    setFriends(newList); //add to component
+    API.delete(`/friends/${id}`)
+      .then((res) => {
+        console.log(res);
+        //window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
     API.get(`/friends/${user.id}`)
       .then((res) => {
-        console.log(res.data);
-        console.log(user);
+        console.log(res, "database call");
+        console.log(user, "user info logged");
         setFriends(res.data);
         setItemLength(res.data.length);
         res.data.length > 2

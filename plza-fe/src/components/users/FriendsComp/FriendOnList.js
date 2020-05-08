@@ -12,18 +12,18 @@ export default function FriendOnList(props) {
     <div className="finalDisplay">
       <List.Item className="listDisplay">
         <List.Content className="listItem">
-          <Image avatar src={props.friends.friend_image} />
+          <Image size="tiny" avatar src={props.friends.friend_profile_image} />
           <List.Content className="pleaseWork">
             <List.Content className="friendStyling" floated="left">
               <List.Header as="a">{props.friends.friend_username}</List.Header>
-              <List.Description>{props.friends.bio}</List.Description>
+              <List.Description>{props.friends.friend_bio}</List.Description>
             </List.Content>
           </List.Content>
         </List.Content>
       </List.Item>
       <Button
         className="friendButton"
-        color="red"
+        color="black"
         onClick={() => setModalVisibility(true)}
       >
         Remove {props.friends.friend_username}
