@@ -1,4 +1,4 @@
-import * as types from '../types'
+import * as types from '../types/userTypes'
 const initialState = {
     friends: [],
     field: '',
@@ -13,8 +13,8 @@ const initialState = {
 
 export const userReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case types.LOGIN_START:
-        case types.REGISTER_START:
+        case types.USER_LOGIN_START:
+        case types.USER_REGISTER_START:
         case types.SUBMIT_SETTINGS_START:
         case types.USER_LOCATION_START:
         case types.IMAGE_UPLOAD_START:
@@ -22,8 +22,8 @@ export const userReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 isLoading: payload
             }
-        case types.LOGIN_SUCCESS:
-        case types.REGISTER_SUCCESS:
+        case types.USER_LOGIN_SUCCESS:
+        case types.USER_REGISTER_SUCCESS:
         case types.SUBMIT_SETTINGS_SUCCESS:
         case types.IMAGE_UPLOAD_SUCCESS:
             return {
@@ -33,8 +33,8 @@ export const userReducer = (state = initialState, { type, payload }) => {
                 error: undefined,
                 pendingUserChanges: { ...payload }
             }
-        case types.LOGIN_FAIL:
-        case types.REGISTER_FAIL:
+        case types.USER_LOGIN_FAIL:
+        case types.USER_REGISTER_FAIL:
             return {
                 ...state,
                 isLoading: payload.isLoading,
