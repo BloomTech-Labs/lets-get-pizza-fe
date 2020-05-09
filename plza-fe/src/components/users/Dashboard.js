@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Grid } from "semantic-ui-react";
 import DashMenu from "./dashboard-utils/DashMenu";
 import UserSectionsController from "./UserSectionsController";
-import FriendsListController from "./FriendsComp/FriendsController";
 import { useHistory } from "react-router-dom";
 
 export default function Dashboard() {
@@ -32,7 +31,6 @@ export default function Dashboard() {
         </Grid.Column>
         <Grid.Column width={11} align={"left"} style={{ paddingTop: "2vh" }}>
           <UserSectionsController />
-          <FriendsListController />
         </Grid.Column>
       </Grid.Row>
     </Grid>
