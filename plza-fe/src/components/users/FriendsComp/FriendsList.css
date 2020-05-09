@@ -26,12 +26,13 @@ h1 {
 }
 
 .listItem {
-  width: 80%;
+  width: 90%;
   display: flex;
 }
 
 .friendStyling {
   width: 100%;
+  font-size: medium;
 }
 
 .friendButton {
@@ -52,5 +53,5 @@ h1 {
 
 .avatarImage {
   height: auto;
-  max-width: auto;
+  max-width: 1rem;
 }
