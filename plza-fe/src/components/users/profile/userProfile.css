@@ -1,52 +1,60 @@
-.profile-image-ch{
-    border-radius: 50%;
-    width: 50%;
-    height: 50%;
+.profile-image-ch {
+  border-radius: 50%;
+  width: 50%;
+  height: 50%;
 }
 
-.profile-img-name-ch{
-    display: flex;
-    align-items: center;
+.profile-img-name-ch {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5%;
+  border-bottom: 1px solid grey;
 }
 
-.profile-name-ch{
-    
-    font-size: 400%
+.profile-name-ch {
+  font-size: 500%;
 }
 
-.name-shop-ch{
-    padding: 0 0 0 15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
+.name-shop-ch {
+  padding: 0 0 0 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5%;
 }
 
-.fav-shop-heading-ch{
-    color: grey;
+.fav-shop-heading-ch {
+  color: grey;
 }
 
-.fav-shop-title-ch{
-    font-size: x-large;
+.fav-shop-title-ch {
+  font-size: x-large;
 }
 
-.user-bio-ch{
-    padding: 5%;
-    margin-top: 5%;
-    width: 35%;
-    height: 100px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+.user-bio-ch {
+  padding: 5%;
+  margin-top: 5%;
+  width: 35%;
+  height: 100px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
-.activity-container-ch{
-    margin-top: 5%;
-    border: 1px solid black;
-    width: 80%;
-    height: 500px;
-    margin-left: 5%;
+.activity-container-ch {
+  margin-top: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 100%;
+  padding: 5%;
+  margin-left: 5%;
 }
 
-.bio-activity-ch{
-    display: flex;
+.bio-activity-ch {
+  display: flex;
+}
 
+.act-card-ch {
+  margin: 0% 0 20% 0;
+}
+.head-act-ch {
+  text-align: center;
+  color: grey;
 }
