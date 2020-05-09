@@ -40,10 +40,6 @@ h1 {
   height: 3.5rem;
 }
 
-.pleaseWork {
-  width: 100%;
-}
-
 .listDisplay {
   width: 100%;
 }
@@ -52,4 +48,9 @@ h1 {
   display: flex;
   justify-content: space-between;
   margin: 1rem;
+}
+
+.avatarImage {
+  height: auto;
+  max-width: auto;
 }

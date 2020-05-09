@@ -12,12 +12,16 @@ export default function FriendOnList(props) {
     <div className="finalDisplay">
       <List.Item className="listDisplay">
         <List.Content className="listItem">
-          <Image size="tiny" avatar src={props.friends.friend_profile_image} />
-          <List.Content className="pleaseWork">
-            <List.Content className="friendStyling" floated="left">
-              <List.Header as="a">{props.friends.friend_username}</List.Header>
-              <List.Description>{props.friends.friend_bio}</List.Description>
-            </List.Content>
+          <Image
+            size="tiny"
+            circular
+            src={props.friends.friend_profile_image}
+            className="avatarImage"
+          />
+
+          <List.Content className="friendStyling" floated="left">
+            <List.Header as="a">{props.friends.friend_username}</List.Header>
+            <List.Description>{props.friends.friend_bio}</List.Description>
           </List.Content>
         </List.Content>
       </List.Item>

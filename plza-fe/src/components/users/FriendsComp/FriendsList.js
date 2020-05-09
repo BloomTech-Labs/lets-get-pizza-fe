@@ -30,7 +30,7 @@ export default function FriendsList() {
 
   const removeFriend = (id) => {
     let newList = friends.filter((keepfriend) => keepfriend.friends_id != id);
-    setFriends(newList); //add to component
+    setFriends(newList); //add to component, although pointless if we window.location.reload
     API.delete(`/friends/${id}`)
       .then((res) => {
         console.log(res);
