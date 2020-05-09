@@ -11,7 +11,7 @@
 
 .profile-name-ch{
     
-    font-size: 300%
+    font-size: 400%
 }
 
 .name-shop-ch{
@@ -19,4 +19,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+}
+
+.fav-shop-heading-ch{
+    color: grey;
+}
+
+.fav-shop-title-ch{
+    font-size: x-large;
+}
+
+.user-bio-ch{
+    padding: 5%;
+    margin-top: 5%;
+    width: 35%;
+    height: 100px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.activity-container-ch{
+    margin-top: 5%;
+    border: 1px solid black;
+    width: 80%;
+    height: 500px;
+    margin-left: 5%;
+}
+
+.bio-activity-ch{
+    display: flex;
+
 }

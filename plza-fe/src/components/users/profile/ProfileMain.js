@@ -3,10 +3,6 @@ import UserProfileDetails from './UserProfileDetails'
 import './userProfile.css'
 
 const ProfileMain = () => {
-  
-
-
-
     return(
         <div>
            <UserProfileDetails />
