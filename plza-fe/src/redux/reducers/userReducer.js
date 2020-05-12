@@ -18,6 +18,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
         case types.REGISTER_START:
         case types.SUBMIT_SETTINGS_START:
         case types.USER_LOCATION_START:
+        case types.USER_EVENT_START:    
             return {
                 ...state,
                 isLoading: payload
@@ -40,6 +41,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
         case types.REGISTER_FAIL:
         case types.SUBMIT_SETTINGS_FAIL:
         case types.USER_LOCATION_FAIL:
+        case types.USER_EVENT_FAIL:
             return {
                 ...state,
                 isLoading: payload
@@ -70,6 +72,18 @@ export const userReducer = (state = initialState, { type, payload }) => {
                     favorite_pizza_toppings: state.favorite_pizza_toppings,
                     profile_image: state.profile_image
                 }
+            }
+        case types.USER_EVENT_SUCCESS:
+            return {
+                ...state, events: [...payload]
+            }
+        case types.USER_EVENT_DELETE_SUCCESS:
+            return {
+                ...state, events: [...payload]
+            }
+        case types.USER_EVENT_EDIT_SUCCESS:
+            return {
+                ...state, events: [...payload]
             }
         default:
             return state

@@ -73,3 +73,40 @@ export const locationByUser = (id) => dispatch => {
             console.log(err, 'from error reducer')
         })
 }
+
+export const eventsByUser = (id) => dispatch => {
+    dispatch({ type: types.USER_EVENT_START, payload: true })
+    API.get(`/events/users/${id}`)
+        .then((res) => {
+            // console.log(res.data, "user event state");
+            const currentDate = new Date().toISOString();
+            dispatch({
+                type: types.USER_EVENT_SUCCESS,
+                payload: res.data
+                    .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
+                    .filter((date) => date.start_time > currentDate)
+            });
+        })
+        .catch((err) => {
+            dispatch({ type: types.USER_EVENT_FAIL, payload: false })
+            console.log(err, 'error from eventsByUser action')
+        }); 
+}
+
+export const userDeleteEvent = (id, user) => dispatch => {
+    dispatch({ type: types.USER_EVENT_DELETE_START, payload: true })
+    API.delete(`/events/${id}`)
+        .then((res) => {
+            const filterDeletedEvent = user.events.filter(
+              (event) => event.id !== id
+            );
+            dispatch({
+                type: types.USER_EVENT_DELETE_SUCCESS,
+                payload: filterDeletedEvent 
+            })
+        })
+        .catch((err) => {
+            dispatch({ type: types.USER_EVENT_DELETE_FAIL, payload: false })
+            console.log(err, 'error from userDeleteEvent action')
+        })
+}
