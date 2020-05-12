@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Icon, Item, Label } from "semantic-ui-react";
 import Moment from "react-moment";
 import EventUpdate from "./EventUpdate";
+import { userDeleteEvent } from "../../../redux/actions/userActions";
 
-const UserEvent = ({ event, events, setEvents, deleteEvent }) => {
+const UserEvent = ({ event }) => {
+  const user = useSelector(state => state.user)
   const [toggleEdit, setToggleEdit] = useState(false);
+  const dispatch = useDispatch();
   const [eventToEdit, setEventToEdit] = useState({});
 
   const editEvent = (event) => {
@@ -59,7 +63,7 @@ const UserEvent = ({ event, events, setEvents, deleteEvent }) => {
               as="a"
               onClick={(e) => {
                 e.stopPropagation();
-                deleteEvent(event.id);
+                dispatch(userDeleteEvent(event.id, user));
               }}
             >
               <Icon name="trash" />
@@ -70,8 +74,7 @@ const UserEvent = ({ event, events, setEvents, deleteEvent }) => {
       {toggleEdit && (
         <EventUpdate
           event={event}
-          events={events}
-          setEvents={setEvents}
+          events={user.events}
           eventToEdit={eventToEdit}
           setEventToEdit={setEventToEdit}
           toggleEdit={toggleEdit}
