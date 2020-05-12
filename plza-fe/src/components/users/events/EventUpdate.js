@@ -1,30 +1,35 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import API from "../../../utils/API";
+import { USER_EVENT_EDIT_SUCCESS } from "../../../redux/types";
 
 const EventUpdate = ({
   event,
-  events,
-  setEvents,
   eventToEdit,
   setEventToEdit,
   toggleEdit,
   setToggleEdit,
 }) => {
   const { handleSubmit, register, errors } = useForm();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const saveEdit = (values) => {
     API.put(`/events/${eventToEdit.id}`, values)
       .then((res) => {
-        const filterEditEvent = events.filter(
+        const filterEditEvent = user.events.filter(
           (event) => event.id !== res.data.id
         );
-        const updatedEvent = { ...event, ...res.data }
-        setEvents(
-          [...filterEditEvent, updatedEvent].sort(
+        const updatedEvent = { ...event, ...res.data };
+
+        dispatch({
+          type: USER_EVENT_EDIT_SUCCESS,
+          payload: [...filterEditEvent, updatedEvent].sort(
             (a, b) => new Date(a.start_time) - new Date(b.start_time)
-          )
-        );
+          ),
+        });
+
         setEventToEdit({
           title: "",
           description: "",
