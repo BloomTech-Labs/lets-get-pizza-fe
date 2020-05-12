@@ -16,8 +16,8 @@ export default function FriendsList() {
 
   const handlePageChange = (pageNumber) => {
     //everything with 2 needs to be 10 on final render for 10 friends per page, 2 is for test
-    let upperLimit = parseInt(pageNumber) * 2;
-    let lowerLimit = upperLimit - 2;
+    let upperLimit = parseInt(pageNumber) * 5;
+    let lowerLimit = upperLimit - 5;
     let data = [];
     if (upperLimit <= itemLength) {
       data = friends.slice(lowerLimit, upperLimit);
@@ -29,16 +29,23 @@ export default function FriendsList() {
   };
 
   const removeFriend = (id) => {
-    let newList = friends.filter((keepfriend) => keepfriend.friends_id != id);
-    setFriends(newList); //add to component, although pointless if we window.location.reload
-    API.delete(`/friends/${id}`)
+    let friendToDelete = friends.filter(
+      (deleteIT) => deleteIT.friends_id == id
+    );
+    let relationshipID = friendToDelete[0].id;
+    console.log(relationshipID);
+
+    API.delete(`/friends/${relationshipID}`)
       .then((res) => {
         console.log(res);
-        //window.location.reload();
+        window.location.reload(); //may need to be props.history push
       })
       .catch((err) => {
         console.log(err);
       });
+    //  how to delete the relationship if its two sided, as it should be?
+    // after deleting the first relationship, make get to friends with id of the friendToDelete, to get their friends
+    // and test if that friends list has a friend with the id of user making original delete, if it does, delete that relationship
   };
 
   useEffect(() => {
@@ -48,8 +55,9 @@ export default function FriendsList() {
         console.log(user, "user info logged");
         setFriends(res.data);
         setItemLength(res.data.length);
-        res.data.length > 2
-          ? setCurrentData(res.data.slice(0, 2))
+
+        res.data.length > 5
+          ? setCurrentData(res.data.slice(0, 5))
           : setCurrentData(res.data.slice(0, res.data.length));
         //if less than 10 make res.data.length
       })
@@ -58,10 +66,12 @@ export default function FriendsList() {
       });
   }, [setFriends]);
 
-  return (
+  return friends.length != 0 ? (
     <div className="plzaFriendsList">
       <h1>{user.username}'s Friends</h1>
+      {/* {friends.length == 0 && <h1>You have no friends, loser!</h1>} */}
       <List className="actualList" floated="left" size="big">
+        {console.log("friend length", friends.length)}
         {currentData.map((friend) => {
           return (
             <FriendOnList
@@ -74,12 +84,43 @@ export default function FriendsList() {
       </List>
       <Pagination
         activePage={activePage}
-        itemsCountPerPage={2}
+        itemsCountPerPage={5}
         totalItemsCount={itemLength}
         pageRangeDisplayed={1}
         onChange={handlePageChange}
         className="pagination"
       />
     </div>
+  ) : (
+    <div>
+      <h1>{user.username}'s Friends</h1>
+      <div className="noFriends fade-in">You have no friends, loser</div>
+    </div>
   );
+  // return (
+  //   <div className="plzaFriendsList">
+  //     <h1>{user.username}'s Friends</h1>
+  //     {/* {friends.length == 0 && <h1>You have no friends, loser!</h1>} */}
+  //     <List className="actualList" floated="left" size="big">
+  //       {console.log("friend length", friends.length)}
+  //       {currentData.map((friend) => {
+  //         return (
+  //           <FriendOnList
+  //             key={friend.friends_id}
+  //             friends={friend}
+  //             remove={removeFriend}
+  //           />
+  //         );
+  //       })}
+  //     </List>
+  //     <Pagination
+  //       activePage={activePage}
+  //       itemsCountPerPage={5}
+  //       totalItemsCount={itemLength}
+  //       pageRangeDisplayed={1}
+  //       onChange={handlePageChange}
+  //       className="pagination"
+  //     />
+  //   </div>
+  // );
 }
