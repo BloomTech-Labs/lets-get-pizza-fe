@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserEditButton should render with text from props 1`] = `
+<div
+  className="column"
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+    }
+  }
+>
+  <button
+    className="ui tiny button"
+    id="itemName"
+    onClick={[Function]}
+  >
+    textValue
+  </button>
+</div>
+`;
