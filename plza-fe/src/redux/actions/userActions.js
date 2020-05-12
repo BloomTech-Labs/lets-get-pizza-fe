@@ -97,3 +97,17 @@ export const eventsByUser = (id) => (dispatch) => {
       console.log(err);
     });
 };
+
+//reviews by user
+export const reviewsByUser = (id) => (dispatch) => {
+  API.get(`reviews/users/${id}`)
+    .then((res) => {
+      dispatch({
+        type: types.USER_REVIEW_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
