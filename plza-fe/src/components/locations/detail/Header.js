@@ -37,10 +37,6 @@ const LocationHeader = ({ location }) => {
         />
         {parseInt(id) === favoriteShop ? 'Favorited' : 'Make Favorite'}
       </Header.Subheader>
-
-      {location.store_bio && (
-        <Header.Subheader>{location.store_bio}</Header.Subheader>
-      )}
     </Header.Content>
   </Header>
   )
