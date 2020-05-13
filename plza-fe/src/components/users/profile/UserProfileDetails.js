@@ -14,7 +14,9 @@ const UserProfileDetails = (props) => {
         <div className="name-shop-ch">
           <h1 className="profile-name-ch">{user.username}</h1>
           <span className="fav-shop-heading-ch">Favorite Pizza Shop</span>
-          <h3 className="fav-shop-title-ch">{user.favShopDetails.username}</h3>
+          <h3 className="fav-shop-title-ch">
+            {user.favShopDetails.business_name}
+          </h3>
         </div>
       </section>
       <ActivityContainer />
