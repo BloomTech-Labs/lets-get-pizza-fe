@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import API from "../../../utils/API";
-import { USER_EVENT_EDIT_SUCCESS } from "../../../redux/types";
+import { USER_EVENT_EDIT_SUCCESS } from "../../../redux/types/userTypes";
 
 const EventUpdate = ({
   event,
