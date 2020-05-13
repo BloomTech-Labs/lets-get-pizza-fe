@@ -53,7 +53,6 @@ export const userSubmitSettings = (event, user) => dispatch => {
     if (event.target.id === 'save') {
         API.put(`/users`, user)
             .then(res => {
-                console.log(res.data)
                 dispatch({ type: types.SUBMIT_SETTINGS_SUCCESS, payload: res.data })
             })
             .catch(err => {
