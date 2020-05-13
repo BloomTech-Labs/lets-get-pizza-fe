@@ -1,6 +1,5 @@
-import * as types from "../types";
+import * as types from "../types/userTypes";
 const initialState = {
-  isLoading: false,
   friends: [],
   field: "",
   pendingUserChanges: {},
@@ -14,32 +13,37 @@ const initialState = {
 
 export const userReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case types.LOGIN_START:
-    case types.REGISTER_START:
+    case types.USER_LOGIN_START:
+    case types.USER_REGISTER_START:
     case types.SUBMIT_SETTINGS_START:
     case types.USER_LOCATION_START:
+    case types.IMAGE_UPLOAD_START:
+    case types.USER_EVENT_START:
       return {
         ...state,
         isLoading: payload,
       };
-    case types.LOGIN_SUCCESS:
-    case types.REGISTER_SUCCESS:
+    case types.USER_LOGIN_SUCCESS:
+    case types.USER_REGISTER_SUCCESS:
     case types.SUBMIT_SETTINGS_SUCCESS:
+    case types.IMAGE_UPLOAD_SUCCESS:
       return {
         ...state,
         ...payload,
         isLoading: false,
+        error: undefined,
         pendingUserChanges: { ...payload },
       };
-    case types.LOGIN_FAIL:
+    case types.USER_LOGIN_FAIL:
+    case types.USER_REGISTER_FAIL:
       return {
         ...state,
-        isLoading: false,
-        error: payload,
+        isLoading: payload.isLoading,
+        error: payload.error,
       };
-    case types.REGISTER_FAIL:
     case types.SUBMIT_SETTINGS_FAIL:
     case types.USER_LOCATION_FAIL:
+    case types.USER_EVENT_FAIL:
       return {
         ...state,
         isLoading: payload,
@@ -49,6 +53,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         favShopDetails: { ...payload },
+        error: undefined,
       };
     case types.TOGGLE_EDIT:
       return {
@@ -74,11 +79,26 @@ export const userReducer = (state = initialState, { type, payload }) => {
           profile_image: state.profile_image,
         },
       };
+    case types.IMAGE_UPLOAD_FAIL:
+      return {
+        ...state,
+        isLoading: payload.isLoading,
+        error: payload.error,
+      };
     case types.USER_EVENT_SUCCESS:
       return {
         ...state,
-        isLoading: false,
-        events: payload,
+        events: [...payload],
+      };
+    case types.USER_EVENT_DELETE_SUCCESS:
+      return {
+        ...state,
+        events: [...payload],
+      };
+    case types.USER_EVENT_EDIT_SUCCESS:
+      return {
+        ...state,
+        events: [...payload],
       };
     case types.USER_REVIEW_SUCCESS:
       return {

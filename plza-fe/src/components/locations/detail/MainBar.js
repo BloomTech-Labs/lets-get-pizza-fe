@@ -92,7 +92,7 @@ export default function MainBar(props) {
   const tabPanes = [
     {
       menuItem: { key: "reviews", icon: "comments" },
-      render: () => renderTab("review", "comments", currUser, reviews, Reviews)
+      render: () => renderTab("review", "comments", currUser.username, reviews, Reviews)
     },
     {
       menuItem: { key: "promotions", icon: "dollar" },
@@ -102,7 +102,7 @@ export default function MainBar(props) {
     {
       menuItem: { key: "events", icon: "calendar" },
       render: () =>
-        renderTab("event", "calendar", currUser || canEdit, events, Events)
+        renderTab("event", "calendar", currUser.username || canEdit, events, Events)
     }
   ];
 
