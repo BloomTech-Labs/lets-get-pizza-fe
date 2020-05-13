@@ -11,6 +11,7 @@ const DropzoneModal = ()  => {
     const [preview, setPreview] = useState(profile_image)
     const [image, setImage] = useState()
     const [open, setOpen] = useState(false)
+    const [isDelete, setIsDelete] = useState(false)
     return (
       <Modal 
       size='large' 
@@ -23,10 +24,10 @@ const DropzoneModal = ()  => {
       >
         <Header>Upload Image</Header>
         <Modal.Content>
-            {isLoading ? <LoadingLottie height={228} width={228}/> : <Dropzone error={error} preview={preview} setPreview={setPreview} setImage={setImage}/>}
+            {isLoading ? <LoadingLottie height={228} width={228}/> : <Dropzone error={error} preview={preview} setPreview={setPreview} setImage={setImage} setIsDelete={setIsDelete}/>}
         </Modal.Content>
         <Modal.Actions>
-            <DropzoneButtons image={image} setOpen={setOpen}/>
+            <DropzoneButtons setIsDelete={setIsDelete} isDelete={isDelete} image={image} setOpen={setOpen}/>
         </Modal.Actions>
       </Modal>
     );
