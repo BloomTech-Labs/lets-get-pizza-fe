@@ -13,10 +13,16 @@ const UserProfileDetails = (props) => {
         <ProfilePicture user={user} />
         <div className="name-shop-ch">
           <h1 className="profile-name-ch">{user.username}</h1>
-          <span className="fav-shop-heading-ch">Favorite Pizza Shop</span>
-          <h3 className="fav-shop-title-ch">
-            {user.favShopDetails.business_name}
-          </h3>
+
+          <h5 className="fav-shop-title-ch">
+            <span className="fav-shop-heading-ch">Favorite Pizza Shop | </span>
+            <a href={`/locations/${user.favShopDetails.id}`}>
+              {user.favShopDetails.business_name}
+            </a>
+          </h5>
+          <section className="user-bio-ch">
+            <p>{user.bio}</p>
+          </section>
         </div>
       </section>
       <ActivityContainer />
