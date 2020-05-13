@@ -74,6 +74,7 @@ export const locationByUser = (id) => dispatch => {
         })
 }
 
+// Events
 export const eventsByUser = (id) => dispatch => {
     dispatch({ type: types.USER_EVENT_START, payload: true })
     API.get(`/events/users/${id}`)
@@ -108,5 +109,19 @@ export const userDeleteEvent = (id, user) => dispatch => {
         .catch((err) => {
             dispatch({ type: types.USER_EVENT_DELETE_FAIL, payload: false })
             console.log(err, 'error from userDeleteEvent action')
+        })
+}
+
+export const reviewsByUser = id => dispatch => {
+    API.get(`/events/users/${id}`)
+        .then(res => {
+            dispatch({
+                type: types.USER_REVIEW_SUCCESS,
+                payload: res.data.sort((a, b) => a.id - b.id)
+            })
+        })
+        .catch((err) => {
+            dispatch({ type: types.USER_REVIEW_FAIL, payload: false })
+            console.log(err, 'error from reviewsByUser action');
         })
 }

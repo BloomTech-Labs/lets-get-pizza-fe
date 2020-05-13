@@ -85,6 +85,10 @@ export const userReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state, events: [...payload]
             }
+        case types.USER_REVIEW_SUCCESS:
+            return {
+                ...state, reviews: [...payload]
+            }
         default:
             return state
     }
