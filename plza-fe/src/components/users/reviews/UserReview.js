@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon, Item, Label, Rating } from "semantic-ui-react";
+import { userDeleteReview } from "../../../redux/actions/userActions.js"
 
 const UserReview = ({ review }) => {
   const user = useSelector((state) => state.user);
@@ -52,7 +53,7 @@ const UserReview = ({ review }) => {
               as="a"
               onClick={(e) => {
                 e.stopPropagation();
-                // dispatch(userDeleteEvent(event.id, user));
+                dispatch(userDeleteReview(review.id, user));
               }}
             >
               <Icon name="trash" />

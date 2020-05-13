@@ -101,10 +101,11 @@ export const userReducer = (state = initialState, { type, payload }) => {
         events: [...payload],
       };
     case types.USER_REVIEW_SUCCESS:
+    case types.USER_REVIEW_DELETE_SUCCESS:
+    case types.USER_REVIEW_EDIT_SUCCESS:
       return {
         ...state,
-        isLoading: false,
-        reviews: payload,
+        reviews: [...payload],
       };
     default:
       return state;

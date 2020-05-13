@@ -165,3 +165,21 @@ export const reviewsByUser = id => dispatch => {
             console.log(err, 'error from reviewsByUser action');
         })
 }
+
+export const userDeleteReview = (id, user) => dispatch => {
+    dispatch({ type: types.USER_REVIEW_DELETE_START, payload: true })
+    API.delete(`/reviews/${id}`)
+        .then((res) => {
+            const filterDeletedReview = user.reviews.filter(
+                review => review.id !== id
+            );
+            dispatch({
+                type: types.USER_REVIEW_DELETE_SUCCESS,
+                payload: filterDeletedReview
+            })
+        })
+        .catch((err) => {
+            dispatch({ type: types.USER_REVIEW_DELETE_FAIL, payload: false })
+            console.log(err, 'error from userDeleteReview action');
+        })
+}
