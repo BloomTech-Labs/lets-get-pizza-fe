@@ -133,11 +133,11 @@ export const userDeleteEvent = (id, user) => dispatch => {
 }
 
 export const reviewsByUser = id => dispatch => {
-    API.get(`/events/users/${id}`)
+    API.get(`/reviews/users/${id}`)
         .then(res => {
             dispatch({
                 type: types.USER_REVIEW_SUCCESS,
-                payload: res.data.sort((a, b) => a.id - b.id)
+                payload: res.data.sort((a, b) => b.id - a.id)
             })
         })
         .catch((err) => {
