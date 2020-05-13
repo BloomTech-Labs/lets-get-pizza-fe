@@ -28,15 +28,17 @@ const LocationHeader = ({ location }) => {
         maxRating={5}
         style={{ position: "relative", top: "-5px", marginLeft: "10px" }}
       />
-      <Header.Subheader>
-        <Icon 
-          name='heart' 
-          color={parseInt(id) === favoriteShop ? 'red' : 'grey'} 
-          // Need to pass {target: {id: 'save}} as an argument in order to hit the API in the actions file
-          onClick={() => dispatch(userSubmitSettings({target: {id: 'save'}}, {favorite_pizza_shop: id}))}
-        />
-        {parseInt(id) === favoriteShop ? 'Favorited' : 'Make Favorite'}
-      </Header.Subheader>
+      {favoriteShop && 
+        <Header.Subheader>
+          <Icon 
+            name='heart' 
+            color={parseInt(id) === favoriteShop ? 'red' : 'grey'} 
+            // Need to pass {target: {id: 'save}} as an argument in order to hit the API in the actions file
+            onClick={() => dispatch(userSubmitSettings({target: {id: 'save'}}, {favorite_pizza_shop: id}))}
+          />
+          {parseInt(id) === favoriteShop ? 'Favorited' : 'Make Favorite'}
+        </Header.Subheader>
+      }
     </Header.Content>
   </Header>
   )
