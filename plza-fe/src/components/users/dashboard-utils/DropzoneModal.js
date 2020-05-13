@@ -7,12 +7,10 @@ import { LoadingLottie } from './LoadingLottie.js'
 import { useSelector } from 'react-redux'
 
 const DropzoneModal = ()  => {
-    const profile_image = useSelector(({user}) => user.profile_image)
+    const [profile_image, error, isLoading] = useSelector(({user}) => [user.profile_image, user.error, user.isLoading])
     const [preview, setPreview] = useState(profile_image)
     const [image, setImage] = useState()
     const [open, setOpen] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState(false)
     return (
       <Modal 
       size='large' 
@@ -28,7 +26,7 @@ const DropzoneModal = ()  => {
             {isLoading ? <LoadingLottie height={228} width={228}/> : <Dropzone error={error} preview={preview} setPreview={setPreview} setImage={setImage}/>}
         </Modal.Content>
         <Modal.Actions>
-            <DropzoneButtons image={image} setOpen={setOpen} setIsLoading={setIsLoading} setError={setError}/>
+            <DropzoneButtons image={image} setOpen={setOpen}/>
         </Modal.Actions>
       </Modal>
     );

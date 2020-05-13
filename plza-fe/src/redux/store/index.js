@@ -16,18 +16,21 @@ const encryptor = createEncryptor({
     }
 })
 
-// Blacklist `isLoading` and `error` keys from user reducer to prevent them from persisting
-const userBlackList = createBlacklistFilter(
-    'user',
-    ['isLoading', 'error']
-)
+// Create function which will `blacklist`(exclude) chosen state from being persisted 
+const reducerBlackList = (reducer, state) => { 
+    return createBlacklistFilter(
+    reducer,
+    [...state]
+    )
+}
 
 // Configure persistance to use local storage 
 const persistConfig = {
     key: 'root',
     storage,
     transforms: [
-        userBlackList,
+        reducerBlackList('user', ['error', 'isLoading']),
+        reducerBlackList('location', ['error', 'isLoading']),
         encryptor
     ]
 }

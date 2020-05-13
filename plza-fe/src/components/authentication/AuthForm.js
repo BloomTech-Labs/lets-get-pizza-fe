@@ -6,11 +6,11 @@ import { useDispatch } from "react-redux";
 import FormFields from "../forms/FormFields";
 import { baseFields, verificationFields, options } from "../forms/FormInformation";
 
-const AuthForm = ({ isRegistrationForm = false, registerFields = '', loginSubmit, registerSubmit, type, diet, loading, error }) => {
+const AuthForm = ({ isRegistrationForm = false,registerFields = '',id,loginSubmit,registerSubmit,type,diet,error,isClaim }) => {
   const dispatch = useDispatch()
   const { pathname } = useLocation()
   const { register, errors, setError, handleSubmit, setValue, triggerValidation } = useForm();
-  const allFields = [...registerFields, ...baseFields, ...verificationFields, { name: diet.name }]
+  const allFields = [...registerFields, ...baseFields, ...verificationFields, { name: diet.name, required: false }]
 
   useEffect(() => {
     // Register all input fields
@@ -21,7 +21,7 @@ const AuthForm = ({ isRegistrationForm = false, registerFields = '', loginSubmit
 
   const handleRegister = (data) => {
     data.password === data.verify_password ?
-      dispatch(registerSubmit(data)) : setError('verify_password', { type: 'noMatch' })
+      dispatch(registerSubmit(data, id)) : setError('verify_password', { type: 'noMatch' })
   }
 
   const handleChange = async (e, { name, value }) => {
@@ -32,14 +32,17 @@ const AuthForm = ({ isRegistrationForm = false, registerFields = '', loginSubmit
   return (
     <>
       <Form
-        onSubmit={isRegistrationForm ?
+        // If the form is used for registration or claiming a business
+        // we will dispatch `handleRegister` action which is passed down
+        // as props
+        onSubmit={(isRegistrationForm || isClaim) ?
           handleSubmit(handleRegister) :
           handleSubmit((data) => dispatch(loginSubmit(data)))
         }
       >
         <Form.Group widths="equal">
           <FormFields fields={baseFields} handleChange={handleChange} errors={errors} />
-          {isRegistrationForm && (
+          {(isRegistrationForm || isClaim) && (
             <>
               <FormFields fields={verificationFields} errors={errors} handleChange={handleChange} />
             </>
@@ -56,12 +59,12 @@ const AuthForm = ({ isRegistrationForm = false, registerFields = '', loginSubmit
             />
           </>
         )}
-        {error !== undefined && <Header sub color='red'>{error}</Header>}<br />
-        <Button color='blue' type="submit">Submit</Button>
+        {error !== undefined && <Header sub color='red' style={{margin: '0 0 10px'}}>{error}</Header>}
+        <Button color='blue' type="submit" style={{marginBottom: '10px'}}>Submit</Button>
       </Form>
       {pathname.includes('users') ?
-        <Link to={`/locations/${type}`}>Business {type}</Link> :
-        <Link to={`/users/${type}`}>User {type}</Link>
+        <p>Business Owner |  <Link to={`/locations/${type}`} style={{textTransform: 'capitalize'}}>{type} Here</Link></p> :
+        <p>Pizza Eater |  <Link to={`/users/${type}`} style={{textTransform: 'capitalize'}}>{type} Here</Link></p>
       }
     </>
   );
