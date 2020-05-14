@@ -90,7 +90,7 @@ const ReviewUpdate = ({
         />
       </div>
 
-      <Button.Group>
+      <Button.Group style={{ margin: "1.5rem 0" }}>
         <Button color="black" onClick={() => setToggleEdit(!toggleEdit)}>
           Undo
         </Button>
