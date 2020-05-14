@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon, Item, Label, Rating } from "semantic-ui-react";
 import { userDeleteReview } from "../../../redux/actions/userActions.js"
+import ReviewUpdate from "./ReviewUpdate.js";
 
 const UserReview = ({ review }) => {
   const user = useSelector((state) => state.user);
@@ -62,14 +63,14 @@ const UserReview = ({ review }) => {
         </Item.Content>
       </Item>
       {toggleEdit && (
-        {/* <ReviewUpdate
+        <ReviewUpdate
           review={review}
           reviews={user.reviews}
           reviewToEdit={reviewToEdit}
           setReviewToEdit={setReviewToEdit}
           toggleEdit={toggleEdit}
           setToggleEdit={setToggleEdit}
-        /> */}
+        />
       )}
     </>
   );
