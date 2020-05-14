@@ -19,6 +19,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.USER_LOCATION_START:
     case types.IMAGE_UPLOAD_START:
     case types.USER_EVENT_START:
+    case types.IMAGE_DELETE_START:
       return {
         ...state,
         isLoading: payload,
@@ -27,6 +28,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.USER_REGISTER_SUCCESS:
     case types.SUBMIT_SETTINGS_SUCCESS:
     case types.IMAGE_UPLOAD_SUCCESS:
+    case types.IMAGE_DELETE_SUCCESS:
       return {
         ...state,
         ...payload,
@@ -80,6 +82,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
         },
       };
     case types.IMAGE_UPLOAD_FAIL:
+    case types.IMAGE_DELETE_FAIL:
       return {
         ...state,
         isLoading: payload.isLoading,
