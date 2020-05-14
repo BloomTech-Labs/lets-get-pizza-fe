@@ -20,7 +20,7 @@ export const curr_location = getItem("curr_location");
  * then redirecting them to the home page.
  */
 export function logoutUser() {
-  localStorage.removeItem("curr_user");
+  localStorage.removeItem("persist:root");
   localStorage.removeItem("curr_location");
   localStorage.removeItem("token");
 

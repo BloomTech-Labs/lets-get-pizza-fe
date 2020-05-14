@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import { Menu, Confirm, Dropdown } from "semantic-ui-react";
 import {
   getItem,
-  curr_location,
   logoutUser
 } from "../../utils/auth";
 
@@ -14,6 +13,7 @@ import "./Header.css";
 
 export default function Masthead() {
   const user = useSelector(({ user }) => user)
+  const location = useSelector(({location}) => location)
   const token = getItem('token')
   const [isMenuVisible, setMenuVisibility] = useState(false);
   const [isModalVisible, setModalVisibility] = useState(false);
@@ -37,10 +37,10 @@ export default function Masthead() {
   const ProfileLink = () => {
     if (user.username) {
       return <NavbarItem to="/users/dash">{user.username}</NavbarItem>;
-    } else if (curr_location) {
+    } else if (location.business_name) {
       return (
-        <NavbarItem to={`/locations/${curr_location.id}`}>
-          {curr_location.business_name}
+        <NavbarItem to={`/locations/${location.id}`}>
+          {location.business_name}
         </NavbarItem>
       );
     }
