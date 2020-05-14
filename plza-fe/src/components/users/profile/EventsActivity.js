@@ -1,6 +1,6 @@
 import React from "react";
 import ActivityCard from "./ActivityCard";
-import { Image } from "semantic-ui-react";
+
 
 export default function EventsActivity(props) {
   return (

@@ -58,21 +58,21 @@ export const userEditSettings = (event, value) => (dispatch) => {
       });
 };
 
-export const userSubmitSettings = (event, user) => (dispatch) => {
-  dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true });
-  if (event.target.id === "save") {
-    API.put(`/users`, user)
-      .then((res) => {
-        console.log(res.data);
-        dispatch({ type: types.SUBMIT_SETTINGS_SUCCESS, payload: res.data });
-      })
-      .catch((err) => {
-        dispatch({ type: types.SUBMIT_SETTINGS_FAIL, payload: false });
-      });
-  } else {
-    dispatch({ type: types.EDIT_CANCEL_CHANGES });
-  }
-};
+
+export const userSubmitSettings = (event, user) => dispatch => {
+    dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true })
+    if (event.target.id === 'save') {
+        API.put(`/users`, user)
+            .then(res => {
+                dispatch({ type: types.SUBMIT_SETTINGS_SUCCESS, payload: res.data })
+            })
+            .catch(err => {
+                dispatch({ type: types.SUBMIT_SETTINGS_FAIL, payload: false })
+            })
+    } else {
+        dispatch({ type: types.EDIT_CANCEL_CHANGES })
+    }
+}
 
 export const uploadImage = (formData, setOpen) => (dispatch) => {
   dispatch({ type: types.IMAGE_UPLOAD_START, payload: true });
@@ -84,6 +84,33 @@ export const uploadImage = (formData, setOpen) => (dispatch) => {
     .then((res) => {
       dispatch({ type: types.IMAGE_UPLOAD_SUCCESS, payload: res.data });
       setOpen(false);
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.IMAGE_UPLOAD_FAIL,
+        payload: {
+          error: "There was an error uploading your image",
+          isLoading: false,
+        },
+      });
+    });
+};
+
+export const deleteImage = (setOpen) => dispatch => {
+  dispatch({type: types.IMAGE_DELETE_START, payload: true})
+  API.put('/users', {profile_image: 'https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg'})
+    .then(res => {
+      dispatch({type: types.IMAGE_DELETE_SUCCESS, payload: res.data})
+      setOpen(false)
+    })
+    .catch(err => {
+      dispatch({
+        type: types.IMAGE_DELETE_FAIL,
+        payload: {
+          error: "There was an error removing your image",
+          isLoading: false,
+        },
+      });
     })
     .catch((err) => {
       dispatch({
@@ -161,3 +188,4 @@ export const reviewsByUser = (id) => (dispatch) => {
       console.log(err);
     });
 };
+
