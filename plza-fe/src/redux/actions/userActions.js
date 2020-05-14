@@ -73,7 +73,6 @@ export const userSubmitSettings = (event, user) => dispatch => {
     }
 }
 
-
 export const uploadImage = (formData, setOpen) => (dispatch) => {
   dispatch({ type: types.IMAGE_UPLOAD_START, payload: true });
 
@@ -95,6 +94,24 @@ export const uploadImage = (formData, setOpen) => (dispatch) => {
       });
     });
 };
+
+export const deleteImage = (setOpen) => dispatch => {
+  dispatch({type: types.IMAGE_DELETE_START, payload: true})
+  API.put('/users', {profile_image: 'https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg'})
+    .then(res => {
+      dispatch({type: types.IMAGE_DELETE_SUCCESS, payload: res.data})
+      setOpen(false)
+    })
+    .catch(err => {
+      dispatch({
+        type: types.IMAGE_DELETE_FAIL,
+        payload: {
+          error: "There was an error removing your image",
+          isLoading: false,
+        },
+      });
+    })
+}
 
 // Location
 
