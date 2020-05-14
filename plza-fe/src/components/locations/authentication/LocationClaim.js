@@ -2,17 +2,20 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import SimpleContainer from "../../main/SimpleContainer";
-import AuthenticateForm from "../../authentication/AuthenticateForm";
+import AuthForm from "../../authentication/AuthForm";
+import { locationClaim } from "../../../redux/actions/locationsActions";
 
 export default function LocationClaim() {
   const { id } = useParams();
 
   return (
     <SimpleContainer title="Claim this business">
-      <AuthenticateForm
-        isRegistrationForm
-        endpoint={`/auth/location/claim/${id}`}
-      />
+      <AuthForm 
+      isClaim 
+      id={id}
+      registerSubmit={locationClaim} 
+      type='register' 
+      diet={{name: '', label: ''}}/>
     </SimpleContainer>
   );
 }

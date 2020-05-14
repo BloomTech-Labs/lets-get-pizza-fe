@@ -3,11 +3,11 @@ import { useParams, useHistory } from "react-router-dom";
 import { Loader, Container, Grid } from "semantic-ui-react";
 
 import API from "../../../utils/API";
-import { curr_user, curr_location } from "../../../utils/auth";
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import MainBar from "./MainBar";
+import { useSelector } from "react-redux";
 
 // Location detail page
 // Displays all information about a given location through the
@@ -16,6 +16,8 @@ export default function LocationPage() {
   const { id, tab } = useParams();
   const history = useHistory();
 
+  const [curr_location, user] = useSelector(({location, user}) => [location, user])
+  
   const [isLoading, setIsLoading] = useState(true);
 
   const [selectedTab, setSelectedTab] = useState(0);
@@ -84,7 +86,7 @@ export default function LocationPage() {
           <MainBar
             history={history}
             locationID={id}
-            currUser={curr_user}
+            currUser={user}
             canEdit={canEdit}
             selectedTab={selectedTab}
             setSelectedTab={setSelectedTab}
