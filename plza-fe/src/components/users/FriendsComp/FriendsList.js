@@ -97,30 +97,4 @@ export default function FriendsList() {
       <div className="noFriends fade-in">You have no friends, loser</div>
     </div>
   );
-  // return (
-  //   <div className="plzaFriendsList">
-  //     <h1>{user.username}'s Friends</h1>
-  //     {/* {friends.length == 0 && <h1>You have no friends, loser!</h1>} */}
-  //     <List className="actualList" floated="left" size="big">
-  //       {console.log("friend length", friends.length)}
-  //       {currentData.map((friend) => {
-  //         return (
-  //           <FriendOnList
-  //             key={friend.friends_id}
-  //             friends={friend}
-  //             remove={removeFriend}
-  //           />
-  //         );
-  //       })}
-  //     </List>
-  //     <Pagination
-  //       activePage={activePage}
-  //       itemsCountPerPage={5}
-  //       totalItemsCount={itemLength}
-  //       pageRangeDisplayed={1}
-  //       onChange={handlePageChange}
-  //       className="pagination"
-  //     />
-  //   </div>
-  // );
 }
