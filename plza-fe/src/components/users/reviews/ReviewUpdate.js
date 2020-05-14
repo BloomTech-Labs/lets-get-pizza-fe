@@ -98,7 +98,7 @@ const ReviewUpdate = ({
           positive
           icon="checkmark"
           labelPosition="right"
-          content="Submit"
+          content="Update"
           type="submit"
         />
       </Button.Group>
