@@ -114,7 +114,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        friends: [...payload],
+        friends: [payload],
       };
     default:
       return state;

@@ -52,31 +52,19 @@ export default function FriendsList() {
 
   useEffect(() => {
     dispatch(getUserFriends(user.id));
-    console.log(user.friends);
+    console.log(user.friends, "dispatch user friends");
+    setItemLength(user.friends[0].length);
+    user.friends[0].length > 5
+      ? setCurrentData(user.friends[0].slice(0, 5))
+      : setCurrentData(user.friends[0].slice(0, user.friends[0].length));
   }, []);
-  //   API.get(`/friends/${user.id}`)
-  //     .then((res) => {
-  //       console.log(res, "database call");
-  //       console.log(user, "user info logged");
-  //       setFriends(res.data);
-  //       setItemLength(res.data.length);
 
-  //       res.data.length > 5
-  //         ? setCurrentData(res.data.slice(0, 5))
-  //         : setCurrentData(res.data.slice(0, res.data.length));
-  //       //if less than 10 make res.data.length
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [setFriends]);
-
-  return friends.length != 0 ? (
+  return user.friends.length != 0 ? (
     <div className="plzaFriendsList">
       <h1>{user.username}'s Friends</h1>
       {/* {friends.length == 0 && <h1>You have no friends, loser!</h1>} */}
       <List className="actualList" floated="left" size="big">
-        {console.log("friend length", friends.length)}
+        {console.log("friend length", user.friends[0].length)}
         {currentData.map((friend) => {
           return (
             <FriendOnList

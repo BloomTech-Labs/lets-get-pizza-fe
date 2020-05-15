@@ -182,8 +182,8 @@ export const reviewsByUser = (id) => (dispatch) => {
     });
 };
 
-export const getUserFriends = (id) => (dispath) => {
-  dispath({ type: types.GET_USER_FRIENDS_START, payload: true });
+export const getUserFriends = (id) => (dispatch) => {
+  dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
   API.get(`/friends/${id}`)
     .then((res) => {
       dispatch({
