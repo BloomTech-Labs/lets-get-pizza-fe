@@ -20,6 +20,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.USER_EVENT_START:
     case types.IMAGE_DELETE_START:
     case types.GET_USER_FRIENDS_START:
+    case types.DELETE_USER_FRIENDS_START:
       return {
         ...state,
         isLoading: payload,
@@ -46,7 +47,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.SUBMIT_SETTINGS_FAIL:
     case types.USER_LOCATION_FAIL:
     case types.USER_EVENT_FAIL:
-    case types.GET_USER_FRIENDS_FAIL:
+    case types.DELETE_USER_FRIENDS_FAIL:
       return {
         ...state,
         isLoading: payload,
@@ -114,7 +115,19 @@ export const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        friends: [payload],
+        friends: payload,
+      };
+    case types.GET_USER_FRIENDS_FAIL:
+      return {
+        ...state,
+        isLoading: payload,
+        friends: [],
+      };
+    case types.DELETE_USER_FRIENDS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        friends: payload,
       };
     default:
       return state;

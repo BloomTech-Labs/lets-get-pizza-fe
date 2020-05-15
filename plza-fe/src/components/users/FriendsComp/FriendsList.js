@@ -6,7 +6,10 @@ import FriendOnList from "./FriendOnList";
 import API from "../../../utils/API";
 import Pagination from "react-js-pagination";
 import "./FriendsList.css";
-import { getUserFriends } from "../../../redux/actions/userActions";
+import {
+  getUserFriends,
+  deleteUserFriends,
+} from "../../../redux/actions/userActions";
 
 export default function FriendsList() {
   const [friends, setFriends] = useState([]);
@@ -22,29 +25,22 @@ export default function FriendsList() {
     let lowerLimit = upperLimit - 5;
     let data = [];
     if (upperLimit <= itemLength) {
-      data = friends.slice(lowerLimit, upperLimit);
+      data = user.friends.slice(lowerLimit, upperLimit);
     } else {
-      data = friends.slice(lowerLimit);
+      data = user.friends.slice(lowerLimit);
     }
     setCurrentData(data);
     setActivePage(pageNumber);
   };
 
   const removeFriend = (id) => {
-    let friendToDelete = friends.filter(
+    let friendToDelete = user.friends.filter(
       (deleteIT) => deleteIT.friends_id == id
     );
     let relationshipID = friendToDelete[0].id;
     console.log(relationshipID);
+    dispatch(deleteUserFriends(relationshipID, user));
 
-    API.delete(`/friends/${relationshipID}`)
-      .then((res) => {
-        console.log(res);
-        window.location.reload(); //may need to be props.history push
-      })
-      .catch((err) => {
-        console.log(err);
-      });
     //  how to delete the relationship if its two sided, as it should be?
     // after deleting the first relationship, make get to friends with id of the friendToDelete, to get their friends
     // and test if that friends list has a friend with the id of user making original delete, if it does, delete that relationship
@@ -52,11 +48,12 @@ export default function FriendsList() {
 
   useEffect(() => {
     dispatch(getUserFriends(user.id));
-    console.log(user.friends, "dispatch user friends");
-    setItemLength(user.friends[0].length);
-    user.friends[0].length > 5
-      ? setCurrentData(user.friends[0].slice(0, 5))
-      : setCurrentData(user.friends[0].slice(0, user.friends[0].length));
+    console.log(user.friends, "component state friends");
+
+    setItemLength(user.friends.length);
+    user.friends.length > 5
+      ? setCurrentData(user.friends.slice(0, 5))
+      : setCurrentData(user.friends.slice(0, user.friends.length));
   }, []);
 
   return user.friends.length != 0 ? (
@@ -64,7 +61,7 @@ export default function FriendsList() {
       <h1>{user.username}'s Friends</h1>
       {/* {friends.length == 0 && <h1>You have no friends, loser!</h1>} */}
       <List className="actualList" floated="left" size="big">
-        {console.log("friend length", user.friends[0].length)}
+        {console.log("friend length", user.friends.length)}
         {currentData.map((friend) => {
           return (
             <FriendOnList

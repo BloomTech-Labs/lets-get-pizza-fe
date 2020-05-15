@@ -196,3 +196,19 @@ export const getUserFriends = (id) => (dispatch) => {
       dispatch({ type: types.GET_USER_FRIENDS_FAIL, payload: false });
     });
 };
+
+export const deleteUserFriends = (id, user) => (dispatch) => {
+  dispatch({ type: types.DELETE_USER_FRIENDS_START, payload: true });
+  API.delete(`friends/${id}`)
+    .then((res) => {
+      const newList = user.friends.filter((keep) => keep.id != id);
+      console.log(res, "logging user deletion from action");
+      console.log(newList, "new kids");
+      dispatch({ type: types.DELETE_USER_FRIENDS_SUCCESS, payload: newList });
+    })
+    .then(window.location.reload())
+    .catch((err) => {
+      dispatch({ type: types.DELETE_USER_FRIENDS_FAIL, payload: false });
+      console.log(err);
+    });
+};
