@@ -58,20 +58,20 @@ export const userEditSettings = (event, value) => (dispatch) => {
       });
 };
 
-export const userSubmitSettings = (event, user) => dispatch => {
-    dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true })
-    if (event.target.id === 'save') {
-        API.put(`/users`, user)
-            .then(res => {
-                dispatch({ type: types.SUBMIT_SETTINGS_SUCCESS, payload: res.data })
-            })
-            .catch(err => {
-                dispatch({ type: types.SUBMIT_SETTINGS_FAIL, payload: false })
-            })
-    } else {
-        dispatch({ type: types.EDIT_CANCEL_CHANGES })
-    }
-}
+export const userSubmitSettings = (event, user) => (dispatch) => {
+  dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true });
+  if (event.target.id === "save") {
+    API.put(`/users`, user)
+      .then((res) => {
+        dispatch({ type: types.SUBMIT_SETTINGS_SUCCESS, payload: res.data });
+      })
+      .catch((err) => {
+        dispatch({ type: types.SUBMIT_SETTINGS_FAIL, payload: false });
+      });
+  } else {
+    dispatch({ type: types.EDIT_CANCEL_CHANGES });
+  }
+};
 
 export const uploadImage = (formData, setOpen) => (dispatch) => {
   dispatch({ type: types.IMAGE_UPLOAD_START, payload: true });
@@ -95,14 +95,17 @@ export const uploadImage = (formData, setOpen) => (dispatch) => {
     });
 };
 
-export const deleteImage = (setOpen) => dispatch => {
-  dispatch({type: types.IMAGE_DELETE_START, payload: true})
-  API.put('/users', {profile_image: 'https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg'})
-    .then(res => {
-      dispatch({type: types.IMAGE_DELETE_SUCCESS, payload: res.data})
-      setOpen(false)
+export const deleteImage = (setOpen) => (dispatch) => {
+  dispatch({ type: types.IMAGE_DELETE_START, payload: true });
+  API.put("/users", {
+    profile_image:
+      "https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg",
+  })
+    .then((res) => {
+      dispatch({ type: types.IMAGE_DELETE_SUCCESS, payload: res.data });
+      setOpen(false);
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
         type: types.IMAGE_DELETE_FAIL,
         payload: {
@@ -110,8 +113,8 @@ export const deleteImage = (setOpen) => dispatch => {
           isLoading: false,
         },
       });
-    })
-}
+    });
+};
 
 // Location
 
@@ -176,5 +179,20 @@ export const reviewsByUser = (id) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
+    });
+};
+
+export const getUserFriends = (id) => (dispath) => {
+  dispath({ type: types.GET_USER_FRIENDS_START, payload: true });
+  API.get(`/friends/${id}`)
+    .then((res) => {
+      dispatch({
+        type: types.GET_USER_FRIENDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err, "error from get user friends");
+      dispatch({ type: types.GET_USER_FRIENDS_FAIL, payload: false });
     });
 };

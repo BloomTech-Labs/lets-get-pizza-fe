@@ -6,6 +6,7 @@ import FriendOnList from "./FriendOnList";
 import API from "../../../utils/API";
 import Pagination from "react-js-pagination";
 import "./FriendsList.css";
+import { getUserFriends } from "../../../redux/actions/userActions";
 
 export default function FriendsList() {
   const [friends, setFriends] = useState([]);
@@ -13,6 +14,7 @@ export default function FriendsList() {
   const [itemLength, setItemLength] = useState(0);
   const [currentData, setCurrentData] = useState([]);
   const user = useSelector(({ user }) => user);
+  const dispatch = useDispatch();
 
   const handlePageChange = (pageNumber) => {
     //everything with 2 needs to be 10 on final render for 10 friends per page, 2 is for test
@@ -49,22 +51,25 @@ export default function FriendsList() {
   };
 
   useEffect(() => {
-    API.get(`/friends/${user.id}`)
-      .then((res) => {
-        console.log(res, "database call");
-        console.log(user, "user info logged");
-        setFriends(res.data);
-        setItemLength(res.data.length);
+    dispatch(getUserFriends(user.id));
+    console.log(user.friends);
+  }, []);
+  //   API.get(`/friends/${user.id}`)
+  //     .then((res) => {
+  //       console.log(res, "database call");
+  //       console.log(user, "user info logged");
+  //       setFriends(res.data);
+  //       setItemLength(res.data.length);
 
-        res.data.length > 5
-          ? setCurrentData(res.data.slice(0, 5))
-          : setCurrentData(res.data.slice(0, res.data.length));
-        //if less than 10 make res.data.length
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [setFriends]);
+  //       res.data.length > 5
+  //         ? setCurrentData(res.data.slice(0, 5))
+  //         : setCurrentData(res.data.slice(0, res.data.length));
+  //       //if less than 10 make res.data.length
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [setFriends]);
 
   return friends.length != 0 ? (
     <div className="plzaFriendsList">
