@@ -14,8 +14,6 @@ const UserReview = ({ review }) => {
     setReviewToEdit(review);
   };
 
-  console.log(user);
-
   return (
     <>
       <Item>
