@@ -58,34 +58,6 @@ export const userEditSettings = (event, value) => (dispatch) => {
       });
 };
 
-<<<<<<< HEAD
-export const userSubmitSettings = (event, user) => (dispatch) => {
-  dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true });
-  if (event.target.id === "save") {
-    API.put(`/users`, user)
-      .then((res) => {
-        console.log(res.data);
-        dispatch({ type: types.SUBMIT_SETTINGS_SUCCESS, payload: res.data });
-      })
-      .catch((err) => {
-        dispatch({ type: types.SUBMIT_SETTINGS_FAIL, payload: false });
-      });
-  } else {
-    dispatch({ type: types.EDIT_CANCEL_CHANGES });
-  }
-};
-
-export const uploadImage = (formData, setOpen) => (dispatch) => {
-  dispatch({ type: types.IMAGE_UPLOAD_START, payload: true });
-
-  // set header `Content-Type` to `multipart/form-data`
-  API.put("/users/images", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  })
-    .then((res) => {
-      dispatch({ type: types.IMAGE_UPLOAD_SUCCESS, payload: res.data });
-      setOpen(false);
-=======
 export const userSubmitSettings = (event, user) => dispatch => {
     dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true })
     if (event.target.id === 'save') {
@@ -138,7 +110,6 @@ export const deleteImage = (setOpen) => dispatch => {
           isLoading: false,
         },
       });
->>>>>>> master
     })
     .catch((err) => {
       dispatch({
@@ -167,57 +138,6 @@ export const locationByUser = (id) => (dispatch) => {
       console.log(err, "from error reducer");
     });
 };
-<<<<<<< HEAD
-
-export const eventsByUser = (id) => (dispatch) => {
-  dispatch({ type: types.USER_EVENT_START, payload: true });
-  API.get(`/events/users/${id}`)
-    .then((res) => {
-      // console.log(res.data, "user event state");
-      const currentDate = new Date().toISOString();
-      dispatch({
-        type: types.USER_EVENT_SUCCESS,
-        payload: res.data
-          .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
-          .filter((date) => date.start_time > currentDate),
-      });
-    })
-    .catch((err) => {
-      dispatch({ type: types.USER_EVENT_FAIL, payload: false });
-      console.log(err, "error from eventsByUser action");
-    });
-};
-
-export const userDeleteEvent = (id, user) => (dispatch) => {
-  dispatch({ type: types.USER_EVENT_DELETE_START, payload: true });
-  API.delete(`/events/${id}`)
-    .then((res) => {
-      const filterDeletedEvent = user.events.filter((event) => event.id !== id);
-      dispatch({
-        type: types.USER_EVENT_DELETE_SUCCESS,
-        payload: filterDeletedEvent,
-      });
-    })
-    .catch((err) => {
-      dispatch({ type: types.USER_EVENT_DELETE_FAIL, payload: false });
-      console.log(err, "error from userDeleteEvent action");
-    });
-};
-
-//reviews by user
-export const reviewsByUser = (id) => (dispatch) => {
-  API.get(`reviews/users/${id}`)
-    .then((res) => {
-      dispatch({
-        type: types.USER_REVIEW_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-=======
 
 // Events
 export const eventsByUser = (id) => dispatch => {
@@ -289,4 +209,3 @@ export const userDeleteReview = (id, user) => dispatch => {
             console.log(err, 'error from userDeleteReview action');
         })
 }
->>>>>>> master

@@ -1,16 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-<<<<<<< HEAD
-import UserEventsList from './events/UserEventsList';
-import UserSettings from './settings/UserSettings';
-import UserFavoriteShop from './favoriteShop/UserFavoriteShop';
-=======
 import UserEventsList from "./events/UserEventsList";
 import UserSettings from "./settings/UserSettings";
 import UserReviewsList from "./reviews/UserReviewsList";
 import UserFavoriteShop from "./favoriteShop/UserFavoriteShop";
->>>>>>> master
 import ProfileMain from "./profile/ProfileMain";
 
 const UserSectionsController = () => (
