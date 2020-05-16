@@ -1,10 +1,9 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Form, Input, TextArea, Button } from "formik-semantic-ui";
 import { Rating } from "semantic-ui-react";
-
 import { InputError, ServerErrorMessage } from "../forms/Errors";
-import { curr_user } from "../../utils/auth";
 
 import SimpleContainer from "../main/SimpleContainer";
 import API from "../../utils/API";
@@ -12,6 +11,8 @@ import API from "../../utils/API";
 export default function EventCreate(props) {
   const { id } = useParams();
   const history = useHistory();
+
+  const user = useSelector(state => state.user)
 
   const onSubmit = (values, actions) => {
     actions.setSubmitting(true);
@@ -32,7 +33,7 @@ export default function EventCreate(props) {
       <Form
         enableReinitialize
         initialValues={{
-          user_id: curr_user.id,
+          user_id: user ? user.id : null,
           location_id: id,
           rating: 0,
           review_title: "",
