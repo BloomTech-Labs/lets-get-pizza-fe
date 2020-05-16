@@ -47,40 +47,51 @@ export default function FriendsList() {
   };
 
   useEffect(() => {
-    dispatch(getUserFriends(user.id));
-    console.log(user.friends, "component state friends");
+    async function getFriends() {
+      await dispatch(getUserFriends(user.id));
+      console.log(user.friends, "component state friends");
 
-    setItemLength(user.friends.length);
-    user.friends.length > 5
-      ? setCurrentData(user.friends.slice(0, 5))
-      : setCurrentData(user.friends.slice(0, user.friends.length));
+      setItemLength(user.friends.length);
+      user.friends.length > 5
+        ? setCurrentData(user.friends.slice(0, 5))
+        : setCurrentData(user.friends.slice(0, user.friends.length));
+    }
+
+    getFriends();
   }, []);
 
   return user.friends.length != 0 ? (
-    <div className="plzaFriendsList">
-      <h1>{user.username}'s Friends</h1>
-      {/* {friends.length == 0 && <h1>You have no friends, loser!</h1>} */}
-      <List className="actualList" floated="left" size="big">
-        {console.log("friend length", user.friends.length)}
-        {currentData.map((friend) => {
-          return (
-            <FriendOnList
-              key={friend.friends_id}
-              friends={friend}
-              remove={removeFriend}
-            />
-          );
-        })}
-      </List>
-      <Pagination
-        activePage={activePage}
-        itemsCountPerPage={5}
-        totalItemsCount={itemLength}
-        pageRangeDisplayed={1}
-        onChange={handlePageChange}
-        className="pagination"
-      />
-    </div>
+    currentData.length > 0 ? (
+      <div className="plzaFriendsList">
+        <h1>{user.username}'s Friends</h1>
+        {/* {friends.length == 0 && <h1>You have no friends, loser!</h1>} */}
+        <List className="actualList" floated="left" size="big">
+          {console.log("friend length", user.friends.length)}
+          {currentData.map((friend) => {
+            return (
+              <FriendOnList
+                key={friend.friends_id}
+                friends={friend}
+                remove={removeFriend}
+              />
+            );
+          })}
+        </List>
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={5}
+          totalItemsCount={itemLength}
+          pageRangeDisplayed={1}
+          onChange={handlePageChange}
+          className="pagination"
+        />
+      </div>
+    ) : (
+      <>
+        <div>...Loading Friends</div>
+        {}
+      </>
+    )
   ) : (
     <div>
       <h1>{user.username}'s Friends</h1>
