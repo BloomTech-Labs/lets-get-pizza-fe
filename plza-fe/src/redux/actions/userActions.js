@@ -58,6 +58,7 @@ export const userEditSettings = (event, value) => (dispatch) => {
       });
 };
 
+
 export const userSubmitSettings = (event, user) => dispatch => {
     dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true })
     if (event.target.id === 'save') {
@@ -111,7 +112,16 @@ export const deleteImage = (setOpen) => dispatch => {
         },
       });
     })
-}
+    .catch((err) => {
+      dispatch({
+        type: types.IMAGE_UPLOAD_FAIL,
+        payload: {
+          error: "There was an error uploading your image",
+          isLoading: false,
+        },
+      });
+    });
+};
 
 // Location
 
@@ -167,6 +177,7 @@ export const userDeleteEvent = (id, user) => dispatch => {
             console.log(err, 'error from userDeleteEvent action')
         })
 }
+
 
 // Reviews
 export const reviewsByUser = id => dispatch => {
