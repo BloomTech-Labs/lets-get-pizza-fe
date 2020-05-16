@@ -1,5 +1,9 @@
 import React from "react";
 import ActivityCard from "./ActivityCard";
+<<<<<<< HEAD
+=======
+
+>>>>>>> e773bd15fc465173b31db04f9b10f39bc8d13d11
 
 export default function EventsActivity(props) {
   return (

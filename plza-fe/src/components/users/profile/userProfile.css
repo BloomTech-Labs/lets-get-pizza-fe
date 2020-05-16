@@ -13,15 +13,21 @@
 
 .profile-name-ch {
   font-size: 500%;
+<<<<<<< HEAD
+=======
+
+>>>>>>> e773bd15fc465173b31db04f9b10f39bc8d13d11
   margin: 0;
 }
-
 .name-shop-ch {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: 20%;
+<<<<<<< HEAD
   
+=======
+>>>>>>> e773bd15fc465173b31db04f9b10f39bc8d13d11
 }
 
 .fav-shop-heading-ch {
@@ -36,7 +42,10 @@
 
 .user-bio-ch {
   padding: 5%;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e773bd15fc465173b31db04f9b10f39bc8d13d11
   width: 100%;
   height: 80px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
