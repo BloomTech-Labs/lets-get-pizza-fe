@@ -5,7 +5,6 @@ const initialState = {
 }
 
 export const locationsReducer = (state = initialState, {type, payload}) => {
-    console.log(type)
     switch (type) {
         case types.LOCATION_LOGIN_START:
         case types.LOCATION_REGISTER_START:
