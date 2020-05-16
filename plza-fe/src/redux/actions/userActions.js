@@ -58,10 +58,7 @@ export const userEditSettings = (event, value) => (dispatch) => {
       });
 };
 
-<<<<<<< HEAD
-=======
 
->>>>>>> e773bd15fc465173b31db04f9b10f39bc8d13d11
 export const userSubmitSettings = (event, user) => dispatch => {
     dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true })
     if (event.target.id === 'save') {

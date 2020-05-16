@@ -13,10 +13,6 @@ const UserProfileDetails = (props) => {
         <ProfilePicture user={user} />
         <div className="name-shop-ch">
           <h1 className="profile-name-ch">{user.username}</h1>
-<<<<<<< HEAD
-
-=======
->>>>>>> e773bd15fc465173b31db04f9b10f39bc8d13d11
           <h5 className="fav-shop-title-ch">
             <span className="fav-shop-heading-ch">Favorite Pizza Shop | </span>
             <a href={`/locations/${user.favShopDetails.id}`}>
