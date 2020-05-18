@@ -7,7 +7,7 @@ export const userLogin = ({ username, password }) => (dispatch) => {
     .then((res) => {
       localStorage.setItem("token", JSON.stringify(res.data.token));
       dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res.data.user });
-      window.location.replace("/users/dash");
+      window.location.replace("/users/dash/profile");
     })
     .catch((err) => {
       dispatch({
@@ -24,7 +24,7 @@ export const userRegister = (data) => (dispatch) => {
     .then((res) => {
       localStorage.setItem("token", JSON.stringify(res.data.token));
       dispatch({ type: types.USER_REGISTER_SUCCESS, payload: res.data.user });
-      window.location.replace("/users/dash");
+      window.location.replace("/users/dash/profile");
     })
     .catch((err) => {
       dispatch({

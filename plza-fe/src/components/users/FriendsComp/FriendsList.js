@@ -51,8 +51,6 @@ export default function FriendsList() {
   useEffect(() => {
     API.get(`/friends/${user.id}`)
       .then((res) => {
-        console.log(res, "database call");
-        console.log(user, "user info logged");
         setFriends(res.data);
         setItemLength(res.data.length);
 
@@ -69,7 +67,6 @@ export default function FriendsList() {
   return friends.length != 0 ? (
     <div className="plzaFriendsList">
       <h1>{user.username}'s Friends</h1>
-      {/* {friends.length == 0 && <h1>You have no friends, loser!</h1>} */}
       <List className="actualList" floated="left" size="big">
         {console.log("friend length", friends.length)}
         {currentData.map((friend) => {
@@ -94,7 +91,7 @@ export default function FriendsList() {
   ) : (
     <div>
       <h1>{user.username}'s Friends</h1>
-      <div className="noFriends fade-in">You have no friends, loser</div>
+      <div className="noFriends fade-in">Looks like you don't have any friends yet</div>
     </div>
   );
 }
