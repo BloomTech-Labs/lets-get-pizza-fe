@@ -85,7 +85,9 @@ export default function FriendsList() {
   ) : (
     <div>
       <h1>{user.username}'s Friends</h1>
-      <div className="noFriends fade-in">You have no friends, loser</div>
+      <div className="noFriends fade-in">
+        You have no friends, try attending events with other pizza fanatics!
+      </div>
     </div>
   );
 }
