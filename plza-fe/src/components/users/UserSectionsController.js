@@ -3,8 +3,9 @@ import { Switch, Route } from "react-router-dom";
 
 import UserEventsList from "./events/UserEventsList";
 import UserSettings from "./settings/UserSettings";
-import UserReviewsList from "./reviews/UserReviewsList";
 import UserFavoriteShop from "./favoriteShop/UserFavoriteShop";
+import FriendsList from "./FriendsComp/FriendsList";
+import UserReviewsList from "./reviews/UserReviewsList";
 import ProfileMain from "./profile/ProfileMain";
 
 const UserSectionsController = () => (
@@ -30,8 +31,13 @@ const UserSectionsController = () => (
       </Route>
     </Switch>
     <Switch>
+      <Route path="/users/dash/friends">
+        <FriendsList />
+      </Route>
+    </Switch>
+    <Switch>
       <Route path="/users/dash/profile">
-     <ProfileMain />
+        <ProfileMain />
       </Route>
     </Switch>
   </>
