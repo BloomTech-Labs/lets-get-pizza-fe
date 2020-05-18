@@ -1,5 +1,7 @@
 import API from "../../utils/API";
 import * as types from "../types/userTypes";
+import ReactDOM from "react-dom";
+import FriendsList from "../../components/users/FriendsComp/FriendsList";
 
 export const userLogin = ({ username, password }) => (dispatch) => {
   dispatch({ type: types.USER_LOGIN_START, payload: true });
@@ -201,12 +203,11 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
   dispatch({ type: types.DELETE_USER_FRIENDS_START, payload: true });
   API.delete(`friends/${id}`)
     .then((res) => {
-      const newList = user.friends.filter((keep) => keep.id != id);
-      console.log(res, "logging user deletion from action");
-      console.log(newList, "new kids");
+      let newList = user.friends.filter((keep) => keep.id != id);
       dispatch({ type: types.DELETE_USER_FRIENDS_SUCCESS, payload: newList });
+
+      return newList;
     })
-    .then(window.location.replace("/users/dash/friends"))
     .catch((err) => {
       dispatch({ type: types.DELETE_USER_FRIENDS_FAIL, payload: false });
       console.log(err);
