@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import API from "../../../utils/API";
 import { USER_EVENT_EDIT_SUCCESS } from "../../../redux/types/userTypes";
+import { Button } from "semantic-ui-react";
 
 const EventUpdate = ({
   event,
@@ -141,8 +142,19 @@ const EventUpdate = ({
           )}
         </div>
       </div>
-      <button type="submit">Update</button>
-      <button onClick={() => setToggleEdit(!toggleEdit)}>Cancel</button>
+
+      <Button.Group style={{ margin: "1.5rem 0" }}>
+        <Button color="black" onClick={() => setToggleEdit(!toggleEdit)}>
+          Undo
+        </Button>
+        <Button
+          positive
+          icon="checkmark"
+          labelPosition="right"
+          content="Update"
+          type="submit"
+        />
+      </Button.Group>
     </form>
   );
 };

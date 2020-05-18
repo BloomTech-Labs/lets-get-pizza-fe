@@ -5,6 +5,7 @@ import UserEventsList from "./events/UserEventsList";
 import UserSettings from "./settings/UserSettings";
 import UserFavoriteShop from "./favoriteShop/UserFavoriteShop";
 import FriendsList from "./FriendsComp/FriendsList";
+import UserReviewsList from "./reviews/UserReviewsList";
 import ProfileMain from "./profile/ProfileMain";
 
 const UserSectionsController = () => (
@@ -17,6 +18,11 @@ const UserSectionsController = () => (
     <Switch>
       <Route path="/users/dash/settings">
         <UserSettings />
+      </Route>
+    </Switch>
+    <Switch>
+      <Route path="/users/dash/reviews">
+        <UserReviewsList />
       </Route>
     </Switch>
     <Switch>
