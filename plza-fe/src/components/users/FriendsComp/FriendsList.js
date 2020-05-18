@@ -33,6 +33,11 @@ export default function FriendsList() {
     setActivePage(pageNumber);
   };
 
+  const reloadIt = () => {
+    window.location.reload();
+    console.log("reloaded..");
+  };
+
   const removeFriend = (id) => {
     let friendToDelete = user.friends.filter(
       (deleteIT) => deleteIT.friends_id == id
@@ -89,7 +94,7 @@ export default function FriendsList() {
     ) : (
       <>
         <div>...Loading Friends</div>
-        {}
+        {/* {reloadIt} */}
       </>
     )
   ) : (

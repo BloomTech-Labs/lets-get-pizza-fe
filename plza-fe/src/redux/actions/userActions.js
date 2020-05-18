@@ -206,7 +206,7 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
       console.log(newList, "new kids");
       dispatch({ type: types.DELETE_USER_FRIENDS_SUCCESS, payload: newList });
     })
-    .then(window.location.reload())
+    .then(window.location.replace("/users/dash/friends"))
     .catch((err) => {
       dispatch({ type: types.DELETE_USER_FRIENDS_FAIL, payload: false });
       console.log(err);
