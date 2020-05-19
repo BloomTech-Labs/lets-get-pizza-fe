@@ -10,7 +10,7 @@ const UserEventsList = () => {
 
   useEffect(() => {
     dispatch(eventsByUser(user.id));
-  }, []);
+  }, [dispatch, user.id]);
 
   return user.events.length === 0 ? (
     <div>
