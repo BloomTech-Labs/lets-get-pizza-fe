@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import { Menu, Confirm, Dropdown } from "semantic-ui-react";
-import {
-  getItem,
-  logoutUser
-} from "../../utils/auth";
+import { getItem, logoutUser } from "../../utils/auth";
 
 import Logo from "./Logo.png";
 
 import "./Header.css";
 
 export default function Masthead() {
-  const user = useSelector(({ user }) => user)
-  const location = useSelector(({location}) => location)
-  const token = getItem('token')
+  const user = useSelector(({ user }) => user);
+  const location = useSelector(({ location }) => location);
+  const token = getItem("token");
   const [isMenuVisible, setMenuVisibility] = useState(false);
   const [isModalVisible, setModalVisibility] = useState(false);
 
@@ -24,11 +21,11 @@ export default function Masthead() {
 
   const hideMenu = () => setMenuVisibility(false);
 
-  const NavbarItem = props => (
+  const NavbarItem = (props) => (
     <Menu.Item as={NavLink} {...props} onClick={hideMenu} />
   );
 
-  const NavDropdownItem = props => (
+  const NavDropdownItem = (props) => (
     <Dropdown.Item as={NavLink} {...props} onClick={hideMenu}>
       {props.children}
     </Dropdown.Item>
@@ -36,7 +33,7 @@ export default function Masthead() {
 
   const ProfileLink = () => {
     if (user.username) {
-      return <NavbarItem to="/users/dash">{user.username}</NavbarItem>;
+      return <NavbarItem to="/users/dash/profile">{user.username}</NavbarItem>;
     } else if (location.business_name) {
       return (
         <NavbarItem to={`/locations/${location.id}`}>
@@ -107,11 +104,11 @@ export default function Masthead() {
             />
           </>
         ) : (
-            <>
-              <NavbarItem to="/users/register">Register</NavbarItem>
-              <NavbarItem to="/users/login">Log in</NavbarItem>
-            </>
-          )}
+          <>
+            <NavbarItem to="/users/register">Register</NavbarItem>
+            <NavbarItem to="/users/login">Log in</NavbarItem>
+          </>
+        )}
       </Menu.Menu>
 
       <HamburgerMenu />

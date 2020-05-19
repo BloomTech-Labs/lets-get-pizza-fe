@@ -47,7 +47,6 @@ export default function FriendsList() {
   };
 
   useEffect(() => {
-<<<<<<< HEAD
     async function getFriends() {
       await dispatch(getUserFriends(user.id));
       setItemLength(user.friends.length);
@@ -56,12 +55,6 @@ export default function FriendsList() {
         ? setCurrentData(user.friends.slice(0, 5))
         : setCurrentData(user.friends.slice(0, user.friends.length));
     }
-=======
-    API.get(`/friends/${user.id}`)
-      .then((res) => {
-        setFriends(res.data);
-        setItemLength(res.data.length);
->>>>>>> origin
 
     getFriends();
   }, [user.friends.length]);
@@ -92,13 +85,9 @@ export default function FriendsList() {
   ) : (
     <div>
       <h1>{user.username}'s Friends</h1>
-<<<<<<< HEAD
       <div className="noFriends fade-in">
         You have no friends, try attending events with other pizza fanatics!
       </div>
-=======
-      <div className="noFriends fade-in">Looks like you don't have any friends yet</div>
->>>>>>> origin
     </div>
   );
 }
