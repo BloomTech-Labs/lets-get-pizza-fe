@@ -9,7 +9,7 @@ export const userLogin = ({ username, password }) => (dispatch) => {
     .then((res) => {
       localStorage.setItem("token", JSON.stringify(res.data.token));
       dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res.data.user });
-      window.location.replace("/users/dash");
+      window.location.replace("/users/dash/profile");
     })
     .catch((err) => {
       dispatch({
@@ -26,7 +26,7 @@ export const userRegister = (data) => (dispatch) => {
     .then((res) => {
       localStorage.setItem("token", JSON.stringify(res.data.token));
       dispatch({ type: types.USER_REGISTER_SUCCESS, payload: res.data.user });
-      window.location.replace("/users/dash");
+      window.location.replace("/users/dash/profile");
     })
     .catch((err) => {
       dispatch({
@@ -60,6 +60,7 @@ export const userEditSettings = (event, value) => (dispatch) => {
       });
 };
 
+<<<<<<< HEAD
 export const userSubmitSettings = (event, user) => (dispatch) => {
   dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true });
   if (event.target.id === "save") {
@@ -74,6 +75,23 @@ export const userSubmitSettings = (event, user) => (dispatch) => {
     dispatch({ type: types.EDIT_CANCEL_CHANGES });
   }
 };
+=======
+
+export const userSubmitSettings = (event, user) => dispatch => {
+    dispatch({ type: types.SUBMIT_SETTINGS_START, payload: true })
+    if (event.target.id === 'save') {
+        API.put(`/users`, user)
+            .then(res => {
+                dispatch({ type: types.SUBMIT_SETTINGS_SUCCESS, payload: res.data })
+            })
+            .catch(err => {
+                dispatch({ type: types.SUBMIT_SETTINGS_FAIL, payload: false })
+            })
+    } else {
+        dispatch({ type: types.EDIT_CANCEL_CHANGES })
+    }
+}
+>>>>>>> origin
 
 export const uploadImage = (formData, setOpen) => (dispatch) => {
   dispatch({ type: types.IMAGE_UPLOAD_START, payload: true });
@@ -115,6 +133,18 @@ export const deleteImage = (setOpen) => (dispatch) => {
           isLoading: false,
         },
       });
+<<<<<<< HEAD
+=======
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.IMAGE_UPLOAD_FAIL,
+        payload: {
+          error: "There was an error uploading your image",
+          isLoading: false,
+        },
+      });
+>>>>>>> origin
     });
 };
 
@@ -135,41 +165,45 @@ export const locationByUser = (id) => (dispatch) => {
     });
 };
 
-export const eventsByUser = (id) => (dispatch) => {
-  dispatch({ type: types.USER_EVENT_START, payload: true });
-  API.get(`/events/users/${id}`)
-    .then((res) => {
-      // console.log(res.data, "user event state");
-      const currentDate = new Date().toISOString();
-      dispatch({
-        type: types.USER_EVENT_SUCCESS,
-        payload: res.data
-          .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
-          .filter((date) => date.start_time > currentDate),
-      });
-    })
-    .catch((err) => {
-      dispatch({ type: types.USER_EVENT_FAIL, payload: false });
-      console.log(err, "error from eventsByUser action");
-    });
-};
+// Events
+export const eventsByUser = (id) => dispatch => {
+    dispatch({ type: types.USER_EVENT_START, payload: true })
+    API.get(`/events/users/${id}`)
+        .then((res) => {
+            // console.log(res.data, "user event state");
+            const currentDate = new Date().toISOString();
+            dispatch({
+                type: types.USER_EVENT_SUCCESS,
+                payload: res.data
+                    .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
+                    .filter((date) => date.start_time > currentDate)
+            });
+        })
+        .catch((err) => {
+            dispatch({ type: types.USER_EVENT_FAIL, payload: false })
+            console.log(err, 'error from eventsByUser action')
+        }); 
+}
 
-export const userDeleteEvent = (id, user) => (dispatch) => {
-  dispatch({ type: types.USER_EVENT_DELETE_START, payload: true });
-  API.delete(`/events/${id}`)
-    .then((res) => {
-      const filterDeletedEvent = user.events.filter((event) => event.id !== id);
-      dispatch({
-        type: types.USER_EVENT_DELETE_SUCCESS,
-        payload: filterDeletedEvent,
-      });
-    })
-    .catch((err) => {
-      dispatch({ type: types.USER_EVENT_DELETE_FAIL, payload: false });
-      console.log(err, "error from userDeleteEvent action");
-    });
-};
+export const userDeleteEvent = (id, user) => dispatch => {
+    dispatch({ type: types.USER_EVENT_DELETE_START, payload: true })
+    API.delete(`/events/${id}`)
+        .then((res) => {
+            const filterDeletedEvent = user.events.filter(
+              (event) => event.id !== id
+            );
+            dispatch({
+                type: types.USER_EVENT_DELETE_SUCCESS,
+                payload: filterDeletedEvent 
+            })
+        })
+        .catch((err) => {
+            dispatch({ type: types.USER_EVENT_DELETE_FAIL, payload: false })
+            console.log(err, 'error from userDeleteEvent action')
+        })
+}
 
+<<<<<<< HEAD
 //reviews by user
 export const reviewsByUser = (id) => (dispatch) => {
   API.get(`reviews/users/${id}`)
@@ -211,3 +245,38 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
       console.log(err);
     });
 };
+=======
+
+// Reviews
+export const reviewsByUser = id => dispatch => {
+    API.get(`/reviews/users/${id}`)
+        .then(res => {
+            dispatch({
+                type: types.USER_REVIEW_SUCCESS,
+                payload: res.data.sort((a, b) => b.id - a.id)
+            })
+        })
+        .catch((err) => {
+            dispatch({ type: types.USER_REVIEW_FAIL, payload: false })
+            console.log(err, 'error from reviewsByUser action');
+        })
+}
+
+export const userDeleteReview = (id, user) => dispatch => {
+    dispatch({ type: types.USER_REVIEW_DELETE_START, payload: true })
+    API.delete(`/reviews/${id}`)
+        .then((res) => {
+            const filterDeletedReview = user.reviews.filter(
+                review => review.id !== id
+            );
+            dispatch({
+                type: types.USER_REVIEW_DELETE_SUCCESS,
+                payload: filterDeletedReview
+            })
+        })
+        .catch((err) => {
+            dispatch({ type: types.USER_REVIEW_DELETE_FAIL, payload: false })
+            console.log(err, 'error from userDeleteReview action');
+        })
+}
+>>>>>>> origin

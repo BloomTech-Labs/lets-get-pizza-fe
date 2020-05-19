@@ -110,6 +110,12 @@ export const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         reviews: payload,
+      }
+    case types.USER_REVIEW_DELETE_SUCCESS:
+    case types.USER_REVIEW_EDIT_SUCCESS:
+      return {
+        ...state,
+        reviews: [...payload],
       };
     case types.GET_USER_FRIENDS_SUCCESS:
       return {
@@ -133,3 +139,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin
