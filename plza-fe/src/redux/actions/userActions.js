@@ -205,8 +205,6 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
     .then((res) => {
       let newList = user.friends.filter((keep) => keep.id != id);
       dispatch({ type: types.DELETE_USER_FRIENDS_SUCCESS, payload: newList });
-
-      return newList;
     })
     .catch((err) => {
       dispatch({ type: types.DELETE_USER_FRIENDS_FAIL, payload: false });
