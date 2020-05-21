@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { Message } from "semantic-ui-react";
 import { Form, Input, Dropdown, TextArea, Button } from "formik-semantic-ui";
-// import { curr_location } from "../../utils/auth";
 
 import API from "../../utils/API";
 import SimpleContainer from "../main/SimpleContainer";
@@ -24,8 +23,6 @@ export default function LocationEdit() {
         actions.setFieldError("message", error.response.data.message)
       );
   };
-
-  // console.log(location);
 
   useEffect(() => {
     // Check to see if the currently logged in user matches the
