@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { Message } from "semantic-ui-react";
 import { Form, Input, Dropdown, TextArea, Button } from "formik-semantic-ui";
-import { curr_location } from "../../utils/auth";
+// import { curr_location } from "../../utils/auth";
 
 import API from "../../utils/API";
 import SimpleContainer from "../main/SimpleContainer";
 
 export default function LocationEdit() {
+  const location = useSelector((state) => state.location) 
   const { id } = useParams();
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const [location, setLocation] = useState({});
+  const [locationVal, setLocation] = useState({});
 
   const onSubmit = (values, actions) => {
     API.put("/locations", values)
@@ -23,10 +25,12 @@ export default function LocationEdit() {
       );
   };
 
+  // console.log(location);
+
   useEffect(() => {
     // Check to see if the currently logged in user matches the
     // ID set in the match param
-    if (curr_location && curr_location.id === Number(id)) {
+    if (location && location.id === Number(id)) {
       // If it does, then retrieve location information
       API.get(`/locations/${id}`)
         .then(response => {
@@ -59,7 +63,7 @@ export default function LocationEdit() {
     >
       <Form
         enableReinitialize={true}
-        initialValues={location}
+        initialValues={locationVal}
         onSubmit={(values, actions) => onSubmit(values, actions)}
       >
         {formik => (
