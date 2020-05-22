@@ -31,6 +31,7 @@ const persistConfig = {
     transforms: [
         reducerBlackList('user', ['error', 'isLoading']),
         reducerBlackList('location', ['error', 'isLoading']),
+        reducerBlackList('friend', ['error', 'isLoading']),
         encryptor
     ]
 }
