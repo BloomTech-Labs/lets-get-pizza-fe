@@ -31,7 +31,9 @@
     "semantic-ui-calendar-react": "^0.15.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
-    "yup": "^0.27.0"
+    "yup": "^0.27.0",
+    "react-js-pagination": "^3.0.3",
+    "react-paginating": "^1.4.0"
   },
   "resolutions": {
     "minimist": "^1.2.5"
