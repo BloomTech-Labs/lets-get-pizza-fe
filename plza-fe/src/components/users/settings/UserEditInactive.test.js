@@ -11,6 +11,10 @@ import UserEditInactive from './UserEditInactive';
 jest.mock('../../../redux/actions/userActions');
 const mockStore = configureStore({});
 
+const storeObj = {
+    user: { field: 'currentItem' }
+}
+
 describe('UserEditInactive with item.value as a string', () => {
     let store;
     let component;
@@ -20,9 +24,7 @@ describe('UserEditInactive with item.value as a string', () => {
         value: "New York City"
     };
     beforeEach(() => {
-        store = mockStore({
-            user: { field: 'currentItem' }
-        });
+        store = mockStore(storeObj);
 
         store.dispatch = jest.fn();
 
@@ -53,9 +55,7 @@ describe('UserEditInactive with item.value as an array', () => {
     };
 
     beforeEach(() => {
-        store = mockStore({
-            user: { field: 'currentItem' }
-        });
+        store = mockStore(storeObj);
 
         store.dispatch = jest.fn();
 
