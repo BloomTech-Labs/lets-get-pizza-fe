@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import { useSelector } from "react-redux";
 import ProfilePicture from "./ProfilePicture";
 import ActivityContainer from "./ActivityContainer";
 
-const UserProfileDetails = (props) => {
-  const user = useSelector(({ user }) => user);
+const UserProfileDetails = ({ user }) => {
 
   return (
-    <div className="detail-container-ch">
+   <div className="detail-container-ch">
       <section className="profile-img-name-ch">
         <ProfilePicture user={user} />
         <div className="name-shop-ch">
@@ -24,7 +22,7 @@ const UserProfileDetails = (props) => {
           </section>
         </div>
       </section>
-      <ActivityContainer />
+      <ActivityContainer user={user} />
     </div>
   );
 };
