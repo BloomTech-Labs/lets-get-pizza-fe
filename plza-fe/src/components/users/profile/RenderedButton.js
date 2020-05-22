@@ -15,7 +15,7 @@ export default function RenderedButton(props) {
   } else {
     button = (
       <Button>
-        <a href="#">Add Friend</a>
+       Add Friend
       </Button>
     );
   }
