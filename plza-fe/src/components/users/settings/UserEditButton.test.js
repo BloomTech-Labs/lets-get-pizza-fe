@@ -1,14 +1,13 @@
-import React from "react";
-import { Provider } from 'react-redux';
+import React from 'react';
 import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
 
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 import { userToggleEdit } from '../../../redux/actions/userActions';
+
 import UserEditButton from './UserEditButton';
 
 jest.mock('../../../redux/actions/userActions');
-
-
 const mockStore = configureStore({});
 
 describe('UserEditButton', () => {
