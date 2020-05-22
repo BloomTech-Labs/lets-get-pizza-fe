@@ -6,8 +6,10 @@ import configureStore from 'redux-mock-store';
 import { userToggleEdit } from '../../../redux/actions/userActions';
 import UserEditButton from './UserEditButton';
 
+jest.mock('../../../redux/actions/userActions');
 
-const mockStore = configureStore([]);
+
+const mockStore = configureStore({});
 
 describe('UserEditButton', () => {
     let store;
@@ -42,6 +44,6 @@ describe('UserEditButton', () => {
         });
 
         expect(store.dispatch).toHaveBeenCalledTimes(1);
-        // expect(store.dispatch).toHaveBeenCalledWith(userToggleEdit(event, item.name));
+        expect(store.dispatch).toHaveBeenCalledWith(userToggleEdit(event, item.name));
     });
 });
