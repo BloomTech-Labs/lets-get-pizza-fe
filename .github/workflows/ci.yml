@@ -41,6 +41,6 @@ jobs:
                 # Run our `coverage` script in our `package.json`
                 coverageCommand: npm run coverage
                 # By default, this looks for a `coverage` folder in the root of your project but you may need to change this
-                coverageLocations: "./lets-get-pizza/coverage/lcov.info:lcov"
+                coverageLocations: "./lets-get-pizza-fe/coverage/lcov.info:lcov"
                 # Great for troubleshooting
                 debug: true
