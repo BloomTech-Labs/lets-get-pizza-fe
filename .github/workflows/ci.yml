@@ -31,7 +31,7 @@ jobs:
               with:
                 node-version: "12"
             # Change directory into `plza-fe` and run npm install
-            - run: npm install
+            - run: cd plza-fe && npm install
             # A Github action for running tests and publishing coverage
             - uses: paambaati/codeclimate-action@v2.4.0
               env:
@@ -39,9 +39,7 @@ jobs:
                 CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
               with:
                 # Run our `coverage` script in our `package.json`
-                coverageCommand: |
-                  cd plza-fe
-                  npm run coverage
+                coverageCommand: npm run coverage
                 # By default, this looks for a `coverage` folder in the root of your project but you may need to change this
                 coverageLocations: "./lets-get-pizza/plza-fe/coverage/clover.xml:clover"
                 # Great for troubleshooting
