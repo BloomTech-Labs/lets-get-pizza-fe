@@ -4,7 +4,8 @@ checks:
     ### Disable checks for similar code ###
     ### Because this creates too many false positives ###
 
-    similar-code: enabled: false
+    similar-code: 
+        enabled: false
     ### Increase the number of lines allowed for a method
     ### Becuase this is more reasonable fo Javascript
 
