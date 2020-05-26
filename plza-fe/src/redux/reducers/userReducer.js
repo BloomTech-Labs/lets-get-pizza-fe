@@ -5,6 +5,7 @@ const initialState = {
   pendingUserChanges: {},
   events: [],
   reviews: [],
+  savedPromotions: [],
   friends: [],
   favShopDetails: {},
   isLoading: false,
@@ -20,6 +21,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.IMAGE_UPLOAD_START:
     case types.USER_EVENT_START:
     case types.IMAGE_DELETE_START:
+    case types.USER_PROMO_START:
       return {
         ...state,
         isLoading: payload,
@@ -108,15 +110,19 @@ export const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         reviews: payload,
-      }
+      };
     case types.USER_REVIEW_DELETE_SUCCESS:
     case types.USER_REVIEW_EDIT_SUCCESS:
       return {
         ...state,
         reviews: [...payload],
       };
+    case types.USER_PROMO_SUCCESS:
+      return {
+        ...state,
+        savedPromotions: payload,
+      };
     default:
       return state;
   }
 };
-
