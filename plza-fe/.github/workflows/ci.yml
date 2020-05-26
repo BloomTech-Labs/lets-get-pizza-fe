@@ -31,7 +31,7 @@ jobs:
               with:
                 node-version: "12"
             # Change directory into `plza-fe` and run npm install
-            - run: cd plza-fe && npm install
+            - run: npm install
             # A Github action for running tests and publishing coverage
             - uses: paambaati/codeclimate-action@v2.4.0
               env:
