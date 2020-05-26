@@ -36,6 +36,7 @@ jobs:
             - run: npm install
             # A Github action for running tests and publishing coverage
             - uses: paambaati/codeclimate-action@v2.4.0
+              run: cd plza-fe
               env:
                 # An environment variable, the value is a Github repo secret
                 CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
