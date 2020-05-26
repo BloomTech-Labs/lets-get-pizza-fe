@@ -33,6 +33,7 @@ jobs:
             # Change directory into `plza-fe` and run npm install
             - run: cd plza-fe && npm install
             # A Github action for running tests and publishing coverage
+            - run: cd plza-fe
             - uses: paambaati/codeclimate-action@v2.4.0
               env:
                 # An environment variable, the value is a Github repo secret
