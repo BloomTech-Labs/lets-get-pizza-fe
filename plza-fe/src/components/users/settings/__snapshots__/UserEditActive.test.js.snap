@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserEditActive with item.value as a string should render with text from props 1`] = `
+<div
+  className="row"
+  style={
+    Object {
+      "borderBottom": "1px solid lightgrey",
+    }
+  }
+>
+  <div
+    className="column"
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+      }
+    }
+  >
+    <i
+      aria-hidden="true"
+      className="location arrow large icon"
+      onClick={[Function]}
+    />
+    <div
+      className="ui input"
+    >
+      <input
+        name="location"
+        onChange={[Function]}
+        type="text"
+        value="Barcelona"
+      />
+    </div>
+  </div>
+  <div
+    className="column"
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+      }
+    }
+  >
+    <button
+      className="ui tiny button"
+      id="location"
+      onClick={[Function]}
+    >
+      Save
+    </button>
+  </div>
+</div>
+`;
+
+exports[`UserEditActive with item.value as an array should render with text from props 1`] = `
+<div
+  className="row"
+  style={
+    Object {
+      "borderBottom": "1px solid lightgrey",
+    }
+  }
+>
+  <div
+    className="column"
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+      }
+    }
+  >
+    <i
+      aria-hidden="true"
+      className="ban large icon"
+      onClick={[Function]}
+    />
+    <div
+      aria-expanded={false}
+      aria-multiselectable={true}
+      className="ui multiple selection dropdown"
+      name="dietary_preference"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="listbox"
+      tabIndex={0}
+    >
+      <div
+        aria-atomic={true}
+        aria-live="polite"
+        className="default text"
+        role="alert"
+      >
+        Dietary preference
+      </div>
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+        onClick={[Function]}
+      />
+      <div
+        className="menu transition"
+      >
+        <div
+          aria-checked={false}
+          aria-selected={true}
+          className="selected item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Vegan
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Gluten-Free
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Lacto-vegetarian
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Ovo-vegetarian
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Pescetarian
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Vegetarian
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            None
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="column"
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+      }
+    }
+  >
+    <button
+      className="ui tiny button"
+      id="dietary_preference"
+      onClick={[Function]}
+    >
+      Save
+    </button>
+  </div>
+</div>
+`;

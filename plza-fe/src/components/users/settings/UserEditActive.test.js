@@ -4,31 +4,29 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 
-import UserEditInactive from './UserEditInactive';
+import UserEditActive from './UserEditActive';
 
-// jest.mock('../../../redux/actions/userActions');
+jest.mock('../../../redux/actions/userActions');
 const mockStore = configureStore({});
 
-const storeObj = {
-    user: { field: 'currentItem' }
-}
-
-describe('UserEditInactive with item.value as a string', () => {
+describe('UserEditActive with item.value as a string', () => {
     let store;
     let component;
     const item = {
         icon: "location arrow",
-        title: "Location",
-        value: "New York City"
+        name: "location",
+        value: "Barcelona"
     };
     beforeEach(() => {
-        store = mockStore(storeObj);
+        store = mockStore({
+            user: { field: 'location' }
+        });
 
         store.dispatch = jest.fn();
 
         component = renderer.create(
             <Provider store={store}>
-                <UserEditInactive item={item} />
+                <UserEditActive item={item} />
             </Provider>
         )
 
@@ -43,23 +41,25 @@ describe('UserEditInactive with item.value as a string', () => {
     })
 })
 
-describe('UserEditInactive with item.value as an array', () => {
+describe('UserEditActive with item.value as an array', () => {
     let store;
     let component;
     const item = {
         icon: "ban",
-        title: "Dietary Preferences",
-        value: ["Gluten-free", "Vegan", "Veggitarian"]
+        name: "dietary_preference",
+        value: ["vegan", "gluten-free"]
     };
 
     beforeEach(() => {
-        store = mockStore(storeObj);
+        store = mockStore({
+            user: { field: 'dietary_preference' }
+        });
 
         store.dispatch = jest.fn();
 
         component = renderer.create(
             <Provider store={store}>
-                <UserEditInactive item={item} />
+                <UserEditActive item={item} />
             </Provider>
         )
     });
