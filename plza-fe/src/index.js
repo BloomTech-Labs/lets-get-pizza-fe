@@ -15,6 +15,7 @@ import Locations from "./components/locations/LocationController";
 import Pages from "./components/staticPages/PageController";
 import Items from "./components/items/ItemController";
 
+
 // Home page
 import Home from "./components/main/Home";
 
@@ -28,9 +29,10 @@ ReactDOM.render(
       <Header />
 
       <Switch>
+
         <Route path="/users">
           <Users />
-        </Route>
+        </Route> 
 
         <Route path="/locations">
           <Locations />
