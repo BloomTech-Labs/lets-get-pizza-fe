@@ -30,12 +30,8 @@ jobs:
             - uses: actions/setup-node@master
               with:
                 node-version: "12"
-            # Change directory into `plza-fe`
-            - run: cd plza-fe
-            # Run the NPM install command before proceeding
-            - run: npm install
-            # Change directory into `plza-fe`
-            - run: cd plza-fe
+            # Change directory into `plza-fe` and run npm install
+            - run: cd plza-fe && npm install
             # A Github action for running tests and publishing coverage
             - uses: paambaati/codeclimate-action@v2.4.0
               env:
