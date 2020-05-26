@@ -214,3 +214,11 @@ export const userDeleteReview = (id, user) => (dispatch) => {
 export const userAddPromo = (selected) => (dispatch) => {
   dispatch({ type: types.USER_PROMO_SUCCESS, payload: selected });
 };
+
+export const userDeletePromo = (selected) => (dispatch) => {
+  const filterDeletedPromo = selected.shift();
+  dispatch({
+    type: types.USER_PROMO_DELETE_SUCCESS,
+    payload: filterDeletedPromo,
+  });
+};

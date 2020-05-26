@@ -13,7 +13,7 @@ const Promotions = ({ content }) => {
   const user = useSelector(({ user }) => user);
 
   useEffect(() => {
-    API.get("/users/2")
+    API.get("/users/10")
       .then((res) => {
         console.log(res);
       })

@@ -120,7 +120,12 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.USER_PROMO_SUCCESS:
       return {
         ...state,
-        savedPromotions: payload,
+        savedPromotions: [...state.savedPromotions, payload],
+      };
+    case types.USER_PROMO_DELETE_SUCCESS:
+      return {
+        ...state,
+        savedPromotions: [...state.savedPromotions, payload],
       };
     default:
       return state;
