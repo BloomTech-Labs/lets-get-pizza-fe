@@ -23,7 +23,7 @@ jobs:
         runs-on: ubuntu-latest
         defaults:
           run:
-            working-directory: ./lets-get-pizza/plza-fe
+            working-directory: ./plza-fe
 
         #The steps for the job, executed in sequence
         steps:
