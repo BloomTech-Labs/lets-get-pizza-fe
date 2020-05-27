@@ -2,13 +2,13 @@ import * as types from '../types/locationTypes'
 import API from "../../utils/API";
 
 
-export const locationLogin = ({username, password}) => dispatch => {
+export const locationLogin = ({username, password}, history) => dispatch => {
     dispatch({type: types.LOCATION_LOGIN_START, payload: true})
     API.post('auth/location/login', {username, password})
         .then(res => {
             localStorage.setItem('token', JSON.stringify(res.data.token))
             dispatch({type: types.LOCATION_LOGIN_SUCCESS, payload: res.data.location})
-            window.location.replace('/')
+            history.push('/')
         })
         .catch(err => {
             dispatch({type: types.LOCATION_LOGIN_FAIL, payload: {error: 'Invalid username or password', isLoading: false}})
