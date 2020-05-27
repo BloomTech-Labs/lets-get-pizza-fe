@@ -240,3 +240,21 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
       console.log(err);
     });
 };
+
+export const addUserFriend = (user, friends_id) => dispatch => {
+  dispatch({type: types.ADD_USER_FRIEND_START, payload: true})
+  API.post(`/friends`, {user_id: user.id, friends_id})
+    .then(res => {
+      dispatch({type: types.ADD_USER_FRIEND_SUCCESS, payload: false})
+    })
+    .then(() => {
+      // dispatch `getUserFriends` to get updated list of friends
+      dispatch(getUserFriends(user.id))
+    })
+    .catch(err => {
+      dispatch({
+        type: types.ADD_USER_FRIEND_FAIL, 
+        payload: {isLoading: false, error: 'There was an error adding your friend'}
+      })
+    })
+}

@@ -76,6 +76,8 @@ export default function Masthead() {
 
       <NavbarItem to="/locations/map">Map</NavbarItem>
       <NavbarItem to="/locations/search">Search</NavbarItem>
+      {/* Only render this button if user is logged in */}
+      {user.username && <NavbarItem to="/users/search">Discover</NavbarItem>}
 
       <Dropdown item text="About" pointing>
         <Dropdown.Menu>
