@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SimpleContainer from '../../main/SimpleContainer'
-import { Input, Header, Card } from 'semantic-ui-react'
+import { Input, Header, Card, Grid } from 'semantic-ui-react'
 import API from '../../../utils/API'
 import SearchCard from './SearchCard'
 import { useSelector } from 'react-redux'
@@ -20,9 +20,17 @@ const UserSearch = () => {
     }, [query])
 
     return (
-        <SimpleContainer icon='search' title='Discover Users'>
-            <Header size='medium'>Search for friends...</Header>
-            <Input icon='search' placeholder='Enter username' value={query} onChange={(e) => setQuery(e.target.value)}/>
+        <SimpleContainer icon='search' title='Search for friends...'>
+            <Grid>
+                <Grid.Column textAlign='center'>
+                    <Input 
+                        icon='search' 
+                        placeholder='Enter username' 
+                        value={query} 
+                        onChange={(e) => setQuery(e.target.value)}
+                    />
+                </Grid.Column>
+            </Grid>
 
             <Card.Group itemsPerRow={4} doubling stackable>
                 {users.map(user => (
