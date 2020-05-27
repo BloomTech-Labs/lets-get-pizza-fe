@@ -13,8 +13,8 @@ on:
 # Add default shell and working directory for jobs
 defaults:
     run:
-      shell: bash
-      working-directory: ""./plza-fe"
+        shell: bash
+        working-directory: "./plza-fe"
 
 # The jobs that will be run, usually in parallel
 
