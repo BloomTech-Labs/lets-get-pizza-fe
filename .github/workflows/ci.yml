@@ -21,6 +21,9 @@ jobs:
 
         #The OS on which the job will run
         runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: "./plza-fe"
 
         #The steps for the job, executed in sequence
         steps:
