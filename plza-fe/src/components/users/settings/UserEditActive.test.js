@@ -1,6 +1,5 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { render, fireEvent } from '@testing-library/react'
 
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
@@ -10,7 +9,6 @@ import UserEditActive from './UserEditActive';
 
 jest.mock('../../../redux/actions/userActions');
 const mockStore = configureStore();
-
 
 describe('UserEditActive with item.value as a string', () => {
 

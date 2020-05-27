@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 
 import UserEditInactive from './UserEditInactive';
 
-// jest.mock('../../../redux/actions/userActions');
 const mockStore = configureStore({});
 
 const storeObj = {
