@@ -81,6 +81,7 @@ exports[`UserEditActive with item.value as an array should render with text from
       aria-expanded={false}
       aria-multiselectable={true}
       className="ui multiple selection dropdown"
+      id="dropdown"
       name="dietary_preference"
       onBlur={[Function]}
       onChange={[Function]}
@@ -246,7 +247,6 @@ exports[`UserEditActive with item.value as an array should render with text from
   >
     <button
       className="ui tiny button"
-      id="dietary_preference"
       onClick={[Function]}
     >
       Save
