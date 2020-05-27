@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.2",
+    "codeclimate-test-reporter": "^0.5.1",
     "formik": "^2.1.4",
     "formik-semantic-ui": "^0.10.0",
     "react": "^16.13.1",
@@ -37,7 +38,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --coverage --watchAll=false || true"
   },
   "eslintConfig": {
     "extends": "react-app"
