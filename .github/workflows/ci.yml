@@ -1,0 +1,46 @@
+# The name of the workflow
+
+name: Code Climate
+
+# What conditions trigger the workflow
+# In this case, all pushes and pull requests
+
+on:
+    pull_request:
+    push:
+        branches:
+            - master
+
+# The jobs that will be run, usually in parallel
+
+jobs:
+    # A job to generate and publish code coverage
+    coverage:
+        # A more descriptive name of the job
+        name: Test and publish test coverage
+
+        #The OS on which the job will run
+        runs-on: ubuntu-latest
+
+        #The steps for the job, executed in sequence
+        steps:
+            # A Github action for checking out the current branch
+            - uses: actions/checkout@master
+            # A Github action to setup Node.js
+            - uses: actions/setup-node@master
+              with:
+                node-version: "12"
+            # run npm install
+            - run: npm install
+            # A Github action for running tests and publishing coverage
+            - uses: paambaati/codeclimate-action@v2.4.0
+              env:
+                # An environment variable, the value is a Github repo secret
+                CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}
+              with:
+                # Run our `coverage` script in our `package.json`
+                coverageCommand: npm run coverage
+                # By default, this looks for a `coverage` folder in the root of your project but you may need to change this
+                coverageLocations: "./lets-get-pizza-fe/coverage/lcov.info:lcov"
+                # Great for troubleshooting
+                debug: true

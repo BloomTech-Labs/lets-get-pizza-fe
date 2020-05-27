@@ -17,10 +17,15 @@ const Sidebar = ({ location, canEdit, currLocation }) => (
       </p>
     </SidebarSegment>
 
+    <SidebarSegment icon="book" title="Store Bio">
+      {location.store_bio ||
+        `${location.business_name} has not provided a bio about itself yet.`}
+    </SidebarSegment>
+
     <SidebarSegment icon="food" title="Dietary offerings">
       {location.dietary_offerings ? (
         <List>
-          {location.dietary_offerings.map(offering => (
+          {location.dietary_offerings.map((offering) => (
             <List.Item key={offering}>
               <Icon name="check" />
               <List.Content>

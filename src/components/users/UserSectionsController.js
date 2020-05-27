@@ -8,34 +8,32 @@ import FriendsList from "./FriendsComp/FriendsList";
 import UserReviewsList from "./reviews/UserReviewsList";
 import ProfileMain from "./profile/ProfileMain";
 
+
+
 const UserSectionsController = () => (
   <>
+
     <Switch>
       <Route path="/users/dash/events">
         <UserEventsList />
       </Route>
-    </Switch>
-    <Switch>
+ 
       <Route path="/users/dash/settings">
         <UserSettings />
       </Route>
-    </Switch>
-    <Switch>
+   
       <Route path="/users/dash/reviews">
         <UserReviewsList />
       </Route>
-    </Switch>
-    <Switch>
+ 
       <Route path="/users/dash/favoriteShop">
         <UserFavoriteShop />
       </Route>
-    </Switch>
-    <Switch>
+  
       <Route path="/users/dash/friends">
         <FriendsList />
       </Route>
-    </Switch>
-    <Switch>
+
       <Route path="/users/dash/profile">
         <ProfileMain />
       </Route>
