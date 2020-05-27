@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { List, Image, Button, Confirm } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import "./FriendsList.css";
-//todo add links around to user profile
 
 export default function FriendOnList(props) {
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -20,7 +18,7 @@ export default function FriendOnList(props) {
           />
 
           <List.Content className="friendStyling" floated="left">
-            <List.Header as="a">{props.friends.friend_username}</List.Header>
+            <List.Header as="a" href={`/users/${props.friends.friend_username}`}>{props.friends.friend_username}</List.Header>
             <List.Description>{props.friends.friend_bio}</List.Description>
           </List.Content>
         </List.Content>
