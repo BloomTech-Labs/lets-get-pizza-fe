@@ -9,8 +9,8 @@ export default function RenderedButton({ user }) {
   const [curr_user, friends] = useSelector(({ user }) => [user, user.friends])
   const dispatch = useDispatch()
   // Use .find to iterate through logged in user's friends array
-  // If matching id then return user. Else return undefined 
-  const addedFriend = friends.find(friend => friend.friends_id === user.id)
+  // If matching username then return user. Else return undefined 
+  const addedFriend = friends.find(friend => friend.friend_username === user.username)
   let button;
   if (user && loc.pathname.includes("dash")) {
     button = (
