@@ -5,6 +5,8 @@ import Login from "./Login";
 import Register from "./Register";
 import Dashboard from './Dashboard';
 import FriendProfile from "./friends-profile/FriendProfile";
+import PrivateRoute from "../../components/PrivateRoute";
+
 
 const UserController = () => (
   <Switch>
@@ -16,13 +18,11 @@ const UserController = () => (
       <Register />
     </Route>
 
-    <Route path="/users/dash">
-      <Dashboard />
-    </Route>
-
     <Route path='/users/:username'>
       <FriendProfile />
     </Route>
+
+    <PrivateRoute path = "/users/dash" component = {Dashboard} /> 
   </Switch>
 );
 
