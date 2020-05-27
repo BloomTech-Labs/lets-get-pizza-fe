@@ -18,11 +18,11 @@ const UserController = () => (
       <Register />
     </Route>
 
+    <PrivateRoute path = "/users/dash" component = {Dashboard} />
+    
     <Route path='/users/:username'>
       <FriendProfile />
-    </Route>
-
-    <PrivateRoute path = "/users/dash" component = {Dashboard} /> 
+    </Route> 
   </Switch>
 );
 
