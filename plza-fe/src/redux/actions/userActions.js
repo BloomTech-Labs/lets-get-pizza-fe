@@ -1,13 +1,17 @@
 import API from "../../utils/API";
 import * as types from "../types/userTypes";
 
-export const userLogin = ({ username, password }) => (dispatch) => {
+export const userLogin = ({ username, password }, history) => (dispatch) => {
   dispatch({ type: types.USER_LOGIN_START, payload: true });
   API.post("/auth/user/login", { username, password })
     .then((res) => {
       localStorage.setItem("token", JSON.stringify(res.data.token));
       dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res.data.user });
-      window.location.replace("/users/dash/profile");
+      return res.data.user.id
+    })
+    .then(id => {
+      dispatch(getUserFriends(id))
+      history.push('/users/dash/profile')
     })
     .catch((err) => {
       dispatch({
