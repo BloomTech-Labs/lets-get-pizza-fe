@@ -6,6 +6,7 @@ import Register from "./Register";
 import Dashboard from './Dashboard';
 import FriendProfile from "./profile/FriendProfile";
 import PrivateRoute from "../../components/PrivateRoute";
+import UserSearch from "./search/UserSearch";
 
 
 const UserController = () => (
@@ -22,7 +23,11 @@ const UserController = () => (
     
     <Route path='/users/:username'>
       <FriendProfile />
-    </Route> 
+    </Route>  
+    
+    <Route path="/users/search">
+      <UserSearch />
+    </Route>
   </Switch>
 );
 
