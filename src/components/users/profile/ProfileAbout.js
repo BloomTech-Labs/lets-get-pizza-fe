@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Image, Header, Segment } from 'semantic-ui-react'
-import RenderedButton from '../profile/RenderedButton';
+import RenderedButton from './RenderedButton';
 
 
 const ProfileAbout = ({ user }) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import ProfileDetails from '../friends-profile/ProfileDetails';
+import ProfileDetails from './ProfileDetails';
 
 const ProfileMain = () => {
     const user = useSelector(({ user }) => user);

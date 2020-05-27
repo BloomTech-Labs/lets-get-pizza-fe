@@ -1,15 +1,35 @@
-import React from "react";
-import ActivityCardList from "./ActivityCardList";
+import React, { useEffect } from 'react'
+import { Grid, Header } from 'semantic-ui-react'
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { eventsByFriend, reviewsByFriend, getFriendFavoriteShop } from '../../../redux/actions/friendActions';
+import { eventsByUser, locationByUser, reviewsByUser } from '../../../redux/actions/userActions';
+import ActivityFeed from './ActivityFeed';
 
-export default function ActivityContainer({ user }) {
-  return (
-    <div className="bio-activity-ch">
-      <div>
-        <h2 className="head-act-ch">Activity</h2>
-        <section className="activity-container-ch">
-          <ActivityCardList user={user} />
-        </section>
-      </div>
-    </div>
-  );
+const ActivityContainer = ({ user }) => {
+    const { pathname } = useLocation()
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      // dispatch user actions if path includes 'dash'
+      if(pathname.includes('dash')){
+        dispatch(eventsByUser(user.id));
+        dispatch(locationByUser(user.favorite_pizza_shop));
+        dispatch(reviewsByUser(user.id));
+      }else{
+        // dispatch friend actions if not on dashboard
+        dispatch(eventsByFriend(user.id));
+        dispatch(getFriendFavoriteShop(user.favorite_pizza_shop));
+        dispatch(reviewsByFriend(user.id));
+      }
+    }, [user.id, user.favorite_pizza_shop]);
+    const activities = user.reviews.concat(user.events);
+    return (
+        <Grid.Row>
+            <Header size='huge' textAlign='center' style={{width: '100%'}}>Recent Activity</Header>
+            <ActivityFeed activities={activities} user={user} />
+        </Grid.Row>
+    )
 }
+
+export default ActivityContainer
