@@ -23,6 +23,7 @@ jobs:
         runs-on: ubuntu-latest
         defaults:
             run:
+                shell: bash
                 working-directory: "./plza-fe"
 
         #The steps for the job, executed in sequence
@@ -33,7 +34,7 @@ jobs:
             - uses: actions/setup-node@master
               with:
                 node-version: "12"
-            # Change directory into `plza-fe` and run npm install
+            # run npm install
             - run: npm install
             # A Github action for running tests and publishing coverage
             - uses: paambaati/codeclimate-action@v2.4.0
