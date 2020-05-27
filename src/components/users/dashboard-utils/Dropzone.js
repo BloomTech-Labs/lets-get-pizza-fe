@@ -58,7 +58,7 @@ const DropzoneComp = ({
               {...getInputProps()}
               style={{ display: "inline-block" }}
             />
-            {preview && <img src={preview} alt="user profile" />}
+            {preview && <img className='dropzone-image' src={preview} alt="user profile" />}
           </div>
           {isDragActive ? (
             <p className="drop-text">Release the image file here</p>
