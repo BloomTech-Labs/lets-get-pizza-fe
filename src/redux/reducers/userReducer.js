@@ -1,6 +1,5 @@
 import * as types from "../types/userTypes";
 const initialState = {
-  friends: [],
   field: "",
   pendingUserChanges: {},
   events: [],
@@ -20,6 +19,8 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.IMAGE_UPLOAD_START:
     case types.USER_EVENT_START:
     case types.IMAGE_DELETE_START:
+    case types.GET_USER_FRIENDS_START:
+    case types.DELETE_USER_FRIENDS_START:
       return {
         ...state,
         isLoading: payload,
@@ -46,6 +47,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.SUBMIT_SETTINGS_FAIL:
     case types.USER_LOCATION_FAIL:
     case types.USER_EVENT_FAIL:
+    case types.DELETE_USER_FRIENDS_FAIL:
       return {
         ...state,
         isLoading: payload,
@@ -108,15 +110,32 @@ export const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         reviews: payload,
-      }
+      };
     case types.USER_REVIEW_DELETE_SUCCESS:
     case types.USER_REVIEW_EDIT_SUCCESS:
       return {
         ...state,
         reviews: [...payload],
       };
+    case types.GET_USER_FRIENDS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        friends: payload,
+      };
+    case types.GET_USER_FRIENDS_FAIL:
+      return {
+        ...state,
+        isLoading: payload,
+        friends: [],
+      };
+    case types.DELETE_USER_FRIENDS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        friends: payload,
+      };
     default:
       return state;
   }
 };
-
