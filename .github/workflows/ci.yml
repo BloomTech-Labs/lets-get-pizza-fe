@@ -10,6 +10,11 @@ on:
     push:
         branches:
             - master
+# Add default shell and working directory for jobs
+defaults:
+    run:
+        shell: bash
+        working-directory: ""./plza-fe"
 
 # The jobs that will be run, usually in parallel
 
@@ -21,10 +26,6 @@ jobs:
 
         #The OS on which the job will run
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                shell: bash
-                working-directory: "./plza-fe"
 
         #The steps for the job, executed in sequence
         steps:
