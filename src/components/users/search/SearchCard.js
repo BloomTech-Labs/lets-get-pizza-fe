@@ -34,8 +34,8 @@ const SearchCard = ({ search }) => {
                 <Card.Description textAlign='center'>{search.bio}</Card.Description>
             </Card.Content>
             <Card.Content extra textAlign='center'>
-                <Button onClick={handleClick} color={added ? 'red' : 'green'}>
-                    {added ? 'Remove' : 'Add'}
+                <Button onClick={handleClick} color='blue' disabled={added ? true : false}>
+                    {added ? 'Added!!' : 'Add'}
                 </Button>
             </Card.Content>
         </Card>
