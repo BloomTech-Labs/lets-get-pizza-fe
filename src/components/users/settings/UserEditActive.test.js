@@ -87,7 +87,7 @@ describe('UserEditActive with item.value as an array', () => {
         ]
         renderer.act(() => {
             options.forEach(({ text, value }) => {
-                component.root.findAllByType('div')[2].props.onChange({ target: { text: text } }, { value })
+                component.root.findAllByType('div').filter(({ props }) => props.id && props.id === "dropdown")[0].props.onChange({ target: { text: text } }, { value })
             })
         });
 
