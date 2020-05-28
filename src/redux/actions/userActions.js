@@ -13,7 +13,7 @@ export const userLogin = ({ username, password }, history) => (dispatch) => {
     .then(id => {
       // dispatch `getUserFriends` to grab a list of user friends
       dispatch(getUserFriends(id))
-      history.push('/users/dash/profile')
+      window.location.replace('/users/dash/profile')
     })
     .catch((err) => {
       dispatch({

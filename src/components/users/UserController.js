@@ -21,13 +21,13 @@ const UserController = () => (
 
     <PrivateRoute path = "/users/dash" component = {Dashboard} />
     
-    <Route path='/users/:username'>
-      <FriendProfile />
-    </Route>  
-    
     <Route path="/users/search">
       <UserSearch />
     </Route>
+
+    <Route path='/users/:username'>
+      <FriendProfile />
+    </Route>  
   </Switch>
 );
 
