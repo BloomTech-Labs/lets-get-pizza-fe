@@ -1,13 +1,61 @@
-@media(min-width: 500px){
-  button.ui.blue.button {
-        background-color:red;
+@media(max-width: 375px){
+    div.ui.large.fluid.pointing.vertical.tabular.menu {
+        margin:0px;
+        background-color: blue;
+        padding:0px;
+    
+    }
+    div a.item{
+        padding:0px;
     }
 
-   /* div.ui.header {
+    div p {
+        display:none;
+    }
+
+    div.left.floated.five.wide.column{
+        margin:0px;
        background-color:red;
-   } */
+        
+    }
+
+
+    div a.active.item {
+        padding:0px;
+        background-color:green;
+    }
+
+   div.center.aligned.eight.wide.computer.sixteen.mobile.column:nth-child(odd){
+       padding: 0px;
+       align-content: center;
+       margin: 10px 50px 10px;
+       max-width: 250px;
+       max-height: 250px;
+   } 
+
+    div button a {
+        color:black;
+    }
 
    div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) {
-       background-color:blue;
+       background-color:black;
+       padding:1%;
    }
+      div.ui.header{
+          color:white;
+      }
+       div.ui.huge.header {
+           color:white;
+         }
+
+       div a {
+           color:white;
+       }
+
+       div.ui.segment {
+           background:none;
+           color:white;
+           border:none;
+       }
+   
 }
