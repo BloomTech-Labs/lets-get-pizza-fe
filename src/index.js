@@ -21,6 +21,7 @@ import Home from "./components/main/Home";
 
 import "semantic-ui-css/semantic.min.css";
 import { Loader } from "semantic-ui-react";
+// import "./components/users/MobileStyle.css";
 
 ReactDOM.render(
   <Provider store={store}>

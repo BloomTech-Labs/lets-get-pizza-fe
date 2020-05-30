@@ -1,0 +1,13 @@
+@media(min-width: 500px){
+  button.ui.blue.button {
+        background-color:red;
+    }
+
+   /* div.ui.header {
+       background-color:red;
+   } */
+
+   div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) {
+       background-color:blue;
+   }
+}
