@@ -7,7 +7,7 @@
     }
     div#root {
         background:red;
-        max-width:50vh;
+        min-width:375px;
     }
 
     /* div#root div.hamburger.disabled {
@@ -15,7 +15,13 @@
         right: 65px;
     } */
 
+    div.header.item {
+        min-width:375px;
+    }
   
+    div.two.column.row {
+        min-width:375px;
+    }
     div.ui.large.fluid.pointing.vertical.tabular.menu {
         display:flex;
         flex-direction:row;
@@ -34,6 +40,7 @@
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
         padding:4px;
         background:none;
+        
     }
 
 
@@ -54,7 +61,7 @@
    div.center.aligned.eight.wide.computer.sixteen.mobile.column:nth-child(odd){
        padding: 0px;
        align-content: center;
-       margin: 10px 30px 10px;
+       margin: 10px 50px 10px;
        max-width: 250px;
        max-height: 250px;
    } 
@@ -66,7 +73,7 @@
    div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) {
        background-color:black;
        padding:2%;
-       max-width:50vh;
+      min-width:375px;
    }
       div.ui.header{
           color:white;
