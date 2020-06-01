@@ -1,11 +1,13 @@
-import React, {useEffect} from 'react'
-import UserProfileDetails from './UserProfileDetails'
-import './userProfile.css'
+import React from 'react'
+import { useSelector } from 'react-redux';
+import ProfileDetails from './ProfileDetails';
 
 const ProfileMain = () => {
+    const user = useSelector(({ user }) => user);
+    
     return(
         <div>
-           <UserProfileDetails />
+            <ProfileDetails user={user} />
         </div>
     )
 }

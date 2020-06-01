@@ -1,15 +1,19 @@
 import API from "../../utils/API";
 import * as types from "../types/userTypes";
-import ReactDOM from "react-dom";
-import FriendsList from "../../components/users/FriendsComp/FriendsList";
 
-export const userLogin = ({ username, password }) => (dispatch) => {
+export const userLogin = ({ username, password }, history) => (dispatch) => {
   dispatch({ type: types.USER_LOGIN_START, payload: true });
   API.post("/auth/user/login", { username, password })
     .then((res) => {
       localStorage.setItem("token", JSON.stringify(res.data.token));
       dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res.data.user });
-      window.location.replace("/users/dash/profile");
+      // return logged in user's id
+      return res.data.user.id
+    })
+    .then(id => {
+      // dispatch `getUserFriends` to grab a list of user friends
+      dispatch(getUserFriends(id))
+      window.location.replace('/users/dash/profile')
     })
     .catch((err) => {
       dispatch({
@@ -140,7 +144,6 @@ export const locationByUser = (id) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: types.USER_LOCATION_FAIL, payload: false });
-      console.log(err, "from error reducer");
     });
 };
 
@@ -149,7 +152,6 @@ export const eventsByUser = (id) => (dispatch) => {
   dispatch({ type: types.USER_EVENT_START, payload: true });
   API.get(`/events/users/${id}`)
     .then((res) => {
-      // console.log(res.data, "user event state");
       const currentDate = new Date().toISOString();
       dispatch({
         type: types.USER_EVENT_SUCCESS,
@@ -160,7 +162,6 @@ export const eventsByUser = (id) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: types.USER_EVENT_FAIL, payload: false });
-      console.log(err, "error from eventsByUser action");
     });
 };
 
@@ -176,7 +177,6 @@ export const userDeleteEvent = (id, user) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: types.USER_EVENT_DELETE_FAIL, payload: false });
-      console.log(err, "error from userDeleteEvent action");
     });
 };
 
@@ -191,7 +191,6 @@ export const reviewsByUser = (id) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: types.USER_REVIEW_FAIL, payload: false });
-      console.log(err, "error from reviewsByUser action");
     });
 };
 
@@ -209,7 +208,6 @@ export const userDeleteReview = (id, user) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: types.USER_REVIEW_DELETE_FAIL, payload: false });
-      console.log(err, "error from userDeleteReview action");
     });
 };
 
@@ -223,7 +221,6 @@ export const getUserFriends = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err, "error from get user friends");
       dispatch({ type: types.GET_USER_FRIENDS_FAIL, payload: false });
     });
 };
@@ -237,6 +234,23 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: types.DELETE_USER_FRIENDS_FAIL, payload: false });
-      console.log(err);
     });
 };
+
+export const addUserFriend = (user, friends_id) => dispatch => {
+  dispatch({type: types.ADD_USER_FRIEND_START, payload: true})
+  API.post(`/friends`, {user_id: user.id, friends_id})
+    .then(res => {
+      dispatch({type: types.ADD_USER_FRIEND_SUCCESS, payload: false})
+    })
+    .then(() => {
+      // dispatch `getUserFriends` to get updated list of friends
+      dispatch(getUserFriends(user.id))
+    })
+    .catch(err => {
+      dispatch({
+        type: types.ADD_USER_FRIEND_FAIL, 
+        payload: {isLoading: false, error: 'There was an error adding your friend'}
+      })
+    })
+}

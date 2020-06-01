@@ -4,7 +4,9 @@ import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Dashboard from './Dashboard';
+import FriendProfile from "./profile/FriendProfile";
 import PrivateRoute from "../../components/PrivateRoute";
+import UserSearch from "./search/UserSearch";
 
 
 const UserController = () => (
@@ -16,9 +18,16 @@ const UserController = () => (
     <Route path="/users/register">
       <Register />
     </Route>
-  
-  
-    <PrivateRoute path = "/users/dash" component = {Dashboard} /> 
+
+    <PrivateRoute path = "/users/dash" component = {Dashboard} />
+    
+    <Route path="/users/search">
+      <UserSearch />
+    </Route>
+
+    <Route path='/users/:username'>
+      <FriendProfile />
+    </Route>  
   </Switch>
 );
 

@@ -2,7 +2,7 @@ import * as types from '../types/locationTypes'
 import API from "../../utils/API";
 
 
-export const locationLogin = ({username, password}) => dispatch => {
+export const locationLogin = ({username, password}, history) => dispatch => {
     dispatch({type: types.LOCATION_LOGIN_START, payload: true})
     API.post('auth/location/login', {username, password})
         .then(res => {
