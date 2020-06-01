@@ -1,6 +1,7 @@
 @media(max-width: 375px){
 
-    
+    /* ---HOME PAGE --- */
+   
     div#root {
        
         width: 100%;
@@ -101,5 +102,53 @@
 
     div.row::before {
         display:none;
+    }
+
+   /* ---OTHER PAGES--- */
+
+    div.eleven.wide.column {
+        /* background:green; */
+        border-bottom: .5px dashed lightgrey;
+    }
+
+    img.ui.medium.circular.image{
+        max-width:150px;
+    }
+
+   h1.Header-ch{
+        font-size:30px;
+    }
+
+    img.ui.tiny.circular.image.avatarImage {
+        width:105px;
+        height:75px;
+        padding-right:2%;
+    }
+
+    button.ui.black.button.friendButton {
+        background:#2185D0;
+        width: 35%;
+        padding:2%;
+    }
+
+    div.description {
+        font-size: 14px;
+        color:slategrey;
+        margin-top:10%;
+        border:.5px solid lightgrey;
+        padding:3%;
+        border-radius:7%;
+    }
+
+    a.header {
+        color:black;
+        font-size: 20px;
+        font-weight: 800;
+    }
+    a{
+        font-size: 16px;
+    }
+    a.undefined{
+        font-size: 16px;
     }
 }
