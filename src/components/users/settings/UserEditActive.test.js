@@ -37,8 +37,6 @@ describe('UserEditActive with item.value as a string', () => {
     });
 
     it('should render with text from props', () => {
-        // expect(component.toJSON()).toMatchSnapshot();
-        // Grab input element
         const inputElement = component.root.findByType('input').props
 
         expect(inputElement.name).toContain(item.name)
@@ -63,6 +61,16 @@ describe('UserEditActive with item.value as an array', () => {
         icon: "ban"
     };
 
+    const options = [
+        { text: "Vegan", value: "vegan" },
+        { text: "Gluten-Free", value: "gluten-free" },
+        { text: "Lacto-vegetarian", value: "lacto-vegetarian" },
+        { text: "Ovo-vegetarian", value: "ovo-vegetarian" },
+        { text: "Pescetarian", value: "pescetarian" },
+        { text: "Vegetarian", value: "vegetarian" },
+        { text: "None", value: "" },
+    ]
+
     beforeEach(() => {
         store = mockStore({
             user: { field: 'dietary_preference' }
@@ -78,25 +86,23 @@ describe('UserEditActive with item.value as an array', () => {
     });
 
     it('should render with text from props', () => {
-        expect(component.toJSON()).toMatchSnapshot();
-        expect(findElementById(component, 'dropdown').name).toBe('dietary_preference')
+        const dropdown = findElementById(component, 'dropdown')
+        expect(dropdown.name).toBe('dietary_preference')
 
-        console.log(findElementById(component, 'dropdown'))
+        // find the dropdown items
+        const menuItems = dropdown.children.filter(({ props }) => props.className && props.className === 'menu transition')[0]
+        // loop through items & make sure they match incoming prop text
+        menuItems.children.forEach((item, index) => {
+            expect(item.children[0].children[0]).toContain(options[index].text)
+        })
     })
 
     it('Dropdown onChange can fire userEditSettings for each option & fires correct Redux action', () => {
-        const options = [
-            { text: "Vegan", value: "vegan" },
-            { text: "Gluten-Free", value: "gluten-free" },
-            { text: "Lacto-vegetarian", value: "lacto-vegetarian" },
-            { text: "Ovo-vegetarian", value: "ovo-vegetarian" },
-            { text: "Pescetarian", value: "pescetarian" },
-            { text: "Vegetarian", value: "vegetarian" },
-            { text: "None", value: "" },
-        ]
+
         renderer.act(() => {
+            const dropdown = findElementById(component, 'dropdown')
             options.forEach(({ text, value }) => {
-                component.root.findAllByType('div').filter(({ props }) => props.id && props.id === "dropdown")[0].props.onChange({ target: { text: text } }, { value })
+                dropdown.onChange({ target: { text: text } }, { value })
             })
         });
 
