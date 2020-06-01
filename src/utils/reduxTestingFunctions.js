@@ -47,7 +47,7 @@ export const findElementById = (component, id) => {
         let combinedArr = 0;
         currentLevel.forEach(arr => {
             if (arr.length !== 0) {
-                arr.forEach(() => combinedArr++)
+                combinedArr++
             }
         })
         if (combinedArr === 0) {
