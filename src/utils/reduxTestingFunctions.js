@@ -44,11 +44,13 @@ export const findElementById = (component, id) => {
     // loop does not run forever if there is no id matching the id
     // recieved from args.
     const checkForStoppingPoint = () => {
-        const combinedArr = [];
+        let combinedArr = 0;
         currentLevel.forEach(arr => {
-            arr.forEach(item => combinedArr.push(item))
+            if (arr.length !== 0) {
+                arr.forEach(() => combinedArr++)
+            }
         })
-        if (combinedArr.length === 0) {
+        if (combinedArr === 0) {
             filteredElement.push({ error: "no matching id found in the supplied component" })
         }
     };
