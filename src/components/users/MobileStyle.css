@@ -1,49 +1,42 @@
 @media(max-width: 375px){
 
-    body{
-        background-color:blue;
-        max-width:375px;
-        padding:0px;
-    }
+    
     div#root {
-        background:red;
-        min-width:375px;
+       
+        width: 100%;
+   
     }
 
-    /* div#root div.hamburger.disabled {
-        margin-left:-20px;
-        right: 65px;
-    } */
-
-    div.header.item {
-        min-width:375px;
-    }
-  
-    div.two.column.row {
-        min-width:375px;
-    }
     div.ui.large.fluid.pointing.vertical.tabular.menu {
         display:flex;
         flex-direction:row;
-        margin-top:550px;
-        
+        margin-top:530px;
+
+        overflow:hidden;
+        background-color: white;
+        position: fixed;
+        margin-left: -3.6%;
+        padding-top: 1%;
+        padding-bottom:1%;
+        border-top:.1px dotted slategrey;    
     }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .active.item { 
-        background:green;
-        max-width: 50px;
-        max-height:55px;
-        padding:0px;
-        margin-left:0px;
+        background:#2185D0;
+        max-width: 46px;
+        max-height:40px;
+        padding-bottom:1%;
+        margin-left:2%;
     }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
-        padding:4px;
-        background:none;
+        padding:1.2%;
+        background:white;
+        max-width: 42px;
+        max-height:40px;
+        margin-left:2%;
         
     }
-
-
 
     div p {
         display:none;
@@ -61,19 +54,23 @@
    div.center.aligned.eight.wide.computer.sixteen.mobile.column:nth-child(odd){
        padding: 0px;
        align-content: center;
-       margin: 10px 50px 10px;
+       margin: 2% 16% 10%;
        max-width: 250px;
        max-height: 250px;
    } 
+
+   button.ui.blue.button{
+       margin-top:5%;
+   }
 
     div button a {
         color:black;
     }
 
    div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) {
-       background-color:black;
-       padding:2%;
-      min-width:375px;
+        background-color:black;
+        width: 100%;
+        padding-top:3%;
    }
       div.ui.header{
           color:white;
@@ -84,7 +81,7 @@
          }
 
        div a {
-           color:white;
+           color: slategrey;
        }
 
        div.ui.segment {
@@ -93,6 +90,16 @@
            border:none;
        }
 
-    
-   
+    div.ui.huge.center.aligned.header {
+        color:black;
+        font-size: 18px;
+        padding: 3%;
+        max-width: 90%;
+        margin-left:5%;
+        margin-bottom:50%;
+    }
+
+    div.row::before {
+        display:none;
+    }
 }
