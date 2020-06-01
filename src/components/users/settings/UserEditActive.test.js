@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { userEditSettings } from '../../../redux/actions/userActions';
 
 import UserEditActive from './UserEditActive';
+import { findElementById } from '../../../utils/reduxTestingFunctions';
 
 jest.mock('../../../redux/actions/userActions');
 const mockStore = configureStore();
@@ -36,7 +37,12 @@ describe('UserEditActive with item.value as a string', () => {
     });
 
     it('should render with text from props', () => {
-        expect(component.toJSON()).toMatchSnapshot();
+        // expect(component.toJSON()).toMatchSnapshot();
+        // Grab input element
+        const inputElement = component.root.findByType('input').props
+
+        expect(inputElement.name).toContain(item.name)
+        expect(inputElement.value).toContain(item.value)
     })
 
     it('input onChange can fire userEditSettings for each option & fires correct Redux action', () => {
@@ -73,6 +79,9 @@ describe('UserEditActive with item.value as an array', () => {
 
     it('should render with text from props', () => {
         expect(component.toJSON()).toMatchSnapshot();
+        expect(findElementById(component, 'dropdown').name).toBe('dietary_preference')
+
+        console.log(findElementById(component, 'dropdown'))
     })
 
     it('Dropdown onChange can fire userEditSettings for each option & fires correct Redux action', () => {

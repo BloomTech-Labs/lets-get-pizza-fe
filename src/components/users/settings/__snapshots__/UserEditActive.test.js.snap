@@ -1,59 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UserEditActive with item.value as a string should render with text from props 1`] = `
-<div
-  className="row"
-  style={
-    Object {
-      "borderBottom": "1px solid lightgrey",
-    }
-  }
->
-  <div
-    className="column"
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-      }
-    }
-  >
-    <i
-      aria-hidden="true"
-      className="location arrow large icon"
-      onClick={[Function]}
-    />
-    <div
-      className="ui input"
-    >
-      <input
-        name="location"
-        onChange={[Function]}
-        type="text"
-        value="Barcelona"
-      />
-    </div>
-  </div>
-  <div
-    className="column"
-    style={
-      Object {
-        "alignItems": "center",
-        "display": "flex",
-      }
-    }
-  >
-    <button
-      className="ui tiny button"
-      id="location"
-      onClick={[Function]}
-    >
-      Save
-    </button>
-  </div>
-</div>
-`;
-
 exports[`UserEditActive with item.value as an array should render with text from props 1`] = `
 <div
   className="row"
