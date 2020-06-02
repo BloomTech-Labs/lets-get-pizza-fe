@@ -1,16 +1,35 @@
-import React from "react";
-import ReviewCard from "./ReviewCard";
+import React from 'react'
+import { Feed, Divider, Rating } from 'semantic-ui-react'
+import { useSelector } from 'react-redux'
 
-export default function ReviewActivity(props) {
-  return (
-    <div style={{ borderBottom: "1px solid black", padding: "5%" }}>
-      <div className="img-head-ch-ch">
-        <img src={props.user.profile_image} className="img-ch-ch" />
-        <h4 style={{ marginTop: "0" }}>
-          {props.user.username} posted a Review!
-        </h4>
-      </div>
-      <ReviewCard review={props.evt} />
-    </div>
-  );
+const ReviewActivity = ({ user, review }) => {
+  const curr_user = useSelector(({user}) => user.username)
+    return (
+        <>
+        <Feed.Event>
+            <Feed.Label image={user.profile_image} />
+            <Feed.Content>
+                <Feed.Summary>
+                  <Feed.User as="a" href={user.username !== curr_user ? `/users/${user.username}` : `/users/dash/profile`}>
+                    {user.username}
+                  </Feed.User>{" "}
+                  posted a review of {review.business_name}
+                </Feed.Summary>
+                <br />
+                <Feed.Summary>
+                    {review.review_title} <Rating defaultRating={review.rating} maxRating={5} disabled/>
+                </Feed.Summary>
+                <Feed.Extra text>
+                  {review.review_text}
+                </Feed.Extra>
+                <Feed.Meta>
+                  <Feed.Like icon="thumbs up" /> 13 Likes 
+                </Feed.Meta>{" "}
+              </Feed.Content>
+        </Feed.Event>
+        <Divider />
+        </>
+    )
 }
+
+export default ReviewActivity

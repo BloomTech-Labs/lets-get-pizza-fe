@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { curr_user } from "../../../utils/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { List } from "semantic-ui-react";
 import FriendOnList from "./FriendOnList";
-import API from "../../../utils/API";
 import Pagination from "react-js-pagination";
 import "./FriendsList.css";
 import {
@@ -12,7 +10,6 @@ import {
 } from "../../../redux/actions/userActions";
 
 export default function FriendsList() {
-  const [friendsLength, setFriendsLength] = useState(false);
   const [activePage, setActivePage] = useState(1);
   const [itemLength, setItemLength] = useState(0);
   const [currentData, setCurrentData] = useState([]);

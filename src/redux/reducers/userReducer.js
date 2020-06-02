@@ -22,6 +22,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.IMAGE_DELETE_START:
     case types.GET_USER_FRIENDS_START:
     case types.DELETE_USER_FRIENDS_START:
+    case types.ADD_USER_FRIEND_START:
       return {
         ...state,
         isLoading: payload,
@@ -86,6 +87,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
       };
     case types.IMAGE_UPLOAD_FAIL:
     case types.IMAGE_DELETE_FAIL:
+    case types.ADD_USER_FRIEND_FAIL:
       return {
         ...state,
         isLoading: payload.isLoading,
@@ -124,6 +126,12 @@ export const userReducer = (state = initialState, { type, payload }) => {
         isLoading: false,
         friends: payload,
       };
+    case types.ADD_USER_FRIEND_SUCCESS:
+      return {
+        ...state,
+        isLoading: payload, 
+        error: undefined
+      }
     case types.GET_USER_FRIENDS_FAIL:
       return {
         ...state,

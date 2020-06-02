@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Form, Button, Header } from "semantic-ui-react";
 import { useForm } from 'react-hook-form';
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import FormFields from "../forms/FormFields";
 import { baseFields, verificationFields, options } from "../forms/FormInformation";
@@ -9,6 +9,7 @@ import { baseFields, verificationFields, options } from "../forms/FormInformatio
 const AuthForm = ({ isRegistrationForm = false,registerFields = '',id,loginSubmit,registerSubmit,type,diet,error,isClaim }) => {
   const dispatch = useDispatch()
   const { pathname } = useLocation()
+  const history = useHistory()
   const { register, errors, setError, handleSubmit, setValue, triggerValidation } = useForm();
   const allFields = [...registerFields, ...baseFields, ...verificationFields, { name: diet.name, required: false }]
 
@@ -37,7 +38,7 @@ const AuthForm = ({ isRegistrationForm = false,registerFields = '',id,loginSubmi
         // as props
         onSubmit={(isRegistrationForm || isClaim) ?
           handleSubmit(handleRegister) :
-          handleSubmit((data) => dispatch(loginSubmit(data)))
+          handleSubmit((data) => dispatch(loginSubmit(data, history)))
         }
       >
         <Form.Group widths="equal">
