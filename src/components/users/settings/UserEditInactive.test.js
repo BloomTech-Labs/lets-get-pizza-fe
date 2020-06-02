@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-
+import { findElementById } from '../../../utils/reduxTestingFunctions';
 import UserEditInactive from './UserEditInactive';
 
 const mockStore = configureStore({});
@@ -33,12 +33,20 @@ describe('UserEditInactive with item.value as a string', () => {
 
     });
 
-    it('should render with text from props', () => {
-        expect(component.toJSON()).toMatchSnapshot();
+    it('should render title/header with text from props', () => {
+
+        const element = findElementById(component, 'inactive-list');
+        const elHeader = element.children.filter(({ props }) => props.className === 'header')[0];
+
+        expect(elHeader.children).toContain(item.title);
     })
 
     it('contains the proper title & value', () => {
+        const element = findElementById(component, 'inactive-list');
+        const elItem = element.children.filter(({ props }) => props.className === 'description');
 
+        elItem.forEach(objItem => expect(objItem.children).toContain(item.value))
+        // expect(elItem.children).toContain(item.value)
     })
 })
 
@@ -63,7 +71,21 @@ describe('UserEditInactive with item.value as an array', () => {
         )
     });
 
-    it('should render with text from props', () => {
-        expect(component.toJSON()).toMatchSnapshot();
+    it('should render title/header with text from props', () => {
+
+        const element = findElementById(component, 'inactive-list');
+        const elHeader = element.children.filter(({ props }) => props.className === 'header')[0];
+
+        expect(elHeader.children).toContain(item.title);
+    })
+
+    it('should render items with text from props', () => {
+
+        const element = findElementById(component, 'inactive-list');
+        const elArrItems = element.children.filter(({ props }) => props.className === 'description');
+
+        elArrItems.forEach(({ children }, index) => {
+            expect(children).toContain(item.value[index])
+        })
     })
 })

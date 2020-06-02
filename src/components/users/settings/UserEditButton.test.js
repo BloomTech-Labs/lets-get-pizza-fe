@@ -15,9 +15,9 @@ describe('UserEditButton', () => {
     let component;
     const item = {
         name: 'itemName'
-    }
-    const text = 'textValue'
-    const event = { target: { id: 'itemName' } }
+    };
+    const text = 'textValue';
+    const event = { target: { id: 'itemName' } };
 
     beforeEach(() => {
         store = mockStore({
@@ -30,11 +30,14 @@ describe('UserEditButton', () => {
             <Provider store={store}>
                 <UserEditButton item={item} text={text} />
             </Provider>
-        )
+        );
     });
 
     it('should render with text from props', () => {
-        expect(component.toJSON()).toMatchSnapshot();
+        const values = component.root.findByType('button').props;
+
+        expect(values.id).toBe(item.name);
+        expect(values.children).toContain(text);
     })
 
     it('should dispatch userToggleEdit action on button click', () => {
