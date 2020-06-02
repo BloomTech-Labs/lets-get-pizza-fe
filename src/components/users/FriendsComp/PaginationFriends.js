@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import Pagination from "react-paginating";
 import "./style.css";
 
+
 const fruits = [
   ["apple", "orange"],
   ["banana", "avocado"],

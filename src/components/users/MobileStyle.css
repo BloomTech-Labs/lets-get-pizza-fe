@@ -11,12 +11,12 @@
     div.ui.large.fluid.pointing.vertical.tabular.menu {
         display:flex;
         flex-direction:row;
-        margin-top:530px;
+        margin-top:520px;
 
-        overflow:hidden;
-        /* background-color: black; */
+        /* overflow:hidden; */
         background: lightblue;
         position: fixed;
+        z-index: 1;
         margin-left: -3.6%;
         padding-top: 1%;
         border-top:2px solid black;   
@@ -24,11 +24,9 @@
     }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .active.item { 
-        /* background:#2185D0; */
-        /* max-width: 46px;
-        max-height:46px; */
         padding-bottom:2%;
         margin-left:2%;
+        
     }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu a.active.item {
@@ -38,13 +36,9 @@
         padding: 2%;
     }
 
-    .ui.pointing.menu a.active.item:after {
-        background:black;
-    }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
         padding:1.2%;
-        /* background:white; */
         background: lightblue;
         max-width: 42px;
         max-width: 42px;
@@ -55,6 +49,11 @@
     div p {
         display:none;
     }
+
+    div.two.column.row {
+        padding:0%;
+    }
+
 
      div.left.floated.five.wide.column {
        background-color:none;
@@ -107,10 +106,10 @@
     div.ui.huge.center.aligned.header {
         color:black;
         font-size: 18px;
-        padding: 3%;
+        padding: 2%;
         max-width: 90%;
         margin-left:5%;
-        margin-bottom:50%;
+        /* margin-bottom:50%; */
     }
 
     div.row::before {
@@ -164,4 +163,20 @@
     a.undefined{
         font-size: 16px;
     }
+
+    /* events */
+/*     
+  div.row {
+      background:red;
+
+  
+     
+  }
+
+  div.ui.large.feed{
+      background-color:green;
+
+  } */
+
+  
 }

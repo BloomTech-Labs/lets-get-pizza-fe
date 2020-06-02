@@ -1,6 +1,7 @@
 import React from 'react'
 import { Feed, Divider } from 'semantic-ui-react'
 import { useSelector } from 'react-redux'
+import "../MobileStyle.css"
 
 const EventActivity = ({ user, event }) => {
   const curr_user = useSelector(({user}) => user.username)
