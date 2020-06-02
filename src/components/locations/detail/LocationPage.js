@@ -37,12 +37,20 @@ export default function LocationPage() {
         setLocation(response.data.location);
         setReviews(response.data.reviews);
         setPromotions(response.data.promotions);
-        setEvents(response.data.events);
 
         setIsLoading(false);
       })
       .catch(error => console.log(error));
   }, [id]);
+
+  useEffect(() => {
+    API.get(`/events/locations/${id}`)
+      .then(response => {
+        setEvents(response.data.sort(
+          (a, b) => new Date(a.start_time) - new Date(b.start_time)))
+      })
+      .catch(error => console.log(error))
+  },[id])
 
   useEffect(() => {
     if (tab !== undefined) {
