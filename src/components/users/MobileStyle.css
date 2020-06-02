@@ -106,7 +106,7 @@
     div.ui.huge.center.aligned.header {
         color:black;
         font-size: 18px;
-        padding: 2%;
+        padding-bottom: 5%;
         max-width: 90%;
         margin-left:5%;
         /* margin-bottom:50%; */
@@ -165,18 +165,15 @@
     }
 
     /* events */
-/*     
-  div.row {
-      background:red;
-
   
-     
-  }
 
-  div.ui.large.feed{
-      background-color:green;
+  div.ui.large.feed div.event{
+      /* background-color:lightgray; */
+      padding: 3%;
+      min-width: 90%;
+      border:.5px solid lightgrey;
 
-  } */
+  } 
 
   
 }
