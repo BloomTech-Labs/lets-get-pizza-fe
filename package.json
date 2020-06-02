@@ -15,6 +15,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.0.1",
+    "react-helmet": "^6.0.0",
     "react-hook-form": "^5.6.0",
     "react-js-pagination": "^3.0.3",
     "react-lottie": "^1.2.3",

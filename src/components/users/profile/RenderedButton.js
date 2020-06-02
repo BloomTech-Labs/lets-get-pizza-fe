@@ -15,7 +15,7 @@ export default function RenderedButton({ user }) {
   if (user && loc.pathname.includes("dash")) {
     button = (
       <Button color='blue'>
-        <a href="/users/dash/settings">Edit Profile</a>
+        <a style={{color: '#fff'}} href="/users/dash/settings">Edit Profile</a>
       </Button>
     );
   } else if(addedFriend) {
