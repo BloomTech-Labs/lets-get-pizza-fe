@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import ProfileDetails from './ProfileDetails';
+import API from '../../../utils/API';
 
 const ProfileMain = () => {
-    const user = useSelector(({ user }) => user);
+    const [user, username] = useSelector(({ user }) => [user, user.username]);
     
+    useEffect(() => {
+        API.post(`/auth/user/refresh`, { username })
+            .then(res => {
+                localStorage.setItem('token', JSON.stringify(res.data.token))
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
     return(
         <div>
             <ProfileDetails user={user} />
