@@ -46,7 +46,6 @@ describe('UserEditInactive with item.value as a string', () => {
         const elItem = element.children.filter(({ props }) => props.className === 'description');
 
         elItem.forEach(objItem => expect(objItem.children).toContain(item.value))
-        // expect(elItem.children).toContain(item.value)
     })
 })
 
