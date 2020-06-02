@@ -14,7 +14,7 @@
         margin-top:520px;
 
         /* overflow:hidden; */
-        background: lightblue;
+        background: lightgrey;
         position: fixed;
         z-index: 1;
         margin-left: -3.6%;
@@ -39,7 +39,7 @@
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
         padding:1.2%;
-        background: lightblue;
+        background: lightgrey;
         max-width: 42px;
         max-width: 42px;
         margin-left:2%;
@@ -112,16 +112,23 @@
         /* margin-bottom:50%; */
     }
 
-    div.row::before {
+    /* div.row::before {
         display:none;
-    }
+    } */
 
    /* ---OTHER PAGES--- */
 
-    /* div.eleven.wide.column {
-        background:green;
-        border-bottom: .5px dashed lightgrey;
-    } */
+   /* friends */
+
+  div.finalDisplay {
+    /* background:red; */
+    padding:4%;
+    width:97%;
+    margin-left:2%;
+    display:flex;
+    flex-direction: column;
+    border:.5px solid lightgrey;
+}
 
     img.ui.medium.circular.image{
         max-width:150px;
@@ -141,21 +148,26 @@
         background:#2185D0;
         width: 40%;
         padding:3%;
+        margin-top:5%;
+        margin-left: 30%;
     }
 
     div.description {
         font-size: 14px;
-        color:slategrey;
         margin-top:10%;
+        margin-left:5%;
+        width:200px;
         border:.5px solid lightgrey;
         padding:3%;
         border-radius:7%;
+        background-color:green;
     }
 
     a.header {
         color:black;
         font-size: 20px;
         font-weight: 800;
+        margin-left:10%;
     }
     a{
         font-size: 16px;
@@ -168,12 +180,15 @@
   
 
   div.ui.large.feed div.event{
-      /* background-color:lightgray; */
       padding: 3%;
       min-width: 90%;
       border:.5px solid lightgrey;
 
   } 
 
-  
+  /* settings */
+
+  div.description:nth-last-child {
+      background-color:red;
+  }
 }
