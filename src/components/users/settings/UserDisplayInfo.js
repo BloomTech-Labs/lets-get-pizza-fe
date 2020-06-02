@@ -17,6 +17,7 @@ export default function UserDisplayInfo() {
             {user.field === 'Display Name' ? (
                 <List.Content style={{ display: 'flex' }}>
                     <Input
+                        id='display-name-input'
                         onChange={handleChange}
                         name='display_name'
                         value={user.pendingUserChanges.display_name}

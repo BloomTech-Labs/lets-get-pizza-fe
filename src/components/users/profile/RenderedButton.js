@@ -14,13 +14,14 @@ export default function RenderedButton({ user }) {
   let button;
   if (user && loc.pathname.includes("dash")) {
     button = (
-      <Button>
+      <Button color='blue'>
         <a style={{color: '#fff'}} href="/users/dash/settings">Edit Profile</a>
       </Button>
     );
   } else if(addedFriend) {
     button = (
-      <Button 
+      <Button
+        color='blue' 
         onClick={() => dispatch(deleteUserFriends(addedFriend.id, curr_user))}
       >
        Remove Friend
@@ -29,6 +30,7 @@ export default function RenderedButton({ user }) {
   } else {
     button = (
       <Button 
+        color='blue'
         onClick={() => dispatch(addUserFriend(curr_user, user.id))}
       >
         Add Friend

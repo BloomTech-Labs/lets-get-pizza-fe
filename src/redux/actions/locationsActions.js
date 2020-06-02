@@ -8,7 +8,7 @@ export const locationLogin = ({username, password}, history) => dispatch => {
         .then(res => {
             localStorage.setItem('token', JSON.stringify(res.data.token))
             dispatch({type: types.LOCATION_LOGIN_SUCCESS, payload: res.data.location})
-            history.push('/')
+            window.location.replace('/')
         })
         .catch(err => {
             dispatch({type: types.LOCATION_LOGIN_FAIL, payload: {error: 'Invalid username or password', isLoading: false}})
