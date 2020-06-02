@@ -1,6 +1,7 @@
 .plzaFriendsList {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .pagination {
@@ -58,6 +59,10 @@ h1 {
 
 .noFriends {
   text-align: center;
+}
+
+.friends-link:hover {
+  cursor: pointer;
 }
 
 .fade-in {

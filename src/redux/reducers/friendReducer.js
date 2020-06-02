@@ -14,6 +14,7 @@ export const friendReducer = (state = initialState, { type, payload }) => {
         case types.GET_FRIEND_FAV_SHOP_START:
         case types.FRIEND_REVIEW_START:
         case types.FRIEND_EVENT_START:
+        case types.GET_ALL_FRIENDS_START:
             return {
                 ...state,
                 isLoading: payload
@@ -44,6 +45,13 @@ export const friendReducer = (state = initialState, { type, payload }) => {
                 events: payload,
                 isLoading: false
             }
+        case types.GET_ALL_FRIENDS_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                friends: payload,
+                error: undefined
+            }
         case types.GET_FRIEND_FAIL:
         case types.GET_FRIEND_FAV_SHOP_FAIL:
         case types.FRIEND_EVENT_FAIL:
@@ -51,6 +59,12 @@ export const friendReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 isLoading: payload.isLoading
+            }
+        case types.GET_ALL_FRIENDS_FAIL:
+            return {
+                ...state,
+                isLoading: payload.isLoading,
+                error: payload.error
             }
         default:
             return state
