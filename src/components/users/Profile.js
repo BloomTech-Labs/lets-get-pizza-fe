@@ -1,7 +1,7 @@
 import React from "react";
 import { curr_user, curr_location } from "../../utils/auth";
 import { Grid, Menu } from "semantic-ui-react";
-// import "./components/users/MobileStyle.css";
+import "./components/users/MobileStyle.css";
 
 //THIS NEEDS TO SPLIT INTO TWO DIFFERENT COMPONENTS
 export default function Profile() {

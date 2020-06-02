@@ -14,27 +14,40 @@
         margin-top:530px;
 
         overflow:hidden;
-        background-color: white;
+        /* background-color: black; */
+        background: lightblue;
         position: fixed;
         margin-left: -3.6%;
         padding-top: 1%;
-        padding-bottom:1%;
-        border-top:.1px dotted slategrey;    
+        border-top:2px solid black;   
+        padding-bottom: 3%; 
     }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .active.item { 
-        background:#2185D0;
-        max-width: 46px;
-        max-height:40px;
-        padding-bottom:1%;
+        /* background:#2185D0; */
+        /* max-width: 46px;
+        max-height:46px; */
+        padding-bottom:2%;
         margin-left:2%;
+    }
+
+    div.ui.large.fluid.pointing.vertical.tabular.menu a.active.item {
+        background: white;
+        max-width: 50px;
+        max-height:50px;
+        padding: 2%;
+    }
+
+    .ui.pointing.menu a.active.item:after {
+        background:black;
     }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
         padding:1.2%;
-        background:white;
+        /* background:white; */
+        background: lightblue;
         max-width: 42px;
-        max-height:40px;
+        max-width: 42px;
         margin-left:2%;
         
     }
@@ -106,10 +119,10 @@
 
    /* ---OTHER PAGES--- */
 
-    div.eleven.wide.column {
-        /* background:green; */
+    /* div.eleven.wide.column {
+        background:green;
         border-bottom: .5px dashed lightgrey;
-    }
+    } */
 
     img.ui.medium.circular.image{
         max-width:150px;
@@ -127,8 +140,8 @@
 
     button.ui.black.button.friendButton {
         background:#2185D0;
-        width: 35%;
-        padding:2%;
+        width: 40%;
+        padding:3%;
     }
 
     div.description {

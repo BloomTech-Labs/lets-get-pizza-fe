@@ -3,7 +3,7 @@ import { Grid } from "semantic-ui-react";
 import DashMenu from "./dashboard-utils/DashMenu";
 import UserSectionsController from "./UserSectionsController";
 import { useHistory } from "react-router-dom";
-// import "./MobileStyle.css";
+import "./MobileStyle.css";
 
 export default function Dashboard() {
   // this initial state grabs the current browser's path.
