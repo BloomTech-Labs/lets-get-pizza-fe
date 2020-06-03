@@ -26,20 +26,29 @@
     div.ui.large.fluid.pointing.vertical.tabular.menu .active.item { 
         padding-bottom:2%;
         margin-left:2%;
+        box-shadow: 2px 4px 5px rgb(58, 58, 58);
         
     }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu a.active.item {
         background: white;
+        border:.5px solid grey;
+        box-shadow: 2px 3px 5px rgb(58, 58, 58);
         max-width: 50px;
         max-height:50px;
         padding: 2%;
     }
 
+    div.ui.large.fluid.pointing.vertical.tabular.menu a.active.item::after{
+            border:.5px solid grey;
+            box-shadow: 2px 1px 4px rgb(58, 58, 58);
+            min-width: 10px;
+            min-height: 10px;
+        }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
         padding:1.2%;
-        background: lightgrey;
+        background:lightgrey;
         max-width: 42px;
         max-width: 42px;
         margin-left:2%;
@@ -152,15 +161,15 @@
         margin-left: 30%;
     }
 
-    div.description {
+    div.left.floated.content.friendStyling div.description {
         font-size: 14px;
         margin-top:10%;
         margin-left:5%;
         width:200px;
-        border:.5px solid lightgrey;
+        border:1px solid lightgrey;
         padding:3%;
         border-radius:7%;
-        background-color:green;
+        background-color:white;
     }
 
     a.header {
@@ -188,11 +197,22 @@
 
   /* settings */
 
-  div.content .description {
-      background-color:red;
+  div.content div.header {
+      font-size: 1.5rem;
   }
 
-  div.column .description {
-      background-color: red;
+  div.content div.description {
+      /* background-color:purple; */
+      font-size:1.3rem;
+      padding:7% 7% 7% 0%;
+    
+  }
+
+  .ui.tiny.button {
+      background:  #2185D0;
+  }
+  #email.ui.tiny.button, #display_location.ui.tiny.button, #favorite_pizza_toppings.ui.tiny.button, #dietary_preference.ui.tiny.button{
+      margin-left: 40%;
+      background: #2185D0;
   }
 }
