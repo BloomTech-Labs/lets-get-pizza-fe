@@ -188,7 +188,11 @@
 
   /* settings */
 
-  div.description:nth-last-child {
+  div.content .description {
       background-color:red;
+  }
+
+  div.column .description {
+      background-color: red;
   }
 }
