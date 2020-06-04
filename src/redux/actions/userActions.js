@@ -237,6 +237,34 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
     });
 };
 
+
+export const getUserPromos = (id) => (dispatch) => {
+  dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
+  API.get(`savedPromos/users/${id}`)
+    .then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: types.GET_USER_PROMOS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const addUserPromo = (user_id, promo_id) => (dispatch) => {
+  // dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
+  let postData = { user_id, promo_id };
+  API.post("/savedPromos", postData)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const addUserFriend = (user, friends_id) => dispatch => {
   dispatch({type: types.ADD_USER_FRIEND_START, payload: true})
   API.post(`/friends`, {user_id: user.id, friends_id})
@@ -254,3 +282,4 @@ export const addUserFriend = (user, friends_id) => dispatch => {
       })
     })
 }
+
