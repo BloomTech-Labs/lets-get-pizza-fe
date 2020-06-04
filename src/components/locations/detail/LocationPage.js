@@ -25,7 +25,6 @@ export default function LocationPage() {
   const [location, setLocation] = useState({});
   const [reviews, setReviews] = useState({});
   const [promotions, setPromotions] = useState({});
-  const [events, setEvents] = useState({});
 
   // If the currently logged in user is equal to the location ID, then
   // the user can edit the page
@@ -42,15 +41,6 @@ export default function LocationPage() {
       })
       .catch(error => console.log(error));
   }, [id]);
-
-  useEffect(() => {
-    API.get(`/events/locations/${id}`)
-      .then(response => {
-        setEvents(response.data.sort(
-          (a, b) => new Date(a.start_time) - new Date(b.start_time)))
-      })
-      .catch(error => console.log(error))
-  },[id])
 
   useEffect(() => {
     if (tab !== undefined) {
@@ -100,7 +90,6 @@ export default function LocationPage() {
             setSelectedTab={setSelectedTab}
             reviews={reviews}
             promotions={promotions}
-            events={events}
           />
         </Grid.Column>
       </Grid>

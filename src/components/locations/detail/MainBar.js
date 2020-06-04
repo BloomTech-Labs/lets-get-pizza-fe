@@ -30,7 +30,6 @@ export default function MainBar(props) {
     setSelectedTab,
     reviews,
     promotions,
-    events
   } = props;
 
   /**
@@ -73,7 +72,7 @@ export default function MainBar(props) {
           </Segment>
 
           <Tab.Pane>
-            <Component content={content} />
+            <Component content={content} canEdit={showAddButton} />
           </Tab.Pane>
         </React.Fragment>
       );
@@ -102,7 +101,7 @@ export default function MainBar(props) {
     {
       menuItem: { key: "events", icon: "calendar" },
       render: () =>
-        renderTab("event", "calendar", currUser.username || canEdit, events, Events)
+        renderTab("event", "calendar", currUser.username || canEdit, locationID, Events)
     }
   ];
 
