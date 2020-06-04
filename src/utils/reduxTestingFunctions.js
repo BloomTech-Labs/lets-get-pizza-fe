@@ -72,3 +72,15 @@ export const findElementById = (component, id) => {
         return { ...filteredElement[0].props, type: filteredElement[0].type, children: filteredElement[0].children }
     };
 };
+
+
+export const findFirstProp = (textString, find, findAll) => {
+    const regex = new RegExp(textString, "i");
+    const array = findAll(regex)
+
+    if (array.length <= 1) {
+        return find(regex);
+    } else {
+        return array[0];
+    };
+};
