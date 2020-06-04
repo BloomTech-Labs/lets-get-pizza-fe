@@ -19,7 +19,8 @@
         z-index: 1;
         margin-left: -3.6%;
         padding-top: 1%;
-        border-top:2px solid black;   
+        border-top:2px solid black; 
+        border-bottom: .5px solid slategrey;   
         padding-bottom: 3%; 
     }
 
@@ -44,6 +45,7 @@
             box-shadow: 2px 1px 4px rgb(58, 58, 58);
             min-width: 10px;
             min-height: 10px;
+            
         }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
@@ -55,7 +57,7 @@
         
     }
 
-    div p {
+    div p:first-of-type {
         display:none;
     }
 
@@ -94,6 +96,7 @@
         width: 100%;
         padding-top:3%;
    }
+
       div.ui.header{
           color:white;
       }
@@ -121,9 +124,6 @@
         /* margin-bottom:50%; */
     }
 
-    /* div.row::before {
-        display:none;
-    } */
 
    /* ---OTHER PAGES--- */
 
@@ -137,14 +137,6 @@
     display:flex;
     flex-direction: column;
     border:.5px solid lightgrey;
-}
-
-    img.ui.medium.circular.image{
-        max-width:150px;
-    }
-
-   h1.Header-ch{
-        font-size:30px;
     }
 
     img.ui.tiny.circular.image.avatarImage {
@@ -208,11 +200,111 @@
     
   }
 
-  .ui.tiny.button {
-      background:  #2185D0;
-  }
-  #email.ui.tiny.button, #display_location.ui.tiny.button, #favorite_pizza_toppings.ui.tiny.button, #dietary_preference.ui.tiny.button{
+    .ui.tiny.button {
+      /* background:  #2185D0; */
+      font-weight: 1000;
+      font-size:13px;
+    }
+
+     #email.ui.tiny.button, #display_location.ui.tiny.button, #favorite_pizza_toppings.ui.tiny.button, #dietary_preference.ui.tiny.button{
       margin-left: 40%;
-      background: #2185D0;
-  }
+      /* background: #2185D0; */
+      font-size: 13px;
+      font-weight: 1000;
+
+    }
+
+    #save.ui.icon.positive.right.labeled.button{
+        background-color:#2185D0;
+    }
+
+  /* Fav Pizza  */
+  
+  
+    img.ui.medium.circular.image{
+    max-width:150px;
+    } 
+
+    div.head-ch {
+        border: .5px solid lightgrey;
+    } 
+
+    h1.Header-ch{
+    font-size:2.5rem;
+    /* padding-top: 10%; */
+    /* background-color:red; */
+    }
+
+    div.Desc-ch {
+      min-width: 60%;
+      min-height: 200px;
+      /* background-color:purple; */
+    }
+
+    div.Desc-ch p.address-ch, p.bio-ch, p.url-ch{
+        /* color:black; */
+        display:block;
+        padding-top:5%;
+    }
+
+     /* About Plza */
+    
+    h1.ui.center.aligned.header{
+        padding:3%;
+        background-color:lightgrey;
+    }
+    
+    div p.about-para {
+        display:block;
+        padding-bottom:3%;
+        border-bottom: .5px solid lightgrey;
+    }
+
+    /*Business Features */
+
+    div p.biz-features{
+        display:block;
+    }
+
+    /*User Features */
+    div p.user-features{
+        display:block;
+    }
+
+   
+   div.first div.column{
+        padding:3%;
+        max-height:80%;
+        margin-left:5%;
+    }
+
+    img.friends-img{
+        max-width:300px;
+        max-height:300px;
+    }
+
+    div.bottom {
+        margin-top: -50%;
+    }
+
+   
+    div.second{
+        background-color:green;
+        border-bottom:5px solid black;
+        padding:10%;
+        margin-bottom:5%;
+    }
+
+    div.third{
+        background-color:purple;
+        border-bottom:5px solid black;
+        padding:10%;
+        margin-bottom:5%;
+    }
+
+
+
+    
+
+
 }
