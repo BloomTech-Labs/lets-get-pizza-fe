@@ -8,12 +8,12 @@ export const userLogin = ({ username, password }, history) => (dispatch) => {
       localStorage.setItem("token", JSON.stringify(res.data.token));
       dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res.data.user });
       // return logged in user's id
-      return res.data.user.id
+      return res.data.user.id;
     })
-    .then(id => {
+    .then((id) => {
       // dispatch `getUserFriends` to grab a list of user friends
-      dispatch(getUserFriends(id))
-      window.location.replace('/users/dash/profile')
+      dispatch(getUserFriends(id));
+      window.location.replace("/users/dash/profile");
     })
     .catch((err) => {
       dispatch({
@@ -237,7 +237,6 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
     });
 };
 
-
 export const getUserPromos = (id) => (dispatch) => {
   dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
   API.get(`savedPromos/users/${id}`)
@@ -254,7 +253,6 @@ export const getUserPromos = (id) => (dispatch) => {
 };
 
 export const addUserPromo = (user_id, promo_id) => (dispatch) => {
-  // dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
   let postData = { user_id, promo_id };
   API.post("/savedPromos", postData)
     .then((res) => {
@@ -265,21 +263,33 @@ export const addUserPromo = (user_id, promo_id) => (dispatch) => {
     });
 };
 
-export const addUserFriend = (user, friends_id) => dispatch => {
-  dispatch({type: types.ADD_USER_FRIEND_START, payload: true})
-  API.post(`/friends`, {user_id: user.id, friends_id})
-    .then(res => {
-      dispatch({type: types.ADD_USER_FRIEND_SUCCESS, payload: false})
+export const addUserFriend = (user, friends_id) => (dispatch) => {
+  dispatch({ type: types.ADD_USER_FRIEND_START, payload: true });
+  API.post(`/friends`, { user_id: user.id, friends_id })
+    .then((res) => {
+      dispatch({ type: types.ADD_USER_FRIEND_SUCCESS, payload: false });
     })
     .then(() => {
       // dispatch `getUserFriends` to get updated list of friends
-      dispatch(getUserFriends(user.id))
+      dispatch(getUserFriends(user.id));
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
-        type: types.ADD_USER_FRIEND_FAIL, 
-        payload: {isLoading: false, error: 'There was an error adding your friend'}
-      })
-    })
-}
+        type: types.ADD_USER_FRIEND_FAIL,
+        payload: {
+          isLoading: false,
+          error: "There was an error adding your friend",
+        },
+      });
+    });
+};
 
+export const updateUserBio = (changes) => (dispatch) => {
+  API.put("/users", { bio: changes })
+    .then((res) => {
+      dispatch({ type: types.UPDATE_BIO_SUCCESS, payload: changes });
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};

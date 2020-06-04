@@ -14,7 +14,6 @@ export default function UserPromos() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(savedPromos, "from dispatch");
     dispatch(getUserPromos(user.id));
   }, []);
 
