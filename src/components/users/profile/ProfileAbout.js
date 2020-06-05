@@ -4,6 +4,7 @@ import RenderedButton from './RenderedButton';
 import { useDispatch } from 'react-redux';
 import { getAllFriends } from '../../../redux/actions/friendActions';
 import { useHistory, useLocation } from 'react-router-dom';
+import { getUserFriends } from '../../../redux/actions/userActions';
 
 
 const ProfileAbout = ({ user }) => {
@@ -12,7 +13,9 @@ const ProfileAbout = ({ user }) => {
     const { pathname } = useLocation()
 
     useEffect(() => {
-        dispatch(getAllFriends(user.id))
+        !pathname.includes('dash') ? 
+        dispatch(getAllFriends(user.id)) :
+        dispatch(getUserFriends(user.id))
     }, [user.id, dispatch])
     return (
         <>
