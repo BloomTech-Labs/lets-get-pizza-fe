@@ -7,7 +7,8 @@ import API from "../../../utils/API";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import MainBar from "./MainBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { locationEvents } from "../../../redux/actions/locationsActions.js"
 
 // Location detail page
 // Displays all information about a given location through the
@@ -25,7 +26,8 @@ export default function LocationPage() {
   const [location, setLocation] = useState({});
   const [reviews, setReviews] = useState({});
   const [promotions, setPromotions] = useState({});
-  const [events, setEvents] = useState({});
+
+  const dispatch = useDispatch(); 
 
   // If the currently logged in user is equal to the location ID, then
   // the user can edit the page
@@ -42,15 +44,10 @@ export default function LocationPage() {
       })
       .catch(error => console.log(error));
   }, [id]);
-
+  
   useEffect(() => {
-    API.get(`/events/locations/${id}`)
-      .then(response => {
-        setEvents(response.data.sort(
-          (a, b) => new Date(a.start_time) - new Date(b.start_time)))
-      })
-      .catch(error => console.log(error))
-  },[id])
+    dispatch(locationEvents(id))
+  }, [dispatch, id])
 
   useEffect(() => {
     if (tab !== undefined) {
@@ -100,7 +97,7 @@ export default function LocationPage() {
             setSelectedTab={setSelectedTab}
             reviews={reviews}
             promotions={promotions}
-            events={events}
+            events={curr_location.events}
           />
         </Grid.Column>
       </Grid>

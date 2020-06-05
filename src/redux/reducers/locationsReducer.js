@@ -1,7 +1,8 @@
 import * as types from '../types/locationTypes'
 const initialState = {
     isLoading: false,
-    error: undefined
+    error: undefined,
+    events: []
 }
 
 export const locationsReducer = (state = initialState, {type, payload}) => {
@@ -28,6 +29,12 @@ export const locationsReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 error: payload.error,
                 isLoading: payload.isLoading
+            }
+        case types.LOCATION_EVENTS_SUCCESS:
+        case types.LOCATION_EVENTS_DELETE_SUCCESS:
+            return {
+                ...state,
+                events: [...payload]
             }
         default:
             return state
