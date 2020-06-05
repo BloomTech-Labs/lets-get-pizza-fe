@@ -1,37 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Item, Label, Icon } from "semantic-ui-react";
 import Moment from "react-moment";
-import API from "../../../../utils/API";
+import { useDispatch } from "react-redux"
+import { locationDeleteEvent } from "../../../../redux/actions/locationsActions.js"
 
 const Events = ({ canEdit, content }) => {
-  const [events, setEvents] = useState([]);
 
-  useEffect(() => {
-    API.get(`/events/locations/${content}`)
-      .then((response) => {
-        const currentDate = new Date().toISOString();
-        setEvents(
-          response.data
-            .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
-            .filter((date) => date.start_time > currentDate)
-        );
-      })
-      .catch((error) => console.log(error));
-  }, [content]);
-
-  const locationDeleteEvent = (id) => {
-    API.delete(`/events/${id}`)
-      .then((res) => {
-        const filteredEvents = events.filter((event) => event.id !== id);
-        console.log("filtered", filteredEvents);
-        setEvents([...filteredEvents]);
-      })
-      .catch((err) => console.log(err));
-  };
+  const dispatch = useDispatch();
 
   return (
     <Item.Group divided>
-      {events.map((event) => (
+      {content.map((event) => (
         <Item key={event.id}>
           <Item.Content>
             <Item.Header>{event.title}</Item.Header>
@@ -55,7 +34,7 @@ const Events = ({ canEdit, content }) => {
                   as="a"
                   onClick={(e) => {
                     e.stopPropagation();
-                    locationDeleteEvent(event.id);
+                    dispatch(locationDeleteEvent(event.id, content))
                   }}
                 >
                   <Icon name="trash" />

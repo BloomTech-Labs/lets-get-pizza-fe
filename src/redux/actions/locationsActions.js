@@ -67,3 +67,18 @@ export const locationEvents = (id) => dispatch => {
             dispatch({ type: types.LOCATION_EVENTS_FAIL, payload: false });
         })
 }
+
+export const locationDeleteEvent = (id, events) => dispatch => {
+    API.delete(`/events/${id}`)
+        .then((res) => {
+            const filteredEvents = events.filter((event) => event.id !== id);
+            dispatch({
+                type: types.LOCATION_EVENTS_DELETE_SUCCESS,
+                payload: filteredEvents
+            }) 
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({type: types.LOCATION_EVENTS_DELETE_FAIL, payload: false})
+        })
+}   
