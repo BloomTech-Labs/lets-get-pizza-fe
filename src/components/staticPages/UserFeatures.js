@@ -39,11 +39,13 @@ export default function UserFeatures() {
 
           <div class = "second">
             <Grid.Column>
-              <Header as="h2">Be Heard!</Header>
-              <p class = "user-features">
-                Contact businessess with question and problems, and leave
-                ratings and reviews.
-              </p>
+              <div class = "second-part">
+                <Header as="h2">Be Heard!</Header>
+                <p class = "user-features">
+                  Contact businessess with question and problems, and leave
+                  ratings and reviews.
+                </p>
+              </div>
               <div
                 style={{
                   height: "480px",
@@ -80,11 +82,14 @@ export default function UserFeatures() {
                   src="https://images.pexels.com/photos/3052360/pexels-photo-3052360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
                 />
               </div>
+
+              <div class= "third-bottom">
               <Header as="h2">Come together!</Header>
               <p class = "user-features">
                 Find both new and old friends! Create events where you can eat
                 your heart out!
               </p>
+              </div>
             </Grid.Column>
           </div>
           </Grid.Row>

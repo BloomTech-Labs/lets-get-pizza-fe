@@ -1,4 +1,5 @@
-@media(max-width: 375px){
+
+@media screen and (min-width:320px) and (max-width: 760px) {
 
     /* ---HOME PAGE --- */
    
@@ -7,17 +8,17 @@
         width: 100%;
    
     }
-
+    /* bottom menu */
     div.ui.large.fluid.pointing.vertical.tabular.menu {
         display:flex;
         flex-direction:row;
-        margin-top:520px;
+        bottom:0;
 
-        /* overflow:hidden; */
+        overflow:hidden;
         background: lightgrey;
         position: fixed;
         z-index: 1;
-        margin-left: -3.6%;
+        left:0;
         padding-top: 1%;
         border-top:2px solid black; 
         border-bottom: .5px solid slategrey;   
@@ -26,7 +27,7 @@
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .active.item { 
         padding-bottom:2%;
-        margin-left:2%;
+        /* margin-left:2%; */
         box-shadow: 2px 4px 5px rgb(58, 58, 58);
         
     }
@@ -37,7 +38,7 @@
         box-shadow: 2px 3px 5px rgb(58, 58, 58);
         max-width: 50px;
         max-height:50px;
-        padding: 2%;
+        /* padding: 2%; */
     }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu a.active.item::after{
@@ -53,7 +54,7 @@
         background:lightgrey;
         max-width: 42px;
         max-width: 42px;
-        margin-left:2%;
+        margin-left:.5%;
         
     }
 
@@ -97,23 +98,23 @@
         padding-top:3%;
    }
 
-      div.ui.header{
-          color:white;
-      }
-       div.ui.huge.header {
-           color:white;
-            margin: 0px -10px -10px;
-         }
+    div.ui.header{
+        color:white;
+    }
+    div.ui.huge.header {
+        color:white;
+        margin: 0px -10px -10px;
+    }
 
-       div a {
-           color: slategrey;
-       }
+    div a {
+        color: slategrey;
+    }
 
-       div.ui.segment {
-           background:none;
-           color:white;
-           border:none;
-       }
+    div.ui.segment {
+        background:none;
+        color:white;
+        border:none;
+    }
 
     div.ui.huge.center.aligned.header {
         color:black;
@@ -121,28 +122,24 @@
         padding-bottom: 5%;
         max-width: 90%;
         margin-left:5%;
-        /* margin-bottom:50%; */
     }
 
 
    /* ---OTHER PAGES--- */
 
-   /* friends */
+   /* Networks - friends */
 
-  div.finalDisplay {
-    /* background:red; */
-    padding:4%;
-    width:97%;
-    margin-left:2%;
-    display:flex;
-    flex-direction: column;
-    border:.5px solid lightgrey;
+    div.finalDisplay {
+        padding:4%;
+        width:97%;
+        margin-left:2%;
+        display:flex;
+        flex-direction: column;
+        border:.5px solid lightgrey;
     }
 
     img.ui.tiny.circular.image.avatarImage {
-        width:105px;
-        height:75px;
-        padding-right:2%;
+        height:40px;
     }
 
     button.ui.black.button.friendButton {
@@ -170,7 +167,7 @@
         font-weight: 800;
         margin-left:10%;
     }
-    a{
+    a {
         font-size: 16px;
     }
     a.undefined{
@@ -180,37 +177,33 @@
     /* events */
   
 
-  div.ui.large.feed div.event{
-      padding: 3%;
-      min-width: 90%;
-      border:.5px solid lightgrey;
+    div.ui.large.feed div.event{
+        padding: 3%;
+        min-width: 90%;
+        border:.5px solid lightgrey;
 
-  } 
+    } 
 
   /* settings */
 
-  div.content div.header {
-      font-size: 1.5rem;
-  }
-
-  div.content div.description {
-      /* background-color:purple; */
-      font-size:1.3rem;
-      padding:7% 7% 7% 0%;
-    
-  }
-
-    .ui.tiny.button {
-      /* background:  #2185D0; */
-      font-weight: 1000;
-      font-size:13px;
+    div.content div.header {
+        font-size: 1.5rem;
     }
 
-     #email.ui.tiny.button, #display_location.ui.tiny.button, #favorite_pizza_toppings.ui.tiny.button, #dietary_preference.ui.tiny.button{
-      margin-left: 40%;
-      /* background: #2185D0; */
-      font-size: 13px;
-      font-weight: 1000;
+    div.content div.description {
+        font-size:1.3rem;
+        padding:7% 7% 7% 0%;
+    }
+
+    .ui.tiny.button {
+        font-weight: 1000;
+        font-size:13px;
+    }
+
+    #email.ui.tiny.button, #display_location.ui.tiny.button, #favorite_pizza_toppings.ui.tiny.button, #dietary_preference.ui.tiny.button{
+        margin-left: 40%;
+        font-size: 13px;
+        font-weight: 1000;
 
     }
 
@@ -222,7 +215,7 @@
   
   
     img.ui.medium.circular.image{
-    max-width:150px;
+        max-width:150px;
     } 
 
     div.head-ch {
@@ -230,19 +223,15 @@
     } 
 
     h1.Header-ch{
-    font-size:2.5rem;
-    /* padding-top: 10%; */
-    /* background-color:red; */
+        font-size:2.5rem;
     }
 
     div.Desc-ch {
-      min-width: 60%;
-      min-height: 200px;
-      /* background-color:purple; */
+        min-width: 60%;
+        min-height: 200px;
     }
 
     div.Desc-ch p.address-ch, p.bio-ch, p.url-ch{
-        /* color:black; */
         display:block;
         padding-top:5%;
     }
@@ -279,8 +268,10 @@
     }
 
     img.friends-img{
-        max-width:300px;
+        max-width:400px;
         max-height:300px;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);
+        
     }
 
     div.bottom {
@@ -288,23 +279,62 @@
     }
 
    
-    div.second{
-        background-color:green;
-        border-bottom:5px solid black;
-        padding:10%;
-        margin-bottom:5%;
+    div.second div.column{
+        background-color:lightgrey;
+        border-bottom:.5px solid black;
+        border-top: .5px solid black;
+        padding:9% 3% 3% 3%;
+        margin:2% 0% 2% 0%;
+        display:flex;
+        flex-direction:column-reverse;
+    }
+
+    div.second-part{
+        margin-top: -20%;
+        padding:5%;
+     
+    }
+
+    img.pizza-img{
+        max-width:80%;
+        max-height:80%;
+        margin-left:5%;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);
     }
 
     div.third{
-        background-color:purple;
-        border-bottom:5px solid black;
         padding:10%;
         margin-bottom:5%;
     }
 
+    img.celebrate-img{
+        max-height:60%;
+        margin-left:5%;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);
+    }
 
-
-    
-
-
+    .third-bottom{
+        margin-top: -50%;
+    }
 }
+
+
+@media (min-width:360px) {
+    img.ui.tiny.circular.image.avatarImage {
+        height:80px;
+        padding-right:2%;
+    }
+
+    div.ui.large.fluid.pointing.vertical.tabular.menu .item {
+        margin-left:2%;
+        
+    }
+}
+
+@media (min-width: 411px) {
+    div.ui.large.fluid.pointing.vertical.tabular.menu .item {
+        margin-left:3%;
+        
+    }
+}
+
