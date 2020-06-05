@@ -268,8 +268,8 @@
     }
 
     img.friends-img{
-        max-width:400px;
-        max-height:300px;
+        max-width:300px;
+        max-height:200px;
         box-shadow: 5px 3px 6px rgb(58, 58, 58);
         
     }
@@ -283,8 +283,8 @@
         background-color:lightgrey;
         border-bottom:.5px solid black;
         border-top: .5px solid black;
-        padding:9% 3% 3% 3%;
-        margin:2% 0% 2% 0%;
+        /* padding:9% 3% 3% 3%; */
+        /* margin:2% 0% 2% 0%; */
         display:flex;
         flex-direction:column-reverse;
     }
@@ -296,9 +296,9 @@
     }
 
     img.pizza-img{
-        max-width:80%;
-        max-height:80%;
-        margin-left:5%;
+        max-width:65%;
+        max-height:65%;
+        /* margin-left:5%; */
         box-shadow: 5px 3px 6px rgb(58, 58, 58);
     }
 
@@ -334,7 +334,25 @@
 @media (min-width: 411px) {
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
         margin-left:3%;
+    }
+
+    div.bottom {
+        margin-top: -40%;
+    }
+
+    img.friends-img{
+        max-width:400px;
+        max-height:300px;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);
         
     }
+
+    img.pizza-img{
+        max-width:80%;
+        max-height:80%;
+        margin-left:5%;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);
+    }
+    
 }
 
