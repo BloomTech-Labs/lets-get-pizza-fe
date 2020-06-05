@@ -7,7 +7,8 @@ import API from "../../../utils/API";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import MainBar from "./MainBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { locationEvents } from "../../../redux/actions/locationsActions.js"
 
 // Location detail page
 // Displays all information about a given location through the
@@ -26,6 +27,8 @@ export default function LocationPage() {
   const [reviews, setReviews] = useState({});
   const [promotions, setPromotions] = useState({});
 
+  const dispatch = useDispatch(); 
+
   // If the currently logged in user is equal to the location ID, then
   // the user can edit the page
   const canEdit = curr_location.id === location.id;
@@ -41,6 +44,10 @@ export default function LocationPage() {
       })
       .catch(error => console.log(error));
   }, [id]);
+  
+  useEffect(() => {
+    dispatch(locationEvents(id))
+  }, [dispatch, id])
 
   useEffect(() => {
     if (tab !== undefined) {
@@ -90,6 +97,7 @@ export default function LocationPage() {
             setSelectedTab={setSelectedTab}
             reviews={reviews}
             promotions={promotions}
+            events={curr_location.events}
           />
         </Grid.Column>
       </Grid>
