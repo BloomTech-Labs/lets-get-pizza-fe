@@ -4,6 +4,7 @@ import { Icon, Item, Label } from "semantic-ui-react";
 import Moment from "react-moment";
 import EventUpdate from "./EventUpdate";
 import { userDeleteEvent } from "../../../redux/actions/userActions";
+import InviteModal from "../../items/InviteModal";
 
 const UserEvent = ({ event }) => {
   const user = useSelector(state => state.user)
@@ -25,6 +26,7 @@ const UserEvent = ({ event }) => {
           <Item.Header as="a" href={`/locations/${event.location_id}/events`}>
             {event.title}
           </Item.Header>
+          <Item.Meta>Created By - You</Item.Meta>
           <Item.Description>{event.description}</Item.Description>
           <Item.Meta>
             <span className="">{event.business_name}</span>
@@ -68,6 +70,7 @@ const UserEvent = ({ event }) => {
             >
               <Icon name="trash" />
             </Label>
+            {user.id === event.user_id && <InviteModal event_id={event.id}/>}
           </Item.Extra>
         </Item.Content>
       </Item>
