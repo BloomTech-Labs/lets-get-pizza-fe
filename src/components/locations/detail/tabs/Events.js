@@ -25,7 +25,7 @@ const Events = ({ content }) => {
               &mdash;
               <Moment format="h:mm a" date={event.end_time} />
             </Label>
-            {user_id === event.id && <InviteModal event_id={event.id}/>}
+            {user_id === event.user_id && <InviteModal event_id={event.id}/>}
           </Item.Extra>
         </Item.Content>
       </Item>
