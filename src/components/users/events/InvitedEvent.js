@@ -26,8 +26,9 @@ const InvitedEvent = ({ event }) => {
 
         <Item.Content>
           <Item.Header as="a" href={`/locations/${event.location_id}/events`}>
-            {event.title} - {event.response[0].toUpperCase() + event.response.slice(1)}
+            {event.title}
           </Item.Header>
+          <Item.Meta>Created By - {event.username}</Item.Meta>
           <Item.Description>{event.description}</Item.Description>
           <Item.Meta>
             <span className="">{event.business_name}</span>
@@ -66,7 +67,7 @@ const InvitedEvent = ({ event }) => {
               as={event.response === "interested" ? 'div' : 'a'}
               onClick={(e) => {
                 e.stopPropagation();
-                handleInvite("pending")
+                handleInvite("interested")
               }}
             >
               <Icon name="question" />
