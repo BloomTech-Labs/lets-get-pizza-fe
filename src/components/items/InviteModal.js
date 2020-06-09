@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Modal, Button, Header, Label } from 'semantic-ui-react'
 import InviteFriends from './InviteFriends'
 import API from '../../utils/API'
-import Axios from 'axios'
+import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 const InviteModal = ({ event_id }) => {
@@ -11,16 +11,26 @@ const InviteModal = ({ event_id }) => {
     const user_id = useSelector(({ user }) => user.id)
 
     const handleSubmit = e => {
-        const fetchCalls = invites.map(invite => API.post(`/events/${event_id}/invite`, {
+        // Here we will be using axios.all() to handle
+        // our multiple invite requests
+        // We first are mapping through the invites array
+        // to create a new array of POST requests, 1 for each invite
+        const postCalls = invites.map(invite => API.post(`/events/${event_id}/invite`, {
             event_id, 
             inviter_user_id: user_id,
             invitee_user_id: invite
         }))
-        Axios.all(fetchCalls)
+        // Here we are deploying axios.all()
+        // to simultaneously make make a post request
+        // for each item in our postCalls array
+        axios.all(postCalls)
             .then(res => {
-                console.log(res)
+                setInvites([])
+                setOpen(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+            })
     }
     return (
         <Modal 
