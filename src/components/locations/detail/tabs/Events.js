@@ -1,11 +1,13 @@
 import React from "react";
 import { Item, Label, Icon } from "semantic-ui-react";
 import Moment from "react-moment";
+import InviteModal from "../../../items/InviteModal";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux"
 import { locationDeleteEvent } from "../../../../redux/actions/locationsActions.js"
 
 const Events = ({ canEdit, content }) => {
-
+  const user_id = useSelector(({user}) => user.id)
   const dispatch = useDispatch();
 
   return (
@@ -40,6 +42,7 @@ const Events = ({ canEdit, content }) => {
                   <Icon name="trash" />
                 </Label>
               )}
+              {user_id === event.user_id && <InviteModal event_id={event.id}/>}
             </Item.Extra>
           </Item.Content>
         </Item>

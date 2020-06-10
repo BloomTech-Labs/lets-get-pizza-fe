@@ -4,7 +4,7 @@ import RenderedButton from "./RenderedButton";
 import { useDispatch } from "react-redux";
 import { getAllFriends } from "../../../redux/actions/friendActions";
 import { useHistory, useLocation } from "react-router-dom";
-import { updateUserBio } from "../../../redux/actions/userActions";
+import { updateUserBio, getUserFriends } from "../../../redux/actions/userActions";
 
 const ProfileAbout = ({ user }) => {
   const [editing, setEditing] = useState(false);
@@ -16,11 +16,12 @@ const ProfileAbout = ({ user }) => {
   const handleChange = (event) => {
     setBio(event.target.value);
   };
-
-  useEffect(() => {
-    dispatch(getAllFriends(user.id));
-  }, [user.id, dispatch]);
-
+    useEffect(() => {
+        !pathname.includes('dash') ? 
+        dispatch(getAllFriends(user.id)) :
+        dispatch(getUserFriends(user.id))
+    }, [user.id, dispatch])
+  
   let renderBio;
   if (editing) {
     renderBio = (
