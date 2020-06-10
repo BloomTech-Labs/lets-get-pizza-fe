@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, cleanup, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { findFirstProp } from '../../../utils/reduxTestingFunctions'
 import FriendOnList from './FriendOnList';
@@ -12,7 +12,7 @@ describe("FriendOnList", () => {
         friend_profile_image: "",
         friend_username: "animecody",
         friend_bio: "DBZ all day bby",
-        friends_id: 1
+        friends_id: 8
     };
     const deleteUserMessage = `Are you sure you want to remove ${friend.friend_username} from your friends list?`;
     const removeFriend = id => {
@@ -35,7 +35,6 @@ describe("FriendOnList", () => {
         const { getByText, getAllByText } = render(<FriendOnList friends={friend} remove={removeFriend} />);
         const removeText = findFirstProp("Remove", getByText, getAllByText);
 
-        expect(1).toBe(1);
         fireEvent.click(removeText);
 
         const delMessage = await waitFor(() => getByText(new RegExp(deleteUserMessage, "i")))
@@ -63,8 +62,27 @@ describe("FriendOnList", () => {
 
         fireEvent.click(cancelButton);
 
-        const cancel = await waitFor(() => delMessage)
+        await waitFor(() => delMessage)
         expect(cancelButton).not.toBeInTheDocument();
         expect(okButton).not.toBeInTheDocument();
+    })
+
+    it('modal OK button runs remove function from props', async () => {
+        const { getByText, getAllByText } = render(<FriendOnList friends={friend} remove={removeFriend} />);
+        const removeText = findFirstProp("Remove", getByText, getAllByText);
+        console.log = jest.fn();
+
+        fireEvent.click(removeText);
+
+        const delMessage = await waitFor(() => getByText(new RegExp(deleteUserMessage, "i")))
+        const cancelButton = getByText(/cancel/i);
+        const okButton = getByText(/ok/i);
+
+        expect(delMessage).toBeVisible();
+        expect(cancelButton).toBeInTheDocument();
+        expect(okButton).toBeInTheDocument();
+
+        fireEvent.click(okButton);
+        await expect(console.log).toHaveBeenCalledWith("8 was removed")
     })
 })
