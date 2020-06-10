@@ -18,7 +18,7 @@ export default function LocationPage() {
   const history = useHistory();
 
   const [curr_location, user] = useSelector(({location, user}) => [location, user])
-  
+
   const [isLoading, setIsLoading] = useState(true);
 
   const [selectedTab, setSelectedTab] = useState(0);
@@ -27,7 +27,7 @@ export default function LocationPage() {
   const [reviews, setReviews] = useState({});
   const [promotions, setPromotions] = useState({});
 
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   // If the currently logged in user is equal to the location ID, then
   // the user can edit the page
@@ -36,15 +36,19 @@ export default function LocationPage() {
   useEffect(() => {
     API.get(`/locations/${id}`)
       .then(response => {
+        const currentDate = new Date().toISOString();
         setLocation(response.data.location);
         setReviews(response.data.reviews);
-        setPromotions(response.data.promotions);
-
+        setPromotions(
+          response.data.promotions
+            .sort((a, b) => new Date(a.end_date) - new Date(b.end_date))
+            .filter((date) => date.end_date > currentDate)
+        );
         setIsLoading(false);
       })
       .catch(error => console.log(error));
   }, [id]);
-  
+
   useEffect(() => {
     dispatch(locationEvents(id))
   }, [dispatch, id])
