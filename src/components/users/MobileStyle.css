@@ -2,12 +2,45 @@
 @media screen and (min-width:320px) and (max-width: 760px) {
 
     /* ---HOME PAGE --- */
+
+    div.ui.inverted.stackable.top.attached.open.menu{
+        /* background-color:green; */
+        max-width:100%;
+        padding:2%;
+    }
+
+    div.ui.inverted.stackable.top.attached.open.menu div.hamburger.active{
+        right:30px;
+    }
+    
+    div.ui.inverted.stackable.top.attached.open.menu div.header.item{
+        /* background-color:red; */
+        max-width:95%;
+    }
+
+    div.ui.inverted.stackable.top.attached.closed.menu {
+        max-width:100%;
+    }
+
+    div.ui.inverted.stackable.top.attached.closed.menu div.hamburger.disabled {
+        /* background-color:green; */
+        /* position:fixed; */
+        right: 30px;
+        margin-top:4%;
+    }
+
+    div.hambuger.active{
+        right: 30px;
+        position: 
+    }
    
     div#root {
        
-        width: 100%;
-   
+        max-width: 90%;
+        /* background-color:red; */
     }
+
+
     /* bottom menu */
     div.ui.large.fluid.pointing.vertical.tabular.menu {
         display:flex;
@@ -124,10 +157,11 @@
         margin-left:5%;
     }
 
-
+    /* ------------------------------------------------------------------- */
    /* ---OTHER PAGES--- */
 
-   /* Networks - friends */
+   /* NETWORK - FRIENDS */
+   /* ------------------------------------------------------------------- */
 
     div.finalDisplay {
         padding:4%;
@@ -174,7 +208,24 @@
         font-size: 16px;
     }
 
-    /* events */
+    /* ------------------------------------------------------------------- */
+
+    @media (min-width:360px) {
+        img.ui.tiny.circular.image.avatarImage {
+            height:80px;
+            padding-right:2%;
+        }
+    
+        div.ui.large.fluid.pointing.vertical.tabular.menu .item {
+            margin-left:2%;
+            
+        }
+    }
+    /* ---------------------------------------------------------------- */
+
+    /* EVENTS */
+
+    /* ------------------------------------------------------------------- */
   
 
     div.ui.large.feed div.event{
@@ -184,7 +235,9 @@
 
     } 
 
-  /* settings */
+    /* ------------------------------------------------------------------- */
+    /* SETTINGS */
+    /* ------------------------------------------------------------------- */
 
     div.content div.header {
         font-size: 1.5rem;
@@ -241,6 +294,7 @@
     h1.ui.center.aligned.header{
         padding:3%;
         background-color:lightgrey;
+        max-width:100%;
     }
     
     div p.about-para {
@@ -255,27 +309,47 @@
         display:block;
     }
 
-    /*User Features */
+    /* ------------------------------------------------------------------- */
+    /*USER FEATURES*/
+    /* ------------------------------------------------------------------- */
+    /* div.header.item {
+        min-width: 0vh; 
+        max-width: 90%;
+        padding:0; 
+    } */
+    
     div p.user-features{
         display:block;
+        max-width:100%;
+        margin-left: 5%;
     }
-
    
    div.first div.column{
-        padding:3%;
+        padding:1%;
         max-height:80%;
-        margin-left:5%;
+        margin-left:15%;
     }
 
+    div.three.column.row div.first div.column div {
+        /* background-color:red; */
+        width:90%;
+    }
     img.friends-img{
-        max-width:300px;
-        max-height:200px;
+        max-width:350px;
+        max-height:220px;
         box-shadow: 5px 3px 6px rgb(58, 58, 58);
+        margin-left:10%;
         
     }
 
     div.bottom {
-        margin-top: -50%;
+        margin-top: -70%;
+        padding-bottom:5%;
+        margin-left:3%;
+    }
+
+    div.bottom h2.ui.header{
+        margin-left:5%;
     }
 
    
@@ -283,14 +357,15 @@
         background-color:lightgrey;
         border-bottom:.5px solid black;
         border-top: .5px solid black;
-        /* padding:9% 3% 3% 3%; */
+        padding:9% 8% 3% 3%;  
         /* margin:2% 0% 2% 0%; */
         display:flex;
         flex-direction:column-reverse;
+        width: 90%;
     }
 
     div.second-part{
-        margin-top: -20%;
+        margin-top: -50%;
         padding:5%;
      
     }
@@ -301,10 +376,16 @@
         /* margin-left:5%; */
         box-shadow: 5px 3px 6px rgb(58, 58, 58);
     }
+    div.third div.column {
+        max-width:80%;
+        background-color:red;
+        padding:0%;
+    }
 
-    div.third{
-        padding:10%;
-        margin-bottom:5%;
+    div.third-bottom{
+        max-width:80%;
+        /* padding:10%;
+        margin-bottom:5%; */
     }
 
     img.celebrate-img{
@@ -313,11 +394,30 @@
         box-shadow: 5px 3px 6px rgb(58, 58, 58);
     }
 
-    .third-bottom{
+    div.third div.column div.third-bottom{
         margin-top: -50%;
+        background-color:blue;
+        max-width:100%;
     }
+
+    div.ui.stackable.padded.equal.width.grid{
+        max-width:90%;
+    }
+
+    div.three.column.row div.first div.column{
+        background-color:green;
+        margin-left:5%;
+    }
+    div.three.column.row div.first div.column div{
+        background-color:yellow;
+        /* margin-left:10%; */
+        max-width:100%;
+    }
+
 }
 
+
+/* friends */
 
 @media (min-width:360px) {
     img.ui.tiny.circular.image.avatarImage {
@@ -331,7 +431,7 @@
     }
 }
 
-@media (min-width: 411px) {
+/* @media (min-width: 411px) {
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
         margin-left:3%;
     }
@@ -354,5 +454,5 @@
         box-shadow: 5px 3px 6px rgb(58, 58, 58);
     }
     
-}
+} */
 
