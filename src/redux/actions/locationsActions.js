@@ -50,3 +50,35 @@ export const locationClaim = (data, id) => dispatch => {
                 payload: {error: 'There was an error claiming this business, please try again', isLoading: false}})
         })
 }
+
+export const locationEvents = (id) => dispatch => {
+    API.get(`/events/locations/${id}`)
+        .then((res) => {
+            const currentDate = new Date().toISOString();
+            dispatch({
+                type: types.LOCATION_EVENTS_SUCCESS,
+                payload: res.data
+                    .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
+                    .filter((date) => date.start_time > currentDate)
+                }); 
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({ type: types.LOCATION_EVENTS_FAIL, payload: false });
+        })
+}
+
+export const locationDeleteEvent = (id, events) => dispatch => {
+    API.delete(`/events/${id}`)
+        .then((res) => {
+            const filteredEvents = events.filter((event) => event.id !== id);
+            dispatch({
+                type: types.LOCATION_EVENTS_DELETE_SUCCESS,
+                payload: filteredEvents
+            }) 
+        })
+        .catch((err) => {
+            console.log(err);
+            dispatch({type: types.LOCATION_EVENTS_DELETE_FAIL, payload: false})
+        })
+}   

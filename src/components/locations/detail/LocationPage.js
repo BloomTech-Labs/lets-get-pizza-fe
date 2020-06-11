@@ -7,7 +7,8 @@ import API from "../../../utils/API";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import MainBar from "./MainBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { locationEvents } from "../../../redux/actions/locationsActions.js"
 
 // Location detail page
 // Displays all information about a given location through the
@@ -17,7 +18,7 @@ export default function LocationPage() {
   const history = useHistory();
 
   const [curr_location, user] = useSelector(({location, user}) => [location, user])
-  
+
   const [isLoading, setIsLoading] = useState(true);
 
   const [selectedTab, setSelectedTab] = useState(0);
@@ -25,7 +26,8 @@ export default function LocationPage() {
   const [location, setLocation] = useState({});
   const [reviews, setReviews] = useState({});
   const [promotions, setPromotions] = useState({});
-  const [events, setEvents] = useState({});
+
+  const dispatch = useDispatch();
 
   // If the currently logged in user is equal to the location ID, then
   // the user can edit the page
@@ -34,15 +36,22 @@ export default function LocationPage() {
   useEffect(() => {
     API.get(`/locations/${id}`)
       .then(response => {
+        const currentDate = new Date().toISOString();
         setLocation(response.data.location);
         setReviews(response.data.reviews);
-        setPromotions(response.data.promotions);
-        setEvents(response.data.events);
-
+        setPromotions(
+          response.data.promotions
+            .sort((a, b) => new Date(a.end_date) - new Date(b.end_date))
+            .filter((date) => date.end_date > currentDate)
+        );
         setIsLoading(false);
       })
       .catch(error => console.log(error));
   }, [id]);
+
+  useEffect(() => {
+    dispatch(locationEvents(id))
+  }, [dispatch, id])
 
   useEffect(() => {
     if (tab !== undefined) {
@@ -92,7 +101,7 @@ export default function LocationPage() {
             setSelectedTab={setSelectedTab}
             reviews={reviews}
             promotions={promotions}
-            events={events}
+            events={curr_location.events}
           />
         </Grid.Column>
       </Grid>

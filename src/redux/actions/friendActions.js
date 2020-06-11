@@ -56,3 +56,18 @@ export const reviewsByFriend = id => dispatch => {
             dispatch({ type: types.FRIEND_REVIEW_FAIL, payload: {isLoading: false} })
         })
 }
+
+export const getAllFriends = id => dispatch => {
+    dispatch({type: types.GET_ALL_FRIENDS_START, payload: true})
+
+    API.get(`/friends/${id}`)
+        .then(res => {
+            dispatch({type: types.GET_ALL_FRIENDS_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            dispatch({
+                type: types.GET_ALL_FRIENDS_FAIL, 
+                payload: {error: 'There was an error retrieving friends', isLoading: false}
+            })
+        })
+}

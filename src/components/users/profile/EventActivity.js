@@ -2,9 +2,11 @@ import React from 'react'
 import { Feed, Divider } from 'semantic-ui-react'
 import { useSelector } from 'react-redux'
 import "../MobileStyle.css"
+import { useHistory } from 'react-router-dom'
 
 const EventActivity = ({ user, event }) => {
   const curr_user = useSelector(({user}) => user.username)
+  const history = useHistory()
     return (
         <>
         <Feed.Event>
@@ -14,10 +16,10 @@ const EventActivity = ({ user, event }) => {
                 <Feed.User as="a" href={user.username !== curr_user ? `/users/${user.username}` : `/users/dash/profile`}>
                     {user.username}
                   </Feed.User>{" "}
-                  posted an event at {event.business_name}
+    {event.response ? "was invited to an event at " : "posted an event at "}{event.business_name}
                 </Feed.Summary>
                 <br />
-                <Feed.Summary>{event.title}</Feed.Summary>
+                <Feed.Summary as='a' onClick={() => history.push(`/locations/${event.location_id}/events`)}>{event.title}</Feed.Summary>
                 <Feed.Extra text>
                   {event.description}
                 </Feed.Extra>
