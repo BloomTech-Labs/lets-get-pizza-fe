@@ -62,7 +62,6 @@ export const getAllFriends = id => dispatch => {
 
     API.get(`/friends/${id}`)
         .then(res => {
-            console.log(res.data)
             dispatch({type: types.GET_ALL_FRIENDS_SUCCESS, payload: res.data})
         })
         .catch(err => {

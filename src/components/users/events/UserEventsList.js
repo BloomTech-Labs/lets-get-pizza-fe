@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Item } from "semantic-ui-react";
 import UserEvent from "./UserEvent";
 import { eventsByUser } from "../../../redux/actions/userActions.js";
+import InvitedEvent from "./InvitedEvent";
 
 const UserEventsList = () => {
   const user = useSelector((state) => state.user);
@@ -19,7 +20,12 @@ const UserEventsList = () => {
   ) : (
     <Item.Group divided>
       {user.events.map((event) => (
+        !event.response ? 
         <UserEvent
+          key={event.id}
+          event={event}
+        /> : 
+        <InvitedEvent 
           key={event.id}
           event={event}
         />

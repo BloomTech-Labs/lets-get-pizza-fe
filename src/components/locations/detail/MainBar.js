@@ -73,7 +73,7 @@ export default function MainBar(props) {
           </Segment>
 
           <Tab.Pane>
-            <Component content={content} />
+            <Component content={content} canEdit={showAddButton} />
           </Tab.Pane>
         </React.Fragment>
       );
