@@ -15,6 +15,7 @@ describe('UserEditActive with item.value as a string', () => {
 
     let store;
     let component;
+
     const item = {
         icon: "location arrow",
         name: "location",

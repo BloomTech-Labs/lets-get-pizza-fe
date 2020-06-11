@@ -16,6 +16,7 @@ describe('UserEditActive with item.value as a string', () => {
     let component;
 
     const newValue = "Los Angeles"
+
     beforeEach(() => {
         store = mockStore({
             user: {
@@ -31,7 +32,6 @@ describe('UserEditActive with item.value as a string', () => {
                 <UserDisplayInfo />
             </Provider>
         )
-
     });
 
     it('should render with text from props', () => {
@@ -50,5 +50,4 @@ describe('UserEditActive with item.value as a string', () => {
         expect(store.dispatch).toHaveBeenCalledTimes(1);
         expect(store.dispatch).toHaveBeenCalledWith(userEditSettings({ target: { name: 'display_name' } }, newValue));
     })
-
 })

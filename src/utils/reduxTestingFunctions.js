@@ -72,3 +72,19 @@ export const findElementById = (component, id) => {
         return { ...filteredElement[0].props, type: filteredElement[0].type, children: filteredElement[0].children }
     };
 };
+
+
+
+// When testing to see if a document contains text from props
+// and I want to check that the data passed through correctly
+// at least once, this function will find the first instance
+export const findFirstProp = (textString, find, findAll) => {
+    const regex = new RegExp(textString, "i");
+    const array = findAll(regex)
+
+    if (array.length <= 1) {
+        return find(regex);
+    } else {
+        return array[0];
+    };
+};

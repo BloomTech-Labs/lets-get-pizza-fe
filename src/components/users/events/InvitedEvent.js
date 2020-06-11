@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon, Item, Label } from "semantic-ui-react";
 import Moment from "react-moment";
-import EventUpdate from "./EventUpdate";
-import { userDeleteEvent } from "../../../redux/actions/userActions";
-import InviteModal from "../../items/InviteModal";
+import { eventsByUser } from "../../../redux/actions/userActions";
+import API from "../../../utils/API";
 
-const UserEvent = ({ event }) => {
+const InvitedEvent = ({ event }) => {
   const user = useSelector(state => state.user)
-  const [toggleEdit, setToggleEdit] = useState(false);
   const dispatch = useDispatch();
-  const [eventToEdit, setEventToEdit] = useState({});
 
-  const editEvent = (event) => {
-    setEventToEdit(event);
-  };
-
+  const handleInvite = response => {
+    API.put(`/events/${event.id}/invite/${event.event_invite_id}`, { response })
+        .then(res => {
+            dispatch(eventsByUser(user.id))
+        })
+        .catch(err => {
+            console.log(err)
+        })
+  }
   return (
     <>
       <Item>
@@ -26,7 +28,7 @@ const UserEvent = ({ event }) => {
           <Item.Header as="a" href={`/locations/${event.location_id}/events`}>
             {event.title}
           </Item.Header>
-          <Item.Meta>Created By - You</Item.Meta>
+          <Item.Meta>Created By - {event.username}</Item.Meta>
           <Item.Description>{event.description}</Item.Description>
           <Item.Meta>
             <span className="">{event.business_name}</span>
@@ -50,42 +52,44 @@ const UserEvent = ({ event }) => {
             </Label>
 
             <Label
-              title="Edit event"
-              as="a"
+              title="Accept"
+              as={event.response === "accepted" ? 'div' : 'a'}
               onClick={() => {
-                editEvent(event);
-                setToggleEdit(!toggleEdit);
+                handleInvite("accepted")
               }}
             >
-              <Icon name="edit" />
+              <Icon name="check" />
+              <Label.Detail>{event.response === "accepted" ? 'Accepted' : 'Accept'}</Label.Detail>
             </Label>
 
             <Label
-              title="Delete event"
-              as="a"
+              title="Interested"
+              as={event.response === "interested" ? 'div' : 'a'}
               onClick={(e) => {
                 e.stopPropagation();
-                dispatch(userDeleteEvent(event.id, user));
+                handleInvite("interested")
               }}
             >
-              <Icon name="trash" />
+              <Icon name="question" />
+              <Label.Detail>{event.response === "interested" ? 'Interested' : 'Maybe'}</Label.Detail>
             </Label>
-            {user.id === event.user_id && <InviteModal event_id={event.id}/>}
+
+            <Label
+              title="Decline"
+              as={event.response === "declined" ? 'div' : 'a'}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleInvite("declined")
+              }}
+            >
+              <Icon name="x" />
+              <Label.Detail>{event.response === "declined" ? 'Declined' : 'Decline'}</Label.Detail>
+            </Label>
           </Item.Extra>
         </Item.Content>
       </Item>
-      {toggleEdit && (
-        <EventUpdate
-          event={event}
-          events={user.events}
-          eventToEdit={eventToEdit}
-          setEventToEdit={setEventToEdit}
-          toggleEdit={toggleEdit}
-          setToggleEdit={setToggleEdit}
-        />
-      )}
     </>
   );
 };
 
-export default UserEvent;
+export default InvitedEvent;

@@ -32,6 +32,7 @@ export const locationsReducer = (state = initialState, {type, payload}) => {
             }
         case types.LOCATION_EVENTS_SUCCESS:
         case types.LOCATION_EVENTS_DELETE_SUCCESS:
+        case types.LOCATION_EVENTS_EDIT_SUCCESS:
             return {
                 ...state,
                 events: [...payload]
