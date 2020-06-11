@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Item, Label, Icon } from 'semantic-ui-react';
 import Moment from 'react-moment';
 import EventLocUpdate from './EventLocUpdate';
+import InviteModal from "../../../items/InviteModal";
 import { locationDeleteEvent } from '../../../../redux/actions/locationsActions';
 
-const Event = ({ canEdit, event }) => {
+const Event = ({ canEdit, event, user_id }) => {
   const events = useSelector((state) => state.location.events);
   const [toggleEdit, setToggleEdit] = useState(false);
   const [eventToEdit, setEventToEdit] = useState({});
@@ -59,6 +60,8 @@ const Event = ({ canEdit, event }) => {
                 <Icon name="trash" />
               </Label>
             )}
+
+            {user_id === event.user_id && <InviteModal event_id={event.id} />}
           </Item.Extra>
         </Item.Content>
       </Item>

@@ -153,11 +153,16 @@ export const eventsByUser = (id) => (dispatch) => {
   API.get(`/events/users/${id}`)
     .then((res) => {
       const currentDate = new Date().toISOString();
+      // filter out any declined invites
+      const filterDeclined = res.data.invitedEvents.filter(event => event.response !== 'declined')
+
+      // combine created and invited events and sort by date
+      const events = [...res.data.createdEvents, ...filterDeclined]
+                              .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
+                              .filter((date) => date.start_time > currentDate)
       dispatch({
         type: types.USER_EVENT_SUCCESS,
-        payload: res.data
-          .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
-          .filter((date) => date.start_time > currentDate),
+        payload: events
       });
     })
     .catch((err) => {
