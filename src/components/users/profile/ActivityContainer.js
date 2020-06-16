@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { eventsByFriend, reviewsByFriend, getFriendFavoriteShop } from '../../../redux/actions/friendActions';
 import { eventsByUser, locationByUser, reviewsByUser } from '../../../redux/actions/userActions';
 import ActivityFeed from './ActivityFeed';
+import FriendsList from '../FriendsComp/FriendsList';
 
 const ActivityContainer = ({ user }) => {
     const { pathname } = useLocation()
@@ -26,8 +27,17 @@ const ActivityContainer = ({ user }) => {
     const activities = user.reviews.concat(user.events);
     return (
         <Grid.Row>
-            <Header size='huge' textAlign='center' style={{width: '100%'}}>Recent Activity</Header>
-            <ActivityFeed activities={activities} user={user} />
+            {!pathname.includes('friends') ? 
+            (
+            <>
+              <Header size='huge' textAlign='center' style={{width: '100%'}}>Recent Activity</Header>
+              <ActivityFeed activities={activities} user={user} />
+            </>
+            ):
+            (
+            <FriendsList user={user} />
+            )
+            }
         </Grid.Row>
     )
 }

@@ -54,7 +54,7 @@ export default function UserSettings() {
         onClick={saveAllChanges}
         style={{ margin: "1.5rem auto auto 1rem" }}
       >
-        <Button color="black">UNDO</Button>
+        <Button id="undo" color="black">UNDO</Button>
         <Button
           id="save"
           positive

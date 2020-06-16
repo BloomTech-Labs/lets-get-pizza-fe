@@ -1,31 +1,23 @@
-import React from "react";
-import { Item, Label, Icon } from "semantic-ui-react";
-import Moment from "react-moment";
+import React from 'react';
+import { useSelector } from "react-redux";
+import { Item } from 'semantic-ui-react';
+import Event from './Event'
 
-const Events = ({ content }) => (
-  <Item.Group divided>
-    {content.map(event => (
-      <Item key={event.id}>
-        <Item.Content>
-          <Item.Header>{event.title}</Item.Header>
-          <Item.Description>{event.description}</Item.Description>
-          <Item.Extra>
-            <Label title="Event date">
-              <Icon name="calendar alternate" />
-              <Moment format="MMMM D" date={event.start_time} />
-            </Label>
+const Events = ({ canEdit, content }) => {
+  const user_id = useSelector(({user}) => user.id)
 
-            <Label title="Event time">
-              <Icon name="clock" />
-              <Moment format="h:mm a" date={event.start_time} />
-              &mdash;
-              <Moment format="h:mm a" date={event.end_time} />
-            </Label>
-          </Item.Extra>
-        </Item.Content>
-      </Item>
-    ))}
-  </Item.Group>
-);
+  return (
+    <Item.Group divided>
+      {content.map((event) => (
+        <Event
+          key={event.id}
+          event={event}
+          canEdit={canEdit}
+          user_id={user_id}
+        />
+      ))}
+    </Item.Group>
+  );
+};
 
 export default Events;
