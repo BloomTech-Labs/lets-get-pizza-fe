@@ -147,29 +147,3 @@ export const testData = {
   },
 };
 
-export const spreadCalls = (arrayOfArrays) => {
-  let newArray = [];
-  arrayOfArrays.forEach((array) => (newArray = [...newArray, ...array]));
-
-  return newArray;
-};
-
-// compares if items in an array are equal to each other
-// requires an array of results & an array of expected
-//      order of expectation array matters
-// optional parameter of a single item not to be expected
-export const compareExpectedCalls = (
-  resultsArr,
-  expectedArr,
-  unexpectedItem
-) => {
-  resultsArr.forEach((result, idx) => {
-    if (unexpectedItem) {
-      expect(result).not.toEqual(unexpectedItem);
-    }
-    expect(result).toEqual(expectedArr[idx]);
-  });
-  expectedArr.forEach((expectation, idx) => {
-    expect(expectation).toEqual(resultsArr[idx]);
-  });
-};

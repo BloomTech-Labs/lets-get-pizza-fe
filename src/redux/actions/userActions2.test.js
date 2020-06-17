@@ -1,11 +1,11 @@
 import * as actions from "./userActions";
 import * as types from "../types/userTypes";
 import { APIMock } from "../../utils/APIMock";
+import { testData as data } from "./userActionsTestData";
 import {
-  testData as data,
   compareExpectedCalls,
   spreadCalls,
-} from "./userActionsTestData";
+} from "../../utils/reduxTestingFunctions";
 
 const getState = jest.fn();
 
@@ -176,7 +176,10 @@ describe("User bio actions", () => {
 
     await APIMock("put", "/users", data.user)
       .then((res) => {
-        return dispatch({ type: types.UPDATE_BIO_SUCCESS, payload: res.data.bio });
+        return dispatch({
+          type: types.UPDATE_BIO_SUCCESS,
+          payload: res.data.bio,
+        });
       })
       .catch((err) => console.log(err));
 
