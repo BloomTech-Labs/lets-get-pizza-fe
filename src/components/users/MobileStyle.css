@@ -1,8 +1,7 @@
 
 @media screen and (min-width:320px) and (max-width: 760px) {
-    /* ------------------------------------------------------------------- */
+
     /* ---HOME PAGE --- */
-    /* ------------------------------------------------------------------- */
 
     div.ui.inverted.stackable.top.attached.open.menu{
         max-width:100%;
@@ -25,7 +24,6 @@
     div.hambuger.active{
         right: 40px;
     }
-
 
     /* --------------------------------------------------------------- */
     /* BOTTOM MENU */
@@ -50,6 +48,7 @@
     div.ui.large.fluid.pointing.vertical.tabular.menu .active.item { 
         padding-bottom:2%;
         box-shadow: 2px 4px 5px rgb(58, 58, 58);
+        
     }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu a.active.item {
@@ -65,7 +64,8 @@
             box-shadow: 2px 1px 4px rgb(58, 58, 58);
             min-width: 10px;
             min-height: 10px;
-    }
+            
+        }
 
     div.ui.large.fluid.pointing.vertical.tabular.menu .item {
         padding:1.2%;
@@ -73,6 +73,7 @@
         max-width: 42px;
         max-width: 42px;
         margin-left:.5%;
+        
     }
 
     /* --------------------------------------------------------------- */
@@ -86,34 +87,36 @@
     }
 
 
-    div.left.floated.five.wide.column {
+     div.left.floated.five.wide.column {
        background-color:none;
        max-width:0px;
        max-height:0px;
        padding:0px;
+       
+        
     }
 
-    div.center.aligned.eight.wide.computer.sixteen.mobile.column:nth-child(odd){
+   div.center.aligned.eight.wide.computer.sixteen.mobile.column:nth-child(odd){
        padding: 0px;
        align-content: center;
        margin: 2% 16% 10%;
        max-width: 250px;
        max-height: 250px;
-    } 
+   } 
 
-    button.ui.blue.button{
+   button.ui.blue.button{
        margin-top:5%;
-    }
+   }
 
     div button a {
         color:black;
     }
 
-    div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) {
+   div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) {
         background-color:black;
         min-width: 46vh;
         padding-top:3%;
-    }
+   }
    
     div.ui.header{
         color:white;
@@ -144,13 +147,10 @@
 
 
     /* ------------------------------------------------------------------- */
-    /* ---OTHER PAGES--- */
-    /* ------------------------------------------------------------------- */
+   /* ---OTHER PAGES--- */
 
-
-    /* ------------------------------------------------------------------- */
-    /* NETWORK - FRIENDS */
-    /* ------------------------------------------------------------------- */
+   /* NETWORK - FRIENDS */
+   /* ------------------------------------------------------------------- */
 
     div.finalDisplay {
         padding:4%;
@@ -198,7 +198,6 @@
     }
 
             /* ------------------------------------------------------------------- */
-            /* ------------------------------------------------------------------- */
 
             @media (min-width:360px) {
                 img.ui.tiny.circular.image.avatarImage {
@@ -217,7 +216,9 @@
 
 
     /* ---------------------------------------------------------------- */
+
     /* EVENTS */
+
     /* ------------------------------------------------------------------- */
   
 
@@ -388,9 +389,9 @@
     div.three.column.row div.second {
         max-width:90%;
     }
-    div.three.column.row div.second div.column {
+   div.three.column.row div.second div.column {
        max-width:90%;
-    }
+   }
 
     div.second div.column{
         padding:5% 8% 3% 7%;  
