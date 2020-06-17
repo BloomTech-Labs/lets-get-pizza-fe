@@ -25,6 +25,9 @@
         right: 40px;
     }
 
+    div.ui.container div.ui.huge.header {
+        color:black;
+    }
     /* --------------------------------------------------------------- */
     /* BOTTOM MENU */
     /* --------------------------------------------------------------- */
@@ -76,14 +79,18 @@
         
     }
 
-    /* --------------------------------------------------------------- */
-
-    div p:first-of-type {
+    div.ui.large.fluid.pointing.vertical.tabular.menu p {
         display:none;
     }
 
+    /* --------------------------------------------------------------- */
+
+
+
     div.two.column.row {
         padding:0%;
+        margin:0 auto;
+        min-width:100%;
     }
 
 
@@ -114,11 +121,11 @@
 
    div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) {
         background-color:black;
-        min-width: 46vh;
+        min-width: 100%;
         padding-top:3%;
    }
    
-    div.ui.header{
+   div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) div.ui.header{
         color:white;
     }
     div.ui.huge.header {
@@ -210,6 +217,8 @@
                     
                 }
             }
+            /* ------------------------------------------------------------------- */
+            /* ------------------------------------------------------------------- */
 
 
 
@@ -256,11 +265,11 @@
         background-color:#2185D0;
     }
 
-   /* ------------------------------------------------------------------- */  
 
-  /* FAV PIZZA  */
 
-   /* ------------------------------------------------------------------- */
+    /* ------------------------------------------------------------------- */  
+    /* FAV PIZZA  */
+    /* ------------------------------------------------------------------- */
   
   
     img.ui.medium.circular.image{
@@ -286,9 +295,9 @@
     }
 
 
-     /* ------------------------------------------------------------------- */
-     /* ABOUT PLZA*/
-     /* ------------------------------------------------------------------- */
+    /* ------------------------------------------------------------------- */
+    /* ABOUT PLZA*/
+    /* ------------------------------------------------------------------- */
 
     h1.ui.center.aligned.header{
         padding:3%;
@@ -326,10 +335,13 @@
         margin-left: 5%;
     }
    
-   div.three.column.row div.first div.column{
+    div.three.column.row div.first {
         padding:3%;
         max-height:80%;
-        max-width:100%;
+        max-width:90%;
+        margin-left:5%;
+        border: .5px dashed lightgrey;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);  
     }
 
     div.three.column.row div.first div.column div{
@@ -349,7 +361,12 @@
     img.friends-img{
         max-width:350px;
         max-height:220px;
+        margin-right: -120px;
         box-shadow: 5px 3px 6px rgb(58, 58, 58);   
+    }
+
+    div.three.column.row div.first div.column div.bottom{
+        margin-top: -60%;
     }
 
     div.bottom {
@@ -358,11 +375,16 @@
         margin-left:1%;
     }
 
-        @media (min-width:414px) and (max-width: 760px){
-            div.bottom{
-                margin-top:-60%;
-            }
-        }
+        /* ------------------------------------------------------------------- */
+        /* ------------------------------------------------------------------- */
+
+                @media (min-width:414px) and (max-width: 760px){
+                    div.bottom{
+                        margin-top:-60%;
+                    }
+                }
+        /* ------------------------------------------------------------------- */
+        /* ------------------------------------------------------------------- */
 
     div.bottom h2.ui.header{
         margin-left:2%;
@@ -413,16 +435,14 @@
         margin-top: -50%;
     }
 
-   
-
     img.celebrate-img{
         max-height:60%;
         margin-left:3%;
         box-shadow: 5px 3px 6px rgb(58, 58, 58);
     }
-
-
 }
+
+
 
 /* ------------------------------------------------------------------- */
 /* FRIENDS */
@@ -442,3 +462,136 @@
 
 
 /* ------------------------------------------------------------------- */
+/* ------------------------------------------------------------------- */
+/* ------------------------------------------------------------------- */
+/* ------------------------------------------------------------------- */
+
+@media (min-width:768px){
+  h1.ui.center.aligned.header{
+      padding:3%;
+      background-color: lightgrey;
+  }
+
+    div.three.column.row {
+        display:flex;
+        flex-direction:column;
+        align-content: center;
+        align-items:center;
+        justify-content: space-evenly;
+        padding:3%;
+    }
+   
+    div.three.column.row div.first div.column{
+        padding:3%;
+        max-height:80%;
+        max-width:100%;
+        border: .5px dashed lightgrey;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);  
+    }
+
+    img.friends-img{
+        max-width:450px;
+        max-height:320px;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);  
+        margin-right: -80px; 
+    }
+
+    div.three.column.row div.first div.column div{
+        min-width:100%;
+    }
+
+    div.three.column.row div.first div.column div.bottom{
+        margin-top: -27%;
+        padding-bottom:5%;
+        margin-left:1%;
+    }
+
+    div.three.column.row div.second{
+        max-width:90%;
+        background-color:lightgrey;
+        margin: 3% 0 3% 0; 
+        border: .5px solid slategrey;
+    }
+
+    div.three.column.row div.second div {
+        max-width:90%;
+    }
+
+
+    div.bottom {
+        margin-top: -47%;
+        padding-bottom:5%;
+        margin-left:1%;
+    }
+
+    div.bottom h2.ui.header{
+        margin-left:2%;
+
+    }
+    div.bottom p.user-features{
+        margin-left:2%;
+    }
+
+ 
+    div.three.column.row div.second div.column {
+       max-width:100%;
+    }
+
+    div.second div.column{
+        padding:5% 8% 3% 7%;  
+        display:flex;
+        flex-direction:column-reverse;
+    }
+
+    div.three.column.row div.second div.column div{
+        min-width: 100%;
+    }
+
+    img.pizza-img{
+        min-width:80%;
+        box-shadow: 9px 7px 9px rgb(58, 58, 58);  
+    }
+
+
+    div.second-part{
+        margin-top: 10%;
+        padding:2%;
+        min-width:100%;
+
+    }
+
+    div p.user-features{
+        display:block;
+        max-width:90%;
+        margin-left: 5%;
+    }
+   
+    div.third div.column {
+        max-width:90%;
+        padding:3% 2% 3% 2%;
+        margin:1% 1% 0% 3%;
+        border: .5px dashed lightgrey;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);  
+    }
+
+    div.three.column.row div.third div.column div{
+        min-width:100%;
+        max-height:100%;
+        padding:5%;
+    }
+
+    div.third-bottom{
+        max-width:80%;
+        margin-top: -40%;
+    }
+
+    img.celebrate-img{
+        max-height:60%;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);
+        background-color: lightcyan;
+        padding:5%;
+        margin-right: -160px;
+    }
+
+
+}
