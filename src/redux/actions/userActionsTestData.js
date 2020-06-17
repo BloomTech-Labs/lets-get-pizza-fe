@@ -23,39 +23,63 @@ export const testData = {
   },
   user: {
     id: 1,
-    events: [],
-    reviews: [],
-    friends: [],
+    events: [
+      {
+        id: 1,
+        user_id: 1,
+        location_id: 1,
+        title: "event1",
+        description: "super amazing event",
+        start_time: Date.now(),
+        end_time: Date.now + 100,
+      },
+      {
+        id: 2,
+        user_id: 1,
+        location_id: 1,
+        title: "event2",
+        description: "very terrible event",
+        start_time: Date.now() + 1,
+        end_time: Date.now + 101,
+      },
+    ],
+    reviews: [
+      {
+        location_id: 80,
+        user_id: 2,
+        id: 52,
+        rating: 5,
+        review_title: "SOOOO GOOD",
+        review_text: "yum yum yum!! GO HERE",
+        business_name: "Rosa's Italian Resaurant",
+        address: "2400 Columbus St, Bakersfield, CA 93306, United States",
+      },
+    ],
+    friends: [
+      {
+        user_id: 1,
+        friends_id: 1,
+        status: "accepted",
+        id: 1,
+      },
+      {
+        user_id: 2,
+        friends_id: 2,
+        status: "accepted",
+        id: 2,
+      },
+      {
+        user_id: 3,
+        friends_id: 3,
+        status: "accepted",
+        id: 3,
+      },
+    ],
     favShopDetails: {},
     savedPromos: [],
   },
   save: { target: { id: "save" } },
   cancel: { target: { id: "cancel" } },
-  events: [
-    { id: 1, name: "event1" },
-    { id: 2, name: "event2" },
-    {
-      id: 1,
-      user_id: 1,
-      location_id: 1,
-      title: "event1",
-      description: "super amazing event",
-      start_time: Date.now(),
-      end_time: Date.now + 100,
-    },
-  ],
-  reviews: [
-    {
-      location_id: 80,
-      user_id: 2,
-      id: 52,
-      rating: 5,
-      review_title: "SOOOO GOOD",
-      review_text: "yum yum yum!! GO HERE",
-      business_name: "Rosa's Italian Resaurant",
-      address: "2400 Columbus St, Bakersfield, CA 93306, United States",
-    },
-  ],
   locations: [
     {
       id: 1,
@@ -97,12 +121,12 @@ export const testData = {
   },
 };
 
-export const spreadCalls = arrayOfArrays => {
-  let newArray = []
-  arrayOfArrays.forEach(array => newArray = [...newArray, ...array]);
+export const spreadCalls = (arrayOfArrays) => {
+  let newArray = [];
+  arrayOfArrays.forEach((array) => (newArray = [...newArray, ...array]));
 
-  return newArray
-}
+  return newArray;
+};
 
 // compares if items in an array are equal to each other
 // requires an array of results & an array of expected

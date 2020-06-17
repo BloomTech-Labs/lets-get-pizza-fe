@@ -257,14 +257,14 @@ describe("User events actions", () => {
   it("creates USER_EVENT_START and USER_EVENT_SUCCESS with correct payload when API event GET is complete", async () => {
     const expectedActions = [
       { type: types.USER_EVENT_START, payload: true },
-      { type: types.USER_EVENT_SUCCESS, payload: data.events },
+      { type: types.USER_EVENT_SUCCESS, payload: data.user.events },
     ];
 
     const dispatch = jest.fn((data) => data);
 
     await actions.eventsByUser(data.userid)(dispatch, getState);
 
-    await APIMock("get", `/events/users/${data.events[0].id}`, data.events)
+    await APIMock("get", `/events/users/${data.user.events[0].id}`, data.user.events)
       .then((res) => {
         return dispatch({ type: types.USER_EVENT_SUCCESS, payload: res.data });
       })
@@ -277,20 +277,20 @@ describe("User events actions", () => {
   it("creates USER_EVENT_DELETE_START and USER_EVENT_DELETE_SUCCESS with correct payload when API event DELETE is complete", async () => {
     const expectedActions = [
       { type: types.USER_EVENT_DELETE_START, payload: true },
-      { type: types.USER_EVENT_DELETE_SUCCESS, payload: data.events[0] },
+      { type: types.USER_EVENT_DELETE_SUCCESS, payload: data.user.events[0] },
     ];
 
     const dispatch = jest.fn((data) => data);
 
-    await actions.userDeleteEvent(data.events[0].id, data.creds.username)(
+    await actions.userDeleteEvent(data.user.events[0].id, data.creds.username)(
       dispatch,
       getState
     );
 
     await APIMock(
       "delete",
-      `/events/users/${data.events[0].id}`,
-      data.events[0]
+      `/events/users/${data.user.events[0].id}`,
+      data.user.events[0]
     )
       .then((res) => {
         return dispatch({
