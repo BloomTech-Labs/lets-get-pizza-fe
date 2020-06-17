@@ -23,6 +23,7 @@ export const testData = {
   },
   user: {
     id: 1,
+    bio: "I love my pizza",
     events: [
       {
         id: 1,
@@ -76,7 +77,32 @@ export const testData = {
       },
     ],
     favShopDetails: {},
-    savedPromos: [],
+    savedPromos: [
+      {
+        id: 1,
+        location_id: 1,
+        title: "Cheese Sale!",
+        text: "Half Price extra cheese!",
+        start_date: "2020-01-02T00:00:00.000Z",
+        end_date: "2020-01-03T00:00:00.000Z",
+      },
+      {
+        id: 2,
+        location_id: 2,
+        title: "Double Double Time!",
+        text: "Buy one pizza and pay double for the second!",
+        start_date: "2020-01-03T00:00:00.000Z",
+        end_date: "2020-02-03T00:00:00.000Z",
+      },
+      {
+        id: 3,
+        location_id: 3,
+        title: "Jailhouse Rock!",
+        text: "Sing a song for 10 bucks off your order!",
+        start_date: "2020-02-03T00:00:00.000Z",
+        end_date: "2020-02-03T00:00:00.000Z",
+      },
+    ],
   },
   save: { target: { id: "save" } },
   cancel: { target: { id: "cancel" } },

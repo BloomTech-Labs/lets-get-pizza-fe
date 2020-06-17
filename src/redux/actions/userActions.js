@@ -272,14 +272,14 @@ export const getUserPromos = (id) => (dispatch) => {
   dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
   API.get(`savedPromos/users/${id}`)
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: types.GET_USER_PROMOS,
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
+      // Errors on actions need to be handeled some other way than
+      // console.log(err);
     });
 };
 
@@ -287,10 +287,10 @@ export const addUserPromo = (user_id, promo_id) => (dispatch) => {
   let postData = { user_id, promo_id };
   API.post("/savedPromos", postData)
     .then((res) => {
-      console.log(res);
     })
     .catch((err) => {
-      console.log(err);
+      // Errors on actions need to be handeled some other way than
+      // console.log(err);
     });
 };
 
@@ -301,6 +301,7 @@ export const updateUserBio = (changes) => (dispatch) => {
       dispatch({ type: types.UPDATE_BIO_SUCCESS, payload: changes });
     })
     .catch((err) => {
-      console.log(err.message);
+      // Errors on actions need to be handeled some other way than
+      // console.log(err.message);
     });
 };

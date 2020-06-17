@@ -134,3 +134,53 @@ describe("User friends actions", () => {
     compareExpectedCalls(calls, expectedActions);
   });
 });
+
+describe("User promotions actions", () => {
+  it("creates GET_USER_FRIENDS_START and GET_USER_PROMOS with correct payload when API promos GET is complete", async () => {
+    const expectedActions = [
+      { type: types.GET_USER_FRIENDS_START, payload: true },
+      { type: types.GET_USER_PROMOS, payload: data.user.savedPromos },
+    ];
+
+    const dispatch = jest.fn((data) => data);
+
+    await actions.getUserPromos(data.user.id)(dispatch, getState);
+
+    await APIMock(
+      "get",
+      `/savedPromos/users/${data.user.id}`,
+      data.user.savedPromos
+    )
+      .then((res) => {
+        return dispatch({ type: types.GET_USER_PROMOS, payload: res.data });
+      })
+      .catch((err) => console.log(err));
+
+    const calls = spreadCalls(dispatch.mock.calls);
+    compareExpectedCalls(calls, expectedActions);
+  });
+
+  // userActions addUserPromo will need to be tested here when its built out
+});
+
+describe("User bio actions", () => {
+  it("creates UPDATE_BIO_SUCCESS with correct payload when API users PUT request is complete", async () => {
+    const expectedAction = {
+      type: types.UPDATE_BIO_SUCCESS,
+      payload: data.user.bio,
+    };
+
+    const dispatch = jest.fn((data) => data);
+
+    await actions.updateUserBio(data.user.bio)(dispatch, getState);
+
+    await APIMock("put", "/users", data.user)
+      .then((res) => {
+        return dispatch({ type: types.UPDATE_BIO_SUCCESS, payload: res.data.bio });
+      })
+      .catch((err) => console.log(err));
+
+    const calls = spreadCalls(dispatch.mock.calls);
+    expect(calls[0]).toStrictEqual(expectedAction);
+  });
+});
