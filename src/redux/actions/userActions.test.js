@@ -93,14 +93,17 @@ describe("Users settings actions", () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
 
-    const expectedAction = { type: types.TOGGLE_EDIT, payload: input.event.target.id };
+    const expectedAction = {
+      type: types.TOGGLE_EDIT,
+      payload: input.event.target.id,
+    };
 
     actions.userToggleEdit(input.event, input.field)(dispatch, getState);
     expect(dispatch.mock.calls[0][0]).toEqual(expectedAction);
   });
 
   it("creates EDIT_SETTINGS with payload for editing dietary_preference", () => {
-    const input1 = {
+    const input = {
       event: { target: {} },
       value: "vegan",
     };
@@ -113,8 +116,14 @@ describe("Users settings actions", () => {
       payload: { dietary_preference: "vegan" },
     };
 
-    actions.userEditSettings(input1.event, input1.value)(dispatch, getState);
+    const unexpectedAction = {
+      type: types.EDIT_SETTINGS,
+      payload: { location: "L.A." },
+    };
+
+    actions.userEditSettings(input.event, input.value)(dispatch, getState);
     expect(dispatch.mock.calls[0][0]).toEqual(expectedAction);
+    expect(dispatch.mock.calls[0][0]).not.toEqual(unexpectedAction);
   });
 
   it("creates EDIT_SETTINGS with payload for all other user dashboard preferences", () => {
@@ -131,7 +140,87 @@ describe("Users settings actions", () => {
       payload: { location: "L.A." },
     };
 
+    const unexpectedAction = {
+      type: types.EDIT_SETTINGS,
+      payload: { dietary_preference: "vegan" },
+    };
+
     actions.userEditSettings(input.event, input.value)(dispatch, getState);
     expect(dispatch.mock.calls[0][0]).toEqual(expectedAction);
+    expect(dispatch.mock.calls[0][0]).not.toEqual(unexpectedAction);
+  });
+
+  it("creates SUBMIT_SETTINGS_START and SUBMIT_SETTINGS_SUCCESS when user clicks 'save' and API user settings PUT is complete", async () => {
+    const user = {
+      events: [],
+      reviews: [],
+      friends: [],
+      favShopDetails: {},
+      savedPromos: [],
+    };
+
+    const event = { target: { id: "save" } };
+
+    const expectedActions = [
+      { type: types.SUBMIT_SETTINGS_START, payload: true },
+      { type: types.SUBMIT_SETTINGS_SUCCESS },
+    ];
+    const unexpectedActions = [
+      { type: types.SUBMIT_SETTINGS_START, payload: true },
+      { type: types.EDIT_CANCEL_CHANGES },
+    ];
+
+    API.post = jest.fn((url) => {
+      return Promise.resolve();
+    });
+
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => {
+      url: "/users";
+    });
+
+    await actions.userSubmitSettings(event, user)(dispatch, getState);
+
+    dispatch.mock.calls.forEach((call, idx) => {
+      expect(call[0]).toEqual(expectedActions[idx]);
+      expect(call[0]).not.toEqual(unexpectedActions[1]);
+    });
+  });
+
+  it("creates EDIT_CANCEL_CHANGES when user clicks 'cancel'", () => {
+    const user = {
+      events: [],
+      reviews: [],
+      friends: [],
+      favShopDetails: {},
+      savedPromos: [],
+    };
+
+    const event = { target: { id: "cancel" } };
+
+    const expectedActions = [
+      { type: types.SUBMIT_SETTINGS_START, payload: true },
+      { type: types.EDIT_CANCEL_CHANGES },
+    ];
+    const unexpectedActions = [
+      { type: types.SUBMIT_SETTINGS_START, payload: true },
+      { type: types.SUBMIT_SETTINGS_SUCCESS },
+    ];
+
+    API.post = jest.fn((url) => {
+      return Promise.resolve();
+    });
+
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => {
+      url: "/users";
+    });
+
+    actions.userSubmitSettings(event, user)(dispatch, getState);
+
+    dispatch.mock.calls.forEach((call, idx) => {
+      expect(call[0]).toEqual(expectedActions[idx]);
+      expect(call[0]).not.toEqual(unexpectedActions[1]);
+    });
   });
 });
