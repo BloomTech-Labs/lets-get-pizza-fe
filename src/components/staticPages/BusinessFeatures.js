@@ -13,11 +13,11 @@ export default function BusinessFeatuers() {
         <Grid.Row columns={2}>
           <Grid.Column>
             <Header as="h2">Quick Sign up</Header>
-            <p>Use Foursquare to autofill your information, no wasted time.</p>
+            <p  class = "biz-features">Use Foursquare to autofill your information, no wasted time.</p>
           </Grid.Column>
           <Grid.Column>
             <Header as="h2">Engage Locally</Header>
-            <p>
+            <p class = "biz-features">
               <ul>
                 <li>Respond to your customer's questions and feedback.</li>
                 <li>Let your neighborhood in on what you have going on.</li>
@@ -34,14 +34,14 @@ export default function BusinessFeatuers() {
           </Grid.Column>
           <Grid.Column>
             <Header as="h2">Level the playing field</Header>
-            <p>
+            <p  class = "biz-features">
               Whether your location is a family business or a chain, Plza can
               suit your needs.
             </p>
           </Grid.Column>
           <Grid.Column>
             <Header as="h2">Connect</Header>
-            <p>
+            <p class = "biz-features">
               Connect with your existing customers in fun ways to keep them
               coming back to your location.
             </p>
