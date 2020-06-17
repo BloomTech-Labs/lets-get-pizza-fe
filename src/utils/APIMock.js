@@ -6,11 +6,17 @@ export const APIMock = async (method, endpoint, resData) => {
     ? `http://wwww.mockserver.com/${endpoint}`
     : "http://wwww.mockserver.com/";
   let mockAdapter = new MockAdapter(API);
-  const response = {
-    token: "test token",
-    method: method,
-    data: resData ? resData : null,
-  };
+  const response = resData
+    ? {
+        token: "test token",
+        method: method,
+        data: resData,
+        endpoint: url
+      }
+    : {
+        token: "test token",
+        method: method,
+      };
 
   if (method === "get") {
     mockAdapter.onGet(url).reply(200, response);
