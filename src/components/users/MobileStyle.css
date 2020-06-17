@@ -25,6 +25,9 @@
         right: 40px;
     }
 
+    div.ui.container div.ui.huge.header {
+        color:black;
+    }
     /* --------------------------------------------------------------- */
     /* BOTTOM MENU */
     /* --------------------------------------------------------------- */
@@ -76,11 +79,13 @@
         
     }
 
-    /* --------------------------------------------------------------- */
-
-    div p:first-of-type {
+    div.ui.large.fluid.pointing.vertical.tabular.menu p {
         display:none;
     }
+
+    /* --------------------------------------------------------------- */
+
+
 
     div.two.column.row {
         padding:0%;
@@ -120,7 +125,7 @@
         padding-top:3%;
    }
    
-    div.ui.header{
+   div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) div.ui.header{
         color:white;
     }
     div.ui.huge.header {
