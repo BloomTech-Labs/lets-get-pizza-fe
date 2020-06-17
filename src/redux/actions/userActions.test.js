@@ -165,10 +165,7 @@ describe("Users settings actions", () => {
       { type: types.SUBMIT_SETTINGS_START, payload: true },
       { type: types.SUBMIT_SETTINGS_SUCCESS },
     ];
-    const unexpectedActions = [
-      { type: types.SUBMIT_SETTINGS_START, payload: true },
-      { type: types.EDIT_CANCEL_CHANGES },
-    ];
+    const unexpectedAction = { type: types.EDIT_CANCEL_CHANGES };
 
     API.put = jest.fn((url) => {
       return Promise.resolve();
@@ -183,7 +180,7 @@ describe("Users settings actions", () => {
 
     dispatch.mock.calls.forEach((call, idx) => {
       expect(call[0]).toEqual(expectedActions[idx]);
-      expect(call[0]).not.toEqual(unexpectedActions[1]);
+      expect(call[0]).not.toEqual(unexpectedAction);
     });
   });
 
@@ -202,10 +199,7 @@ describe("Users settings actions", () => {
       { type: types.SUBMIT_SETTINGS_START, payload: true },
       { type: types.EDIT_CANCEL_CHANGES },
     ];
-    const unexpectedActions = [
-      { type: types.SUBMIT_SETTINGS_START, payload: true },
-      { type: types.SUBMIT_SETTINGS_SUCCESS },
-    ];
+    const unexpectedAction = { type: types.SUBMIT_SETTINGS_SUCCESS };
 
     API.put = jest.fn((url) => {
       return Promise.resolve();
@@ -220,7 +214,7 @@ describe("Users settings actions", () => {
 
     dispatch.mock.calls.forEach((call, idx) => {
       expect(call[0]).toEqual(expectedActions[idx]);
-      expect(call[0]).not.toEqual(unexpectedActions[1]);
+      expect(call[0]).not.toEqual(unexpectedAction);
     });
   });
 
@@ -264,6 +258,95 @@ describe("Users settings actions", () => {
     });
 
     await actions.deleteImage(setOpen)(dispatch, getState);
+
+    dispatch.mock.calls.forEach((call, idx) => {
+      expect(call[0]).toEqual(expectedActions[idx]);
+    });
+  });
+});
+
+describe("User locations", () => {
+  afterEach(() => {
+    fetchMock.restore();
+  });
+
+  it("creates USER_LOCATION_START and USER_LOCATION_SUCCESS when API GET is complete", async () => {
+    const id = 2;
+
+    const expectedActions = [
+      { type: types.USER_LOCATION_START, payload: true },
+      { type: types.USER_LOCATION_SUCCESS },
+    ];
+
+    API.get = jest.fn((url) => {
+      return Promise.resolve();
+    });
+
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => {
+      url: `locations/${id}`;
+    });
+
+    await actions.locationByUser(id)(dispatch, getState);
+
+    dispatch.mock.calls.forEach((call, idx) => {
+      expect(call[0]).toEqual(expectedActions[idx]);
+    });
+  });
+});
+
+describe("User events", () => {
+  afterEach(() => {
+    fetchMock.restore();
+  });
+
+  it("creates USER_EVENT_START and USER_EVENT_SUCCESS with correct payload when API event GET is complete", async () => {
+    const id = 2;
+    const events = [
+      { id: 1, name: "event1" },
+      { id: 2, name: "event2" },
+    ];
+
+    const expectedActions = [
+      { type: types.USER_EVENT_START, payload: true },
+      { type: types.USER_EVENT_SUCCESS, payload: events },
+    ];
+
+    API.get = jest.fn((url) => {
+      return Promise.resolve();
+    });
+
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => {
+      url: `/events/users/${id}`;
+    });
+
+    await actions.eventsByUser(id)(dispatch, getState);
+
+    dispatch.mock.calls.forEach((call, idx) => {
+      expect(call[0]).toEqual(expectedActions[idx]);
+    });
+  });
+
+  it("creates USER_EVENT_DELETE_START and USER_EVENT_DELETE_SUCCESS with correct payload when API event DELETE is complete", async () => {
+    const user = "JDawg";
+    const event = { id: 2, name: "event2" };
+
+    const expectedActions = [
+      { type: types.USER_EVENT_DELETE_START, payload: true },
+      { type: types.USER_EVENT_DELETE_SUCCESS, payload: event },
+    ];
+
+    API.delete = jest.fn((url) => {
+      return Promise.resolve();
+    });
+
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => {
+      url: `/events/users/${id}`;
+    });
+
+    await actions.userDeleteEvent(event.id, user)(dispatch, getState);
 
     dispatch.mock.calls.forEach((call, idx) => {
       expect(call[0]).toEqual(expectedActions[idx]);
