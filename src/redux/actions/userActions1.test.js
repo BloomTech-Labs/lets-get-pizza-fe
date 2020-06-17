@@ -1,21 +1,18 @@
 import * as actions from "./userActions";
 import * as types from "../types/userTypes";
-import fetchMock from "fetch-mock";
+import { APIMock } from "../../utils/APIMock";
+import { testData as data } from "./userActionsTestData";
 
-import { testData as data, APIMock } from "./userActionsTestData";
+let calls = []
 
 describe("Users authroization actions", () => {
-  afterEach(() => {
-    fetchMock.restore();
-  });
-
   it("creates USER_REGISTER_START and USER_REGISTER_SUCCESS when API register POST is complete", async () => {
     const expectedActions = [
       { type: types.USER_REGISTER_START, payload: true },
       { type: types.USER_REGISTER_SUCCESS },
     ];
 
-    APIMock("post");
+    await APIMock("post", "/auth/user/register");
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -35,7 +32,7 @@ describe("Users authroization actions", () => {
       { type: types.USER_LOGIN_SUCCESS },
     ];
 
-    APIMock("post");
+    await APIMock("post", "/auth/user/login");
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -52,10 +49,6 @@ describe("Users authroization actions", () => {
 
 //
 describe("Users settings actions", () => {
-  afterEach(() => {
-    fetchMock.restore();
-  });
-
   it("creates TOGGLE_EDIT that passes in an empty string if field & id are the same", () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
@@ -136,7 +129,7 @@ describe("Users settings actions", () => {
     ];
     const unexpectedAction = { type: types.EDIT_CANCEL_CHANGES };
 
-    APIMock("put");
+    await APIMock("put", "/users");
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -151,14 +144,14 @@ describe("Users settings actions", () => {
     });
   });
 
-  it("creates EDIT_CANCEL_CHANGES when user clicks 'cancel'", () => {
+  it("creates EDIT_CANCEL_CHANGES when user clicks 'cancel'", async () => {
     const expectedActions = [
       { type: types.SUBMIT_SETTINGS_START, payload: true },
       { type: types.EDIT_CANCEL_CHANGES },
     ];
     const unexpectedAction = { type: types.SUBMIT_SETTINGS_SUCCESS };
 
-    APIMock("put");
+    await APIMock("put", "/users");
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -179,7 +172,7 @@ describe("Users settings actions", () => {
       { type: types.IMAGE_UPLOAD_SUCCESS },
     ];
 
-    APIMock("put");
+    await APIMock("put", "/users/images");
     const setOpen = jest.fn();
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -199,7 +192,7 @@ describe("Users settings actions", () => {
       { type: types.IMAGE_DELETE_SUCCESS },
     ];
 
-    APIMock("put");
+    await APIMock("put", "/users'images");
     const setOpen = jest.fn();
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -215,17 +208,13 @@ describe("Users settings actions", () => {
 });
 
 describe("User locations actions", () => {
-  afterEach(() => {
-    fetchMock.restore();
-  });
-
   it("creates USER_LOCATION_START and USER_LOCATION_SUCCESS when API GET is complete", async () => {
     const expectedActions = [
       { type: types.USER_LOCATION_START, payload: true },
       { type: types.USER_LOCATION_SUCCESS },
     ];
 
-    APIMock("get");
+    await APIMock("get", `locations/${data.user.id}`);
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -241,17 +230,12 @@ describe("User locations actions", () => {
 });
 
 describe("User events actions", () => {
-  afterEach(() => {
-    fetchMock.restore();
-  });
-
+  
   it("creates USER_EVENT_START and USER_EVENT_SUCCESS with correct payload when API event GET is complete", async () => {
     const expectedActions = [
       { type: types.USER_EVENT_START, payload: true },
       { type: types.USER_EVENT_SUCCESS, payload: data.events },
     ];
-
-    APIMock("get");
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -259,9 +243,15 @@ describe("User events actions", () => {
     });
 
     await actions.eventsByUser(data.userid)(dispatch, getState);
+    calls = dispatch.mock.calls[0]
 
-    dispatch.mock.calls.forEach((call, idx) => {
-      expect(call[0]).toEqual(expectedActions[idx]);
+    const results = await APIMock("get", `/events/users/${data.events[0].id}`, data.events).then(res => {
+      return {type: types.USER_EVENT_SUCCESS, payload: res.data}
+    }).catch(err => console.log(err));
+    calls.push(results);
+
+    calls.forEach((call, idx) => {
+      expect(call).toEqual(expectedActions[idx]);
     });
   });
 
@@ -270,8 +260,6 @@ describe("User events actions", () => {
       { type: types.USER_EVENT_DELETE_START, payload: true },
       { type: types.USER_EVENT_DELETE_SUCCESS, payload: data.events[0] },
     ];
-
-    APIMock("delete");
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -283,8 +271,15 @@ describe("User events actions", () => {
       getState
     );
 
-    dispatch.mock.calls.forEach((call, idx) => {
-      expect(call[0]).toEqual(expectedActions[idx]);
+    calls = dispatch.mock.calls[0]
+
+    const results = await APIMock("delete", `/events/users/${data.events[0].id}`, data.events[0]).then(res => {
+      return {type: types.USER_EVENT_DELETE_SUCCESS, payload: res.data}
+    }).catch(err => console.log(err));
+    calls.push(results);
+    
+    calls.forEach((call, idx) => {
+      expect(call).toEqual(expectedActions[idx]);
     });
   });
 });

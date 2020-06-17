@@ -1,5 +1,3 @@
-import API from "../../utils/API";
-
 export const testData = {
   creds: {
     username: "JDawg",
@@ -49,10 +47,4 @@ export const testData = {
       address: "2400 Columbus St, Bakersfield, CA 93306, United States",
     },
   ],
-};
-
-export const APIMock = (method) => {
-  API[method] = jest.fn((url) => {
-    return Promise.resolve();
-  });
 };

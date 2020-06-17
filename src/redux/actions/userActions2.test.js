@@ -1,21 +1,16 @@
 import * as actions from "./userActions";
 import * as types from "../types/userTypes";
-import fetchMock from "fetch-mock";
-
-import { testData as data, APIMock } from "./userActionsTestData";
+import { APIMock } from "../../utils/APIMock";
+import { testData as data } from "./userActionsTestData";
 
 describe("User reviews actions", () => {
-  afterEach(() => {
-    fetchMock.restore();
-  });
-
   it("creates USER_REVIEW_START and USER_REVIEW_SUCCESS with correct payload when API reviews GET is complete", async () => {
     const expectedActions = [
       { type: types.USER_REVIEW_START, payload: true },
       { type: types.USER_REVIEW_SUCCESS },
     ];
 
-    APIMock("get");
+    await APIMock("get");
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
@@ -34,7 +29,7 @@ describe("User reviews actions", () => {
       { type: types.USER_REVIEW_DELETE_SUCCESS },
     ];
 
-    APIMock("delete");
+    await APIMock("delete");
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
