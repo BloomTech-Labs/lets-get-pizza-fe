@@ -170,7 +170,7 @@ describe("Users settings actions", () => {
       { type: types.EDIT_CANCEL_CHANGES },
     ];
 
-    API.post = jest.fn((url) => {
+    API.put = jest.fn((url) => {
       return Promise.resolve();
     });
 
@@ -207,7 +207,7 @@ describe("Users settings actions", () => {
       { type: types.SUBMIT_SETTINGS_SUCCESS },
     ];
 
-    API.post = jest.fn((url) => {
+    API.put = jest.fn((url) => {
       return Promise.resolve();
     });
 
@@ -221,6 +221,52 @@ describe("Users settings actions", () => {
     dispatch.mock.calls.forEach((call, idx) => {
       expect(call[0]).toEqual(expectedActions[idx]);
       expect(call[0]).not.toEqual(unexpectedActions[1]);
+    });
+  });
+
+  it("creates IMAGE_UPLOAD_START and USER_REGISTER_SUCCESS when API PUT is complete", async () => {
+    const image = "http.google.com/images";
+
+    const expectedActions = [
+      { type: types.IMAGE_UPLOAD_START, payload: true },
+      { type: types.IMAGE_UPLOAD_SUCCESS },
+    ];
+
+    API.put = jest.fn((url) => {
+      return Promise.resolve();
+    });
+    const setOpen = jest.fn();
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => {
+      url: "/users/images";
+    });
+
+    await actions.uploadImage(image, setOpen)(dispatch, getState);
+
+    dispatch.mock.calls.forEach((call, idx) => {
+      expect(call[0]).toEqual(expectedActions[idx]);
+    });
+  });
+
+  it("creates IMAGE_DELETE_START and IMAGE_DELETE_SUCCESS when API PUT is complete", async () => {
+    const expectedActions = [
+      { type: types.IMAGE_DELETE_START, payload: true },
+      { type: types.IMAGE_DELETE_SUCCESS },
+    ];
+
+    API.put = jest.fn((url) => {
+      return Promise.resolve();
+    });
+    const setOpen = jest.fn();
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => {
+      url: "/users/images";
+    });
+
+    await actions.deleteImage(setOpen)(dispatch, getState);
+
+    dispatch.mock.calls.forEach((call, idx) => {
+      expect(call[0]).toEqual(expectedActions[idx]);
     });
   });
 });
