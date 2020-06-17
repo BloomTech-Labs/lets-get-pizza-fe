@@ -18,6 +18,7 @@ export default function UserEditActive({ item }) {
         <Icon name={item.icon} size="large" />
         {field === "dietary_preference" ? (
           <Dropdown
+            id="dropdown"
             multiple
             selection
             name="dietary_preference"
@@ -34,8 +35,8 @@ export default function UserEditActive({ item }) {
             onChange={handleChange}
           />
         ) : (
-          <Input onChange={handleChange} name={item.name} value={item.value} />
-        )}
+            <Input onChange={handleChange} name={item.name} value={item.value} />
+          )}
       </Grid.Column>
       <UserEditButton text={"Save"} item={item} />
     </Grid.Row>

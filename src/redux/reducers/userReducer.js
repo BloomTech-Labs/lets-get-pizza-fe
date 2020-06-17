@@ -6,6 +6,7 @@ const initialState = {
   reviews: [],
   friends: [],
   favShopDetails: {},
+  savedPromos: [],
   isLoading: false,
   error: undefined,
 };
@@ -128,9 +129,9 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.ADD_USER_FRIEND_SUCCESS:
       return {
         ...state,
-        isLoading: payload, 
-        error: undefined
-      }
+        isLoading: payload,
+        error: undefined,
+      };
     case types.GET_USER_FRIENDS_FAIL:
       return {
         ...state,
@@ -142,6 +143,21 @@ export const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         friends: payload,
+      };
+    case types.GET_USER_PROMOS:
+      return {
+        ...state,
+        savedPromos: payload,
+      };
+    case types.ADD_USER_PROMOS:
+      return {
+        ...state,
+        savedPromos: payload,
+      };
+    case types.UPDATE_BIO_SUCCESS:
+      return {
+        ...state,
+        bio: payload,
       };
     default:
       return state;

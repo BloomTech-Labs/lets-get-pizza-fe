@@ -23,7 +23,7 @@ export default function EventCreate(props) {
   const { id } = useParams();
   const history = useHistory();
 
-  const user = useSelector(state => state.user) 
+  const user = useSelector(state => state.user)
 
   const onSubmit = (values, actions) => {
     actions.setSubmitting(true);
@@ -52,7 +52,6 @@ export default function EventCreate(props) {
           end_time: ""
         }}
         validationSchema={eventCreateSchema}
-        validateOnBlur={false}
         onSubmit={(values, actions) => onSubmit(values, actions)}
       >
         {formik => {
