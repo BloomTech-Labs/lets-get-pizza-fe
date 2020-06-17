@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import ProfileDetails from './ProfileDetails';
+import "../../../components/users/MobileStyle.css";
 import API from '../../../utils/API';
 
 const ProfileMain = () => {
