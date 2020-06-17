@@ -84,6 +84,8 @@
 
     div.two.column.row {
         padding:0%;
+        margin:0 auto;
+        min-width:100%;
     }
 
 
@@ -114,7 +116,7 @@
 
    div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) {
         background-color:black;
-        min-width: 46vh;
+        min-width: 100%;
         padding-top:3%;
    }
    
