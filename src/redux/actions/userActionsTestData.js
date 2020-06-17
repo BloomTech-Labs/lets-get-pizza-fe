@@ -1,6 +1,6 @@
 import API from "../../utils/API";
 
-export const data = {
+export const testData = {
   creds: {
     username: "JDawg",
     password: "1234",
@@ -36,6 +36,18 @@ export const data = {
   events: [
     { id: 1, name: "event1" },
     { id: 2, name: "event2" },
+  ],
+  reviews: [
+    {
+      location_id: 80,
+      user_id: 2,
+      id: 52,
+      rating: 5,
+      review_title: "SOOOO GOOD",
+      review_text: "yum yum yum!! GO HERE",
+      business_name: "Rosa's Italian Resaurant",
+      address: "2400 Columbus St, Bakersfield, CA 93306, United States",
+    },
   ],
 };
 

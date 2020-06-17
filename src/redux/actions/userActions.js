@@ -154,15 +154,17 @@ export const eventsByUser = (id) => (dispatch) => {
     .then((res) => {
       const currentDate = new Date().toISOString();
       // filter out any declined invites
-      const filterDeclined = res.data.invitedEvents.filter(event => event.response !== 'declined')
+      const filterDeclined = res.data.invitedEvents.filter(
+        (event) => event.response !== "declined"
+      );
 
       // combine created and invited events and sort by date
       const events = [...res.data.createdEvents, ...filterDeclined]
-                              .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
-                              .filter((date) => date.start_time > currentDate)
+        .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
+        .filter((date) => date.start_time > currentDate);
       dispatch({
         type: types.USER_EVENT_SUCCESS,
-        payload: events
+        payload: events,
       });
     })
     .catch((err) => {
@@ -187,6 +189,7 @@ export const userDeleteEvent = (id, user) => (dispatch) => {
 
 // Reviews
 export const reviewsByUser = (id) => (dispatch) => {
+  dispatch({type: types.USER_REVIEW_START, payload: true})
   API.get(`/reviews/users/${id}`)
     .then((res) => {
       dispatch({
@@ -216,6 +219,7 @@ export const userDeleteReview = (id, user) => (dispatch) => {
     });
 };
 
+// Friends
 export const getUserFriends = (id) => (dispatch) => {
   dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
   API.get(`/friends/${id}`)
@@ -242,6 +246,28 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
     });
 };
 
+export const addUserFriend = (user, friends_id) => (dispatch) => {
+  dispatch({ type: types.ADD_USER_FRIEND_START, payload: true });
+  API.post(`/friends`, { user_id: user.id, friends_id })
+    .then((res) => {
+      dispatch({ type: types.ADD_USER_FRIEND_SUCCESS, payload: false });
+    })
+    .then(() => {
+      // dispatch `getUserFriends` to get updated list of friends
+      dispatch(getUserFriends(user.id));
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_USER_FRIEND_FAIL,
+        payload: {
+          isLoading: false,
+          error: "There was an error adding your friend",
+        },
+      });
+    });
+};
+
+// Promos
 export const getUserPromos = (id) => (dispatch) => {
   dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
   API.get(`savedPromos/users/${id}`)
@@ -268,27 +294,7 @@ export const addUserPromo = (user_id, promo_id) => (dispatch) => {
     });
 };
 
-export const addUserFriend = (user, friends_id) => (dispatch) => {
-  dispatch({ type: types.ADD_USER_FRIEND_START, payload: true });
-  API.post(`/friends`, { user_id: user.id, friends_id })
-    .then((res) => {
-      dispatch({ type: types.ADD_USER_FRIEND_SUCCESS, payload: false });
-    })
-    .then(() => {
-      // dispatch `getUserFriends` to get updated list of friends
-      dispatch(getUserFriends(user.id));
-    })
-    .catch((err) => {
-      dispatch({
-        type: types.ADD_USER_FRIEND_FAIL,
-        payload: {
-          isLoading: false,
-          error: "There was an error adding your friend",
-        },
-      });
-    });
-};
-
+// Bio
 export const updateUserBio = (changes) => (dispatch) => {
   API.put("/users", { bio: changes })
     .then((res) => {

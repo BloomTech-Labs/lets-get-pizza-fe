@@ -2,7 +2,7 @@ import * as actions from "./userActions";
 import * as types from "../types/userTypes";
 import fetchMock from "fetch-mock";
 
-import { data, APIMock } from "./userActionsTestData";
+import { testData as data, APIMock } from "./userActionsTestData";
 
 describe("Users authroization actions", () => {
   afterEach(() => {
@@ -19,7 +19,7 @@ describe("Users authroization actions", () => {
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
-      url: "/auth/user/register";
+      return { url: "/auth/user/register" };
     });
 
     await actions.userRegister(data.creds)(dispatch, getState);
@@ -39,7 +39,7 @@ describe("Users authroization actions", () => {
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
-      url: "/auth/user/login";
+      return { url: "/auth/user/login" };
     });
 
     await actions.userLogin(data.creds)(dispatch, getState);
@@ -140,7 +140,7 @@ describe("Users settings actions", () => {
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
-      url: "/users";
+      return { url: "/users" };
     });
 
     await actions.userSubmitSettings(data.save, data.user)(dispatch, getState);
@@ -162,7 +162,7 @@ describe("Users settings actions", () => {
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
-      url: "/users";
+      return { url: "/users" };
     });
 
     actions.userSubmitSettings(data.cancel, data.user)(dispatch, getState);
@@ -183,7 +183,7 @@ describe("Users settings actions", () => {
     const setOpen = jest.fn();
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
-      url: "/users/images";
+      return { url: "/users/images" };
     });
 
     await actions.uploadImage(data.image, setOpen)(dispatch, getState);
@@ -203,7 +203,7 @@ describe("Users settings actions", () => {
     const setOpen = jest.fn();
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
-      url: "/users/images";
+      return { url: "/users/images" };
     });
 
     await actions.deleteImage(setOpen)(dispatch, getState);
@@ -214,7 +214,7 @@ describe("Users settings actions", () => {
   });
 });
 
-describe("User locations", () => {
+describe("User locations actions", () => {
   afterEach(() => {
     fetchMock.restore();
   });
@@ -229,7 +229,7 @@ describe("User locations", () => {
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
-      url: `locations/${id}`;
+      return { url: `locations/${data.user.id}` };
     });
 
     await actions.locationByUser(data.user.id)(dispatch, getState);
@@ -240,7 +240,7 @@ describe("User locations", () => {
   });
 });
 
-describe("User events", () => {
+describe("User events actions", () => {
   afterEach(() => {
     fetchMock.restore();
   });
@@ -255,7 +255,7 @@ describe("User events", () => {
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
-      url: `/events/users/${id}`;
+      return { url: `/events/users/${data.events[0].id}` };
     });
 
     await actions.eventsByUser(data.userid)(dispatch, getState);
@@ -275,7 +275,7 @@ describe("User events", () => {
 
     const dispatch = jest.fn();
     const getState = jest.fn(() => {
-      url: `/events/users/${id}`;
+      return { url: `/events/users/${data.events[0].id}` };
     });
 
     await actions.userDeleteEvent(data.events[0].id, data.creds.username)(
