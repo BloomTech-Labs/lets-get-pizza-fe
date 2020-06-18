@@ -1,12 +1,10 @@
-# CodeClimate Badges
+# Pleazza Frontend Documentation
 
-## Maintainability Badge
+![GitHub repo size](https://img.shields.io/github/repo-size/Lambda-School-Labs/lets-get-pizza-fe) [![Maintainability](https://api.codeclimate.com/v1/badges/e1fb15895e38b988dd60/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/lets-get-pizza-fe/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e1fb15895e38b988dd60/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/lets-get-pizza-fe/test_coverage)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/e1fb15895e38b988dd60/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/lets-get-pizza-fe/maintainability)
+### Frontend deloyed at [www.pleazza.com](https://www.pleazza.com/) <br>
 
-## Test Coverage Badge
-
-[![Test Coverage](https://api.codeclimate.com/v1/badges/e1fb15895e38b988dd60/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/lets-get-pizza-fe/test_coverage)
+## 1️⃣ Getting started
 
 
 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
@@ -15,9 +13,9 @@
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# 1️⃣ Title of project goes here
+# 1️⃣ Pleazza Application
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+Frontend deloyed at [www.pleazza.com](https://www.pleazza.com/) <br>
 
 ## 4️⃣ Contributors
 
@@ -129,7 +127,7 @@ Volunteering your time; it pays you and your whole community fantastic dividends
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
     *  REACT_APP_GOOGLE_MAPS_TOKEN - Google API key  .env.development.local
-    
+
 # 5️⃣ Content Licenses
 
 🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
@@ -156,14 +154,14 @@ In order for the app to function correctly, the user must set up their own envir
     * start - starts the production server after a build is created
     * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
-# Contributing
+## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
-## Issue/Bug Request
-   
+### Issue/Bug Request
+
  **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
  - Check first to see if your issue has already been reported.
  - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
