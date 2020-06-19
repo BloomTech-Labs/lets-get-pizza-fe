@@ -119,3 +119,32 @@ export const compareExpectedCalls = (
   
     return newArray;
   };
+
+export const compareExpectedState = (
+    typeArray, 
+    initialState, 
+    payload, 
+    expectedState, 
+    reducer, 
+    failType
+    ) => {
+    // Map over given typeArray and return an array of action objects
+    const actionsArray = typeArray.map(type => ({ type, payload }))
+    
+    // Here we use .forEach() to run our test for each action in the array
+    actionsArray.forEach(action => {
+        // Pass the initialState and action into the reducer
+        // and set returnedState to the returned state from the reducer
+        const returnedState = reducer(initialState, action)
+
+        if(failType) {
+            const failedState = reducer(initialState, { type: failType, payload })
+
+            expect(failedState).not.toEqual(expectedState)
+        }
+
+        expect(returnedState).toEqual(expectedState)
+        expect(returnedState).not.toEqual(initialState)
+        expect(returnedState).toBeDefined()
+    })
+}
