@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 import React from "react";
 import { Feed, Divider } from "semantic-ui-react";
 import { useSelector } from "react-redux";
+import "../MobileStyle.css";
 import { useHistory } from "react-router-dom";
-=======
-import React from 'react'
-import { Feed, Divider } from 'semantic-ui-react'
-import { useSelector } from 'react-redux'
-import "../MobileStyle.css"
-import { useHistory } from 'react-router-dom'
->>>>>>> ea0016aa9e5c2d2c15bb96f926dabc9a6d0bf70f
 
 const EventActivity = ({ user, event }) => {
   const curr_user = useSelector(({ user }) => user.username);
