@@ -15,9 +15,14 @@ const mockInitialState = {
 
 
 describe('FRIEND REDUCER TESTS', () => {
+    it('should pass', () => {
+        expect(mockFriendReducer).toStrictEqual(mockFriendReducer)
+    })
+
     it('should return initial state', () => {
         expect(mockFriendReducer(mockInitialState, { type: '@@init' })).toEqual(mockInitialState)
         expect(mockFriendReducer(mockInitialState, { type: '@@init' })).not.toEqual({})
+        expect(mockFriendReducer(mockInitialState, {})).toEqual(mockInitialState)
     })
 
     it('Test All Start Types', () => {
