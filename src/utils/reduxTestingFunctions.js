@@ -140,11 +140,11 @@ export const compareExpectedState = (
         if(failType) {
             const failedState = reducer(initialState, { type: failType, payload })
 
-            expect(failedState).not.toEqual(expectedState)
+            expect(failedState).not.toStrictEqual(expectedState)
         }
 
-        expect(returnedState).toEqual(expectedState)
-        expect(returnedState).not.toEqual(initialState)
+        expect(returnedState).toStrictEqual(expectedState)
+        expect(returnedState).not.toStrictEqual(initialState)
         expect(returnedState).toBeDefined()
     })
 }
