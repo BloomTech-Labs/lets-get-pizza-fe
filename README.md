@@ -1,92 +1,93 @@
-# Pleazza Frontend Documentation
+# Plza Frontend Documentation
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Lambda-School-Labs/lets-get-pizza-fe) [![Maintainability](https://api.codeclimate.com/v1/badges/e1fb15895e38b988dd60/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/lets-get-pizza-fe/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e1fb15895e38b988dd60/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/lets-get-pizza-fe/test_coverage)
 
-### Frontend deloyed at [www.pleazza.com](https://www.pleazza.com/) <br>
 
-## 1️⃣ Getting started
+### Deployed @ [www.pleazza.com](https://www.pleazza.com/)
 
+<br>
 
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+## Contributors
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
-# 1️⃣ Pleazza Application
-
-Frontend deloyed at [www.pleazza.com](https://www.pleazza.com/) <br>
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                                           [Buddy Agyin](https://github.com/agyin3)                                           |                                              [Jeffrey Orndorff](https://github.com/Jeffreyo3)                                              |                                          [John Chaing](https://github.com/jchaing)                                           |                                       [Katrina Dierking](https://github.com/Katrina-Dierking)                                       |                                             [Cody Hayes](https://github.com/Cody-Hayes97)                                             |                                             [Freddie Thompson](https://github.com/freddiet803)                                              |
+| :--------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
+|  [<img src="https://ca.slack-edge.com/ESZCHB482-W012JHRF4UA-a6cf2301dafe-512" width = "200" />](https://github.com/agyin3)   |        [<img src="https://ca.slack-edge.com/ESZCHB482-W012JPY5QRH-34f4c44781f3-512" width = "200" />](https://github.com/Jeffreyo3)        |  [<img src="https://ca.slack-edge.com/ESZCHB482-W012JHQTL7L-7d05e68ea8b2-512" width = "200" />](https://github.com/jchaing)  | [<img src="https://ca.slack-edge.com/ESZCHB482-W012QNRDW8L-81cac18d7287-512" width = "200" />](https://github.com/Katrina-Dierking) |    [<img src="https://ca.slack-edge.com/ESZCHB482-W012X6T4PGR-0bf04cff198f-512" width = "200" />](https://github.com/Cody-Hayes97)    |       [<img src="https://ca.slack-edge.com/ESZCHB482-W0138D2R7AL-cedd5994e97d-512" width = "200" />](https://github.com/freddiet803)        |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/buddy-agyin/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jeffrey-orndorff-3bb57a71/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/john-chaing/) |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kalynn-dier/)     | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/cody-hayes-b34722191/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/fredrick-thompson-b9ab4666/) |
 
 <br>
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+Plza is a social media platform that connects pizza lovers with pizza shops, where they can find & rate pizza and organize pizza-related social gatherings and events. 
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Trello Board](https://trello.com/b/1AWRoMgO/labs-pt9-plza)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[Product Canvas](https://www.notion.so/Vision-Problem-Objectives-5454fd3e0df9406596d5f19fd2088b5c)
 
-🚫 Replace lorem ipsum with a description of your project
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+[UX Design files](https://docs.google.com/document/d/13lNJrr00pqCpp1nX_K26NXeTNK5NNMaJeDAGKSOoC7A/edit?usp=sharing)
 
 
-### 4️⃣ Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+### Key Features
 
-## 1️⃣ Tech Stack
+- Add Friends
+- Create Promotions
+- Full CRUD Dashboard for Users and Business Owners
+- Rate and review pizza shops
+- RSVP events at pizza shops
+
+## Tech Stack
+
+![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
+![React](https://img.shields.io/badge/React-v16.13.1-blue.svg)
+![Redux](https://img.shields.io/badge/Redux-v4.0.5-blue.svg)
+![interface](https://img.shields.io/badge/interface-Semantic%20UI-orange.svg)
+[![code style: prettier](https://img.shields.io/badge/code_style-Prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![Host](https://img.shields.io/badge/host-AWS%20Amplify-orange.svg)
+
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### _React_
 
-🚫 Why did you choose this framework?
+- Currently the best frontend library in the market in terms of use
+- Staying power (backed by Facebook)
+- Flexibility to use with other frontend technologies
 
--    point one
--    point two
--    point three
--    point four
+#### _Redux_
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+- Single source of truth for where state lives
+- Easier state management as app grows
+- State Immutibility
 
-#### Front end deployed to `🚫insert service here`
+#### _Semantic UI_
 
-#### [Back end](🚫link to back end repo here) built using:
+- Intuitive theming
+- Easy to learn and maintain across the team
+- Able to quickly design beautiful layouts
 
-#### 🚫 back end framework goes here
+#### _AWS Amplify_
+- Fast, Secure and Scalable
+- Easy to deploy frontend applications
+- Backed by industry standard AWS Services
 
--    point one
--    point two
--    point three
+#### Front end deployed to `AWS Amplify`
+
+### [Back end](https://github.com/Lambda-School-Labs/lets-get-pizza-be) built using:
+
+#### _Node / Express.js_
+
+- Schema and data were previously built on top of Node/Express
+- Same language for the entire stack
+- point three
+
+#### _PostgreSQL_
+
+- one
+- two
+- three
 
 🚫 List the rest of the back end end features and libraries in the same format as the framework above
 
@@ -162,11 +163,12 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 
 ### Issue/Bug Request
 
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
@@ -192,4 +194,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
