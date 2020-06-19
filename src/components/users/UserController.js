@@ -7,6 +7,7 @@ import Dashboard from './Dashboard';
 import FriendProfile from "./profile/FriendProfile";
 import PrivateRoute from "../../components/PrivateRoute";
 import UserSearch from "./search/UserSearch";
+import "./MobileStyle.css";
 
 
 const UserController = () => (

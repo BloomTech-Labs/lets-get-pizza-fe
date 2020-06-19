@@ -1,5 +1,6 @@
 // This function should take any component & an id
 export const findElementById = (component, id) => {
+    /*    FOR USE IN TESTING REDUX RENDERER   */
     // convert component to JSON so its easily managed with JavaScript
     const mother = component.toJSON();
 
@@ -88,3 +89,33 @@ export const findFirstProp = (textString, find, findAll) => {
         return array[0];
     };
 };
+
+
+/*    FOR USE IN TESTING REDUX ACTION CREATORS    */
+
+// compares if items in an array are equal to each other
+// requires an array of results & an array of expected
+//      order of expectation array matters
+// optional parameter of a single item not to be expected
+export const compareExpectedCalls = (
+    resultsArr,
+    expectedArr,
+    unexpectedItem
+  ) => {
+    resultsArr.forEach((result, idx) => {
+      if (unexpectedItem) {
+        expect(result).not.toEqual(unexpectedItem);
+      }
+      expect(result).toEqual(expectedArr[idx]);
+    });
+    expectedArr.forEach((expectation, idx) => {
+      expect(expectation).toEqual(resultsArr[idx]);
+    });
+  };
+
+  export const spreadCalls = (arrayOfArrays) => {
+    let newArray = [];
+    arrayOfArrays.forEach((array) => (newArray = [...newArray, ...array]));
+  
+    return newArray;
+  };

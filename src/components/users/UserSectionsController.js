@@ -7,6 +7,9 @@ import UserFavoriteShop from "./favoriteShop/UserFavoriteShop";
 import FriendsList from "./FriendsComp/FriendsList";
 import UserReviewsList from "./reviews/UserReviewsList";
 import ProfileMain from "./profile/ProfileMain";
+import "./MobileStyle.css";
+
+
 import UserPromos from "./promotions/UserPromos";
 
 const UserSectionsController = () => (

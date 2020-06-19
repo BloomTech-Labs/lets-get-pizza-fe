@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { Message } from "semantic-ui-react";
 import { Form, Input, Dropdown, TextArea, Button } from "formik-semantic-ui";
@@ -8,7 +8,7 @@ import API from "../../utils/API";
 import SimpleContainer from "../main/SimpleContainer";
 
 export default function LocationEdit() {
-  const location = useSelector((state) => state.location) 
+  const location = useSelector((state) => state.location)
   const { id } = useParams();
   const history = useHistory();
 
@@ -49,7 +49,7 @@ export default function LocationEdit() {
       setError("Not authorized to edit this location");
       setIsLoading(false);
     }
-  }, [id]);
+  }, [id, location]);
 
   return (
     <SimpleContainer
@@ -92,8 +92,12 @@ export default function LocationEdit() {
               }}
               options={[
                 { text: "Gluten-free", value: "gluten-free" },
+                { text: "Lacto-vegetarian", value: "lacto-vegetarian" },
+                { text: "Ovo-vegetarian", value: "ovo-vegetarian" },
+                { text: "Pescetarian", value: "pescetarian" },
+                { text: "Vegan", value: "vegan" },
                 { text: "Vegetarian", value: "vegetarian" },
-                { text: "Vegan", value: "vegan" }
+                { text: "None", value: "none" }
               ]}
             />
 
