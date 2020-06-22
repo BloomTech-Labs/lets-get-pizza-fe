@@ -14,7 +14,7 @@ export default function FriendsList(props) {
   const [itemLength, setItemLength] = useState(0);
   const [currentData, setCurrentData] = useState([]);
   let user = useSelector(({ user }) => user);
-  user = props.user ? props.user : user
+  user = props.user ? props.user : user;
   const dispatch = useDispatch();
 
   const handlePageChange = (pageNumber) => {
@@ -59,7 +59,9 @@ export default function FriendsList(props) {
 
   return user.friends.length != 0 ? (
     <div className="plzaFriendsList">
-      <h1 style={{width: '100%', textAlign: 'center'}}>{user.username}'s Friends</h1>
+      <h1 style={{ width: "100%", textAlign: "center" }}>
+        {user.username}'s Friends
+      </h1>
       <List className="actualList" floated="left" size="big">
         {currentData.map((friend) => {
           return (

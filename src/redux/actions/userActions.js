@@ -154,15 +154,17 @@ export const eventsByUser = (id) => (dispatch) => {
     .then((res) => {
       const currentDate = new Date().toISOString();
       // filter out any declined invites
-      const filterDeclined = res.data.invitedEvents.filter(event => event.response !== 'declined')
+      const filterDeclined = res.data.invitedEvents.filter(
+        (event) => event.response !== "declined"
+      );
 
       // combine created and invited events and sort by date
       const events = [...res.data.createdEvents, ...filterDeclined]
-                              .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
-                              .filter((date) => date.start_time > currentDate)
+        .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
+        .filter((date) => date.start_time > currentDate);
       dispatch({
         type: types.USER_EVENT_SUCCESS,
-        payload: events
+        payload: events,
       });
     })
     .catch((err) => {
@@ -265,6 +267,22 @@ export const addUserPromo = (user_id, promo_id) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
+    });
+};
+
+export const deleteUserPromo = (user, promo_id) => (dispatch) => {
+  dispatch({ type: types.DELETE_USER_PROMOS_START, payload: true });
+  API.delete(`/savedPromos/${promo_id}`)
+    .then((res) => {
+      let newUserPromo = user.savedPromos.filter((keep) => keep.id != promo_id);
+      dispatch({
+        type: types.DELETE_USER_PROMOS_SUCCESS,
+        payload: newUserPromo,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: types.DELETE_USER_PROMOS_FAIL, payload: false });
     });
 };
 
