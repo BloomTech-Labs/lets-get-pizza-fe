@@ -51,7 +51,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --coverage --watchAll=false || true"
+    "coverage": "react-scripts test --env=jest-environment-jsdom-sixteen --coverage --watchAll=false || true"
   },
   "eslintConfig": {
     "extends": "react-app"

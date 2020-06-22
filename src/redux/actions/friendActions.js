@@ -8,7 +8,10 @@ export const getFriendFavoriteShop = (id) => dispatch => {
             dispatch({type: types.GET_FRIEND_FAV_SHOP_SUCCESS, payload: res.data.location})
         })
         .catch(err => {
-            dispatch({type: types.GET_FRIEND_FAIL, payload: {isLoading: false}})
+            dispatch({
+                type: types.GET_FRIEND_FAV_SHOP_FAIL, 
+                payload: {isLoading: false, error: "There was an error fetching favorite shop"}
+        })
         })
 }
 
@@ -20,7 +23,10 @@ export const getFriendData = (username) => dispatch => {
                 return res.data.users[0].favorite_pizza_shop
             })
             .catch(err => {
-                dispatch({type: types.GET_FRIEND_FAIL, payload: {isLoading: false}})
+                dispatch({
+                    type: types.GET_FRIEND_FAIL, 
+                    payload: {isLoading: false, error: "There was an error fetching friend data"}
+            })
             })
 }
 
@@ -38,7 +44,10 @@ export const eventsByFriend = (id) => dispatch => {
             });
         })
         .catch((err) => {
-            dispatch({ type: types.FRIEND_EVENT_FAIL, payload: {isLoading: false} })
+            dispatch({ 
+                type: types.FRIEND_EVENT_FAIL, 
+                payload: {isLoading: false, error: "There was an error fetching the events"} 
+            })
         }); 
 }
 
@@ -53,7 +62,10 @@ export const reviewsByFriend = id => dispatch => {
             })
         })
         .catch((err) => {
-            dispatch({ type: types.FRIEND_REVIEW_FAIL, payload: {isLoading: false} })
+            dispatch({ 
+                type: types.FRIEND_REVIEW_FAIL, 
+                payload: {isLoading: false, error: 'There was an error fetching the reviews'} 
+        })
         })
 }
 
@@ -67,7 +79,7 @@ export const getAllFriends = id => dispatch => {
         .catch(err => {
             dispatch({
                 type: types.GET_ALL_FRIENDS_FAIL, 
-                payload: {error: 'There was an error retrieving friends', isLoading: false}
+                payload: {error: 'There was an error fetching friends', isLoading: false}
             })
         })
 }
