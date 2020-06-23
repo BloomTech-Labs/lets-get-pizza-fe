@@ -1,0 +1,597 @@
+
+@media screen and (min-width:320px) and (max-width: 760px) {
+
+    /* ---HOME PAGE --- */
+
+    div.ui.inverted.stackable.top.attached.open.menu{
+        max-width:100%;
+        padding:2%;
+    }
+
+    div.ui.inverted.stackable.top.attached.closed.menu div.header.item{
+        min-width:100%;
+    }
+
+    div.ui.inverted.stackable.top.attached.open.menu div.hamburger.active{
+        right:30px;
+    }
+
+    div.hamburger.disabled {
+        right: 40px;
+        margin-top:4%;
+    }
+
+    div.hambuger.active{
+        right: 40px;
+    }
+
+    div.ui.container div.ui.huge.header {
+        color:black;
+    }
+    /* --------------------------------------------------------------- */
+    /* BOTTOM MENU */
+    /* --------------------------------------------------------------- */
+
+    div.ui.large.fluid.pointing.vertical.tabular.menu {
+        display:flex;
+        flex-direction:row;
+        bottom:0;
+
+        overflow:hidden;
+        background: lightgrey;
+        position: fixed;
+        z-index: 1;
+        left:0;
+        padding-top: 1%;
+        border-top:2px solid black; 
+        border-bottom: .5px solid slategrey;   
+        padding-bottom: 3%; 
+    }
+
+    div.ui.large.fluid.pointing.vertical.tabular.menu .active.item { 
+        padding-bottom:2%;
+        box-shadow: 2px 4px 5px rgb(58, 58, 58);
+        
+    }
+
+    div.ui.large.fluid.pointing.vertical.tabular.menu a.active.item {
+        background: white;
+        border:.5px solid grey;
+        box-shadow: 2px 3px 5px rgb(58, 58, 58);
+        max-width: 50px;
+        max-height:50px;
+    }
+
+    div.ui.large.fluid.pointing.vertical.tabular.menu a.active.item::after{
+            border:.5px solid grey;
+            box-shadow: 2px 1px 4px rgb(58, 58, 58);
+            min-width: 10px;
+            min-height: 10px;
+            
+        }
+
+    div.ui.large.fluid.pointing.vertical.tabular.menu .item {
+        padding:1.2%;
+        background:lightgrey;
+        max-width: 42px;
+        max-width: 42px;
+        margin-left:.5%;
+        
+    }
+
+    div.ui.large.fluid.pointing.vertical.tabular.menu p {
+        display:none;
+    }
+
+    /* --------------------------------------------------------------- */
+
+
+
+    div.two.column.row {
+        padding:0%;
+        margin:0 auto;
+        min-width:100%;
+    }
+
+
+     div.left.floated.five.wide.column {
+       background-color:none;
+       max-width:0px;
+       max-height:0px;
+       padding:0px;
+       
+        
+    }
+
+   div.center.aligned.eight.wide.computer.sixteen.mobile.column:nth-child(odd){
+       padding: 0px;
+       align-content: center;
+       margin: 2% 16% 10%;
+       max-width: 250px;
+       max-height: 250px;
+   } 
+
+   button.ui.blue.button{
+       margin-top:5%;
+   }
+
+    div button a {
+        color:black;
+    }
+
+   div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) {
+        background-color:black;
+        min-width: 100%;
+        padding-top:3%;
+   }
+   
+   div.center.aligned.eight.wide.computer.sixteen.wide.mobile.column:nth-child(even) div.ui.header{
+        color:white;
+    }
+    div.ui.huge.header {
+        color:white;
+        margin: 0px -10px -10px;
+    }
+
+    div a {
+        color: slategrey;
+    }
+
+    div.ui.segment {
+        background:none;
+        color:white;
+        border:none;
+    }
+
+    div.ui.huge.center.aligned.header {
+        color:black;
+        font-size: 18px;
+        padding-bottom: 5%;
+        max-width: 90%;
+        margin-left:5%;
+    }
+
+
+
+    /* ------------------------------------------------------------------- */
+   /* ---OTHER PAGES--- */
+
+   /* NETWORK - FRIENDS */
+   /* ------------------------------------------------------------------- */
+
+    div.finalDisplay {
+        padding:4%;
+        width:97%;
+        margin-left:2%;
+        display:flex;
+        flex-direction: column;
+        border:.5px solid lightgrey;
+    }
+
+    img.ui.tiny.circular.image.avatarImage {
+        height:40px;
+    }
+
+    button.ui.black.button.friendButton {
+        background:#2185D0;
+        width: 40%;
+        padding:3%;
+        margin-top:5%;
+        margin-left: 30%;
+    }
+
+    div.left.floated.content.friendStyling div.description {
+        font-size: 14px;
+        margin-top:10%;
+        margin-left:5%;
+        width:200px;
+        border:1px solid lightgrey;
+        padding:3%;
+        border-radius:7%;
+        background-color:white;
+    }
+
+    a.header {
+        color:black;
+        font-size: 20px;
+        font-weight: 800;
+        margin-left:10%;
+    }
+    a {
+        font-size: 16px;
+    }
+    a.undefined{
+        font-size: 16px;
+    }
+
+            /* ------------------------------------------------------------------- */
+
+            @media (min-width:360px) {
+                img.ui.tiny.circular.image.avatarImage {
+                    height:80px;
+                    padding-right:2%;
+                }
+            
+                div.ui.large.fluid.pointing.vertical.tabular.menu .item {
+                    margin-left:2%;
+                    
+                }
+            }
+            /* ------------------------------------------------------------------- */
+            /* ------------------------------------------------------------------- */
+
+
+
+    /* ---------------------------------------------------------------- */
+
+    /* EVENTS */
+
+    /* ------------------------------------------------------------------- */
+  
+
+    div.ui.large.feed div.event{
+        padding: 3%;
+        min-width: 90%;
+        border:.5px solid lightgrey;
+
+    } 
+
+    /* ------------------------------------------------------------------- */
+    /* SETTINGS */
+    /* ------------------------------------------------------------------- */
+
+    div.content div.header {
+        font-size: 1.5rem;
+    }
+
+    div.content div.description {
+        font-size:1.3rem;
+        padding:7% 7% 7% 0%;
+    }
+
+    .ui.tiny.button {
+        font-weight: 1000;
+        font-size:13px;
+    }
+
+    #email.ui.tiny.button, #display_location.ui.tiny.button, #favorite_pizza_toppings.ui.tiny.button, #dietary_preference.ui.tiny.button{
+        margin-left: 40%;
+        font-size: 13px;
+        font-weight: 1000;
+
+    }
+
+    #save.ui.icon.positive.right.labeled.button{
+        background-color:#2185D0;
+    }
+
+
+
+    /* ------------------------------------------------------------------- */  
+    /* FAV PIZZA  */
+    /* ------------------------------------------------------------------- */
+  
+  
+    img.ui.medium.circular.image{
+        max-width:150px;
+    } 
+
+    div.head-ch {
+        border: .5px solid lightgrey;
+    } 
+
+    h1.Header-ch{
+        font-size:2.5rem;
+    }
+
+    div.Desc-ch {
+        min-width: 60%;
+        min-height: 200px;
+    }
+
+    div.Desc-ch p.address-ch, p.bio-ch, p.url-ch{
+        display:block;
+        padding-top:5%;
+    }
+
+
+    /* ------------------------------------------------------------------- */
+    /* ABOUT PLZA*/
+    /* ------------------------------------------------------------------- */
+
+    h1.ui.center.aligned.header{
+        padding:3%;
+        background-color:lightgrey;
+        min-width:100%;
+    }
+    
+    div p.about-para {
+        display:block;
+        padding-bottom:3%;
+        border-bottom: .5px solid lightgrey;
+    }
+
+    
+    /* ------------------------------------------------------------------- */
+    /*BUSINESS FEATURES*/
+    /* ------------------------------------------------------------------- */
+
+    div p.biz-features{
+        display:block;
+    }
+
+    div.two.column.row {
+        max-width:90%;
+    }
+
+
+    /* ------------------------------------------------------------------- */
+    /*USER FEATURES*/
+    /* ------------------------------------------------------------------- */
+   
+    div p.user-features{
+        display:block;
+        max-width:90%;
+        margin-left: 5%;
+    }
+   
+    div.three.column.row div.first {
+        padding:3%;
+        max-height:80%;
+        max-width:90%;
+        margin-left:5%;
+        border: .5px dashed lightgrey;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);  
+    }
+
+    div.three.column.row div.first div.column div{
+        max-width:90%;
+    }
+
+    div.three.column.row div.second{
+        max-width:100%;
+        padding:0%;
+        margin-right:2%;
+    }
+
+    div.three.column.row div.second div {
+        max-width:90%;
+    }
+
+    img.friends-img{
+        max-width:350px;
+        max-height:220px;
+        margin-right: -120px;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);   
+    }
+
+    div.three.column.row div.first div.column div.bottom{
+        margin-top: -60%;
+    }
+
+    div.bottom {
+        margin-top: -67%;
+        padding-bottom:5%;
+        margin-left:1%;
+    }
+
+        /* ------------------------------------------------------------------- */
+        /* ------------------------------------------------------------------- */
+
+                @media (min-width:414px) and (max-width: 760px){
+                    div.bottom{
+                        margin-top:-60%;
+                    }
+                }
+        /* ------------------------------------------------------------------- */
+        /* ------------------------------------------------------------------- */
+
+    div.bottom h2.ui.header{
+        margin-left:2%;
+    }
+    div.bottom p.user-features{
+        margin-left:2%;
+    }
+
+    div.three.column.row div.second {
+        max-width:90%;
+    }
+   div.three.column.row div.second div.column {
+       max-width:90%;
+   }
+
+    div.second div.column{
+        padding:5% 8% 3% 7%;  
+    
+        display:flex;
+        flex-direction:column-reverse;
+    }
+
+    div.second-part{
+        margin-top: -40%;
+        padding:2%;
+        max-width:70%;
+    }
+
+    img.pizza-img{
+        max-width:85%;
+        max-height:65%;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);
+    }
+
+    div.third div.column {
+        max-width:90%;
+        padding:3% 2% 3% 2%;
+        margin:1% 1% 0% 3%;
+        border: .5px dashed lightgrey;
+    }
+
+    div.three.column.row div.third div.column div{
+        max-width:90%;
+    }
+
+    div.third-bottom{
+        max-width:80%;
+        margin-top: -50%;
+    }
+
+    img.celebrate-img{
+        max-height:60%;
+        margin-left:3%;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);
+    }
+}
+
+
+
+/* ------------------------------------------------------------------- */
+/* FRIENDS */
+/* ------------------------------------------------------------------- */
+
+@media (min-width:360px) {
+    img.ui.tiny.circular.image.avatarImage {
+        height:80px;
+        padding-right:2%;
+    }
+
+    div.ui.large.fluid.pointing.vertical.tabular.menu .item {
+        margin-left:2%;
+        
+    }
+}
+
+
+/* ------------------------------------------------------------------- */
+/* ------------------------------------------------------------------- */
+/* ------------------------------------------------------------------- */
+/* ------------------------------------------------------------------- */
+
+@media (min-width:768px){
+  h1.ui.center.aligned.header{
+      padding:3%;
+      background-color: lightgrey;
+  }
+
+    div.three.column.row {
+        display:flex;
+        flex-direction:column;
+        align-content: center;
+        align-items:center;
+        justify-content: space-evenly;
+        padding:3%;
+    }
+   
+    div.three.column.row div.first div.column{
+        padding:3%;
+        max-height:80%;
+        max-width:100%;
+        border: .5px dashed lightgrey;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);  
+    }
+
+    img.friends-img{
+        max-width:450px;
+        max-height:320px;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);  
+        margin-right: -80px; 
+    }
+
+    div.three.column.row div.first div.column div{
+        min-width:100%;
+    }
+
+    div.three.column.row div.first div.column div.bottom{
+        margin-top: -27%;
+        padding-bottom:5%;
+        margin-left:1%;
+    }
+
+    div.three.column.row div.second{
+        max-width:90%;
+        background-color:lightgrey;
+        margin: 3% 0 3% 0; 
+        border: .5px solid slategrey;
+    }
+
+    div.three.column.row div.second div {
+        max-width:90%;
+    }
+
+
+    div.bottom {
+        margin-top: -47%;
+        padding-bottom:5%;
+        margin-left:1%;
+    }
+
+    div.bottom h2.ui.header{
+        margin-left:2%;
+
+    }
+    div.bottom p.user-features{
+        margin-left:2%;
+    }
+
+ 
+    div.three.column.row div.second div.column {
+       max-width:100%;
+    }
+
+    div.second div.column{
+        padding:5% 8% 3% 7%;  
+        display:flex;
+        flex-direction:column-reverse;
+    }
+
+    div.three.column.row div.second div.column div{
+        min-width: 100%;
+    }
+
+    img.pizza-img{
+        min-width:80%;
+        box-shadow: 9px 7px 9px rgb(58, 58, 58);  
+    }
+
+
+    div.second-part{
+        margin-top: 10%;
+        padding:2%;
+        min-width:100%;
+
+    }
+
+    div p.user-features{
+        display:block;
+        max-width:90%;
+        margin-left: 5%;
+    }
+   
+    div.third div.column {
+        max-width:90%;
+        padding:3% 2% 3% 2%;
+        margin:1% 1% 0% 3%;
+        border: .5px dashed lightgrey;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);  
+    }
+
+    div.three.column.row div.third div.column div{
+        min-width:100%;
+        max-height:100%;
+        padding:5%;
+    }
+
+    div.third-bottom{
+        max-width:80%;
+        margin-top: -40%;
+    }
+
+    img.celebrate-img{
+        max-height:60%;
+        box-shadow: 5px 3px 6px rgb(58, 58, 58);
+        background-color: lightcyan;
+        padding:5%;
+        margin-right: -160px;
+    }
+
+
+}

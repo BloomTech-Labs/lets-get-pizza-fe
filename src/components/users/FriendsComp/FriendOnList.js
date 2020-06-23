@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { List, Image, Button, Confirm } from "semantic-ui-react";
 import "./FriendsList.css";
+import "../MobileStyle.css";
 
 export default function FriendOnList(props) {
   const [modalVisibility, setModalVisibility] = useState(false);

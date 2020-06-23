@@ -189,6 +189,7 @@ export const userDeleteEvent = (id, user) => (dispatch) => {
 
 // Reviews
 export const reviewsByUser = (id) => (dispatch) => {
+  dispatch({ type: types.USER_REVIEW_START, payload: true });
   API.get(`/reviews/users/${id}`)
     .then((res) => {
       dispatch({
@@ -218,6 +219,7 @@ export const userDeleteReview = (id, user) => (dispatch) => {
     });
 };
 
+// Friends
 export const getUserFriends = (id) => (dispatch) => {
   dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
   API.get(`/friends/${id}`)
@@ -244,27 +246,47 @@ export const deleteUserFriends = (id, user) => (dispatch) => {
     });
 };
 
+export const addUserFriend = (user, friends_id) => (dispatch) => {
+  dispatch({ type: types.ADD_USER_FRIEND_START, payload: true });
+  API.post(`/friends`, { user_id: user.id, friends_id })
+    .then((res) => {
+      dispatch({ type: types.ADD_USER_FRIEND_SUCCESS, payload: false });
+    })
+    .then(() => {
+      // dispatch `getUserFriends` to get updated list of friends
+      dispatch(getUserFriends(user.id));
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.ADD_USER_FRIEND_FAIL,
+        payload: {
+          isLoading: false,
+          error: "There was an error adding your friend",
+        },
+      });
+    });
+};
+
+// Promos
 export const getUserPromos = (id) => (dispatch) => {
   dispatch({ type: types.GET_USER_FRIENDS_START, payload: true });
   API.get(`savedPromos/users/${id}`)
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: types.GET_USER_PROMOS,
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
+      // Errors on actions need to be handeled some other way than
+      // console.log(err);
     });
 };
 
 export const addUserPromo = (user_id, promo_id) => (dispatch) => {
   let postData = { user_id, promo_id };
   API.post("/savedPromos", postData)
-    .then((res) => {
-      console.log(res);
-    })
+    .then((res) => {})
     .catch((err) => {
       console.log(err);
     });
@@ -304,15 +326,19 @@ export const addUserFriend = (user, friends_id) => (dispatch) => {
           error: "There was an error adding your friend",
         },
       });
+      // Errors on actions need to be handeled some other way than
+      // console.log(err);
     });
 };
 
+// Bio
 export const updateUserBio = (changes) => (dispatch) => {
   API.put("/users", { bio: changes })
     .then((res) => {
       dispatch({ type: types.UPDATE_BIO_SUCCESS, payload: changes });
     })
     .catch((err) => {
-      console.log(err.message);
+      // Errors on actions need to be handeled some other way than
+      // console.log(err.message);
     });
 };
