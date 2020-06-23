@@ -76,7 +76,13 @@ export const testData = {
         id: 3,
       },
     ],
-    favShopDetails: {},
+    favShopDetails: {
+      name: "Dominoes Pizza",
+      latitude: 40.7050150708864,
+      longitude: -73.9336165250072,
+      address: "13 pizza rd",
+      location_id: 25,
+    },
     savedPromos: [
       {
         id: 1,
@@ -106,36 +112,34 @@ export const testData = {
   },
   users: [
     {
-        id: 1,
-        username: "Billy",
-        email: "billy@pizzaluv.com",
-        password: "luckyGuess",
-        profile_image: "https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg",
-        display_name: "PizzaBruh420",
-        dietary_preference: [
-            "gluten"
-        ],
-        favorite_pizza_toppings: "Mushrooms",
-        display_location: "Miami, Florida",
-        favorite_pizza_shop: 2,
-        bio: "Pizza! Pizza! Pizza! Ain't nothing like it"
+      id: 1,
+      username: "Billy",
+      email: "billy@pizzaluv.com",
+      password: "luckyGuess",
+      profile_image:
+        "https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg",
+      display_name: "PizzaBruh420",
+      dietary_preference: ["gluten"],
+      favorite_pizza_toppings: "Mushrooms",
+      display_location: "Miami, Florida",
+      favorite_pizza_shop: 2,
+      bio: "Pizza! Pizza! Pizza! Ain't nothing like it",
     },
     {
-        id: 3,
-        username: "Betty",
-        email: "betty@pizzaluv.com",
-        password: "luckyGuess",
-        profile_image: "https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg",
-        display_name: "PizzaGurl",
-        dietary_preference: [
-            "gluten"
-        ],
-        favorite_pizza_toppings: "Pepperoni",
-        display_location: "Billings",
-        favorite_pizza_shop: 3,
-        bio: "Can't spell pizza without Betty!"
+      id: 3,
+      username: "Betty",
+      email: "betty@pizzaluv.com",
+      password: "luckyGuess",
+      profile_image:
+        "https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg",
+      display_name: "PizzaGurl",
+      dietary_preference: ["gluten"],
+      favorite_pizza_toppings: "Pepperoni",
+      display_location: "Billings",
+      favorite_pizza_shop: 3,
+      bio: "Can't spell pizza without Betty!",
     },
-],
+  ],
   save: { target: { id: "save" } },
   cancel: { target: { id: "cancel" } },
   locations: [
@@ -178,4 +182,3 @@ export const testData = {
     bio: "I could eat pizza for every meal",
   },
 };
-
