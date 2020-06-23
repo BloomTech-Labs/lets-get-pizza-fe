@@ -118,9 +118,8 @@ export const compareExpectedCalls = (
 export const spreadCalls = (arrayOfArrays) => {
   let newArray = [];
   arrayOfArrays.forEach((array) => (newArray = [...newArray, ...array]));
-
-  return newArray;
-};
+    return newArray;
+  };
 
 export const compareExpectedState = (
   typeArray,
