@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserEvent renders user with events 1`] = `
+<div>
+  <div
+    class="item"
+  >
+    <div
+      class="content"
+    >
+      <a
+        class="header"
+        href="/locations/undefined/events"
+      >
+        21st Birthday
+      </a>
+      <div
+        class="meta"
+      >
+        Created By - You
+      </div>
+      <div
+        class="description"
+      >
+        Come celebrate my 21st Birthday
+      </div>
+      <div
+        class="meta"
+      >
+        <span
+          class=""
+        />
+      </div>
+      <div
+        class="meta"
+      >
+        <span
+          class=""
+        />
+      </div>
+      <div
+        class="extra"
+      >
+        <div
+          class="ui label"
+          title="Event date"
+        >
+          <i
+            aria-hidden="true"
+            class="calendar alternate icon"
+          />
+          <time
+            datetime="1579507200000"
+          >
+            Mon
+          </time>
+          ,  
+          <time
+            datetime="1579507200000"
+          >
+            January 20
+          </time>
+        </div>
+        <div
+          class="ui label"
+          title="Event time"
+        >
+          <i
+            aria-hidden="true"
+            class="clock icon"
+          />
+          <time
+            datetime="1579507200000"
+          >
+            12:00 am
+          </time>
+          —
+          <time
+            datetime="1579680000000"
+          >
+            12:00 am
+          </time>
+        </div>
+        <a
+          class="ui label"
+          title="Edit event"
+        >
+          <i
+            aria-hidden="true"
+            class="edit icon"
+          />
+        </a>
+        <a
+          class="ui label"
+          title="Delete event"
+        >
+          <i
+            aria-hidden="true"
+            class="trash icon"
+          />
+        </a>
+        <a
+          class="ui label"
+        >
+          <i
+            aria-hidden="true"
+            class="add user icon"
+          />
+          Invite Friends
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserEvent renders user without events 1`] = `
+<div>
+  <div
+    class="item"
+  >
+    <div
+      class="content"
+    >
+      <a
+        class="header"
+        href="/locations/undefined/events"
+      >
+        21st Birthday
+      </a>
+      <div
+        class="meta"
+      >
+        Created By - You
+      </div>
+      <div
+        class="description"
+      >
+        Come celebrate my 21st Birthday
+      </div>
+      <div
+        class="meta"
+      >
+        <span
+          class=""
+        />
+      </div>
+      <div
+        class="meta"
+      >
+        <span
+          class=""
+        />
+      </div>
+      <div
+        class="extra"
+      >
+        <div
+          class="ui label"
+          title="Event date"
+        >
+          <i
+            aria-hidden="true"
+            class="calendar alternate icon"
+          />
+          <time
+            datetime="1579507200000"
+          >
+            Mon
+          </time>
+          ,  
+          <time
+            datetime="1579507200000"
+          >
+            January 20
+          </time>
+        </div>
+        <div
+          class="ui label"
+          title="Event time"
+        >
+          <i
+            aria-hidden="true"
+            class="clock icon"
+          />
+          <time
+            datetime="1579507200000"
+          >
+            12:00 am
+          </time>
+          —
+          <time
+            datetime="1579680000000"
+          >
+            12:00 am
+          </time>
+        </div>
+        <a
+          class="ui label"
+          title="Edit event"
+        >
+          <i
+            aria-hidden="true"
+            class="edit icon"
+          />
+        </a>
+        <a
+          class="ui label"
+          title="Delete event"
+        >
+          <i
+            aria-hidden="true"
+            class="trash icon"
+          />
+        </a>
+        <a
+          class="ui label"
+        >
+          <i
+            aria-hidden="true"
+            class="add user icon"
+          />
+          Invite Friends
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
