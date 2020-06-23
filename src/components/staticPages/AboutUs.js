@@ -9,19 +9,19 @@ import SimpleContainer from "../main/SimpleContainer";
 // import jm from "../../media/spencer.jpg";
 
 
-// import ba from '../../media/buddy.png';
-// import ch from '../../media/cody.jpg';
-// import ft from '../../media/freddie.jpg';
-// import jo from '../../media/jeff.png';
-// import jc from '../../media/John-C.png';
-// import jm from '../../media/John-M.png';
-// import kd from '../../media/me.png';
+import ba from '../../media/buddy.png';
+import ch from '../../media/cody.jpg';
+import ft from '../../media/freddie.jpg';
+import jo from '../../media/jeff.png';
+import jc from '../../media/john.png';
+import jm from '../../media/justin.png';
+import kd from '../../media/me.png';
 
 
 const teamMembers = [
   {
     key: "buddy",
-    // image: rf,
+    image: ba,
     name: "Buddy Agyin",
     position: "Full-Stack Web Developer",
     bio: `The Coding God! He has mastered the art of turning coffee into code. Lover of all things Lakers, Coffee, and Kanye West.`,
@@ -30,9 +30,9 @@ const teamMembers = [
       { type: "linkedin", url: "https://linkedin.com/in/buddy-agyin" }
     ]
   },
-  { //needs image only//
+  {
     key: "jeff",
-    // image: jo,
+    image: jo,
     name: "Jeff Orndorff",
     position: "Full-Stack Web Developer",
     bio: `The Testing God - do not test him. He will win.`,
@@ -42,9 +42,9 @@ const teamMembers = [
       { type: "globe", url: "www.jeffreyorndorff.com"}
     ]
   },
-  { //only needs image//
+  { 
     key: "cody",
-    // image: ch,
+    image: ch,
     name: "Cody Hayes",
     position: "Full Stack Web Developer",
     bio: `Southern California, Passion for learning and bettering himself. Javascript and guitar are his two favorite things.`,
@@ -55,9 +55,9 @@ const teamMembers = [
       { type: "globe", url: "https://www.codyhayesdeveloper.com/"}
     ]
   },
-  { //only needs image//
+  {
     key: "john c",
-    // image: cc,
+    image: jc,
     name: "John Chaing",
     position: "Full-Stack Web Developer",
     bio: `John Chaing is a Full Stack Web Developer. He enjoys all things Marvel, BBQs, sports and most of all, entertaining his family.`,
@@ -70,34 +70,37 @@ const teamMembers = [
   },
   {
     key: "katrina",
-    // image: ss,
+    image: kd,
     name: "Katrina Dierking",
     position: "Full-Stack Web Developer",
-    bio: `Pizza and programming aficionado. Northwest raised,
-    currently residing in the deep south.`,
+    bio: `When design, coding, and marketing collide to create beautifully optimized sites, Katrina was there.`,
     links: [
       { type: "github", url: "https://github.com/Katrina-Dierking"},
       { type: "linkedin", url: "https://www.linkedin.com/in/kalynn-dier/"},
-      { type: "globe", url: "https://spencer.summerville.dev" }
+      { type: "globe", url: "https://www.notes.hertimetocode.com" }
     ]
   },
 
   {
-    key: "freddy",
-    // image: jm,
-    name: "Freddy Thompson",
+    key: "freddie",
+    image: ft,
+    name: "Freddie Thompson",
     position: "Full-Stack Web Developer",
-    bio: `Pizza and programming aficionado. Northwest raised,
-    currently residing in the deep south.`,
+    bio: `A self-taught developer with enthusiasm for full stack development 
+    and curiosity to learn new tools and technologies. Freddie familiar with the entire 
+    software development process from design and development to testing and deployment. 
+    He is well-schooled in translating UX concepts into code, developing new user features, 
+    crafting code for various software functions, testing functionality of applications, and 
+    tweaking the code to perfection.`,
     links: [
-      { type: "github", url: "https://github.com/grenuttag" },
-      { type: "globe", url: "https://spencer.summerville.dev" }
+      { type: "github", url: "https://github.com/freddiet803" },
+      { type: "linkedin", url: " https://www.linkedin.com/in/fredrick-thompson-b9ab4666/"}
     ]
   },
 
-  { //only needs image//
+  {
     key: "john m",
-    // image: jm,
+    image: jm,
     name: "Justin McCutcheon",
     position: "Project Lead for Plza Team | Full-Stack Web Developer",
     bio: `Leading the crew to success, John is a Web Dev genius who loves his dog -- and pizza.`,
