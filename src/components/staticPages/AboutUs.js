@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { Image, Button, Card } from "semantic-ui-react";
 import SimpleContainer from "../main/SimpleContainer";
 
@@ -17,6 +18,12 @@ import jc from '../../media/john.png';
 import jm from '../../media/justin.png';
 import kd from '../../media/me.png';
 
+const Team = styled.div`
+  border:.5px solid grey;
+  box-shadow: 5px 8px 5px slategrey;
+  padding:2%;
+  margin:1%;
+`
 
 const teamMembers = [
   {
@@ -87,11 +94,9 @@ const teamMembers = [
     name: "Freddie Thompson",
     position: "Full-Stack Web Developer",
     bio: `A self-taught developer with enthusiasm for full stack development 
-    and curiosity to learn new tools and technologies. Freddie familiar with the entire 
+    and curiosity to learn new tools and technologies. Freddie is familiar with the entire 
     software development process from design and development to testing and deployment. 
-    He is well-schooled in translating UX concepts into code, developing new user features, 
-    crafting code for various software functions, testing functionality of applications, and 
-    tweaking the code to perfection.`,
+  `,
     links: [
       { type: "github", url: "https://github.com/freddiet803" },
       { type: "linkedin", url: " https://www.linkedin.com/in/fredrick-thompson-b9ab4666/"}
@@ -113,19 +118,24 @@ const teamMembers = [
 ];
 
 const AboutUs = () => (
+ 
   <SimpleContainer
     title="Meet the team"
     icon="users"
     description="Meet the fine people behind your new favorite app!"
   >
     <Card.Group centered>
+  
       {teamMembers.map(member => (
+        <Team>
         <Card key={member.key}>
           <Image src={member.image} wrapped />
           <Card.Content>
+            
             <Card.Header>{member.name}</Card.Header>
             <Card.Meta>{member.position}</Card.Meta>
             <Card.Description>{member.bio}</Card.Description>
+            
           </Card.Content>
 
           <Card.Content extra>
@@ -139,9 +149,14 @@ const AboutUs = () => (
             ))}
           </Card.Content>
         </Card>
+        </Team>
       ))}
+  
     </Card.Group>
+
+    
   </SimpleContainer>
+ 
 );
 
 export default AboutUs;
