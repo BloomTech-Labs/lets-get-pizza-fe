@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`activities render renders 1`] = `
+<div
+  className="ui large feed"
+  style={
+    Object {
+      "margin": "0 auto",
+      "width": "80%",
+    }
+  }
+>
+  <div
+    className="event"
+  >
+    <div
+      className="label"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="summary"
+      >
+        <a
+          className="user"
+          href="/users/dash/profile"
+        >
+          AnimeCody
+        </a>
+         
+        posted a review of 
+        Pizza Chalet
+      </div>
+      <br />
+      <div
+        className="summary"
+      >
+        Nostalgia
+         
+        <div
+          className="ui disabled rating"
+          onMouseLeave={[Function]}
+          role="radiogroup"
+          tabIndex={0}
+        >
+          <i
+            aria-checked={false}
+            aria-posinset={1}
+            aria-setsize={5}
+            className="active icon"
+            onClick={[Function]}
+            onKeyUp={[Function]}
+            onMouseEnter={[Function]}
+            role="radio"
+            tabIndex={-1}
+          />
+          <i
+            aria-checked={false}
+            aria-posinset={2}
+            aria-setsize={5}
+            className="active icon"
+            onClick={[Function]}
+            onKeyUp={[Function]}
+            onMouseEnter={[Function]}
+            role="radio"
+            tabIndex={-1}
+          />
+          <i
+            aria-checked={false}
+            aria-posinset={3}
+            aria-setsize={5}
+            className="active icon"
+            onClick={[Function]}
+            onKeyUp={[Function]}
+            onMouseEnter={[Function]}
+            role="radio"
+            tabIndex={-1}
+          />
+          <i
+            aria-checked={false}
+            aria-posinset={4}
+            aria-setsize={5}
+            className="active icon"
+            onClick={[Function]}
+            onKeyUp={[Function]}
+            onMouseEnter={[Function]}
+            role="radio"
+            tabIndex={-1}
+          />
+          <i
+            aria-checked={true}
+            aria-posinset={5}
+            aria-setsize={5}
+            className="active icon"
+            onClick={[Function]}
+            onKeyUp={[Function]}
+            onMouseEnter={[Function]}
+            role="radio"
+            tabIndex={-1}
+          />
+        </div>
+      </div>
+      <div
+        className="text extra"
+      >
+        I used to go here all the time as a child
+      </div>
+      <div
+        className="meta"
+      >
+        <a
+          className="like"
+        >
+          <i
+            aria-hidden="true"
+            className="thumbs up icon"
+            onClick={[Function]}
+          />
+        </a>
+         13 Likes
+      </div>
+       
+    </div>
+  </div>
+  <div
+    className="ui divider"
+  />
+</div>
+`;

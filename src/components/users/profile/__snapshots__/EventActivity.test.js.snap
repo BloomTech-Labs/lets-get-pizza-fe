@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`event activity should match snapshot 1`] = `
+Array [
+  <div
+    className="event"
+  >
+    <div
+      className="label"
+    >
+      <img
+        src="https://vignette.wikia.nocookie.net/dragonballfighterz/images/e/ea/Goku_Artwork.png/revision/latest/top-crop/width/360/height/450?cb=20180902173423"
+      />
+    </div>
+    <div
+      className="content"
+    >
+      <div
+        className="summary"
+      >
+        <a
+          className="user"
+          href="/users/dash/profile"
+        >
+          AnimeCody
+        </a>
+         
+        posted an event at 
+        pizza man
+      </div>
+      <br />
+      <a
+        className="summary"
+        onClick={[Function]}
+      >
+        the pizza place
+      </a>
+      <div
+        className="text extra"
+      >
+        this is a test man
+      </div>
+      <div
+        className="meta"
+      >
+        <a
+          className="like"
+        >
+          <i
+            aria-hidden="true"
+            className="thumbs up icon"
+            onClick={[Function]}
+          />
+        </a>
+         13 Likes 
+         
+      </div>
+    </div>
+  </div>,
+  <div
+    className="ui divider"
+  />,
+]
+`;
