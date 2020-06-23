@@ -15,18 +15,17 @@
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/buddy-agyin/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jeffrey-orndorff-3bb57a71/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/john-chaing/) |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kalynn-dier/)     | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/cody-hayes-b34722191/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/fredrick-thompson-b9ab4666/) |
 
 <br>
-<br>
 
 
 ## Project Overview
 
 Plza is a social media platform that connects pizza lovers with pizza shops, where they can find & rate pizza and organize pizza-related social gatherings and events. 
 
-[Trello Board](https://trello.com/b/1AWRoMgO/labs-pt9-plza)
+- [Trello Board](https://trello.com/b/1AWRoMgO/labs-pt9-plza)
 
-[Product Canvas](https://www.notion.so/Vision-Problem-Objectives-5454fd3e0df9406596d5f19fd2088b5c)
+- [Product Canvas](https://www.notion.so/Vision-Problem-Objectives-5454fd3e0df9406596d5f19fd2088b5c)
 
-[UX Design files](https://docs.google.com/document/d/13lNJrr00pqCpp1nX_K26NXeTNK5NNMaJeDAGKSOoC7A/edit?usp=sharing)
+- [UX Design files](https://docs.google.com/document/d/13lNJrr00pqCpp1nX_K26NXeTNK5NNMaJeDAGKSOoC7A/edit?usp=sharing)
 
 
 
@@ -43,18 +42,20 @@ Plza is a social media platform that connects pizza lovers with pizza shops, whe
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/React-v16.13.1-blue.svg)
 ![Redux](https://img.shields.io/badge/Redux-v4.0.5-blue.svg)
-![interface](https://img.shields.io/badge/interface-Semantic%20UI-orange.svg)
-[![code style: prettier](https://img.shields.io/badge/code_style-Prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![interface](https://img.shields.io/badge/interface-Semantic%20UI-purple.svg)
 ![Host](https://img.shields.io/badge/host-AWS%20Amplify-orange.svg)
+![Node](https://img.shields.io/badge/backend-Node.js-red.svg)
+![Express](https://img.shields.io/badge/Express-v4.17.1-red.svg)
+![PostgreSQL](https://img.shields.io/badge/DB-PostgreSQL-red.svg)
 
 
 ### Front end built using:
 
 #### _React_
 
-- Currently the best frontend library in the market in terms of use
+- Flexibility to develop with other frontend technologies
+- Currently the most popular frontend library in the market
 - Staying power (backed by Facebook)
-- Flexibility to use with other frontend technologies
 
 #### _Redux_
 
@@ -79,81 +80,58 @@ Plza is a social media platform that connects pizza lovers with pizza shops, whe
 
 #### _Node / Express.js_
 
-- Schema and data were previously built on top of Node/Express
 - Same language for the entire stack
-- point three
+- Minimal framework; ease of use.
+- Schema and data were previously built on top of Node/Express
 
 #### _PostgreSQL_
 
-- one
-- two
-- three
+- High Performance Database
+- Strong reputation for reliability
+- Free and open-source; easier to find and fix issues
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Foursquare
 
-🚫Replace text below with a description of the API
+The Foursquare Places API provides location based experiences with diverse information about venues, users, photos, and check-ins. The API supports real time access to places, Snap-to-Place that assigns users to specific locations, and Geo-tag. Additionally, Foursquare allows developers to build audience segments for analysis and measurement. JSON is the preferred response format.
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
-## 2️⃣ Payment API here
+## GeoIP
 
-🚫Replace text below with a description of the API
+GeoIP service provides accurate geolocation information based on domain or IP address.
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+# Environment Variables
 
-## 3️⃣ Misc API here
+In order for the app to function correctly, the user must set up their own local environment variables. There should be a ```.env``` file containing the following:
 
-🚫Replace text below with a description of the API
+```
+REACT_APP_BASE_URL = Local Backend Server e.g "http://localhost:4000/api" 
+REACT_APP_MAPBOX_TOKEN = pk.eyJ1IjoiZ3JlbnV0dGFnIiwiYSI6ImNrMnF1ajFkYzBqMTAzY244bmRpbW5nYW8ifQ.yX9laKkhJ8OmDQkwdnz8Hw
+```
 
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+# Installation Instructions
 
-## 3️⃣ Misc API here
+- Create ```.env``` file with the above environment variables
+- ```npm install``` to install all required dependancies
 
-🚫Replace text below with a description of the API
+### Other Scripts
+- ```npm run start``` to start the app
+- ```npm run test``` to start server using testing environment
+- ```npm run coverage``` to gather test coverage
+                         |
 
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
+# Testing
 
-## 3️⃣ Misc API here
+For testing, we've used the following testing modules:
 
-🚫Replace text below with a description of the API
+ - ```@testing-library/react``` - light-weight solution for testing React components. It provides light utility functions on top of ```react-dom``` and ```react-dom/test-utils```, in a way that encourages better testing practices.
+ - ```react-test-renderer``` - used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
+ - ```redux-mock-store``` -  used to test Redux async action creators and middleware. The mock store will create an array of dispatched actions which server as an action log for tests
 
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
-# 3️⃣ Environment Variables
-
-In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
-
-    *  REACT_APP_GOOGLE_MAPS_TOKEN - Google API key  .env.development.local
-
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
-
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
-
-# 4️⃣ Testing
-
-🚫Document what you used for testing and why
-
-# 4️⃣ Installation Instructions
-
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
-
-## Other Scripts
-
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 ## Contributing
 
@@ -194,4 +172,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/lets-get-pizza-be) for details on the backend of our project.
