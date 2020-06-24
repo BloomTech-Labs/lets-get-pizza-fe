@@ -4,7 +4,7 @@ import { testData as data } from "../actions/userActionsTestData";
 import { compareExpectedState } from "../../utils/reduxTestingFunctions";
 
 describe("USER REDUCER TESTS", () => {
-  it("should return initial state", () => {
+  it("Default should return initial state", () => {
     expect(userReducer(initialState, { type: "@@init" })).toEqual(initialState);
     expect(userReducer(initialState, { type: "@@init" })).not.toEqual({});
     expect(userReducer(initialState, {})).toEqual(initialState);
@@ -199,5 +199,108 @@ describe("USER REDUCER TESTS", () => {
     };
 
     compareExpectedState(typesArr, state, null, expectedState, userReducer);
+  });
+
+  it("Test REVIEWS Success", () => {
+    const typesArr = [
+      types.USER_REVIEW_SUCCESS,
+      types.USER_REVIEW_DELETE_SUCCESS,
+      types.USER_REVIEW_EDIT_SUCCESS,
+    ];
+    const payload = data.user.reviews;
+    const expectedState = {
+      ...initialState,
+      reviews: [...data.user.reviews],
+    };
+
+    compareExpectedState(
+      typesArr,
+      initialState,
+      payload,
+      expectedState,
+      userReducer
+    );
+  });
+
+  it("Test FRIENDS Success", () => {
+    const typesArr = [
+      types.GET_USER_FRIENDS_SUCCESS,
+      types.DELETE_USER_FRIENDS_SUCCESS,
+    ];
+    const payload = data.user.friends;
+    const state = {
+      ...initialState,
+      isLoading: true,
+    };
+    const expectedState = {
+      ...initialState,
+      friends: [...data.user.friends],
+    };
+
+    compareExpectedState(typesArr, state, payload, expectedState, userReducer);
+  });
+
+  it("Test ADD_USER_FRIEND_SUCCESS", () => {
+    const typesArr = [types.ADD_USER_FRIEND_SUCCESS];
+    const payload = false;
+    const state = {
+      ...initialState,
+      isLoading: true,
+    };
+    const expectedState = {
+      ...initialState,
+      isLoading: false,
+      error: undefined,
+    };
+
+    compareExpectedState(typesArr, state, payload, expectedState, userReducer);
+  });
+
+  it("Test GET_USER_FRIENDS_FAIL", () => {
+    const typesArr = [types.GET_USER_FRIENDS_FAIL];
+    const payload = false;
+    const state = {
+      ...initialState,
+      isLoading: true,
+    };
+    const expectedState = {
+      ...initialState,
+      isLoading: false,
+      friends: [],
+    };
+
+    compareExpectedState(typesArr, state, payload, expectedState, userReducer);
+  });
+
+  it("Test PROMOS Success", () => {
+    const typesArr = [types.GET_USER_PROMOS, types.ADD_USER_PROMOS];
+    const payload = data.user.savedPromos;
+    const expectedState = {
+      ...initialState,
+      savedPromos: data.user.savedPromos,
+    };
+
+    compareExpectedState(
+      typesArr,
+      initialState,
+      payload,
+      expectedState,
+      userReducer
+    );
+  });
+
+  it("Test BIO Success", () => {
+    const typesArr = [types.UPDATE_BIO_SUCCESS];
+    const payload = data.user.bio;
+    const state = {
+      ...initialState,
+      bio: "I'm Hungry",
+    };
+    const expectedState = {
+      ...initialState,
+      bio: data.user.bio,
+    };
+
+    compareExpectedState(typesArr, state, payload, expectedState, userReducer);
   });
 });
