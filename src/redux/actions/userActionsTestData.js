@@ -166,6 +166,26 @@ export const testData = {
       order_service: "horse & buggy",
       store_bio: "We reeeallly like sauce.",
       dietary_offerings: ["vegan"],
+      events: [
+        {
+          description: "Its dat time boys, pizza!",
+          end_time: "2020-01-22T00:00:00.000Z",
+          id: 1,
+          location_id: 1,
+          start_time: "2020-01-20T00:00:00.000Z",
+          title: "Lets Get Pizza!",
+          user_id: 1,
+        },
+        {
+          description: "Are Nacho pizzas a thing? Lets find out!",
+          end_time: "2020-01-22T00:00:00.000Z",
+          id: 2,
+          location_id: 1,
+          start_time: "2020-01-20T00:00:00.000Z",
+          title: "Nacho Pizza Hunt!",
+          user_id: 1,
+        },
+      ],
     },
   ],
   image: {
