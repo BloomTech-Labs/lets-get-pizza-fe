@@ -56,10 +56,6 @@ export const friendReducer = (state = initialState, { type, payload }) => {
         case types.GET_FRIEND_FAV_SHOP_FAIL:
         case types.FRIEND_EVENT_FAIL:
         case types.FRIEND_REVIEW_FAIL:
-            return {
-                ...state,
-                isLoading: payload.isLoading
-            }
         case types.GET_ALL_FRIENDS_FAIL:
             return {
                 ...state,

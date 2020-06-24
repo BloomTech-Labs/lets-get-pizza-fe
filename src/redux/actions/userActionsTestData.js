@@ -106,36 +106,34 @@ export const testData = {
   },
   users: [
     {
-        id: 1,
-        username: "Billy",
-        email: "billy@pizzaluv.com",
-        password: "luckyGuess",
-        profile_image: "https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg",
-        display_name: "PizzaBruh420",
-        dietary_preference: [
-            "gluten"
-        ],
-        favorite_pizza_toppings: "Mushrooms",
-        display_location: "Miami, Florida",
-        favorite_pizza_shop: 2,
-        bio: "Pizza! Pizza! Pizza! Ain't nothing like it"
+      id: 1,
+      username: "Billy",
+      email: "billy@pizzaluv.com",
+      password: "luckyGuess",
+      profile_image:
+        "https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg",
+      display_name: "PizzaBruh420",
+      dietary_preference: ["gluten"],
+      favorite_pizza_toppings: "Mushrooms",
+      display_location: "Miami, Florida",
+      favorite_pizza_shop: 2,
+      bio: "Pizza! Pizza! Pizza! Ain't nothing like it",
     },
     {
-        id: 3,
-        username: "Betty",
-        email: "betty@pizzaluv.com",
-        password: "luckyGuess",
-        profile_image: "https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg",
-        display_name: "PizzaGurl",
-        dietary_preference: [
-            "gluten"
-        ],
-        favorite_pizza_toppings: "Pepperoni",
-        display_location: "Billings",
-        favorite_pizza_shop: 3,
-        bio: "Can't spell pizza without Betty!"
+      id: 3,
+      username: "Betty",
+      email: "betty@pizzaluv.com",
+      password: "luckyGuess",
+      profile_image:
+        "https://res.cloudinary.com/plza/image/upload/v1588043869/qxhdqbj4sthf57bdgltz.jpg",
+      display_name: "PizzaGurl",
+      dietary_preference: ["gluten"],
+      favorite_pizza_toppings: "Pepperoni",
+      display_location: "Billings",
+      favorite_pizza_shop: 3,
+      bio: "Can't spell pizza without Betty!",
     },
-],
+  ],
   save: { target: { id: "save" } },
   cancel: { target: { id: "cancel" } },
   locations: [
@@ -162,6 +160,26 @@ export const testData = {
       order_service: "horse & buggy",
       store_bio: "We reeeallly like sauce.",
       dietary_offerings: ["vegan"],
+      events: [
+        {
+          description: "Its dat time boys, pizza!",
+          end_time: "2020-01-22T00:00:00.000Z",
+          id: 1,
+          location_id: 1,
+          start_time: "2020-01-20T00:00:00.000Z",
+          title: "Lets Get Pizza!",
+          user_id: 1,
+        },
+        {
+          description: "Are Nacho pizzas a thing? Lets find out!",
+          end_time: "2020-01-22T00:00:00.000Z",
+          id: 2,
+          location_id: 1,
+          start_time: "2020-01-20T00:00:00.000Z",
+          title: "Nacho Pizza Hunt!",
+          user_id: 1,
+        },
+      ],
     },
   ],
   image: {
@@ -178,4 +196,3 @@ export const testData = {
     bio: "I could eat pizza for every meal",
   },
 };
-
