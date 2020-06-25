@@ -51,7 +51,7 @@ describe("UserEvent", () => {
         },
       })
     );
-    const { container } = render(<UserEvent event={event} />);
+    const { container } = render(<UserEvent event={event}/>);
     expect(container).toMatchSnapshot();
   });
 
@@ -65,12 +65,12 @@ describe("UserEvent", () => {
         },
       })
     );
-    const { container } = render(<UserEvent event={event} />);
+    const { container } = render(<UserEvent event={event}/>);
     expect(container).toMatchSnapshot();
   });
 
   it("renders text and values from props", () => {
-    const { getByText, getAllByText } = render(<UserEvent event={event} />);
+    const { getByText, getAllByText } = render(<UserEvent event={event}/>);
 
     const title = findFirstProp("21st Birthday", getByText, getAllByText);
 
