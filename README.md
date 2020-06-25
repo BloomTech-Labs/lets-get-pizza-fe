@@ -2,7 +2,6 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Lambda-School-Labs/lets-get-pizza-fe) [![Maintainability](https://api.codeclimate.com/v1/badges/e1fb15895e38b988dd60/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/lets-get-pizza-fe/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e1fb15895e38b988dd60/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/lets-get-pizza-fe/test_coverage)
 
-
 ### Deployed @ [www.pleazza.com](https://www.pleazza.com/)
 
 <br>
@@ -16,18 +15,22 @@
 
 <br>
 
+## Project Lead
+
+| [Justin McCutcheon](https://github.com/Jtmccutcheon) |
+| :-----------------------------------: | :-----------------------------------: | :-----------------------------------: | :-----------------------------------: | :-----------------------------------: | :-----------------------------------: |
+| [<img src="https://ca.slack-edge.com/ESZCHB482-W012H6ML6CD-a2fcd9213b72-512" width = "200" />](https://github.com/Jtmccutcheon) | 
+|      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/justinmccutcheon/)      |
 
 ## Project Overview
 
-Plza is a social media platform that connects pizza lovers with pizza shops, where they can find & rate pizza and organize pizza-related social gatherings and events. 
+Plza is a social media platform that connects pizza lovers with pizza shops, where they can find & rate pizza and organize pizza-related social gatherings and events.
 
 - [Trello Board](https://trello.com/b/1AWRoMgO/labs-pt9-plza)
 
 - [Product Canvas](https://www.notion.so/Vision-Problem-Objectives-5454fd3e0df9406596d5f19fd2088b5c)
 
 - [UX Design files](https://docs.google.com/document/d/13lNJrr00pqCpp1nX_K26NXeTNK5NNMaJeDAGKSOoC7A/edit?usp=sharing)
-
-
 
 ### Key Features
 
@@ -47,7 +50,6 @@ Plza is a social media platform that connects pizza lovers with pizza shops, whe
 ![Node](https://img.shields.io/badge/backend-Node.js-red.svg)
 ![Express](https://img.shields.io/badge/Express-v4.17.1-red.svg)
 ![PostgreSQL](https://img.shields.io/badge/DB-PostgreSQL-red.svg)
-
 
 ### Front end built using:
 
@@ -70,6 +72,7 @@ Plza is a social media platform that connects pizza lovers with pizza shops, whe
 - Able to quickly design beautiful layouts
 
 #### _AWS Amplify_
+
 - Fast, Secure and Scalable
 - Easy to deploy frontend applications
 - Backed by industry standard AWS Services
@@ -90,14 +93,11 @@ Plza is a social media platform that connects pizza lovers with pizza shops, whe
 - Strong reputation for reliability
 - Free and open-source; easier to find and fix issues
 
-
-
 # APIs
 
 ## Foursquare
 
 The Foursquare Places API provides location based experiences with diverse information about venues, users, photos, and check-ins. The API supports real time access to places, Snap-to-Place that assigns users to specific locations, and Geo-tag. Additionally, Foursquare allows developers to build audience segments for analysis and measurement. JSON is the preferred response format.
-
 
 ## GeoIP
 
@@ -105,33 +105,33 @@ GeoIP service provides accurate geolocation information based on domain or IP ad
 
 # Environment Variables
 
-In order for the app to function correctly, the user must set up their own local environment variables. There should be a ```.env``` file containing the following:
+In order for the app to function correctly, the user must set up their own local environment variables. There should be a `.env` file containing the following:
 
 ```
-REACT_APP_BASE_URL = Local Backend Server e.g "http://localhost:4000/api" 
+REACT_APP_BASE_URL = Local Backend Server e.g "http://localhost:4000/api"
 REACT_APP_MAPBOX_TOKEN = pk.eyJ1IjoiZ3JlbnV0dGFnIiwiYSI6ImNrMnF1ajFkYzBqMTAzY244bmRpbW5nYW8ifQ.yX9laKkhJ8OmDQkwdnz8Hw
+REACT_APP_ENCRYPT_SECRET=PizzaPlza2
 ```
 
 # Installation Instructions
 
-- Create ```.env``` file with the above environment variables
-- ```npm install``` to install all required dependancies
+- Create `.env` file with the above environment variables
+- `npm install` to install all required dependancies
 
 ### Other Scripts
-- ```npm run start``` to start the app
-- ```npm run test``` to start server using testing environment
-- ```npm run coverage``` to gather test coverage
-                         |
+
+- `npm run start` to start the app
+- `npm run test` to start server using testing environment
+- `npm run coverage` to gather test coverage
+  |
 
 # Testing
 
 For testing, we've used the following testing modules:
 
- - ```@testing-library/react``` - light-weight solution for testing React components. It provides light utility functions on top of ```react-dom``` and ```react-dom/test-utils```, in a way that encourages better testing practices.
- - ```react-test-renderer``` - used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
- - ```redux-mock-store``` -  used to test Redux async action creators and middleware. The mock store will create an array of dispatched actions which server as an action log for tests
-
-
+- `@testing-library/react` - light-weight solution for testing React components. It provides light utility functions on top of `react-dom` and `react-dom/test-utils`, in a way that encourages better testing practices.
+- `react-test-renderer` - used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
+- `redux-mock-store` - used to test Redux async action creators and middleware. The mock store will create an array of dispatched actions which server as an action log for tests
 
 ## Contributing
 
