@@ -73,7 +73,6 @@ describe("UserEvent", () => {
     const { getByText, getAllByText } = render(<UserEvent event={event}/>);
 
     const title = findFirstProp("21st Birthday", getByText, getAllByText);
-
-    console.log(title);
+    
   });
 });
