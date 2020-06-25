@@ -76,7 +76,13 @@ export const testData = {
         id: 3,
       },
     ],
-    favShopDetails: {},
+    favShopDetails: {
+      name: "Dominoes Pizza",
+      latitude: 40.7050150708864,
+      longitude: -73.9336165250072,
+      address: "13 pizza rd",
+      location_id: 25,
+    },
     savedPromos: [
       {
         id: 1,
