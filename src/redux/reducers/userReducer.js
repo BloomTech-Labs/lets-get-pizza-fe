@@ -23,6 +23,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
     case types.GET_USER_FRIENDS_START:
     case types.DELETE_USER_FRIENDS_START:
     case types.ADD_USER_FRIEND_START:
+    case types.DELETE_USER_PROMOS_START:
       return {
         // TESTED
         ...state,
@@ -145,6 +146,16 @@ export const userReducer = (state = initialState, { type, payload }) => {
         // TESTED
         ...state,
         bio: payload,
+      };
+    case types.DELETE_USER_PROMOS_SUCCESS:
+      return {
+        ...state,
+        savedPromos: payload,
+      };
+    case types.DELETE_USER_PROMOS_FAIL:
+      return {
+        ...state,
+        isLoading: payload,
       };
     default:
       // TESTED

@@ -189,7 +189,7 @@ export const userDeleteEvent = (id, user) => (dispatch) => {
 
 // Reviews
 export const reviewsByUser = (id) => (dispatch) => {
-  dispatch({type: types.USER_REVIEW_START, payload: true})
+  dispatch({ type: types.USER_REVIEW_START, payload: true });
   API.get(`/reviews/users/${id}`)
     .then((res) => {
       dispatch({
@@ -286,11 +286,25 @@ export const getUserPromos = (id) => (dispatch) => {
 export const addUserPromo = (user_id, promo_id) => (dispatch) => {
   let postData = { user_id, promo_id };
   API.post("/savedPromos", postData)
+    .then((res) => {})
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const deleteUserPromo = (user, promo_id) => (dispatch) => {
+  dispatch({ type: types.DELETE_USER_PROMOS_START, payload: true });
+  API.delete(`/savedPromos/${promo_id}`)
     .then((res) => {
+      let newUserPromo = user.savedPromos.filter((keep) => keep.id != promo_id);
+      dispatch({
+        type: types.DELETE_USER_PROMOS_SUCCESS,
+        payload: newUserPromo,
+      });
     })
     .catch((err) => {
-      // Errors on actions need to be handeled some other way than
-      // console.log(err);
+      console.log(err);
+      dispatch({ type: types.DELETE_USER_PROMOS_FAIL, payload: false });
     });
 };
 
